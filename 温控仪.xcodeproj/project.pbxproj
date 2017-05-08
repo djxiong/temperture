@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED29B1FB1EC05264007E5454 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B1FA1EC05264007E5454 /* main.m */; };
+		ED29B1FE1EC05264007E5454 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B1FD1EC05264007E5454 /* AppDelegate.m */; };
+		ED29B2011EC05264007E5454 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2001EC05264007E5454 /* ViewController.m */; };
+		ED29B2041EC05264007E5454 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2021EC05264007E5454 /* Main.storyboard */; };
+		ED29B2061EC05264007E5454 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2051EC05264007E5454 /* Assets.xcassets */; };
+		ED29B2091EC05264007E5454 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2071EC05264007E5454 /* LaunchScreen.storyboard */; };
+		ED29B2141EC05265007E5454 /* ___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2131EC05265007E5454 /* ___Tests.m */; };
+		ED29B21F1EC05265007E5454 /* ___UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B21E1EC05265007E5454 /* ___UITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ED29B2101EC05265007E5454 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED29B1EE1EC05264007E5454 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED29B1F51EC05264007E5454;
+			remoteInfo = "温控仪";
+		};
+		ED29B21B1EC05265007E5454 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED29B1EE1EC05264007E5454 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED29B1F51EC05264007E5454;
+			remoteInfo = "温控仪";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ED29B1F61EC05264007E5454 /* 温控仪.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "温控仪.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED29B1FA1EC05264007E5454 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ED29B1FC1EC05264007E5454 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		ED29B1FD1EC05264007E5454 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		ED29B1FF1EC05264007E5454 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		ED29B2001EC05264007E5454 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		ED29B2031EC05264007E5454 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ED29B2051EC05264007E5454 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED29B2081EC05264007E5454 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ED29B20A1EC05264007E5454 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED29B20F1EC05265007E5454 /* 温控仪Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "温控仪Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED29B2131EC05265007E5454 /* ___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___Tests.m"; sourceTree = "<group>"; };
+		ED29B2151EC05265007E5454 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED29B21A1EC05265007E5454 /* 温控仪UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "温控仪UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED29B21E1EC05265007E5454 /* ___UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___UITests.m"; sourceTree = "<group>"; };
+		ED29B2201EC05265007E5454 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED29B1F31EC05264007E5454 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED29B20C1EC05265007E5454 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED29B2171EC05265007E5454 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED29B1ED1EC05264007E5454 = {
+			isa = PBXGroup;
+			children = (
+				ED29B1F81EC05264007E5454 /* 温控仪 */,
+				ED29B2121EC05265007E5454 /* 温控仪Tests */,
+				ED29B21D1EC05265007E5454 /* 温控仪UITests */,
+				ED29B1F71EC05264007E5454 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED29B1F71EC05264007E5454 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED29B1F61EC05264007E5454 /* 温控仪.app */,
+				ED29B20F1EC05265007E5454 /* 温控仪Tests.xctest */,
+				ED29B21A1EC05265007E5454 /* 温控仪UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED29B1F81EC05264007E5454 /* 温控仪 */ = {
+			isa = PBXGroup;
+			children = (
+				ED29B1FC1EC05264007E5454 /* AppDelegate.h */,
+				ED29B1FD1EC05264007E5454 /* AppDelegate.m */,
+				ED29B1FF1EC05264007E5454 /* ViewController.h */,
+				ED29B2001EC05264007E5454 /* ViewController.m */,
+				ED29B2021EC05264007E5454 /* Main.storyboard */,
+				ED29B2051EC05264007E5454 /* Assets.xcassets */,
+				ED29B2071EC05264007E5454 /* LaunchScreen.storyboard */,
+				ED29B20A1EC05264007E5454 /* Info.plist */,
+				ED29B1F91EC05264007E5454 /* Supporting Files */,
+			);
+			path = "温控仪";
+			sourceTree = "<group>";
+		};
+		ED29B1F91EC05264007E5454 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED29B1FA1EC05264007E5454 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ED29B2121EC05265007E5454 /* 温控仪Tests */ = {
+			isa = PBXGroup;
+			children = (
+				ED29B2131EC05265007E5454 /* ___Tests.m */,
+				ED29B2151EC05265007E5454 /* Info.plist */,
+			);
+			path = "温控仪Tests";
+			sourceTree = "<group>";
+		};
+		ED29B21D1EC05265007E5454 /* 温控仪UITests */ = {
+			isa = PBXGroup;
+			children = (
+				ED29B21E1EC05265007E5454 /* ___UITests.m */,
+				ED29B2201EC05265007E5454 /* Info.plist */,
+			);
+			path = "温控仪UITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED29B1F51EC05264007E5454 /* 温控仪 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED29B2231EC05265007E5454 /* Build configuration list for PBXNativeTarget "温控仪" */;
+			buildPhases = (
+				ED29B1F21EC05264007E5454 /* Sources */,
+				ED29B1F31EC05264007E5454 /* Frameworks */,
+				ED29B1F41EC05264007E5454 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "温控仪";
+			productName = "温控仪";
+			productReference = ED29B1F61EC05264007E5454 /* 温控仪.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ED29B20E1EC05265007E5454 /* 温控仪Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED29B2261EC05265007E5454 /* Build configuration list for PBXNativeTarget "温控仪Tests" */;
+			buildPhases = (
+				ED29B20B1EC05265007E5454 /* Sources */,
+				ED29B20C1EC05265007E5454 /* Frameworks */,
+				ED29B20D1EC05265007E5454 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED29B2111EC05265007E5454 /* PBXTargetDependency */,
+			);
+			name = "温控仪Tests";
+			productName = "温控仪Tests";
+			productReference = ED29B20F1EC05265007E5454 /* 温控仪Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ED29B2191EC05265007E5454 /* 温控仪UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED29B2291EC05265007E5454 /* Build configuration list for PBXNativeTarget "温控仪UITests" */;
+			buildPhases = (
+				ED29B2161EC05265007E5454 /* Sources */,
+				ED29B2171EC05265007E5454 /* Frameworks */,
+				ED29B2181EC05265007E5454 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED29B21C1EC05265007E5454 /* PBXTargetDependency */,
+			);
+			name = "温控仪UITests";
+			productName = "温控仪UITests";
+			productReference = ED29B21A1EC05265007E5454 /* 温控仪UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED29B1EE1EC05264007E5454 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "张海昌";
+				TargetAttributes = {
+					ED29B1F51EC05264007E5454 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = WA9VRUVC47;
+						ProvisioningStyle = Automatic;
+					};
+					ED29B20E1EC05265007E5454 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = WA9VRUVC47;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ED29B1F51EC05264007E5454;
+					};
+					ED29B2191EC05265007E5454 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = WA9VRUVC47;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ED29B1F51EC05264007E5454;
+					};
+				};
+			};
+			buildConfigurationList = ED29B1F11EC05264007E5454 /* Build configuration list for PBXProject "温控仪" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ED29B1ED1EC05264007E5454;
+			productRefGroup = ED29B1F71EC05264007E5454 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED29B1F51EC05264007E5454 /* 温控仪 */,
+				ED29B20E1EC05265007E5454 /* 温控仪Tests */,
+				ED29B2191EC05265007E5454 /* 温控仪UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED29B1F41EC05264007E5454 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED29B2091EC05264007E5454 /* LaunchScreen.storyboard in Resources */,
+				ED29B2061EC05264007E5454 /* Assets.xcassets in Resources */,
+				ED29B2041EC05264007E5454 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED29B20D1EC05265007E5454 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED29B2181EC05265007E5454 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED29B1F21EC05264007E5454 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED29B2011EC05264007E5454 /* ViewController.m in Sources */,
+				ED29B1FE1EC05264007E5454 /* AppDelegate.m in Sources */,
+				ED29B1FB1EC05264007E5454 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED29B20B1EC05265007E5454 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED29B2141EC05265007E5454 /* ___Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED29B2161EC05265007E5454 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED29B21F1EC05265007E5454 /* ___UITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED29B2111EC05265007E5454 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED29B1F51EC05264007E5454 /* 温控仪 */;
+			targetProxy = ED29B2101EC05265007E5454 /* PBXContainerItemProxy */;
+		};
+		ED29B21C1EC05265007E5454 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED29B1F51EC05264007E5454 /* 温控仪 */;
+			targetProxy = ED29B21B1EC05265007E5454 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ED29B2021EC05264007E5454 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED29B2031EC05264007E5454 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ED29B2071EC05264007E5454 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED29B2081EC05264007E5454 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ED29B2211EC05265007E5454 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		ED29B2221EC05265007E5454 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED29B2241EC05265007E5454 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = WA9VRUVC47;
+				INFOPLIST_FILE = "温控仪/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ED29B2251EC05265007E5454 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = WA9VRUVC47;
+				INFOPLIST_FILE = "温控仪/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		ED29B2271EC05265007E5454 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = WA9VRUVC47;
+				INFOPLIST_FILE = "温控仪Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/温控仪.app/温控仪";
+			};
+			name = Debug;
+		};
+		ED29B2281EC05265007E5454 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = WA9VRUVC47;
+				INFOPLIST_FILE = "温控仪Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/温控仪.app/温控仪";
+			};
+			name = Release;
+		};
+		ED29B22A1EC05265007E5454 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = WA9VRUVC47;
+				INFOPLIST_FILE = "温控仪UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "温控仪";
+			};
+			name = Debug;
+		};
+		ED29B22B1EC05265007E5454 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = WA9VRUVC47;
+				INFOPLIST_FILE = "温控仪UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "温控仪";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED29B1F11EC05264007E5454 /* Build configuration list for PBXProject "温控仪" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED29B2211EC05265007E5454 /* Debug */,
+				ED29B2221EC05265007E5454 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED29B2231EC05265007E5454 /* Build configuration list for PBXNativeTarget "温控仪" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED29B2241EC05265007E5454 /* Debug */,
+				ED29B2251EC05265007E5454 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ED29B2261EC05265007E5454 /* Build configuration list for PBXNativeTarget "温控仪Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED29B2271EC05265007E5454 /* Debug */,
+				ED29B2281EC05265007E5454 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ED29B2291EC05265007E5454 /* Build configuration list for PBXNativeTarget "温控仪UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED29B22A1EC05265007E5454 /* Debug */,
+				ED29B22B1EC05265007E5454 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ED29B1EE1EC05264007E5454 /* Project object */;
+}
