@@ -1,0 +1,47 @@
+//
+//  TabBarViewController.m
+//  联侠
+//
+//  Created by 杭州阿尔法特 on 16/10/8.
+//  Copyright © 2016年 张海昌. All rights reserved.
+//
+
+#import "TabBarViewController.h"
+#import "UserInfoVC.h"
+#import "MineSerivesViewController.h"
+#import "XMGNavigationController.h"
+
+
+@interface TabBarViewController ()<UITabBarControllerDelegate>
+
+@end
+
+@implementation TabBarViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    
+    MineSerivesViewController *mineSerVC = [[MineSerivesViewController alloc]init];
+    XMGNavigationController *mineSerNav = [[XMGNavigationController alloc]initWithRootViewController:mineSerVC];
+    mineSerVC.tabBarItem.title = @"设备列表";
+    mineSerVC.tabBarItem.image = [[UIImage imageNamed:@"tabbar_service"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
+    mineSerVC.fromAddVC = self.fromAddVC;
+   
+    
+    UserInfoVC *userVC = [[UserInfoVC alloc]init];
+    XMGNavigationController *userNav = [[XMGNavigationController alloc]initWithRootViewController:userVC];
+    userNav.tabBarItem.title = @"个人中心";
+    userNav.tabBarItem.image = [[UIImage imageNamed:@"tabbar_mine"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
+    
+    self.automaticallyAdjustsScrollViewInsets = YES;
+
+    [self addChildViewController:mineSerNav];
+    [self addChildViewController:userNav];
+    
+    
+    self.tabBar.tintColor = [UIColor colorWithHexString:@"20c3df"];
+    self.delegate = self;
+}
+
+@end
