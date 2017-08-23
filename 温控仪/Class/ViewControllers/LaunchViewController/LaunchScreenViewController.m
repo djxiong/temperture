@@ -52,20 +52,6 @@
         }];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         
-//        UIImage *titleImage = [UIImage imageNamed:[NSString stringWithFormat:@"launchImage%d_title" , i + 1]];
-//        UIImageView *titleImageView = [[UIImageView alloc] init];
-//        [self.scrollerView addSubview:titleImageView];
-//        titleImageView.image = titleImage;
-//        [titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.centerX.mas_equalTo(self.scrollerView.mas_centerX).offset(kScreenW * i + kScreenW / 100);
-//            make.top.mas_equalTo(imageView.mas_bottom).offset(-kScreenW / 8);
-//            make.size.mas_equalTo(CGSizeMake(kScreenW / 2, titleImage.size.height * (kScreenW / kScreenH)));
-//        }];
-//        titleImageView.contentMode = UIViewContentModeScaleAspectFit;
-//        if (kScreenW / kScreenH == 320.0 / 480.0) {
-//            titleImageView.hidden = YES;
-//        }
-        
     }
     
     UIButton *enterBtn = [UIButton initWithTitle:@"" andColor:[UIColor clearColor] andSuperView:self.scrollerView];

@@ -7,16 +7,17 @@
 //
 
 #import "AppDelegate.h"
+#import "TabBarViewController.h"
 #import "AsyncSocket.h"
 #import "Reachability.h"
 #import "LoginViewController.h"
 #import "XMGNavigationController.h"
 #import "LaunchScreenViewController.h"
-#import "MineSerivesViewController.h"
 #import "HTMLBaseViewController.h"
-#import "TabBarViewController.h"
 
-@interface AppDelegate ()<GCDAsyncSocketDelegate , AsyncSocketDelegate>
+
+#define STOREAPPID @"1113948983"
+@interface AppDelegate ()<GCDAsyncSocketDelegate , AsyncSocketDelegate , HelpFunctionDelegate>
 @property (nonatomic) Reachability *hostReachability;
 @property (nonatomic) Reachability *internetReachAbility;
 
@@ -39,10 +40,12 @@
     self.window.rootViewController = [[UIViewController alloc]init];
     [self.window makeKeyAndVisible];
     self.noNetWorkStr = 1;
-
+    
     NSLog(@"%f , %f" , kScreenW , kScreenH);
+    
+    
+    
     _alertController = nil;
-//    self.window.rootViewController = [[BottomNavViewController alloc]init];
     
     [self setRootViewController];
     
@@ -50,81 +53,6 @@
     
     
     return YES;
-}
-
-- (void)setRootViewController {
-    NSString *isLaunchLoad = [kStanderDefault objectForKey:@"isLaunch"];
-    if ([isLaunchLoad isEqualToString:@"NO"]) {
-        [kStanderDefault setObject:@"NO" forKey:@"firstRun"];
-        
-        if ([kStanderDefault objectForKey:@"Login"]) {
-            
-            self.window.rootViewController = [[TabBarViewController alloc]init];
-        } else {
-            
-            LoginViewController *loginVC = [[LoginViewController alloc]init];
-            XMGNavigationController *nav = [[XMGNavigationController alloc]initWithRootViewController:loginVC];
-            
-            
-            self.window.rootViewController = nav;
-        }
-    } else {
-        self.window.rootViewController = [[LaunchScreenViewController alloc]init];
-    }
-//    self.noNetwork = [self addNoNetLabel];
-}
-
-- (void)checkNetwork {
-    
-    NSString *remoteHostName = @"www.baidu.com";
-    self.hostReachability = [Reachability reachabilityWithHostName:remoteHostName];
-    [self.hostReachability startNotifier];
-    [self updateInterfaceWithReachAbility:self.hostReachability];
-    
-    self.internetReachAbility = [Reachability reachabilityForInternetConnection];
-    [self.internetReachAbility startNotifier];
-    [self updateInterfaceWithReachAbility:self.internetReachAbility];
-}
-
-
-- (void)updateInterfaceWithReachAbility:(Reachability *)reachability {
-    
-    if (reachability == self.internetReachAbility) {
-        NetworkStatus netStatus = [reachability currentReachabilityStatus];
-        
-        if (netStatus == NotReachable) {
-            self.noNetWorkStr = 0;
-            
-            if ([[[HelpFunction shareHelpFunction] getCurrentVC] isKindOfClass:[HTMLBaseViewController class]]) {
-                self.noNetwork.hidden = YES;
-                
-                self.alertVC = [UIAlertController creatRightAlertControllerWithHandle:^{
-                    [UIView animateWithDuration:1.0f animations:^{
-                        self.window.alpha = 0;
-                        self.window.frame = CGRectMake(0, self.window.bounds.size.width, 0, 0);
-                    } completion:^(BOOL finished) {
-                        exit(0);
-                    }];
-                } andSuperViewController:kWindowRoot Title:@"您当前的设备未联网，APP无法使用"];
-            }else {
-                self.noNetwork.hidden = NO;
-                self.markview.hidden = NO;
-            }
-            
-        } else if (netStatus == ReachableViaWWAN || netStatus == ReachableViaWiFi) {
-            self.noNetWorkStr = 1;
-            
-            if (self.noNetwork || self.alertVC) {
-                self.noNetwork.hidden = YES;
-                self.markview.hidden = YES;
-                [self.alertVC dismissViewControllerAnimated:YES completion:^{
-                    self.alertVC = nil;
-                }];
-                [self setRootViewController];
-            }
-            
-        }
-    }
 }
 
 
@@ -151,6 +79,96 @@
     return noNetWork;
 }
 
+- (void)setRootViewController {
+    NSString *isLaunchLoad = [kStanderDefault objectForKey:@"isLaunch"];
+    if ([isLaunchLoad isEqualToString:@"NO"]) {
+        [kStanderDefault setObject:@"NO" forKey:@"firstRun"];
+        
+        if ([kStanderDefault objectForKey:@"Login"]) {
+            
+            self.window.rootViewController = [[TabBarViewController alloc]init];
+        } else {
+            
+            LoginViewController *loginVC = [[LoginViewController alloc]init];
+            XMGNavigationController *nav = [[XMGNavigationController alloc]initWithRootViewController:loginVC];
+            
+            
+            self.window.rootViewController = nav;
+        }
+    } else {
+        self.window.rootViewController = [[LaunchScreenViewController alloc]init];
+    }
+    self.noNetwork = [self addNoNetLabel];
+}
+
+- (void)checkNetwork {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    
+    NSString *remoteHostName = @"www.baidu.com";
+    self.hostReachability = [Reachability reachabilityWithHostName:remoteHostName];
+    [self.hostReachability startNotifier];
+    [self updateInterfaceWithReachAbility:self.hostReachability];
+    
+    self.internetReachAbility = [Reachability reachabilityForInternetConnection];
+    [self.internetReachAbility startNotifier];
+    [self updateInterfaceWithReachAbility:self.internetReachAbility];
+}
+
+- (void) reachabilityChanged:(NSNotification *)note
+{
+    
+    Reachability* curReach = [note object];
+    NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
+    [self updateInterfaceWithReachAbility:curReach];
+}
+
+- (void)updateInterfaceWithReachAbility:(Reachability *)reachability {
+    
+    if (reachability == self.internetReachAbility) {
+        NetworkStatus netStatus = [reachability currentReachabilityStatus];
+        
+        if (netStatus == NotReachable) {
+            self.noNetWorkStr = 0;
+            
+            if ([[[HelpFunction shareHelpFunction] getPresentedViewController] isKindOfClass:[UITabBarController class]]) {
+                UITabBarController *tab = (UITabBarController *)[[HelpFunction shareHelpFunction] getPresentedViewController];
+                XMGNavigationController *nav = tab.selectedViewController;
+                
+                if ([nav.visibleViewController isKindOfClass:[HTMLBaseViewController class]]) {
+                    self.noNetwork.hidden = YES;
+                    self.markview.hidden = YES;
+                    self.alertVC = [UIAlertController creatRightAlertControllerWithHandle:^{
+                        [UIView animateWithDuration:1.0f animations:^{
+                            self.window.alpha = 0;
+                            self.window.frame = CGRectMake(0, self.window.bounds.size.width, 0, 0);
+                        } completion:^(BOOL finished) {
+                            exit(0);
+                        }];
+                    } andSuperViewController:kWindowRoot Title:@"您当前的设备未联网，APP无法使用"];
+                } else {
+                    self.noNetwork.hidden = NO;
+                    self.markview.hidden = NO;
+                }
+            } else {
+                self.noNetwork.hidden = NO;
+                self.markview.hidden = NO;
+            }
+            
+            
+        } else if (netStatus == ReachableViaWWAN || netStatus == ReachableViaWiFi) {
+            self.noNetWorkStr = 1;
+            
+            if (self.noNetwork || self.alertVC) {
+                self.noNetwork.hidden = YES;
+                self.markview.hidden = YES;
+                [self.alertVC dismissViewControllerAnimated:YES completion:^{
+                    self.alertVC = nil;
+                }];
+            }
+            
+        }
+    }
+}
 
 - (NSInteger)wheatherHaveNet {
     return self.noNetWorkStr;
@@ -163,12 +181,12 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [[Singleton sharedInstance] enableBackgroundingOnSocket];
-  
+    
     NSLog(@"程序进入后台后执行");
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-
+    
     NSLog(@"程序将要进入前台时执行");
 }
 
@@ -176,8 +194,44 @@
     NSLog(@"程序被激活（获得焦点）后执行");
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    NSInteger nowTime = [NSString getNowTimeInterval];
+    NSString *endTime = [kStanderDefault objectForKey:@"endTime"];
+    
+    if (nowTime > endTime.integerValue + 3600 * 24 * 5 && endTime != nil) {
+        [self requestLoginURL];
+    }
+    
+    if (nowTime > endTime.integerValue + 3600 * 2 && endTime != nil) {
+        [self setRootViewController];
+        [kStanderDefault removeObjectForKey:@"endTime"];
+    }
+    
     [self setUpEnterForeground];
     
+}
+
+- (void)requestLoginURL {
+    NSString *phone = [kStanderDefault objectForKey:@"phone"];
+    NSString *password = [kStanderDefault objectForKey:@"password"];
+    NSString *clientId = [kStanderDefault objectForKey:@"GeTuiClientId"];
+    
+    if (phone == nil || password == nil) {
+        return ;
+    }
+    
+    NSDictionary *parames = nil;
+    if (clientId != nil) {
+        parames = @{@"loginName" : phone , @"password" : password , @"ua.clientId" : clientId, @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]};
+    } else {
+        parames = @{@"loginName" : phone , @"password" : password , @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]};
+    }
+    
+    [HelpFunction requestDataWithUrlString:kLogin andParames:parames andDelegate:self];
+}
+
+- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
+    NSLog(@"%@" , data);
 }
 
 - (void)setUpEnterForeground {
@@ -190,12 +244,16 @@
             [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%ld%@%@N#" , (long)self.userModel.sn , _serviceModel.devTypeSn , _serviceModel.devSn] andType:kAddService andIsNewOrOld:nil];
         });
     }
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     NSLog(@"程序在终止时执行");
     
     [kSocketTCP cutOffSocket];
+    
+    NSString *endTime = [NSString stringWithFormat:@"%ld" , [NSString getNowTimeInterval]];
+    [kStanderDefault setObject:endTime forKey:@"endTime"];
     
 }
 
@@ -208,6 +266,10 @@
 - (void)initServiceModel:(ServicesModel *)serviceModel {
     self.serviceModel = [[ServicesModel alloc]init];
     self.serviceModel = serviceModel;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

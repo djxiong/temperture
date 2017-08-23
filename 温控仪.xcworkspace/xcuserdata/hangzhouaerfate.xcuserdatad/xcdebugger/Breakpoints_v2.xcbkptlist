@@ -68,12 +68,12 @@
                   moduleName = "&#x6e29;&#x63a7;&#x4eea;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hangzhouaerfate/Desktop/%E6%B8%A9%E6%8E%A7%E4%BB%AA/%E6%B8%A9%E6%8E%A7%E4%BB%AA/Class/ViewControllers/LoginViewController/ForgetPwdViewController/ForgetPwdViewController.m"
-                  timestampString = "517308034.89263"
+                  timestampString = "525078588.050413"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "157"
                   endingLineNumber = "157"
-                  offsetFromSymbolStart = "568">
+                  offsetFromSymbolStart = "535">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -83,12 +83,12 @@
                   moduleName = "&#x6e29;&#x63a7;&#x4eea;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hangzhouaerfate/Desktop/%E6%B8%A9%E6%8E%A7%E4%BB%AA/%E6%B8%A9%E6%8E%A7%E4%BB%AA/Class/ViewControllers/LoginViewController/ForgetPwdViewController/ForgetPwdViewController.m"
-                  timestampString = "517308034.894221"
+                  timestampString = "525078588.052711"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "157"
                   endingLineNumber = "157"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>

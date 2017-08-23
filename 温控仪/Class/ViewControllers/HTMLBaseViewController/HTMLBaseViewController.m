@@ -19,22 +19,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [kStanderDefault setObject:@"YES" forKey:@"Login"];
     
     NSDictionary *parames = nil;
     if ([kStanderDefault objectForKey:@"GeTuiClientId"]) {
-        parames = @{@"loginName" : [kStanderDefault objectForKey:@"phone"] , @"password" : [kStanderDefault objectForKey:@"password"] , @"ua.clientId" : [kStanderDefault objectForKey:@"GeTuiClientId"], @"ua.phoneType" : @(2)};
+        parames = @{@"loginName" : [kStanderDefault objectForKey:@"phone"] , @"password" : [kStanderDefault objectForKey:@"password"] , @"ua.clientId" : [kStanderDefault objectForKey:@"GeTuiClientId"], @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]};
     } else {
-        parames = @{@"loginName" : [kStanderDefault objectForKey:@"phone"] , @"password" : [kStanderDefault objectForKey:@"password"] , @"ua.phoneType" : @(2)};
+        parames = @{@"loginName" : [kStanderDefault objectForKey:@"phone"] , @"password" : [kStanderDefault objectForKey:@"password"] , @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]};
     }
     
     [HelpFunction requestDataWithUrlString:kLogin andParames:parames andDelegate:self];
     
+    
+    
     _webView = [[UIWebView alloc]initWithFrame:kScreenFrame];
     [self.view addSubview:_webView];
-    
+    _webView.scrollView.scrollEnabled = NO;
+    _webView.backgroundColor = [UIColor clearColor];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     self.webView.delegate = self;
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.serviceModel.indexUrl]]];
@@ -46,16 +50,21 @@
     
     [self passValueWithBlock];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMachineDeviceAtcion:) name:@"4131" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMachineDeviceAtcion:) name:@"4332" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMachineDeviceAtcion:) name:@"4133" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMachineDeviceAtcion:) name:@"4134" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMachineDeviceAtcion:) name:kServiceOrder object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -73,7 +82,7 @@
         if ([bself.serviceModel.brand isKindOfClass:[NSNull class]]) {
             userData = [NSDictionary dictionaryWithObjectsAndKeys:@(bself.userModel.sn) , @"userSn" , bself.serviceModel.devTypeSn , @"devTypeSn" , bself.serviceModel.devSn , @"devSn" , @(bself.serviceModel.userDeviceID) , @"UserDeviceID" , [NSString stringWithFormat:@"http://%@:8080/" , localhost] , @"ServieceIP" , nil];
         } else {
-            userData = [NSDictionary dictionaryWithObjectsAndKeys:@(bself.userModel.sn) , @"userSn" , bself.serviceModel.devTypeSn , @"devTypeSn" , bself.serviceModel.devSn , @"devSn" , @(bself.serviceModel.userDeviceID) , @"UserDeviceID" , [NSString stringWithFormat:@"http://%@:8080/" , localhost] , @"ServieceIP" , bself.serviceModel.brand, @"BrandName" , nil];
+            userData = [NSDictionary dictionaryWithObjectsAndKeys:@(bself.userModel.sn) , @"userSn" , bself.serviceModel.devTypeSn , @"devTypeSn" , bself.serviceModel.devSn , @"devSn" , @(bself.serviceModel.userDeviceID) , @"UserDeviceID" , [NSString stringWithFormat:@"http://%@:8080/" , localhost] , @"ServieceIP" , [NSString stringWithFormat:@"%@%@" , bself.serviceModel.brand , bself.serviceModel.typeName], @"BrandName" , nil];
         }
         
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userData options:NSJSONWritingPrettyPrinted error:nil];
@@ -123,7 +132,11 @@
     JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     __block typeof(self)bself = self;
     context[@"BackIOS"] = ^() {
-        [bself.navigationController popViewControllerAnimated:YES];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [bself.navigationController popViewControllerAnimated:YES];
+        });
+        
     };
     
     context[@"OrderWebToIOS"] = ^() {
@@ -134,34 +147,26 @@
             arrarString = [arrarString stringByAppendingFormat:@"%@" , obj];
         }
         
+        
         NSArray *array = [arrarString componentsSeparatedByString:@","];
         
         NSMutableString *sumStr = [NSMutableString string];
         [sumStr appendFormat:@"%@", [NSString stringWithFormat:@"HMFFM%@%@w" , self.serviceModel.devTypeSn, self.serviceModel.devSn]];
+        
         for (NSString *sub in array) {
-            [sumStr appendFormat:@"%@", [NSString stringWithFormat:@"%.2d" , sub.intValue]];
             
+            if (sub.length == 1) {
+                [sumStr appendFormat:@"0%@", sub];
+            } else {
+                [sumStr appendFormat:@"%@", sub];
+            }
         }
         
         [sumStr appendString:@"#"];
         
+        NSLog(@"发送给TCP的命令%@ , %@" , sumStr , parames);
+        
         [kSocketTCP sendDataToHost:sumStr andType:kZhiLing andIsNewOrOld:kNew];
-    };
-    
-    context[@"OrderWebToIOSColdFanA"] = ^() {
-        NSArray *parames = [JSContext currentArguments];
-        NSString *arrarString = [[NSString alloc]init];
-        
-        for (id obj in parames) {
-            arrarString = [arrarString stringByAppendingFormat:@"%@" , obj];
-        }
-        
-        NSString *subOrderType = [arrarString substringToIndex:1];
-        NSString *subOrder = [arrarString substringFromIndex:1];
-        subOrder = [NSString stringWithFormat:@"%ld" , subOrder.integerValue - 48];
-        
-        [kSocketTCP sendDataToHost:ColdFan4131SendToHostXieYi(self.serviceModel.devTypeSn, self.serviceModel.devSn, subOrderType, subOrder) andType:kZhiLing andIsNewOrOld:kOld];
-        
     };
 }
 
@@ -177,7 +182,12 @@
     NSString *callJSstring = nil;
     callJSstring = [NSString stringWithFormat:@"ReceiveOrder('%@')" , sumStr];
     
-    NSLog(@"%@" , callJSstring);
+    NSLog(@"发送给H5的命令%@" , callJSstring);
+    
+    if (_context == nil || callJSstring == nil) {
+        return ;
+    }
+    
     [_context evaluateScript:callJSstring];
     sumStr = nil;
     
@@ -199,7 +209,7 @@
             [_userModel setValue:user[key] forKey:key];
         }
         
-        [self webView:_webView shouldStartLoadWithRequest:NULL navigationType:UIWebViewNavigationTypeLinkClicked];
+        [self webView:_webView shouldStartLoadWithRequest:nil navigationType:UIWebViewNavigationTypeLinkClicked];
     }
 }
 
@@ -209,7 +219,10 @@
 
 - (void)setServiceModel:(ServicesModel *)serviceModel {
     _serviceModel = serviceModel;
+    
     NSLog(@"%@" , _serviceModel);
+    
+    
 }
 
 
@@ -220,5 +233,8 @@
     return _dic;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

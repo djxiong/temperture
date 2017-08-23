@@ -284,14 +284,14 @@ static HelpFunction *_request = nil;
         
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         
-        if ([self.urlString isEqualToString:kXiaoXiJieKou] || [self.urlString isEqualToString:kXiuGaiXinXi] || [self.urlString isEqualToString:kYongHuFanKui] || [self.urlString isEqualToString:kJiaoYanZhangHu] || [self.urlString isEqualToString:kChaXunLengFengShanDangQianZhuangTai] || [self.urlString isEqualToString:kChaXunKongJingDangQianZhuangTai] || [self.urlString isEqualToString:kChaXunGanYiJiZhuangTai] || [self.urlString isEqualToString:kXiuGaiYongHuDiZhi] || [self.urlString isEqualToString:kChongZhiMiMa] || [self.urlString isEqualToString:kShangChuanTouXiang] || [self.urlString isEqualToString:kLengFengShanDingShiYuYue] || [self.urlString isEqualToString:kGanYiJiDeDingShiURL]|| [self.urlString isEqualToString:kChaXunBanBenHao] || [self.urlString isEqualToString:kKongJingPM25State] || [self.urlString isEqualToString:kSystemMessageJieKou]) {
+        if ([self.urlString isEqualToString:kXiaoXiJieKou] || [self.urlString isEqualToString:kXiuGaiXinXi] || [self.urlString isEqualToString:kYongHuFanKui] || [self.urlString isEqualToString:kJiaoYanZhangHu] || [self.urlString isEqualToString:kXiuGaiYongHuDiZhi] || [self.urlString isEqualToString:kChongZhiMiMa] || [self.urlString isEqualToString:kShangChuanTouXiang] ||[self.urlString isEqualToString:kChaXunBanBenHao] || [self.urlString isEqualToString:kSystemMessageJieKou]) {
             
             if ( _delegate && [_delegate respondsToSelector:@selector(requestData:didSuccess:)]) {
                 [_delegate requestData:self didSuccess:dic];
             }
             
             
-        } else if ([self.urlString isEqualToString:kLogin] || [self.urlString isEqualToString:kFaSongDuanXin] || [self.urlString isEqualToString:kGengDuoChanPin] || [self.urlString isEqualToString:kChaXunYongHuDiZhi] || [self.urlString isEqualToString:kLengFengShanLiShiJiLu] || [self.urlString isEqualToString:kKongJingLiShiJiLu] || [self.urlString isEqualToString:kChaXunGanYiJiLiShiShuJu] || [self.urlString isEqualToString:kAllTypeServiceURL] || [self.urlString isEqualToString:kBindLengFengShanURL] || [self.urlString isEqualToString:kBindGanYiJiURL] || [self.urlString isEqualToString:kBindKongQiJingHuaQiURL]) {
+        } else if ([self.urlString isEqualToString:kLogin] || [self.urlString isEqualToString:kFaSongDuanXin] || [self.urlString isEqualToString:kGengDuoChanPin] || [self.urlString isEqualToString:kChaXunYongHuDiZhi] || [self.urlString isEqualToString:kAllTypeServiceURL]) {
             
             if (dic) {
                 [self.dataArray addObject:dic];
@@ -305,7 +305,7 @@ static HelpFunction *_request = nil;
             
             
             
-        } else if ([self.urlString isEqualToString:kChaXunLengFengShanDangQianShuJu] || [self.urlString isEqualToString:kChaXunKongJingDangQianShuJu] || [self.urlString isEqualToString:kChaXunGanYiJiShuJu] || [self.urlString isEqualToString:kKongJingDingShiYuYue] || [self.urlString isEqualToString:kRegisterURL]) {
+        } else if ([self.urlString isEqualToString:kRegisterURL]) {
             
             [self.dataArray addObject:dic];
             if (self.dataArray.count > 0 && _delegate && [_delegate respondsToSelector:@selector(requestServicesData:didOK:)]) {
@@ -314,38 +314,7 @@ static HelpFunction *_request = nil;
                 [_delegate requestData:self didFailLoadData:self.error];
             }
             
-        } else if ([self.urlString isEqualToString:kGetKongJingTiming]) {
-            if (_delegate && [_delegate respondsToSelector:@selector(requestServicesTimeing:)]) {
-                [_delegate requestServicesTimeing:dic];
-            } else {
-                [_delegate requestData:self didFailLoadData:self.error];
-            }
-        } else if ([self.urlString isEqualToString:kLengFengShanFuWi]) {
-            if (_delegate && [_delegate respondsToSelector:@selector(requestFuWeiShuJu:didYes:)]) {
-                [_delegate requestFuWeiShuJu:self didYes:dic];
-            } else {
-                [_delegate requestData:self didFailLoadData:self.error];
-            }
-        } else if ([self.urlString isEqualToString:kLiShiKongQiZhiLiang]) {
-            if (_delegate && [_delegate respondsToSelector:@selector(requestKongQiZhiLiangShuJu:didYes:)]) {
-                [_delegate requestKongQiZhiLiangShuJu:self didYes:dic];;
-            } else {
-                [_delegate requestData:self didFailLoadData:self.error];
-            }
-        } else if ([self.urlString isEqualToString:kDangTianKongQiZhiLiang]) {
-            if (_delegate && [_delegate respondsToSelector:@selector(requestKongQiZhiLiangShuJu:didYes:)]) {
-                [_delegate requestKongQiZhiLiangShuJu:self didYes:dic];
-            } else {
-                [_delegate requestData:self didFailLoadData:self.error];
-            }
-        } else if ([self.urlString isEqualToString:kDeleteServiceURL]) {
-            if (_delegate && [_delegate respondsToSelector:@selector(requestRemoveService:didDone:)]) {
-
-                [_delegate requestRemoveService:self didDone:dic];
-            } else {
-                [_delegate requestData:self didFailLoadData:self.error];
-            }
-        } else if ([self.urlString isEqualToString:kQueryTheUserdevice]) {
+        }  else if ([self.urlString isEqualToString:kQueryTheUserdevice]) {
             if (_delegate && [_delegate respondsToSelector:@selector(requestData:queryUserdevice:)]) {
                 [_delegate requestData:self queryUserdevice:dic];
             } else {
@@ -355,11 +324,7 @@ static HelpFunction *_request = nil;
             if (_delegate && [_delegate respondsToSelector:@selector(requestDataWithDontHaveReturnValue:)]) {
                 [_delegate requestDataWithDontHaveReturnValue:self];
             }
-        } else if ([self.urlString isEqualToString:kChangeServiceName]) {
-            if (_delegate && [_delegate respondsToSelector:@selector(requestData:changeServiceName:)]) {
-                [_delegate requestData:self changeServiceName:dic];
-            }
-        } else {
+        }  else {
             [self.dataArray addObject:dic];
             if (self.dataArray.count > 0 && _delegate && [_delegate respondsToSelector:@selector(requestData:didFinishLoadingDtaArray:)]) {
                 [_delegate requestData:self didFinishLoadingDtaArray:self.dataArray];

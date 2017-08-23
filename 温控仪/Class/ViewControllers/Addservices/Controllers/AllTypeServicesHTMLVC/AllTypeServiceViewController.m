@@ -8,12 +8,14 @@
 
 #import "AllTypeServiceViewController.h"
 #import "AllServicesViewController.h"
+#import "FirstUserAlertView.h"
+#import "AllTypeServiceModel.h"
+#import "AllTypeServiceTableViewCell.h"
 
-
-@interface AllTypeServiceViewController ()<UITableViewDelegate , UITableViewDataSource>
+@interface AllTypeServiceViewController ()<UITableViewDelegate , UITableViewDataSource , HelpFunctionDelegate>
 @property (nonatomic , copy) NSString *devType;
 @property (nonatomic , strong) NSMutableArray *dataArray;
-
+@property (nonatomic , strong) NSIndexPath *selectedIndexPath;
 @end
 
 @implementation AllTypeServiceViewController
@@ -22,6 +24,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self setUI];
+    
+    [self setAlertView];
+    
+    [HelpFunction requestDataWithUrlString:kAllTypeServiceURL andParames:nil andDelegate:self];
+}
+
+- (void)setAlertView {
+    [[FirstUserAlertView alloc]creatAlertViewwithImage:@"alert2"deleteFirstObj:@"YES"];
 }
 
 - (void)setUI {
@@ -29,39 +39,78 @@
     imageView.frame = kScreenFrame;
     self.tableView.backgroundView = imageView;
     
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 }
 
+#pragma mark - 代理返回的数据
+- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
+    NSDictionary *dic = data[0];
+    //    NSLog(@"%@" , dic);
+    
+    if ([dic[@"data"] isKindOfClass:[NSArray class]]) {
+        NSArray *arr = [NSArray arrayWithArray:dic[@"data"]];
+        
+        for (NSDictionary *dd in arr) {
+            AllTypeServiceModel *model = [[AllTypeServiceModel alloc]init];
+            [model setValuesForKeysWithDictionary:dd];
+            [self.dataArray addObject:model];
+        }
+        
+        [self.tableView reloadData];
+    }
+    
+}
+
+- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
+    NSLog(@"%@" , error);
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return _dataArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *celled = @"celled";
     
-    UITableViewCell *cell
+    
+    AllTypeServiceTableViewCell *cell
     =[tableView dequeueReusableCellWithIdentifier:celled];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:celled];
+        cell = [[AllTypeServiceTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:celled];
     }
-    
-    cell.textLabel.text = @"温控仪";
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    cell.textLabel.textColor = kMainColor;
-    cell.backgroundColor = [UIColor clearColor];
-    cell.tintColor = kMainColor;
+    cell.count = self.dataArray.count;
+    cell.indePath = indexPath;
+    AllTypeServiceModel *allTypeServiceModel = _dataArray[indexPath.row];
+    cell.allTypeServiceModel = allTypeServiceModel;
     
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    AllTypeServiceTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selectedImage.hidden = NO;
+    self.selectedIndexPath = indexPath;
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.selectedIndexPath) {
+        AllTypeServiceTableViewCell *cell = [tableView cellForRowAtIndexPath:self.selectedIndexPath];
+        cell.selectedImage.hidden = YES;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    AllTypeServiceModel *allTypeServiceModel = _dataArray[indexPath.row];
     AllServicesViewController *allServiceVC = [[AllServicesViewController alloc]init];
-    allServiceVC.navigationItem.title = @"温控仪";
+    allServiceVC.navigationItem.title = self.navigationItem.title;
+    allServiceVC.typeSn = [NSString stringWithFormat:@"%@" , allTypeServiceModel.typeSn];
     [self.navigationController pushViewController:allServiceVC animated:YES];
 }
 

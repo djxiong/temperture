@@ -13,6 +13,7 @@
 #import "CCLocationManager.h"
 #import "AllTypeServiceViewController.h"
 #import "WeatherView.h"
+#import "FirstUserAlertView.h"
 
 @interface MineSerivesViewController ()<UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout , HelpFunctionDelegate , CCLocationManagerZHCDelegate , UIGestureRecognizerDelegate>
 @property (nonatomic , strong) UICollectionView *collectionView;
@@ -43,8 +44,6 @@
     
     if ([kStanderDefault objectForKey:@"userSn"]) {
         self.userSn = [kStanderDefault objectForKey:@"userSn"];
-        
-//        NSLog(@"%@" , self.userSn);
         kSocketTCP.userSn = [NSString stringWithFormat:@"%@" , [kStanderDefault objectForKey:@"userSn"]];
         [kSocketTCP socketConnectHost];
     }
@@ -53,6 +52,7 @@
     
     [self setUI];
     
+    [self setAlertView];
 
 }
 
@@ -78,6 +78,11 @@
     
 }
 
+- (void)setAlertView {
+    
+    [[FirstUserAlertView alloc]creatAlertViewwithImage:@"alert1" deleteFirstObj:@"NO"];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
@@ -99,8 +104,6 @@
     if (self.userSn && self.serviceModel) {
         [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%@%@%@Q#" , self.userSn , self.serviceModel.devTypeSn , self.serviceModel.devSn] andType:kQuite andIsNewOrOld:nil];
     }
-
-//    [self startWearthData];
 
     [self requestWeather];
     
@@ -132,8 +135,6 @@
 
 #pragma mark - 获取代理的数据
 - (void)requestData:(HelpFunction *)requset queryUserdevice:(NSDictionary *)dddd{
-    
-//    NSLog(@"%@" , dddd);
     NSInteger state = [dddd[@"state"] integerValue];
     if (state == 0) {
         
@@ -155,13 +156,13 @@
                 ServicesModel *serviceModel = [[ServicesModel alloc]init];
                 [serviceModel setValuesForKeysWithDictionary:dic];
                 serviceModel.userDeviceID = [obj[@"id"] integerValue];
+                serviceModel.ifConn = [obj[@"ifConn"] integerValue];
                 [_haveArray addObject:serviceModel];
-                
             }];
             [kStanderDefault setObject:@"YES" forKey:@"isHaveService"];
             
-            
             if (self.haveArray.count > 0) {
+                self.markView.hidden = YES;
                 [self.collectionView reloadData];
             } else {
                 self.markView.hidden = NO;
@@ -177,33 +178,13 @@
 
 #pragma mark - 设置UI界面
 - (void)setUI{
-    
-    UIView *topView = [[UIView alloc]init];
-    [self.view addSubview:topView];
-    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(kScreenW, kScreenH / 3.7));
-        make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.top.mas_equalTo(self.view.mas_top).offset(kHeight);
-    }];
-    _topView = topView;
-    
-    UIImageView *backImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"weather_bg"]];
-    [topView addSubview:backImageView];
-    [backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(kScreenW, kScreenH / 3.7));
-        make.centerX.mas_equalTo(topView.mas_centerX);
-        make.centerY.mas_equalTo(topView.mas_centerY);
-    }];
-    backImageView.contentMode = UIViewContentModeScaleToFill;
-    _backImageView = backImageView;
-    
-    
     //1.初始化layout
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 0);
+    layout.footerReferenceSize = CGSizeMake(self.view.frame.size.width, 0);
     
     //2.初始化collectionView
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kScreenH / 3.7 - 20 + kHeight, kScreenW, kScreenH - kScreenH / 3.7 - kHeight - 29) collectionViewLayout:layout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kScreenH / 3.6 - 40, kScreenW, kScreenH - kScreenH / 3.6 + 40) collectionViewLayout:layout];
     [self.view addSubview:self.collectionView];
     self.collectionView.backgroundColor = [UIColor whiteColor];
 
@@ -219,7 +200,7 @@
     [self.view addGestureRecognizer:swipeGesture1];
     
     
-    UIView *markView = [[UIView alloc]initWithFrame:CGRectMake(0, kScreenH / 3.7 - 20, kScreenW, kScreenH - kScreenH / 3.7 - 0 - 29)];
+    UIView *markView = [[UIView alloc]initWithFrame:CGRectMake(0, kScreenH / 3.7 - 40 + kHeight, kScreenW, kScreenH - kScreenH / 3.7 - 29)];
     [self.view addSubview:markView];
     markView.backgroundColor = [UIColor colorWithHexString:@"f6f6f6"];
     self.markView = markView;
@@ -228,7 +209,7 @@
     UILabel *lable = [UILabel creatLableWithTitle:@"暂未添加任何设备" andSuperView:markView andFont:k17 andTextAligment:NSTextAlignmentCenter];
     [lable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kScreenW / 2, kScreenW / 10));
-        make.top.mas_equalTo(topView.mas_bottom).offset(kScreenH / 8.5);
+        make.top.mas_equalTo(markView.mas_top).offset(kScreenH / 8.5);
         make.centerX.mas_equalTo(self.view.mas_centerX);
     }];
     lable.textColor = [UIColor colorWithHexString:@"b4b4b4"];
@@ -247,8 +228,29 @@
     
     [button addTarget:self action:@selector(addSerViceAtcion) forControlEvents:UIControlEventTouchUpInside];
     
-    
     self.markView.hidden = YES;
+    
+    
+    UIView *topView = [[UIView alloc]init];
+    [self.view addSubview:topView];
+    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(kScreenW, kScreenH / 3.9));
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.top.mas_equalTo(self.view.mas_top).offset(kHeight);
+    }];
+    _topView = topView;
+    
+    UIImageView *backImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"weather_bg"]];
+    [topView addSubview:backImageView];
+    [backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(kScreenW, kScreenH / 3.6));
+        make.centerX.mas_equalTo(topView.mas_centerX);
+        make.centerY.mas_equalTo(topView.mas_centerY);
+    }];
+    backImageView.contentMode = UIViewContentModeScaleToFill;
+    _backImageView = backImageView;
+    
+
     
     if ([kStanderDefault objectForKey:@"wearthDic"]) {
         self.wearthDic = [kStanderDefault objectForKey:@"wearthDic"];
@@ -296,8 +298,6 @@
     
     self.wearthDic = dic;
     
-    
-    
     [self getWeatherDic:dic];
     
 }
@@ -319,8 +319,6 @@
 
 #pragma mark - 向右滑动返回主界面
 - (void)swipeGesture22:(UISwipeGestureRecognizer *)swipe {
-    
-//    self.tabBarController.tabBar.hidden = YES;
     
     if (_childViewController) {
         [self.navigationController pushViewController:_childViewController animated:YES];
@@ -379,10 +377,6 @@
     cell.selectedImage.hidden = NO;
     
     return YES;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {

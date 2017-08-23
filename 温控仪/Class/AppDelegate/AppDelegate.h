@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "GCDAsyncSocket.h"
 #import "ServicesModel.h"
 #import "UserModel.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate , GCDAsyncSocketDelegate >
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

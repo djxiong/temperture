@@ -46,6 +46,7 @@
 #define kAddService @"addService"
 #define kQuite @"quite"
 
+#define kServiceOrder @"ServiceOrder"
 
 #define kNew @"new"
 #define kOld @"old"
@@ -172,20 +173,6 @@
 
 #define kACOLOR(R, G, B, A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
 
-#define GanYiJiXieYi(devTypeSn , devSn , kaiGuan , dangWei , shaJun , fuLiZi) [NSString stringWithFormat:@"HMFFA%@%@w%@%@%@%@000000000000000000000000#" , devTypeSn , devSn , kaiGuan , dangWei , shaJun , fuLiZi]
-
-#define GanYiJi4332SendToHostXieYi(devTypeSn , devSn , kaiGuan , ozone , power , time) [NSString stringWithFormat:@"HMFFM%@%@w0%@0%@000000000%@0000%@000000000000#" , devTypeSn , devSn , kaiGuan , ozone , power , time]
-
-
-#define HotColdFan4133SendToHostXieYi(devTypeSn , devSn , kaiGuan , windType , wind , shaking , ions , coldWind , hot , childLock , time , waterlevel , malfunction) [NSString stringWithFormat:@"HMFFA%@%@w0%@0%@0%@0%@0%@0%@0%@0%@ 00%@0%@0%@00000000#" , devTypeSn , devSn , kaiGuan , windType , wind , shaking , ions , coldWind , hot , childLock , time , waterlevel , malfunction]
-
-#define TCLFan4134SendToHostXieYi(devTypeSn , devSn , kaiGuan , windType , wind , shaking , time , temperature , malfunction) [NSString stringWithFormat:@"HMFFM%@%@w0%@0%@0%@0%@0000000000%@%@0%@00000000#" , devTypeSn , devSn , kaiGuan , windType , wind , shaking , time , temperature , malfunction]
-
-#define ColdFan4131SendToHostXieYi(devTypeSn , devSn , orderType , order) [NSString stringWithFormat:@"HMFF%@%@%@%@#" , devTypeSn , devSn , orderType , order]
-
-#define XinFengKongJing(devTypeSn , devSn , kaiGuan , ziDongOrShouDong , caiDeng , fuLiZi , fengSu) [NSString stringWithFormat:@"HMFFA%@%@w%@%@%@%@0000%@00000000000000%@%@0000000000000000#" , devTypeSn , devSn , kaiGuan , ziDongOrShouDong , caiDeng , fuLiZi , fengSu , [[NSString sendXinFengNowTime] firstObject] , [[NSString sendXinFengNowTime] lastObject]]
-#define XinFengKongJingTime(devTypeSn , devSn , kaiGuan , ziDongOrShouDong , caiDeng , fuLiZi , fengSu , hourTime , minuteTime) [NSString stringWithFormat:@"HMFFA%@%@w%@%@%@%@0000%@0000%@%@000000%@%@0000000000000000#" , devTypeSn , devSn , kaiGuan , ziDongOrShouDong , caiDeng , fuLiZi , fengSu , hourTime , minuteTime, [[NSString sendXinFengNowTime] firstObject] , [[NSString sendXinFengNowTime] lastObject]]
-#define XinFengKongJingSetTime(devTypeSn , devSn , hourTime , minuteTime) [NSString stringWithFormat:@"HMFFA%@%@w0000000000000000000000000000%@%@0000000000000000#" , devTypeSn , devSn , hourTime , minuteTime]
 
 /**
  *  注册登录
@@ -316,21 +303,6 @@
  *
  */
 #define kChanPinShuo [NSString stringWithFormat:@"http://%@:8080/smarthome/app/introduction", localhost]
-/**
- *  冷风扇
- *
- */
-#define kChanPinShuoLengFengShan [NSString stringWithFormat:@"http://%@:8080/smarthome/app/introduction/fan", localhost]
-/**
- *  空气净化器
- *
- */
-#define kChanPinShuoKongJing [NSString stringWithFormat:@"http://%@:8080/smarthome/app/introduction/air", localhost]
-/**
- *  干衣机
- *
- */
-#define kChanPinShuoGanYiJi [NSString stringWithFormat:@"http://%@:8080/smarthome/app/introduction/dryer", localhost]
 
 /**
  *  在线帮助
@@ -345,141 +317,13 @@
 #define kGengXinRiZhi [NSString stringWithFormat:@"http://%@:8080/smarthome/app/log/ios", localhost]
 
 /**
- *  冷风扇的接口
+ *  天气接口
  */
-/**
- *  查询冷风扇当前状态
- *
- */
-#define kChaXunLengFengShanDangQianZhuangTai [NSString stringWithFormat:@"http://%@:8080/smarthome/fan/queryDeviceState", localhost]
-
-/**
- *  查询冷风扇当前数据
- *
- */
-#define kChaXunLengFengShanDangQianShuJu [NSString stringWithFormat:@"http://%@:8080/smarthome/fan/queryDeviceData", localhost]
-
-/**
- *  冷风扇复位按钮接口
- *
- */
-#define kLengFengShanFuWi [NSString stringWithFormat:@"http://%@:8080/smarthome/fan/resetDeviceData", localhost]
-
-/**
- *  冷风扇历史记录
- *
- */
-#define kLengFengShanLiShiJiLu [NSString stringWithFormat:@"http://%@:8080/smarthome/fan/queryDeviceHistory", localhost]
-
-/**
- *  冷风扇定时任务
- *
- */
-#define kLengFengShanDingShiYuYue [NSString stringWithFormat:@"http://%@:8080/smarthome/fan/jobTask", localhost]
-
-
-
-
-/**
- *  空气净化器接口
- */
-
-/**
- *  查询空净当前状态
- *
- */
-#define kChaXunKongJingDangQianZhuangTai [NSString stringWithFormat:@"http://%@:8080/smarthome/air/queryDeviceState", localhost]
-
-/**
- *  查询空净当前数据
- *
- */
-#define kChaXunKongJingDangQianShuJu [NSString stringWithFormat:@"http://%@:8080/smarthome/air/queryDeviceData", localhost]
-
-/**
- *  空净历史记录
- *
- */
-#define kKongJingLiShiJiLu [NSString stringWithFormat:@"http://%@:8080/smarthome/air/queryDeviceHistory", localhost]
-
-
-/**
- *  获取空净定时任务
- *
- */
-#define kGetKongJingTiming [NSString stringWithFormat:@"http://%@:8080/smarthome/air/queryJobTask", localhost]
-
-/**
- *  查询设备pm25的值
- *
- */
-#define kKongJingPM25State [NSString stringWithFormat:@"http://%@:8080/smarthome/air/queryDeviceAirAqi", localhost]
-
-/**
- *  空净定时任务
- *
- */
-#define kKongJingDingShiYuYue [NSString stringWithFormat:@"http://%@:8080/smarthome/air/jobTask", localhost]
-
-
-/**
- *  系统数据
- */
-/**
- *  查询历史空气质量数据
- */
-#define kLiShiKongQiZhiLiang [NSString stringWithFormat:@"http://%@:8080/smarthome/weather/queryAqiHistory", localhost]
-
-/**
- *  查询当天空气质量数据
- */
-#define kDangTianKongQiZhiLiang [NSString stringWithFormat:@"http://%@:80/adapter/weather/queryAqi", localhost]
-
-/**
- *  查询干衣机的状态
- *
- */
-#define kChaXunGanYiJiZhuangTai [NSString stringWithFormat:@"http://%@:8080/smarthome/dryer/queryDeviceState", localhost]
-
-/**
- *  查询干衣机的数据
- *
- */
-#define kChaXunGanYiJiShuJu [NSString stringWithFormat:@"http://%@:8080/smarthome/dryer/queryDeviceData", localhost]
-
-/**
- *  查询干衣机的历史数据
- *
- */
-#define kChaXunGanYiJiLiShiShuJu [NSString stringWithFormat:@"http://%@:8080/smarthome/dryer/queryDeviceHistory", localhost]
-
-/**
- *  干衣机的定时URL
- *
- */
-#define kGanYiJiDeDingShiURL [NSString stringWithFormat:@"http://%@:8080/smarthome/dryer/jobTask", localhost]
-
-#define kDeleteServiceURL [NSString stringWithFormat:@"http://%@:8080/smarthome/userDevice/deleteUserDevice", localhost]
-
-
-/**
- *  修改设备名称
- */
-#define kChangeServiceName [NSString stringWithFormat:@"http://%@:8080/smarthome/userDevice/modifyUserDevice", localhost]
-
+#define kRequestWeatherURL [NSString stringWithFormat:@"http://114.55.5.92:80/adapter/weather/queryWeather"]
 
 /**
  *  所有设备类型借口
  */
-#define kAllTypeServiceURL [NSString stringWithFormat:@"http://%@:8080/smarthome/device/queryTypeList", localhost]
-
-#define kBindLengFengShanURL [NSString stringWithFormat:@"http://%@:8080/smarthome/fan/bindDevice", localhost]
-
-#define kBindKongQiJingHuaQiURL [NSString stringWithFormat:@"http://%@:8080/smarthome/air/bindDevice", localhost]
-
-#define kBindGanYiJiURL [NSString stringWithFormat:@"http://%@:8080/smarthome/dryer/bindDevice", localhost]
-
-#define kRequestWeatherURL [NSString stringWithFormat:@"http://%@:80/adapter/weather/queryWeather", localhost]
-
+#define kAllTypeServiceURL [NSString stringWithFormat:@"http://%@:8080/smarthome/deviceType/queryTypeList", localhost]
 
 #endif

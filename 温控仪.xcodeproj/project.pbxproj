@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0CD206262CC65C567ACE9407 /* libPods-温控仪.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1087A6D4D9248F1EF398D2 /* libPods-温控仪.a */; };
+		ED00195A1F4D2095009BD921 /* SetServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED00194B1F4D2095009BD921 /* SetServicesViewController.m */; };
+		ED00195B1F4D2095009BD921 /* FailContextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019501F4D2095009BD921 /* FailContextViewController.m */; };
+		ED00195C1F4D2095009BD921 /* SearchServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019521F4D2095009BD921 /* SearchServicesViewController.m */; };
+		ED00195D1F4D2095009BD921 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019551F4D2095009BD921 /* CircleView.m */; };
+		ED00195E1F4D2095009BD921 /* LXGradientProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019571F4D2095009BD921 /* LXGradientProcessView.m */; };
+		ED00195F1F4D2095009BD921 /* WiFiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019591F4D2095009BD921 /* WiFiViewController.m */; };
 		ED29B1FB1EC05264007E5454 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B1FA1EC05264007E5454 /* main.m */; };
 		ED29B2061EC05264007E5454 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2051EC05264007E5454 /* Assets.xcassets */; };
 		ED29B2091EC05264007E5454 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2071EC05264007E5454 /* LaunchScreen.storyboard */; };
@@ -20,12 +26,6 @@
 		ED29B34C1EC05423007E5454 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B26E1EC05423007E5454 /* AsyncUdpSocket.m */; };
 		ED29B34D1EC05423007E5454 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2701EC05423007E5454 /* GCDAsyncSocket.m */; };
 		ED29B34E1EC05423007E5454 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2721EC05423007E5454 /* GCDAsyncUdpSocket.m */; };
-		ED29B34F1EC05423007E5454 /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2751EC05423007E5454 /* QRCodeReaderView.m */; };
-		ED29B3501EC05423007E5454 /* lightNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2771EC05423007E5454 /* lightNormal.png */; };
-		ED29B3511EC05423007E5454 /* lightSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2781EC05423007E5454 /* lightSelect.png */; };
-		ED29B3521EC05423007E5454 /* scanLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2791EC05423007E5454 /* scanLine@2x.png */; };
-		ED29B3531EC05423007E5454 /* scanLine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED29B27A1EC05423007E5454 /* scanLine@3x.png */; };
-		ED29B3541EC05423007E5454 /* scanscanBg.png in Resources */ = {isa = PBXBuildFile; fileRef = ED29B27B1EC05423007E5454 /* scanscanBg.png */; };
 		ED29B3621EC05423007E5454 /* UIViewController+Swizzled.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B29F1EC05423007E5454 /* UIViewController+Swizzled.m */; };
 		ED29B3631EC05423007E5454 /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2A21EC05423007E5454 /* UUBar.m */; };
 		ED29B3641EC05423007E5454 /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2A41EC05423007E5454 /* UUBarChart.m */; };
@@ -33,7 +33,6 @@
 		ED29B3661EC05423007E5454 /* UUChartConst.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2A81EC05423007E5454 /* UUChartConst.m */; };
 		ED29B3671EC05423007E5454 /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2AA1EC05423007E5454 /* UUChartLabel.m */; };
 		ED29B3681EC05423007E5454 /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2AC1EC05423007E5454 /* UULineChart.m */; };
-		ED29B36B1EC05423007E5454 /* RollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2B41EC05423007E5454 /* RollLabel.m */; };
 		ED29B36C1EC05423007E5454 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2B71EC05423007E5454 /* Reachability.m */; };
 		ED29B36D1EC05423007E5454 /* LaunchScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2BB1EC05423007E5454 /* LaunchScreenViewController.m */; };
 		ED29B37E1EC05423007E5454 /* ChongZhiPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B2F21EC05423007E5454 /* ChongZhiPwdViewController.m */; };
@@ -46,15 +45,11 @@
 		ED29B3851EC05423007E5454 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B3081EC05423007E5454 /* TableViewCell.m */; };
 		ED29B3861EC05423007E5454 /* XieYiNeiRongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B30A1EC05423007E5454 /* XieYiNeiRongViewController.m */; };
 		ED29B3871EC05423007E5454 /* YinSiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B30D1EC05423007E5454 /* YinSiViewController.m */; };
-		ED29B3881EC05423007E5454 /* ServicesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B3111EC05423007E5454 /* ServicesModel.m */; };
-		ED29B3891EC05423007E5454 /* StateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B3141EC05423007E5454 /* StateModel.m */; };
-		ED29B38A1EC05423007E5454 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B3171EC05423007E5454 /* UserModel.m */; };
 		ED29B38B1EC05423007E5454 /* AuthcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B31A1EC05423007E5454 /* AuthcodeView.m */; };
 		ED29B4271EC0638F007E5454 /* BDImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4011EC0638F007E5454 /* BDImagePicker.m */; };
 		ED29B4281EC0638F007E5454 /* CustomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4031EC0638F007E5454 /* CustomPickerView.m */; };
 		ED29B4291EC0638F007E5454 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4041EC0638F007E5454 /* Foundation+Log.m */; };
 		ED29B42A1EC0638F007E5454 /* HelpFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4061EC0638F007E5454 /* HelpFunction.m */; };
-		ED29B42B1EC0638F007E5454 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4081EC0638F007E5454 /* HistoryTableViewCell.m */; };
 		ED29B42C1EC0638F007E5454 /* NSObject+GetDeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B40A1EC0638F007E5454 /* NSObject+GetDeviceModel.m */; };
 		ED29B42D1EC0638F007E5454 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B40C1EC0638F007E5454 /* NSString+Extension.m */; };
 		ED29B42E1EC0638F007E5454 /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B40E1EC0638F007E5454 /* Singleton.m */; };
@@ -78,19 +73,18 @@
 		ED29B4731EC06A83007E5454 /* MineServiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4521EC06A83007E5454 /* MineServiceCollectionViewCell.m */; };
 		ED29B4741EC06A83007E5454 /* ServiceBaseCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4541EC06A83007E5454 /* ServiceBaseCollectionCell.m */; };
 		ED29B4751EC06A83007E5454 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4561EC06A83007E5454 /* WeatherView.m */; };
-		ED29B4761EC06A83007E5454 /* SetServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4591EC06A83007E5454 /* SetServicesViewController.m */; };
-		ED29B4771EC06A83007E5454 /* FailContextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B45E1EC06A83007E5454 /* FailContextViewController.m */; };
-		ED29B4781EC06A83007E5454 /* SearchServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4601EC06A83007E5454 /* SearchServicesViewController.m */; };
-		ED29B4791EC06A83007E5454 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4631EC06A83007E5454 /* CircleView.m */; };
-		ED29B47A1EC06A83007E5454 /* LXGradientProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4651EC06A83007E5454 /* LXGradientProcessView.m */; };
-		ED29B47B1EC06A83007E5454 /* WiFiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4671EC06A83007E5454 /* WiFiViewController.m */; };
-		ED29B47C1EC06A83007E5454 /* AddServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B46B1EC06A83007E5454 /* AddServiceModel.m */; };
-		ED29B48F1EC06A9F007E5454 /* HTMLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4821EC06A9F007E5454 /* HTMLBaseViewController.m */; };
-		ED29B49A1EC06ECA007E5454 /* LiShiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4991EC06ECA007E5454 /* LiShiModel.m */; };
-		ED29B49F1EC0733E007E5454 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED29B4A11EC0733E007E5454 /* Localizable.strings */; };
 		ED6BFF8F1ED28ED800420596 /* TextFiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF8E1ED28ED800420596 /* TextFiledView.m */; };
 		ED6BFF921ED29A3700420596 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF911ED29A3700420596 /* BaseViewController.m */; };
 		ED6BFF951ED2CCCB00420596 /* CustomStyleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF941ED2CCCB00420596 /* CustomStyleBtn.m */; };
+		ED7479101F4BE6B8005A9708 /* HTMLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED74790F1F4BE6B8005A9708 /* HTMLBaseViewController.m */; };
+		ED7479151F4BE885005A9708 /* AddServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7479141F4BE885005A9708 /* AddServiceModel.m */; };
+		ED7479181F4BE8DD005A9708 /* DiZhiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7479171F4BE8DD005A9708 /* DiZhiModel.m */; };
+		ED74791B1F4BE8E8005A9708 /* ServicesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED74791A1F4BE8E8005A9708 /* ServicesModel.m */; };
+		ED74791E1F4BE8EE005A9708 /* StateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED74791D1F4BE8EE005A9708 /* StateModel.m */; };
+		ED7479211F4BE8F4005A9708 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7479201F4BE8F4005A9708 /* UserModel.m */; };
+		ED7479241F4BEB9E005A9708 /* FirstUserAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7479231F4BEB9E005A9708 /* FirstUserAlertView.m */; };
+		ED74793E1F4C119D005A9708 /* AllTypeServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED74793D1F4C119D005A9708 /* AllTypeServiceModel.m */; };
+		ED7479411F4C1420005A9708 /* AllTypeServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7479401F4C1420005A9708 /* AllTypeServiceTableViewCell.m */; };
 		ED7913F41ED579DB001DE08C /* ESP_ByteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7913D81ED579DB001DE08C /* ESP_ByteUtil.m */; };
 		ED7913F51ED579DB001DE08C /* ESP_CRC8.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7913DA1ED579DB001DE08C /* ESP_CRC8.m */; };
 		ED7913F61ED579DB001DE08C /* ESP_NetUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7913DC1ED579DB001DE08C /* ESP_NetUtil.m */; };
@@ -130,6 +124,18 @@
 /* Begin PBXFileReference section */
 		71473BA6F0B15487B83E533A /* Pods-温控仪.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-温控仪.debug.xcconfig"; path = "Pods/Target Support Files/Pods-温控仪/Pods-温控仪.debug.xcconfig"; sourceTree = "<group>"; };
 		E05F0AF728501C089A388FE4 /* Pods-温控仪.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-温控仪.release.xcconfig"; path = "Pods/Target Support Files/Pods-温控仪/Pods-温控仪.release.xcconfig"; sourceTree = "<group>"; };
+		ED00194A1F4D2095009BD921 /* SetServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetServicesViewController.h; sourceTree = "<group>"; };
+		ED00194B1F4D2095009BD921 /* SetServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetServicesViewController.m; sourceTree = "<group>"; };
+		ED00194F1F4D2095009BD921 /* FailContextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FailContextViewController.h; sourceTree = "<group>"; };
+		ED0019501F4D2095009BD921 /* FailContextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FailContextViewController.m; sourceTree = "<group>"; };
+		ED0019511F4D2095009BD921 /* SearchServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchServicesViewController.h; sourceTree = "<group>"; };
+		ED0019521F4D2095009BD921 /* SearchServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchServicesViewController.m; sourceTree = "<group>"; };
+		ED0019541F4D2095009BD921 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
+		ED0019551F4D2095009BD921 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
+		ED0019561F4D2095009BD921 /* LXGradientProcessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXGradientProcessView.h; sourceTree = "<group>"; };
+		ED0019571F4D2095009BD921 /* LXGradientProcessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXGradientProcessView.m; sourceTree = "<group>"; };
+		ED0019581F4D2095009BD921 /* WiFiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WiFiViewController.h; sourceTree = "<group>"; };
+		ED0019591F4D2095009BD921 /* WiFiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WiFiViewController.m; sourceTree = "<group>"; };
 		ED29B1F61EC05264007E5454 /* 温控仪.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "温控仪.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED29B1FA1EC05264007E5454 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ED29B2051EC05264007E5454 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,13 +161,6 @@
 		ED29B2701EC05423007E5454 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		ED29B2711EC05423007E5454 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		ED29B2721EC05423007E5454 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
-		ED29B2741EC05423007E5454 /* QRCodeReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderView.h; sourceTree = "<group>"; };
-		ED29B2751EC05423007E5454 /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderView.m; sourceTree = "<group>"; };
-		ED29B2771EC05423007E5454 /* lightNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightNormal.png; sourceTree = "<group>"; };
-		ED29B2781EC05423007E5454 /* lightSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightSelect.png; sourceTree = "<group>"; };
-		ED29B2791EC05423007E5454 /* scanLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanLine@2x.png"; sourceTree = "<group>"; };
-		ED29B27A1EC05423007E5454 /* scanLine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanLine@3x.png"; sourceTree = "<group>"; };
-		ED29B27B1EC05423007E5454 /* scanscanBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanscanBg.png; sourceTree = "<group>"; };
 		ED29B29E1EC05423007E5454 /* UIViewController+Swizzled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Swizzled.h"; sourceTree = "<group>"; };
 		ED29B29F1EC05423007E5454 /* UIViewController+Swizzled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzled.m"; sourceTree = "<group>"; };
 		ED29B2A11EC05423007E5454 /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
@@ -176,8 +175,6 @@
 		ED29B2AA1EC05423007E5454 /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
 		ED29B2AB1EC05423007E5454 /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
 		ED29B2AC1EC05423007E5454 /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
-		ED29B2B31EC05423007E5454 /* RollLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollLabel.h; sourceTree = "<group>"; };
-		ED29B2B41EC05423007E5454 /* RollLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollLabel.m; sourceTree = "<group>"; };
 		ED29B2B61EC05423007E5454 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		ED29B2B71EC05423007E5454 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		ED29B2BA1EC05423007E5454 /* LaunchScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreenViewController.h; sourceTree = "<group>"; };
@@ -202,12 +199,6 @@
 		ED29B30A1EC05423007E5454 /* XieYiNeiRongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XieYiNeiRongViewController.m; sourceTree = "<group>"; };
 		ED29B30C1EC05423007E5454 /* YinSiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YinSiViewController.h; sourceTree = "<group>"; };
 		ED29B30D1EC05423007E5454 /* YinSiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YinSiViewController.m; sourceTree = "<group>"; };
-		ED29B3101EC05423007E5454 /* ServicesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesModel.h; sourceTree = "<group>"; };
-		ED29B3111EC05423007E5454 /* ServicesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicesModel.m; sourceTree = "<group>"; };
-		ED29B3131EC05423007E5454 /* StateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateModel.h; sourceTree = "<group>"; };
-		ED29B3141EC05423007E5454 /* StateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateModel.m; sourceTree = "<group>"; };
-		ED29B3161EC05423007E5454 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
-		ED29B3171EC05423007E5454 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		ED29B3191EC05423007E5454 /* AuthcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthcodeView.h; sourceTree = "<group>"; };
 		ED29B31A1EC05423007E5454 /* AuthcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthcodeView.m; sourceTree = "<group>"; };
 		ED29B3971EC05768007E5454 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -218,8 +209,6 @@
 		ED29B4041EC0638F007E5454 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
 		ED29B4051EC0638F007E5454 /* HelpFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFunction.h; sourceTree = "<group>"; };
 		ED29B4061EC0638F007E5454 /* HelpFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpFunction.m; sourceTree = "<group>"; };
-		ED29B4071EC0638F007E5454 /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
-		ED29B4081EC0638F007E5454 /* HistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewCell.m; sourceTree = "<group>"; };
 		ED29B4091EC0638F007E5454 /* NSObject+GetDeviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GetDeviceModel.h"; sourceTree = "<group>"; };
 		ED29B40A1EC0638F007E5454 /* NSObject+GetDeviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GetDeviceModel.m"; sourceTree = "<group>"; };
 		ED29B40B1EC0638F007E5454 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
@@ -266,32 +255,30 @@
 		ED29B4541EC06A83007E5454 /* ServiceBaseCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceBaseCollectionCell.m; sourceTree = "<group>"; };
 		ED29B4551EC06A83007E5454 /* WeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherView.h; sourceTree = "<group>"; };
 		ED29B4561EC06A83007E5454 /* WeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherView.m; sourceTree = "<group>"; };
-		ED29B4581EC06A83007E5454 /* SetServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetServicesViewController.h; sourceTree = "<group>"; };
-		ED29B4591EC06A83007E5454 /* SetServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetServicesViewController.m; sourceTree = "<group>"; };
-		ED29B45D1EC06A83007E5454 /* FailContextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FailContextViewController.h; sourceTree = "<group>"; };
-		ED29B45E1EC06A83007E5454 /* FailContextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FailContextViewController.m; sourceTree = "<group>"; };
-		ED29B45F1EC06A83007E5454 /* SearchServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchServicesViewController.h; sourceTree = "<group>"; };
-		ED29B4601EC06A83007E5454 /* SearchServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchServicesViewController.m; sourceTree = "<group>"; };
-		ED29B4621EC06A83007E5454 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
-		ED29B4631EC06A83007E5454 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
-		ED29B4641EC06A83007E5454 /* LXGradientProcessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXGradientProcessView.h; sourceTree = "<group>"; };
-		ED29B4651EC06A83007E5454 /* LXGradientProcessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXGradientProcessView.m; sourceTree = "<group>"; };
-		ED29B4661EC06A83007E5454 /* WiFiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WiFiViewController.h; sourceTree = "<group>"; };
-		ED29B4671EC06A83007E5454 /* WiFiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WiFiViewController.m; sourceTree = "<group>"; };
-		ED29B46A1EC06A83007E5454 /* AddServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServiceModel.h; sourceTree = "<group>"; };
-		ED29B46B1EC06A83007E5454 /* AddServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServiceModel.m; sourceTree = "<group>"; };
-		ED29B4811EC06A9F007E5454 /* HTMLBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLBaseViewController.h; sourceTree = "<group>"; };
-		ED29B4821EC06A9F007E5454 /* HTMLBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLBaseViewController.m; sourceTree = "<group>"; };
-		ED29B4981EC06ECA007E5454 /* LiShiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiShiModel.h; sourceTree = "<group>"; };
-		ED29B4991EC06ECA007E5454 /* LiShiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiShiModel.m; sourceTree = "<group>"; };
-		ED29B4A01EC0733E007E5454 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		ED29B4A21EC07340007E5454 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		ED6BFF8D1ED28ED800420596 /* TextFiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFiledView.h; sourceTree = "<group>"; };
 		ED6BFF8E1ED28ED800420596 /* TextFiledView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFiledView.m; sourceTree = "<group>"; };
 		ED6BFF901ED29A3700420596 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		ED6BFF911ED29A3700420596 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		ED6BFF931ED2CCCB00420596 /* CustomStyleBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStyleBtn.h; sourceTree = "<group>"; };
 		ED6BFF941ED2CCCB00420596 /* CustomStyleBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStyleBtn.m; sourceTree = "<group>"; };
+		ED74790E1F4BE6B8005A9708 /* HTMLBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLBaseViewController.h; sourceTree = "<group>"; };
+		ED74790F1F4BE6B8005A9708 /* HTMLBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLBaseViewController.m; sourceTree = "<group>"; };
+		ED7479131F4BE885005A9708 /* AddServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServiceModel.h; sourceTree = "<group>"; };
+		ED7479141F4BE885005A9708 /* AddServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServiceModel.m; sourceTree = "<group>"; };
+		ED7479161F4BE8DD005A9708 /* DiZhiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiZhiModel.h; sourceTree = "<group>"; };
+		ED7479171F4BE8DD005A9708 /* DiZhiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiZhiModel.m; sourceTree = "<group>"; };
+		ED7479191F4BE8E8005A9708 /* ServicesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesModel.h; sourceTree = "<group>"; };
+		ED74791A1F4BE8E8005A9708 /* ServicesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicesModel.m; sourceTree = "<group>"; };
+		ED74791C1F4BE8EE005A9708 /* StateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateModel.h; sourceTree = "<group>"; };
+		ED74791D1F4BE8EE005A9708 /* StateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateModel.m; sourceTree = "<group>"; };
+		ED74791F1F4BE8F4005A9708 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		ED7479201F4BE8F4005A9708 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		ED7479221F4BEB9E005A9708 /* FirstUserAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstUserAlertView.h; sourceTree = "<group>"; };
+		ED7479231F4BEB9E005A9708 /* FirstUserAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstUserAlertView.m; sourceTree = "<group>"; };
+		ED74793C1F4C119D005A9708 /* AllTypeServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTypeServiceModel.h; sourceTree = "<group>"; };
+		ED74793D1F4C119D005A9708 /* AllTypeServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTypeServiceModel.m; sourceTree = "<group>"; };
+		ED74793F1F4C1420005A9708 /* AllTypeServiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTypeServiceTableViewCell.h; sourceTree = "<group>"; };
+		ED7479401F4C1420005A9708 /* AllTypeServiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTypeServiceTableViewCell.m; sourceTree = "<group>"; };
 		ED7913D71ED579DB001DE08C /* ESP_ByteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_ByteUtil.h; sourceTree = "<group>"; };
 		ED7913D81ED579DB001DE08C /* ESP_ByteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_ByteUtil.m; sourceTree = "<group>"; };
 		ED7913D91ED579DB001DE08C /* ESP_CRC8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_CRC8.h; sourceTree = "<group>"; };
@@ -372,6 +359,57 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ED0019491F4D2095009BD921 /* SetServicesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ED00194A1F4D2095009BD921 /* SetServicesViewController.h */,
+				ED00194B1F4D2095009BD921 /* SetServicesViewController.m */,
+				ED00194C1F4D2095009BD921 /* WIFIViewController */,
+			);
+			path = SetServicesViewController;
+			sourceTree = "<group>";
+		};
+		ED00194C1F4D2095009BD921 /* WIFIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ED0019581F4D2095009BD921 /* WiFiViewController.h */,
+				ED0019591F4D2095009BD921 /* WiFiViewController.m */,
+				ED00194D1F4D2095009BD921 /* searchServicesViewController */,
+			);
+			path = WIFIViewController;
+			sourceTree = "<group>";
+		};
+		ED00194D1F4D2095009BD921 /* searchServicesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ED0019511F4D2095009BD921 /* SearchServicesViewController.h */,
+				ED0019521F4D2095009BD921 /* SearchServicesViewController.m */,
+				ED00194E1F4D2095009BD921 /* FailContextViewController */,
+				ED0019531F4D2095009BD921 /* View */,
+			);
+			path = searchServicesViewController;
+			sourceTree = "<group>";
+		};
+		ED00194E1F4D2095009BD921 /* FailContextViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ED00194F1F4D2095009BD921 /* FailContextViewController.h */,
+				ED0019501F4D2095009BD921 /* FailContextViewController.m */,
+			);
+			path = FailContextViewController;
+			sourceTree = "<group>";
+		};
+		ED0019531F4D2095009BD921 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ED0019541F4D2095009BD921 /* CircleView.h */,
+				ED0019551F4D2095009BD921 /* CircleView.m */,
+				ED0019561F4D2095009BD921 /* LXGradientProcessView.h */,
+				ED0019571F4D2095009BD921 /* LXGradientProcessView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		ED29B1ED1EC05264007E5454 = {
 			isa = PBXGroup;
 			children = (
@@ -445,10 +483,10 @@
 			isa = PBXGroup;
 			children = (
 				ED29B22E1EC05423007E5454 /* AppDelegate */,
-				ED29B3FF1EC0638F007E5454 /* Catgory */,
-				ED29B2641EC05423007E5454 /* Lib */,
 				ED29B2B81EC05423007E5454 /* ViewControllers */,
 				ED29B3181EC05423007E5454 /* VIews */,
+				ED29B3FF1EC0638F007E5454 /* Catgory */,
+				ED29B2641EC05423007E5454 /* Lib */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -461,7 +499,6 @@
 				ED8E3C961EC15F640040FD3B /* TabBarViewController.h */,
 				ED8E3C971EC15F640040FD3B /* TabBarViewController.m */,
 				ED29B3971EC05768007E5454 /* PrefixHeader.pch */,
-				ED29B4A11EC0733E007E5454 /* Localizable.strings */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -472,10 +509,8 @@
 				ED7913D61ED579DB001DE08C /* SmarkLink */,
 				ED29B2651EC05423007E5454 /* CCLocation */,
 				ED29B26A1EC05423007E5454 /* GCDAsyncSocket */,
-				ED29B2731EC05423007E5454 /* QRCodeScanner */,
 				ED29B29D1EC05423007E5454 /* UIViewController+Swizzled */,
 				ED29B2A01EC05423007E5454 /* UUChart */,
-				ED29B2B21EC05423007E5454 /* 动态显示文字 */,
 				ED29B2B51EC05423007E5454 /* 监测网络状态 */,
 			);
 			path = Lib;
@@ -507,28 +542,6 @@
 			path = GCDAsyncSocket;
 			sourceTree = "<group>";
 		};
-		ED29B2731EC05423007E5454 /* QRCodeScanner */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B2741EC05423007E5454 /* QRCodeReaderView.h */,
-				ED29B2751EC05423007E5454 /* QRCodeReaderView.m */,
-				ED29B2761EC05423007E5454 /* resource */,
-			);
-			path = QRCodeScanner;
-			sourceTree = "<group>";
-		};
-		ED29B2761EC05423007E5454 /* resource */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B2771EC05423007E5454 /* lightNormal.png */,
-				ED29B2781EC05423007E5454 /* lightSelect.png */,
-				ED29B2791EC05423007E5454 /* scanLine@2x.png */,
-				ED29B27A1EC05423007E5454 /* scanLine@3x.png */,
-				ED29B27B1EC05423007E5454 /* scanscanBg.png */,
-			);
-			path = resource;
-			sourceTree = "<group>";
-		};
 		ED29B29D1EC05423007E5454 /* UIViewController+Swizzled */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,15 +568,6 @@
 				ED29B2AC1EC05423007E5454 /* UULineChart.m */,
 			);
 			path = UUChart;
-			sourceTree = "<group>";
-		};
-		ED29B2B21EC05423007E5454 /* 动态显示文字 */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B2B31EC05423007E5454 /* RollLabel.h */,
-				ED29B2B41EC05423007E5454 /* RollLabel.m */,
-			);
-			path = "动态显示文字";
 			sourceTree = "<group>";
 		};
 		ED29B2B51EC05423007E5454 /* 监测网络状态 */ = {
@@ -718,39 +722,18 @@
 		ED29B30E1EC05423007E5454 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ED29B4971EC06ECA007E5454 /* LiShiModel */,
-				ED29B30F1EC05423007E5454 /* ServicesModel */,
-				ED29B3121EC05423007E5454 /* StateModel */,
-				ED29B3151EC05423007E5454 /* UserModel */,
+				ED7479161F4BE8DD005A9708 /* DiZhiModel.h */,
+				ED7479171F4BE8DD005A9708 /* DiZhiModel.m */,
+				ED7479191F4BE8E8005A9708 /* ServicesModel.h */,
+				ED74791A1F4BE8E8005A9708 /* ServicesModel.m */,
+				ED74791C1F4BE8EE005A9708 /* StateModel.h */,
+				ED74791D1F4BE8EE005A9708 /* StateModel.m */,
+				ED74791F1F4BE8F4005A9708 /* UserModel.h */,
+				ED7479201F4BE8F4005A9708 /* UserModel.m */,
+				ED74793C1F4C119D005A9708 /* AllTypeServiceModel.h */,
+				ED74793D1F4C119D005A9708 /* AllTypeServiceModel.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		ED29B30F1EC05423007E5454 /* ServicesModel */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B3101EC05423007E5454 /* ServicesModel.h */,
-				ED29B3111EC05423007E5454 /* ServicesModel.m */,
-			);
-			path = ServicesModel;
-			sourceTree = "<group>";
-		};
-		ED29B3121EC05423007E5454 /* StateModel */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B3131EC05423007E5454 /* StateModel.h */,
-				ED29B3141EC05423007E5454 /* StateModel.m */,
-			);
-			path = StateModel;
-			sourceTree = "<group>";
-		};
-		ED29B3151EC05423007E5454 /* UserModel */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B3161EC05423007E5454 /* UserModel.h */,
-				ED29B3171EC05423007E5454 /* UserModel.m */,
-			);
-			path = UserModel;
 			sourceTree = "<group>";
 		};
 		ED29B3181EC05423007E5454 /* VIews */ = {
@@ -772,8 +755,6 @@
 				ED29B4041EC0638F007E5454 /* Foundation+Log.m */,
 				ED29B4051EC0638F007E5454 /* HelpFunction.h */,
 				ED29B4061EC0638F007E5454 /* HelpFunction.m */,
-				ED29B4071EC0638F007E5454 /* HistoryTableViewCell.h */,
-				ED29B4081EC0638F007E5454 /* HistoryTableViewCell.m */,
 				ED29B4091EC0638F007E5454 /* NSObject+GetDeviceModel.h */,
 				ED29B40A1EC0638F007E5454 /* NSObject+GetDeviceModel.m */,
 				ED29B40B1EC0638F007E5454 /* NSString+Extension.h */,
@@ -814,7 +795,6 @@
 			isa = PBXGroup;
 			children = (
 				ED29B43C1EC06A83007E5454 /* Controllers */,
-				ED29B4681EC06A83007E5454 /* Model */,
 				ED29B46C1EC06A83007E5454 /* View */,
 			);
 			path = Addservices;
@@ -824,9 +804,9 @@
 			isa = PBXGroup;
 			children = (
 				ED29B44C1EC06A83007E5454 /* MineSerivesViewController */,
-				ED29B43D1EC06A83007E5454 /* AllServicesViewController */,
 				ED29B4431EC06A83007E5454 /* AllTypeServicesHTMLVC */,
-				ED29B4571EC06A83007E5454 /* SetServicesViewController */,
+				ED29B43D1EC06A83007E5454 /* AllServicesViewController */,
+				ED0019491F4D2095009BD921 /* SetServicesViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -873,6 +853,8 @@
 		ED29B4491EC06A83007E5454 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ED74793F1F4C1420005A9708 /* AllTypeServiceTableViewCell.h */,
+				ED7479401F4C1420005A9708 /* AllTypeServiceTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -882,6 +864,7 @@
 			children = (
 				ED29B44D1EC06A83007E5454 /* MineSerivesViewController.h */,
 				ED29B44E1EC06A83007E5454 /* MineSerivesViewController.m */,
+				ED7479111F4BE885005A9708 /* Model */,
 				ED29B44F1EC06A83007E5454 /* View */,
 			);
 			path = MineSerivesViewController;
@@ -893,6 +876,8 @@
 				ED29B4501EC06A83007E5454 /* MineServiceCollectionViewCell */,
 				ED29B4551EC06A83007E5454 /* WeatherView.h */,
 				ED29B4561EC06A83007E5454 /* WeatherView.m */,
+				ED7479221F4BEB9E005A9708 /* FirstUserAlertView.h */,
+				ED7479231F4BEB9E005A9708 /* FirstUserAlertView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -908,74 +893,6 @@
 			path = MineServiceCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		ED29B4571EC06A83007E5454 /* SetServicesViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B4581EC06A83007E5454 /* SetServicesViewController.h */,
-				ED29B4591EC06A83007E5454 /* SetServicesViewController.m */,
-				ED29B45A1EC06A83007E5454 /* WIFIViewController */,
-			);
-			path = SetServicesViewController;
-			sourceTree = "<group>";
-		};
-		ED29B45A1EC06A83007E5454 /* WIFIViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B4661EC06A83007E5454 /* WiFiViewController.h */,
-				ED29B4671EC06A83007E5454 /* WiFiViewController.m */,
-				ED29B45B1EC06A83007E5454 /* searchServicesViewController */,
-			);
-			path = WIFIViewController;
-			sourceTree = "<group>";
-		};
-		ED29B45B1EC06A83007E5454 /* searchServicesViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B45F1EC06A83007E5454 /* SearchServicesViewController.h */,
-				ED29B4601EC06A83007E5454 /* SearchServicesViewController.m */,
-				ED29B45C1EC06A83007E5454 /* FailContextViewController */,
-				ED29B4611EC06A83007E5454 /* View */,
-			);
-			path = searchServicesViewController;
-			sourceTree = "<group>";
-		};
-		ED29B45C1EC06A83007E5454 /* FailContextViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B45D1EC06A83007E5454 /* FailContextViewController.h */,
-				ED29B45E1EC06A83007E5454 /* FailContextViewController.m */,
-			);
-			path = FailContextViewController;
-			sourceTree = "<group>";
-		};
-		ED29B4611EC06A83007E5454 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B4621EC06A83007E5454 /* CircleView.h */,
-				ED29B4631EC06A83007E5454 /* CircleView.m */,
-				ED29B4641EC06A83007E5454 /* LXGradientProcessView.h */,
-				ED29B4651EC06A83007E5454 /* LXGradientProcessView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		ED29B4681EC06A83007E5454 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B4691EC06A83007E5454 /* AddServiceModel */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		ED29B4691EC06A83007E5454 /* AddServiceModel */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B46A1EC06A83007E5454 /* AddServiceModel.h */,
-				ED29B46B1EC06A83007E5454 /* AddServiceModel.m */,
-			);
-			path = AddServiceModel;
-			sourceTree = "<group>";
-		};
 		ED29B46C1EC06A83007E5454 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,19 +903,10 @@
 		ED29B47D1EC06A9F007E5454 /* HTMLBaseViewController */ = {
 			isa = PBXGroup;
 			children = (
-				ED29B4811EC06A9F007E5454 /* HTMLBaseViewController.h */,
-				ED29B4821EC06A9F007E5454 /* HTMLBaseViewController.m */,
+				ED74790E1F4BE6B8005A9708 /* HTMLBaseViewController.h */,
+				ED74790F1F4BE6B8005A9708 /* HTMLBaseViewController.m */,
 			);
 			path = HTMLBaseViewController;
-			sourceTree = "<group>";
-		};
-		ED29B4971EC06ECA007E5454 /* LiShiModel */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B4981EC06ECA007E5454 /* LiShiModel.h */,
-				ED29B4991EC06ECA007E5454 /* LiShiModel.m */,
-			);
-			path = LiShiModel;
 			sourceTree = "<group>";
 		};
 		ED6BFF891ED28DDE00420596 /* View */ = {
@@ -1008,6 +916,23 @@
 				ED6BFF8E1ED28ED800420596 /* TextFiledView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		ED7479111F4BE885005A9708 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED7479121F4BE885005A9708 /* AddServiceModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ED7479121F4BE885005A9708 /* AddServiceModel */ = {
+			isa = PBXGroup;
+			children = (
+				ED7479131F4BE885005A9708 /* AddServiceModel.h */,
+				ED7479141F4BE885005A9708 /* AddServiceModel.m */,
+			);
+			path = AddServiceModel;
 			sourceTree = "<group>";
 		};
 		ED7913D61ED579DB001DE08C /* SmarkLink */ = {
@@ -1168,16 +1093,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED29B3521EC05423007E5454 /* scanLine@2x.png in Resources */,
 				ED8E3C9E1EC162F20040FD3B /* Wind.plist in Resources */,
 				ED7913FB1ED579DB001DE08C /* EspTouchDemo-Info.plist in Resources */,
-				ED29B49F1EC0733E007E5454 /* Localizable.strings in Resources */,
-				ED29B3541EC05423007E5454 /* scanscanBg.png in Resources */,
-				ED29B3501EC05423007E5454 /* lightNormal.png in Resources */,
 				ED29B2091EC05264007E5454 /* LaunchScreen.storyboard in Resources */,
 				ED29B2061EC05264007E5454 /* Assets.xcassets in Resources */,
-				ED29B3511EC05423007E5454 /* lightSelect.png in Resources */,
-				ED29B3531EC05423007E5454 /* scanLine@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1251,83 +1170,83 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED8E3C981EC15F640040FD3B /* TabBarViewController.m in Sources */,
-				ED29B38A1EC05423007E5454 /* UserModel.m in Sources */,
+				ED7479101F4BE6B8005A9708 /* HTMLBaseViewController.m in Sources */,
+				ED00195B1F4D2095009BD921 /* FailContextViewController.m in Sources */,
 				ED29B46E1EC06A83007E5454 /* AllServicesViewController.m in Sources */,
 				ED29B3641EC05423007E5454 /* UUBarChart.m in Sources */,
 				ED6BFF951ED2CCCB00420596 /* CustomStyleBtn.m in Sources */,
 				ED29B4741EC06A83007E5454 /* ServiceBaseCollectionCell.m in Sources */,
 				ED7913F61ED579DB001DE08C /* ESP_NetUtil.m in Sources */,
 				ED29B3811EC05423007E5454 /* RegisterViewController.m in Sources */,
+				ED00195C1F4D2095009BD921 /* SearchServicesViewController.m in Sources */,
 				ED29B42D1EC0638F007E5454 /* NSString+Extension.m in Sources */,
+				ED74791E1F4BE8EE005A9708 /* StateModel.m in Sources */,
 				ED29B36C1EC05423007E5454 /* Reachability.m in Sources */,
 				ED29B4721EC06A83007E5454 /* MineSerivesViewController.m in Sources */,
 				ED6BFF921ED29A3700420596 /* BaseViewController.m in Sources */,
 				ED29B42C1EC0638F007E5454 /* NSObject+GetDeviceModel.m in Sources */,
 				ED29B34D1EC05423007E5454 /* GCDAsyncSocket.m in Sources */,
-				ED29B49A1EC06ECA007E5454 /* LiShiModel.m in Sources */,
 				ED8E3C9C1EC15FBA0040FD3B /* UserInfoVC.m in Sources */,
 				ED29B4351EC0638F007E5454 /* UILabel+Custom.m in Sources */,
-				ED29B47C1EC06A83007E5454 /* AddServiceModel.m in Sources */,
 				ED7913FE1ED579DB001DE08C /* ESPTouchTask.m in Sources */,
 				ED7914011ED579DC001DE08C /* ESPUDPSocketServer.m in Sources */,
 				ED29B3651EC05423007E5454 /* UUChart.m in Sources */,
 				ED29B38B1EC05423007E5454 /* AuthcodeView.m in Sources */,
 				ED29B46D1EC06A83007E5454 /* AllServicesCollectionViewCell.m in Sources */,
 				ED29B4361EC0638F007E5454 /* UITextField+Custom.m in Sources */,
-				ED29B36B1EC05423007E5454 /* RollLabel.m in Sources */,
+				ED7479241F4BEB9E005A9708 /* FirstUserAlertView.m in Sources */,
 				ED29B4371EC0638F007E5454 /* UIView+Extension.m in Sources */,
+				ED00195D1F4D2095009BD921 /* CircleView.m in Sources */,
 				ED29B4701EC06A83007E5454 /* AllTypeServiceModel.m in Sources */,
-				ED29B4771EC06A83007E5454 /* FailContextViewController.m in Sources */,
 				ED29B3621EC05423007E5454 /* UIViewController+Swizzled.m in Sources */,
 				ED29B4281EC0638F007E5454 /* CustomPickerView.m in Sources */,
 				ED7913FF1ED579DB001DE08C /* ESPTouchTaskParameter.m in Sources */,
 				ED7913F91ED579DB001DE08C /* ESPDatumCode.m in Sources */,
 				ED7913FC1ED579DB001DE08C /* ESPTouchGenerator.m in Sources */,
 				ED29B4331EC0638F007E5454 /* UIImage+Extension.m in Sources */,
+				ED7479151F4BE885005A9708 /* AddServiceModel.m in Sources */,
 				ED29B3631EC05423007E5454 /* UUBar.m in Sources */,
-				ED29B4781EC06A83007E5454 /* SearchServicesViewController.m in Sources */,
 				ED7913FA1ED579DB001DE08C /* ESPGuideCode.m in Sources */,
 				ED29B4301EC0638F007E5454 /* UIBarButtonItem+Extension.m in Sources */,
 				ED29B4271EC0638F007E5454 /* BDImagePicker.m in Sources */,
 				ED29B4291EC0638F007E5454 /* Foundation+Log.m in Sources */,
 				ED29B4391EC0638F007E5454 /* XMGRefreshFooter.m in Sources */,
 				ED7914001ED579DC001DE08C /* ESPUDPSocketClient.m in Sources */,
+				ED7479181F4BE8DD005A9708 /* DiZhiModel.m in Sources */,
 				ED29B4381EC0638F007E5454 /* XMGNavigationController.m in Sources */,
 				ED29B36D1EC05423007E5454 /* LaunchScreenViewController.m in Sources */,
 				ED6BFF8F1ED28ED800420596 /* TextFiledView.m in Sources */,
 				ED29B34A1EC05423007E5454 /* CLLocation+YCLocation.m in Sources */,
-				ED29B47A1EC06A83007E5454 /* LXGradientProcessView.m in Sources */,
+				ED00195F1F4D2095009BD921 /* WiFiViewController.m in Sources */,
 				ED29B3311EC05423007E5454 /* AppDelegate.m in Sources */,
+				ED74791B1F4BE8E8005A9708 /* ServicesModel.m in Sources */,
 				ED29B3821EC05423007E5454 /* AlertMessageView.m in Sources */,
 				ED29B42F1EC0638F007E5454 /* UIAlertController+Custom.m in Sources */,
 				ED7913F71ED579DB001DE08C /* ESP_WifiUtil.m in Sources */,
+				ED00195A1F4D2095009BD921 /* SetServicesViewController.m in Sources */,
+				ED00195E1F4D2095009BD921 /* LXGradientProcessView.m in Sources */,
 				ED29B37F1EC05423007E5454 /* ForgetPwdViewController.m in Sources */,
 				ED29B3661EC05423007E5454 /* UUChartConst.m in Sources */,
-				ED29B3881EC05423007E5454 /* ServicesModel.m in Sources */,
-				ED29B4761EC06A83007E5454 /* SetServicesViewController.m in Sources */,
 				ED29B4341EC0638F007E5454 /* UIImageView+Extension.m in Sources */,
 				ED29B46F1EC06A83007E5454 /* AllTypeServiceViewController.m in Sources */,
 				ED29B4731EC06A83007E5454 /* MineServiceCollectionViewCell.m in Sources */,
+				ED74793E1F4C119D005A9708 /* AllTypeServiceModel.m in Sources */,
 				ED29B3861EC05423007E5454 /* XieYiNeiRongViewController.m in Sources */,
 				ED29B34E1EC05423007E5454 /* GCDAsyncUdpSocket.m in Sources */,
+				ED7479211F4BE8F4005A9708 /* UserModel.m in Sources */,
 				ED29B3851EC05423007E5454 /* TableViewCell.m in Sources */,
+				ED7479411F4C1420005A9708 /* AllTypeServiceTableViewCell.m in Sources */,
 				ED29B3841EC05423007E5454 /* PZXVerificationTextField.m in Sources */,
 				ED29B4751EC06A83007E5454 /* WeatherView.m in Sources */,
 				ED29B34C1EC05423007E5454 /* AsyncUdpSocket.m in Sources */,
-				ED29B47B1EC06A83007E5454 /* WiFiViewController.m in Sources */,
-				ED29B3891EC05423007E5454 /* StateModel.m in Sources */,
 				ED29B3491EC05423007E5454 /* CCLocationManager.m in Sources */,
-				ED29B48F1EC06A9F007E5454 /* HTMLBaseViewController.m in Sources */,
 				ED29B3671EC05423007E5454 /* UUChartLabel.m in Sources */,
 				ED29B3871EC05423007E5454 /* YinSiViewController.m in Sources */,
-				ED29B34F1EC05423007E5454 /* QRCodeReaderView.m in Sources */,
 				ED29B4311EC0638F007E5454 /* UIButton+Custom.m in Sources */,
 				ED7913F41ED579DB001DE08C /* ESP_ByteUtil.m in Sources */,
 				ED29B43A1EC0638F007E5454 /* XMGRefreshHeader.m in Sources */,
 				ED7913F81ED579DB001DE08C /* ESPDataCode.m in Sources */,
-				ED29B4791EC06A83007E5454 /* CircleView.m in Sources */,
 				ED29B3831EC05423007E5454 /* PZXVerificationCodeView.m in Sources */,
-				ED29B42B1EC0638F007E5454 /* HistoryTableViewCell.m in Sources */,
 				ED29B42E1EC0638F007E5454 /* Singleton.m in Sources */,
 				ED7913F51ED579DB001DE08C /* ESP_CRC8.m in Sources */,
 				ED29B42A1EC0638F007E5454 /* HelpFunction.m in Sources */,
@@ -1380,15 +1299,6 @@
 			);
 			name = LaunchScreen.storyboard;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		ED29B4A11EC0733E007E5454 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ED29B4A01EC0733E007E5454 /* en */,
-				ED29B4A21EC07340007E5454 /* zh-Hans */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
