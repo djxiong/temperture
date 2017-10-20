@@ -32,7 +32,6 @@
 
 + (UIView * _Nonnull)creatTextFiledWithLableText:(NSString * _Nonnull)lableText andTextFiledPlaceHold:(NSString * _Nonnull)placeHolder andSuperView:(UIView * _Nonnull)superView;
 
-+ (UIView * _Nonnull)creatNavView:(UIView * _Nonnull)superView WithTarget:(nullable id)delegate action:(nullable SEL)action andTitle:(NSString * _Nonnull)title;
 
 //+ (void)creatBottomFenGeView:(UIView * _Nonnull)superView;
 

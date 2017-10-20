@@ -42,23 +42,23 @@
     _typeName.layer.borderWidth = 0;
     
     
-    UIView *rightFenGeView = [[UIView alloc]init];
-    rightFenGeView.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"];
-    [self.contentView addSubview:rightFenGeView];
-    [rightFenGeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(1, view.height));
-        make.centerY.mas_equalTo(view.mas_centerY);
-        make.right.mas_equalTo(view.mas_right);
-    }];
-    
-    UIView *bottomFenGeView = [[UIView alloc]init];
-    bottomFenGeView.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"];
-    [self.contentView addSubview:bottomFenGeView];
-    [bottomFenGeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(view.width, 1));
-        make.centerX.mas_equalTo(view.mas_centerX);
-        make.bottom.mas_equalTo(view.mas_bottom);
-    }];
+//    UIView *rightFenGeView = [[UIView alloc]init];
+//    rightFenGeView.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"];
+//    [self.contentView addSubview:rightFenGeView];
+//    [rightFenGeView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(1, view.height));
+//        make.centerY.mas_equalTo(view.mas_centerY);
+//        make.right.mas_equalTo(view.mas_right);
+//    }];
+//    
+//    UIView *bottomFenGeView = [[UIView alloc]init];
+//    bottomFenGeView.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"];
+//    [self.contentView addSubview:bottomFenGeView];
+//    [bottomFenGeView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(view.width, 1));
+//        make.centerX.mas_equalTo(view.mas_centerX);
+//        make.bottom.mas_equalTo(view.mas_bottom);
+//    }];
     
     return self;
 }
@@ -69,18 +69,6 @@
 
 - (void)setIndexPath:(NSIndexPath *)indexPath {
     _indexPath = indexPath;
-
-    if (_dataCount != 1) {
-        if (_dataCount % 2 != 0) {
-            if (_indexPath.row == _dataCount - 2) {
-                [self setBottomRightCorner];
-            }
-        }
-    }
-    
-    if (_indexPath.row == _dataCount - 1) {
-        [self setBottomRightCorner];
-    }
     
 }
 
@@ -107,42 +95,6 @@
 //        self.layer.masksToBounds = YES;
     }
     
-}
-
-- (void)setTopLeftCorner {
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.contentView.bounds byRoundingCorners:UIRectCornerTopLeft cornerRadii:CGSizeMake(5, 5)];
-    
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.contentView.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.contentView.layer.mask = maskLayer;
-}
-
-- (void)setTopRightCorner {
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.contentView.bounds byRoundingCorners:UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
-    
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.contentView.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.contentView.layer.mask = maskLayer;
-}
-
-- (void)setBottomLeftCorner {
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.contentView.bounds byRoundingCorners:UIRectCornerBottomLeft cornerRadii:CGSizeMake(5, 5)];
-    
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.contentView.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.contentView.layer.mask = maskLayer;
-}
-
-- (void)setBottomRightCorner {
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.contentView.bounds byRoundingCorners:UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
-    
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.contentView.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.contentView.layer.mask = maskLayer;
 }
 
 @end

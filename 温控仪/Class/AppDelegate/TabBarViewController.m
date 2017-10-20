@@ -7,7 +7,7 @@
 //
 
 #import "TabBarViewController.h"
-#import "UserInfoVC.h"
+#import "MineViewController.h"
 #import "MineSerivesViewController.h"
 #import "XMGNavigationController.h"
 
@@ -29,7 +29,7 @@
     mineSerVC.fromAddVC = self.fromAddVC;
    
     
-    UserInfoVC *userVC = [[UserInfoVC alloc]init];
+    MineViewController *userVC = [[MineViewController alloc]init];
     XMGNavigationController *userNav = [[XMGNavigationController alloc]initWithRootViewController:userVC];
     userNav.tabBarItem.title = @"个人中心";
     userNav.tabBarItem.image = [[UIImage imageNamed:@"tabbar_mine"] imageWithRenderingMode:UIImageRenderingModeAutomatic];

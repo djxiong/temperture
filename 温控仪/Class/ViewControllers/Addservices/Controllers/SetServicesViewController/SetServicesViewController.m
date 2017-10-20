@@ -7,12 +7,17 @@
 //
 
 #import "SetServicesViewController.h"
-#import "WiFiViewController.h"
 #import "MineSerivesViewController.h"
-@interface SetServicesViewController ()
+#import "SearchServicesViewController.h"
+#import <SystemConfiguration/CaptiveNetwork.h>
+@interface SetServicesViewController (){
+    CFDictionaryRef dictRef;
+}
+
+@property (nonatomic , copy) NSString *wifiName;
 @property (nonatomic , strong) NSMutableArray *array;
-@property (nonatomic , strong) NSTimer *myTimer;
 @property (nonatomic , strong) UIImageView *switchImage;
+@property (nonatomic , copy) NSString *alertMessage;
 @end
 
 @implementation SetServicesViewController
@@ -21,7 +26,26 @@
     [super viewDidLoad];
     self.imageView.image = [UIImage imageNamed:@"addServiceBackImage"];
     
-     [self setUI];
+    [self setUI];
+    [self wifiName];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (dictRef) {
+        
+        if (![self.wifiName isEqualToString:@"Qinianerwky"]) {
+            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"请链接设备指定WIFI，否则设备无法绑定!"];
+        } else {
+            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"请输入当前局域网的正确WIFI信息，以是设备进入配网模式!"];
+        }
+        
+    } else {
+        [UIAlertController creatRightAlertControllerWithHandle:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        } andSuperViewController:kWindowRoot Title:@"您当前没有连接WIFI，设备无法添加"];
+    }
 }
 
 #pragma mark - 设置UI
@@ -29,7 +53,7 @@
     
     UIImage *image = nil;
 
-    image = [UIImage imageNamed:@"wifianjianpeiwangmoshi0"];
+    image = [UIImage imageNamed:@"WIFIback"];
     
     _switchImage = [[UIImageView alloc]initWithImage:image];
     [self.view addSubview:_switchImage];
@@ -39,11 +63,11 @@
         make.top.mas_equalTo(self.view.mas_top).offset(kScreenH / 11 + kHeight);
     }];
 
-    UILabel *firstLable = [UILabel creatLableWithTitle:[NSString stringWithFormat:@"请开机长按功能按键3秒，听到“滴”的声音后指示灯闪烁，进入配网模式。（wifi功能按键请查看说明书）"] andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
+    UILabel *firstLable = [UILabel creatLableWithTitle:[NSString stringWithFormat:@"请把手机当前WIFI连接到烤箱的WIFI"] andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
     firstLable.textColor = [UIColor whiteColor];
     firstLable.layer.borderWidth = 0;
     [firstLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(kScreenH / 2.5 , kScreenW / 5));
+//        make.size.mas_equalTo(CGSizeMake(kScreenH / 2.5 , kScreenW / 5));
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.top.mas_equalTo(_switchImage.mas_bottom).offset(kScreenH / 8.5);
     }];
@@ -60,46 +84,68 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    _myTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(qieHuanTuPian) userInfo:nil repeats:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [_myTimer invalidate];
-    _myTimer = nil;
-}
-
-- (void)qieHuanTuPian{
-    
-    if ([_switchImage.image isEqual:[UIImage imageNamed:@"wifianjianpeiwangmoshi1"]]) {
-        [self qieHuanTuPianGuan];
-    } else{
-        [self qieHuanTuPianKai];
-    }
-}
-
-- (void)qieHuanTuPianKai{
-    
-    _switchImage.image = [UIImage imageNamed:@"wifianjianpeiwangmoshi1"];
-    
-}
-
-- (void)qieHuanTuPianGuan{
-    
-    _switchImage.image = [UIImage imageNamed:@"wifianjianpeiwangmoshi0"];
-    
-}
-
 #pragma mark - 下一步按钮点击事件
 - (void)neaxtBtnAction {
-
-    WiFiViewController *wifiVC = [[WiFiViewController alloc]init];
-    wifiVC.navigationItem.title = @"添加设备";
-    wifiVC.addServiceModel = self.addServiceModel;
-    [self.navigationController pushViewController:wifiVC animated:YES];
     
+    SearchServicesViewController *searVC = [[SearchServicesViewController alloc]init];
+    searVC.navigationItem.title = @"添加设备";
+    searVC.addServiceModel = self.addServiceModel;
+    [self.navigationController pushViewController:searVC animated:YES];
+    
+}
+
+#pragma mark - 获取本地wifi名字
+- (NSString *)getWifiName {
+    NSString *wifiName = nil;
+    
+    CFArrayRef wifiInterfaces = CNCopySupportedInterfaces();
+    
+    if (!wifiInterfaces) {
+        return nil;
+    }
+    
+    NSArray *interfaces = (__bridge NSArray *)wifiInterfaces;
+    
+    for (NSString *interfaceName in interfaces) {
+        dictRef = CNCopyCurrentNetworkInfo((__bridge CFStringRef)(interfaceName));
+        
+        if (dictRef) {
+            NSDictionary *networkInfo = (__bridge NSDictionary *)dictRef;
+            NSLog(@"%@" , networkInfo);
+            
+            wifiName = [networkInfo objectForKey:(__bridge NSString *)kCNNetworkInfoKeySSID];
+            
+            CFRelease(dictRef);
+        }
+    }
+    
+    CFRelease(wifiInterfaces);
+    return wifiName;
+}
+
+- (NSString *)wifiName {
+    if (_wifiName == nil) {
+        _wifiName = [self getWifiName];
+    }
+    return _wifiName;
+}
+
+- (void)setAddServiceModel:(AddServiceModel *)addServiceModel {
+    _addServiceModel = addServiceModel;
+    
+    switch (_addServiceModel.slType) {
+        case 1:
+            self.alertMessage = @"定时3秒";
+            break;
+        case 2:
+            self.alertMessage = @"开关3秒";
+            break;
+        case 3:
+            self.alertMessage = @"wifi3秒";
+            break;
+        default:
+            break;
+    }
 }
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AllServicesViewController : UICollectionViewController
+@interface AllServicesViewController : UIViewController
 @property (nonatomic , copy) NSString *typeSn;
 @end

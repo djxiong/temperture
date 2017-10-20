@@ -11,37 +11,46 @@
 #import "ServicesModel.h"
 #import "AddServiceModel.h"
 #import "AllServicesCollectionViewCell.h"
+#import "ChanPinShuoMingViewController.h"
+
 
 @interface AllServicesViewController ()<UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout,  HelpFunctionDelegate>
 @property (nonatomic , strong) NSMutableArray *array;
 @property (nonatomic , strong) NSMutableArray *addModelArray;
-
+@property (nonatomic , strong) UICollectionView *collectionView;
 @end
 
 @implementation AllServicesViewController
 
-/** 控制器初始化的同时设置布局参数给collectionView */
--(instancetype)init{
+
+- (void)setupUI{
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"serviceList"]];
+    imageView.frame = kScreenFrame;
+    [self.view addSubview:imageView];
     
     /** 创建布局参数 */
     UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(30, 40);
+    flowLayout.itemSize = CGSizeMake((kScreenW - kScreenW * 2 / 25) / 2, kScreenH / 5.12);
+    flowLayout.minimumLineSpacing = kScreenW * 2 / 75;
+    flowLayout.sectionInset = UIEdgeInsetsMake(kScreenW * 2 / 75, kScreenW * 2 / 75, kScreenW * 2 / 75, kScreenW * 2 / 75);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:[UIScreen mainScreen].bounds collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kHeight, kScreenW, kScreenH) collectionViewLayout:flowLayout];
+    [self.view addSubview:self.collectionView];
     
     /** 注册cell可重用ID */
     [self.collectionView registerClass:[AllServicesCollectionViewCell class] forCellWithReuseIdentifier:@"cellId"];
+    
     self.collectionView.backgroundColor = [UIColor clearColor];
     
-    return self;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"serviceList"]];
-    imageView.frame = kScreenFrame;
-    [self.view addSubview:imageView];
+    [self setupUI];
     
 }
 
@@ -115,30 +124,18 @@
     AddServiceModel *addModel = [[AddServiceModel alloc]init];
     addModel = self.addModelArray[indexPath.row];
     
-    SetServicesViewController *setSerVC = [[SetServicesViewController alloc]init];
-    setSerVC.addServiceModel = addModel;
-    setSerVC.navigationItem.title = self.navigationItem.title;
-    [self.navigationController pushViewController:setSerVC animated:YES];
+    if ([self.navigationItem.title isEqualToString:@"添加设备"]) {
+        SetServicesViewController *setSerVC = [[SetServicesViewController alloc]init];
+        setSerVC.addServiceModel = addModel;
+        setSerVC.navigationItem.title = self.navigationItem.title;
+        [self.navigationController pushViewController:setSerVC animated:YES];
+    } else {
+        ChanPinShuoMingViewController *chanPinShuoMingVC = [[ChanPinShuoMingViewController alloc]init];
+        chanPinShuoMingVC.serviceModel = model;
+        chanPinShuoMingVC.typeSn = self.typeSn;
+        [self.navigationController pushViewController:chanPinShuoMingVC animated:YES];
+    }
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((kScreenW - kScreenW * 2 / 25) / 2, kScreenH / 5.12);
-    
-}
-
-//定义每个UICollectionView 的 margin
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-
-    return UIEdgeInsetsMake(0, 0, 0, 0);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 0;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 0;
-}
 
 @end

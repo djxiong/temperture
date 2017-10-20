@@ -9,7 +9,7 @@
 #import "AllTypeServiceTableViewCell.h"
 
 @interface AllTypeServiceTableViewCell ()
-@property (nonatomic , strong) UIImageView *backImage;
+//@property (nonatomic , strong) UIImageView *backImage;
 @property (nonatomic ,strong) UILabel *lable;
 @property (nonatomic , strong) UIView *view;
 @property (nonatomic , strong) UIImageView *imageViw;
@@ -22,6 +22,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
         [self customUI];
     }
     return self;
@@ -29,18 +31,9 @@
 
 - (void)customUI {
     
-    self.backgroundColor = [UIColor colorWithHexString:@"f2f4fb"];
     _view = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenW - kScreenW / 15.625, kScreenH / 13)];
     [self.contentView addSubview:_view];
     _view.backgroundColor = [UIColor clearColor];
-    
-    self.backImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"normalback"]];
-    [self.view addSubview:self.backImage];
-    [self.backImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(self.view.width, self.view.height));
-        make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.centerY.mas_equalTo(self.view.mas_centerY);
-    }];
     
     self.imageViw  = [[UIImageView alloc]initWithImage:nil];
     [self.view addSubview:self.imageViw];
@@ -59,16 +52,7 @@
         make.centerY.mas_equalTo(self.view.mas_centerY);
     }];
     
-    UIImageView *jianTouImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tab_return"]];
-    [_view addSubview:jianTouImage];
-    [jianTouImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(kScreenW / 50, kScreenW / 30));
-        make.right.mas_equalTo(_view.mas_right).offset(-kScreenW / 29);
-        make.centerY.mas_equalTo(_view.mas_centerY);
-    }];
-    jianTouImage.transform = CGAffineTransformRotate(jianTouImage.transform, M_PI);
-    jianTouImage.contentMode = UIViewContentModeScaleAspectFit;
-    [UIImageView setImageViewColor:jianTouImage andColor:[UIColor colorWithHexString:@"81d0ff"]];
+
     
     UIView *fenGeView = [[UIView alloc]init];
     [_view addSubview:fenGeView];
@@ -93,12 +77,8 @@
 - (void)setIndePath:(NSIndexPath *)indePath {
     _indePath = indePath;
     self.fenGeView.hidden = NO;
-    if (_indePath.row == 0) {
-        self.backImage.image = [UIImage imageNamed:@"topleftandright"];
-    }
     
     if (_indePath.row == self.count - 1) {
-        self.backImage.image = [UIImage imageNamed:@"bottomleftandright"];
         self.fenGeView.hidden = YES;
     }
 }

@@ -52,9 +52,6 @@
 }
 
 - (void) setImage:(UIImage *)image withTitle:(NSString *)title forState:(UIControlState)stateType {
-    //UIEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right)
-    
-    CGSize titleSize = [title sizeWithFont:[UIFont fontWithName:kFontWithName size:14]];
 
     
     [self.imageView setContentMode:UIViewContentModeCenter];

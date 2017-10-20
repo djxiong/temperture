@@ -16,6 +16,7 @@
 @property (nonatomic , copy) NSString *devType;
 @property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , strong) NSIndexPath *selectedIndexPath;
+
 @end
 
 @implementation AllTypeServiceViewController
@@ -30,8 +31,13 @@
     [HelpFunction requestDataWithUrlString:kAllTypeServiceURL andParames:nil andDelegate:self];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
+}
+
 - (void)setAlertView {
-    [[FirstUserAlertView alloc]creatAlertViewwithImage:@"alert2"deleteFirstObj:@"YES"];
+    [[FirstUserAlertView alloc]creatAlertViewwithImage:@"alert2" deleteFirstObj:@"YES"];
 }
 
 - (void)setUI {
@@ -42,6 +48,7 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     
 }
 
@@ -76,7 +83,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *celled = @"celled";
     
-    
     AllTypeServiceTableViewCell *cell
     =[tableView dequeueReusableCellWithIdentifier:celled];
     if (!cell) {
@@ -88,6 +94,10 @@
     cell.allTypeServiceModel = allTypeServiceModel;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,7 +126,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    return kScreenH / 14.46;
+    return kScreenH / 13;
 }
 
 - (NSMutableArray *)dataArray {

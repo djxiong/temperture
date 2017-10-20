@@ -32,8 +32,6 @@
     
     [HelpFunction requestDataWithUrlString:kLogin andParames:parames andDelegate:self];
     
-    
-    
     _webView = [[UIWebView alloc]initWithFrame:kScreenFrame];
     [self.view addSubview:_webView];
     _webView.scrollView.scrollEnabled = NO;
@@ -59,12 +57,21 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
+    if (self.serviceModel && self.userModel) {
+        [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%ld%@%@N#" , (long)self.userModel.sn , _serviceModel.devTypeSn , _serviceModel.devSn] andType:kAddService andIsNewOrOld:nil];
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (self.serviceModel) {
+        [_sendServiceModelToParentVCDelegate sendServiceModelToParentVC:self.serviceModel];
+        
+    }
+    
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -75,7 +82,11 @@
     _context[@"PageLoadIOS"] = ^{
         
         if (bself.searchView) {
-            bself.searchView.hidden = YES;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                bself.searchView.hidden = YES;
+            });
+            
         }
         
         NSDictionary *userData = nil;
@@ -95,7 +106,7 @@
         NSString *key = [NSString stringWithFormat:@"%@" , NSStringFromClass([bself.navigationController.childViewControllers[1] class])];
         
         if ([kStanderDefault objectForKey:key]) {
-
+            
             NSString *time = [kStanderDefault objectForKey:key];
             NSString *sendTimeToHtml = [NSString stringWithFormat:@"GetWebData(%@)" , time];
             NSLog(@"%@" , sendTimeToHtml);
@@ -110,8 +121,8 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     
-        
-//    __block typeof(self)bself = self;
+    
+    //    __block typeof(self)bself = self;
     __block typeof (self)bself = self;
     _context[@"ShowRemind"] = ^() {
         NSArray *parames = [JSContext currentArguments];
@@ -151,18 +162,19 @@
         NSArray *array = [arrarString componentsSeparatedByString:@","];
         
         NSMutableString *sumStr = [NSMutableString string];
-        [sumStr appendFormat:@"%@", [NSString stringWithFormat:@"HMFFM%@%@w" , self.serviceModel.devTypeSn, self.serviceModel.devSn]];
+//        [sumStr appendFormat:@"%@", [NSString stringWithFormat:@"HMFFM%@%@w" , self.serviceModel.devTypeSn, self.serviceModel.devSn]];
         
         for (NSString *sub in array) {
             
             if (sub.length == 1) {
-                [sumStr appendFormat:@"0%@", sub];
+                [sumStr appendFormat:@"0%@", [NSString toHex:sub.integerValue]];
+                
             } else {
-                [sumStr appendFormat:@"%@", sub];
+                [sumStr appendFormat:@"%@", [NSString toHex:sub.integerValue]];
             }
         }
         
-        [sumStr appendString:@"#"];
+//        [sumStr appendString:@"#"];
         
         NSLog(@"发送给TCP的命令%@ , %@" , sumStr , parames);
         
@@ -196,7 +208,7 @@
 
 - (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
     NSDictionary *dic = data[0];
-//    NSLog(@"%@" , dic);
+    //    NSLog(@"%@" , dic);
     if ([dic[@"state"] integerValue] == 0) {
         
         NSDictionary *user = dic[@"data"];
@@ -209,7 +221,7 @@
             [_userModel setValue:user[key] forKey:key];
         }
         
-        [self webView:_webView shouldStartLoadWithRequest:nil navigationType:UIWebViewNavigationTypeLinkClicked];
+        [self webView:_webView shouldStartLoadWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@""]] navigationType:UIWebViewNavigationTypeLinkClicked];
     }
 }
 
@@ -222,7 +234,7 @@
     
     NSLog(@"%@" , _serviceModel);
     
-    
+    _serviceModel.indexUrl = [NSString stringWithFormat:@"http://%@:8080/smarthome/app/7A00/7A31A" , @"192.168.1.104"];
 }
 
 
@@ -234,7 +246,9 @@
 }
 
 - (void)dealloc {
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
+

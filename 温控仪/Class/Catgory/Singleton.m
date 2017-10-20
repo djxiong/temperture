@@ -20,6 +20,10 @@
 
 #define kStanderDefault [NSUserDefaults standardUserDefaults]
 
+#define kLocalHost @"192.168.1.110"
+
+#define ksPort 8899
+
 @interface Singleton ()<GCDAsyncSocketDelegate>
 
 @property (nonatomic , strong) NSTimer *duanXianChongLian;
@@ -46,12 +50,12 @@
 }
 
 - (void)setSocketHost:(NSString *)socketHost {
-    _socketHost = localhost;
+    _socketHost = kLocalHost;
     
 }
 
 - (void)setSocketPort:(UInt16)socketPort {
-    _socketPort = kPort;
+    _socketPort = ksPort;
 }
 
 - (void)setServiceModel:(ServicesModel *)serviceModel {
@@ -64,14 +68,14 @@
     self.socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *error = nil;
     self.isDuanXianChongLian = @"YES";
-    [self.socket connectToHost:localhost onPort:kPort withTimeout:-1 error:&error];
+    [self.socket connectToHost:kLocalHost onPort:ksPort withTimeout:-1 error:&error];
     
 }
 
 - (void)connectHost {
     
     NSError *error = nil;
-    [self.socket connectToHost:localhost onPort:kPort withTimeout:-1 error:&error];
+    [self.socket connectToHost:kLocalHost onPort:ksPort withTimeout:-1 error:&error];
 }
 
 // 连接成功回调
@@ -156,7 +160,7 @@
             _alertController = nil;
         }
         
-        NSString *str = [self convertDataToHexStr:data];
+        NSString *str = [NSString convertDataToHexStr:data];
         NSString *newMessage = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         
         Byte devSnByte[60];
@@ -226,48 +230,6 @@
 }
 
 
-#pragma mark - NSData转16进制字符串
-- (NSString *)convertDataToHexStr:(NSData *)data {
-    if (!data || [data length] == 0) {
-        return @"";
-    }
-    NSMutableString *string = [[NSMutableString alloc] initWithCapacity:[data length]];
-    
-    [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
-        unsigned char *dataBytes = (unsigned char*)bytes;
-        for (NSInteger i = 0; i < byteRange.length; i++) {
-            NSString *hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
-            if ([hexStr length] == 2) {
-                [string appendString:hexStr];
-            } else {
-                [string appendFormat:@"0%@", hexStr];
-            }
-        }
-    }];
-    
-    return string;
-}
-
-
-// 十六进制转换为普通字符串的。
-- (NSString *)stringFromHexString:(NSString *)hexString {  //
-    
-    char *myBuffer = (char *)malloc((int)[hexString length] / 2 + 1);
-    bzero(myBuffer, [hexString length] / 2 + 1);
-    for (int i = 0; i < [hexString length] - 1; i += 2) {
-        unsigned int anInt;
-        NSString * hexCharStr = [hexString substringWithRange:NSMakeRange(i, 2)];
-        NSScanner * scanner = [[NSScanner alloc] initWithString:hexCharStr] ;
-        [scanner scanHexInt:&anInt];
-        myBuffer[i / 2] = (char)anInt;
-    }
-    NSString *unicodeString = [NSString stringWithCString:myBuffer encoding:4];
-    return unicodeString;
-    
-    
-}
-
-
 - (void)setUserSn:(NSString *)userSn {
     _userSn = userSn;
     
@@ -285,7 +247,7 @@
         
         NSInteger userSn = [string substringWithRange:NSMakeRange(2, 9)].integerValue;
         
-        NSString *hexUserSn = [self ToHex:userSn];
+        NSString *hexUserSn = [NSString toHex:userSn];
         
         if (hexUserSn.length / 2 != 0) {
             hexUserSn = [NSString stringWithFormat:@"0%@" , hexUserSn];
@@ -308,244 +270,73 @@
         xinTiaoBao[5] = (Byte)userSnByte[3];
         xinTiaoBao[6] = (Byte)'*';
         xinTiaoBao[7] = (Byte)'#';
-        
-        
-        //                for (int i = 0; i < sizeof(xinTiaoBao); i++) {
-        //                    NSLog(@"%x" , xinTiaoBao[i]);
-        //                }
-        
+
         NSData *data = [NSData dataWithBytes:xinTiaoBao length:sizeof(xinTiaoBao)];
         [self.socket writeData:data withTimeout:-1 tag:0];
         
     } else if ([type isEqualToString:kZhiLing]) {
         
-        if ([isNewOrOld isEqualToString:kOld]) {
-            NSString *typeSn = [string substringWithRange:NSMakeRange(4, 4)];
-            NSString *devSn = [string substringWithRange:NSMakeRange(8, 12)];
-            NSString *zhiLingType = [string substringWithRange:NSMakeRange(20, 1)];
-            NSInteger zhuangTai = [string substringWithRange:NSMakeRange(21, 1)].integerValue;
-            
-            Byte typeSnByte[2];
-            Byte devSnByte[6];
-            Byte zhiLing[1];
-            
-            
-            NSMutableArray *typeSnSubStr = [NSMutableArray array];
-            for (int i = 0; i < typeSn.length / 2; i++) {
-                [typeSnSubStr addObject:[typeSn substringWithRange:NSMakeRange(i * 2, 2)]];
-                typeSnByte[i] = strtoul([typeSnSubStr[i] UTF8String], 0, 16);
-            }
-            
-            
-            NSString *hexZhiLing = [self hexStringFromString:zhiLingType];
-            zhiLing[0] = strtoul([hexZhiLing UTF8String], 0, 16);
-            
-            
-            NSMutableArray *devSnSubStr = [NSMutableArray array];
-            for (int i = 0; i < devSn.length / 2; i++) {
-                [devSnSubStr addObject: [devSn substringWithRange:NSMakeRange(i * 2, 2)]];
-                
-                devSnByte[i] = strtoul([devSnSubStr[i] UTF8String],0,16);
-                //strtoul如果传入的字符开头是“0x”,那么第三个参数是0，也是会转为十六进制的,这样写也可以：
-                //    unsigned long red = strtoul([@"0x6587" UTF8String],0,0);
-                
-                //            NSLog(@"转换完的数字为%x" , devSnByte[i]);
-                
-            }
-            
-            Byte zhuangTaiByte[1];
-            if ([typeSn isEqualToString:@"4131"]) {
-                switch (zhuangTai) {
-                    case 0:
-                        zhuangTaiByte[0] = 0x30;
-                        break;
-                    case 1:
-                        zhuangTaiByte[0] = 0x31;
-                        break;
-                    case 2:
-                        zhuangTaiByte[0] = 0x32;
-                        break;
-                    case 3:
-                        zhuangTaiByte[0] = 0x33;
-                        break;
-                    case 4:
-                        zhuangTaiByte[0] = 0x34;
-                        break;
-                    default:
-                        break;
-                }
-            } else {
-                switch (zhuangTai) {
-                    case 0:
-                        zhuangTaiByte[0] = 0x00;
-                        break;
-                    case 1:
-                        zhuangTaiByte[0] = 0x01;
-                        break;
-                    case 2:
-                        zhuangTaiByte[0] = 0x02;
-                        break;
-                    case 3:
-                        zhuangTaiByte[0] = 0x03;
-                        break;
-                    default:
-                        break;
-                }
-            }
-            
-            
-            Byte xinTiaoBao[15];
-            xinTiaoBao[0] = (Byte)'H';
-            xinTiaoBao[1] = (Byte)'M';
-            xinTiaoBao[2] = (Byte)'F';
-            xinTiaoBao[3] = (Byte)'F';
-            xinTiaoBao[4] = (Byte)typeSnByte[0];
-            xinTiaoBao[5] = (Byte)typeSnByte[1];
-            xinTiaoBao[6] = (Byte)devSnByte[0];
-            xinTiaoBao[7] = (Byte)devSnByte[1];
-            xinTiaoBao[8] = (Byte)devSnByte[2];
-            xinTiaoBao[9] = (Byte)devSnByte[3];
-            xinTiaoBao[10] = (Byte)devSnByte[4];
-            xinTiaoBao[11] = (Byte)devSnByte[5];
-            xinTiaoBao[12] = (Byte)zhiLing[0];
-            xinTiaoBao[13] = (Byte)zhuangTaiByte[0];
-            xinTiaoBao[14] = (Byte)'#';
-            //            for (int i = 0; i < sizeof(xinTiaoBao); i++) {
-            //                NSLog(@"%x" , xinTiaoBao[i]);
-            //            }
-            
-            NSData *data = [NSData dataWithBytes:xinTiaoBao length:sizeof(xinTiaoBao)];
-            [self.socket writeData:data withTimeout:-1 tag:0];
-        } else if ([isNewOrOld isEqualToString:kNew]) {
-            
-            if ([string length] != 71) {
-                
-                NSString *typeSn = [string substringWithRange:NSMakeRange(5, 4)];
-                NSString *devSn = [string substringWithRange:NSMakeRange(9, 12)];
-                NSString *zhiLingLong = [string substringWithRange:NSMakeRange(22, 32)];
-                
-                Byte typeSnByte[2];
-                Byte devSnByte[6];
-                Byte zhiLing[16];
-                
-                
-                NSMutableArray *typeSnSubStr = [NSMutableArray array];
-                for (int i = 0; i < typeSn.length / 2; i++) {
-                    [typeSnSubStr addObject:[typeSn substringWithRange:NSMakeRange(i * 2, 2)]];
-                    typeSnByte[i] = strtoul([typeSnSubStr[i] UTF8String], 0, 16);
-                }
-                
-                NSMutableArray *devSnSubStr = [NSMutableArray array];
-                for (int i = 0; i < devSn.length / 2; i++) {
-                    [devSnSubStr addObject: [devSn substringWithRange:NSMakeRange(i * 2, 2)]];
-                    
-                    devSnByte[i] = strtoul([devSnSubStr[i] UTF8String],0,16);
-                }
-                
-                NSMutableArray *zhiLingSubAry = [NSMutableArray array];
-                for (int i = 0; i < zhiLingLong.length / 2; i++) {
-                    [zhiLingSubAry addObject:[zhiLingLong substringWithRange:NSMakeRange(i * 2, 2)]];
-                    zhiLing[i] = strtoul([zhiLingSubAry[i] UTF8String], 0, 16);
-                    
-                }
-                
-                Byte xinTiaoBao[31];
-                xinTiaoBao[0] = (Byte)'H';
-                xinTiaoBao[1] = (Byte)'M';
-                xinTiaoBao[2] = (Byte)'F';
-                xinTiaoBao[3] = (Byte)'F';
-                xinTiaoBao[4] = (Byte)'A';
-                xinTiaoBao[5] = (Byte)typeSnByte[0];
-                xinTiaoBao[6] = (Byte)typeSnByte[1];
-                xinTiaoBao[7] = (Byte)devSnByte[0];
-                xinTiaoBao[8] = (Byte)devSnByte[1];
-                xinTiaoBao[9] = (Byte)devSnByte[2];
-                xinTiaoBao[10] = (Byte)devSnByte[3];
-                xinTiaoBao[11] = (Byte)devSnByte[4];
-                xinTiaoBao[12] = (Byte)devSnByte[5];
-                xinTiaoBao[13] = (Byte)'w';
-                
-                for (int i = 14; i< 30; i++) {
-                    xinTiaoBao[i] = (Byte)zhiLing[i - 14];
-                }
-                
-                xinTiaoBao[30] = (Byte)'#';
-                //            for (int i = 0; i < sizeof(xinTiaoBao); i++) {
-                //                NSLog(@"%x" , xinTiaoBao[i]);
-                //            }
-                
-                NSData *data = [NSData dataWithBytes:xinTiaoBao length:sizeof(xinTiaoBao)];
-                [self.socket writeData:data withTimeout:-1 tag:0];
-            } else {
-                
-                NSString *typeSn = [string substringWithRange:NSMakeRange(5, 4)];
-                NSString *devSn = [string substringWithRange:NSMakeRange(9, 12)];
-                NSString *zhiLingLong = [string substringWithRange:NSMakeRange(22, 48)];
-                
-                //                NSLog(@"%@ , %@ , %@ , %@ ,%ld" , typeSn , devSn , zhiLingLong , string , [string length]);
-                
-                
-                Byte typeSnByte[2];
-                Byte devSnByte[6];
-                Byte zhiLing[24];
-                
-                
-                NSMutableArray *typeSnSubStr = [NSMutableArray array];
-                for (int i = 0; i < typeSn.length / 2; i++) {
-                    [typeSnSubStr addObject:[typeSn substringWithRange:NSMakeRange(i * 2, 2)]];
-                    typeSnByte[i] = strtoul([typeSnSubStr[i] UTF8String], 0, 16);
-                }
-                
-                NSMutableArray *devSnSubStr = [NSMutableArray array];
-                for (int i = 0; i < devSn.length / 2; i++) {
-                    [devSnSubStr addObject: [devSn substringWithRange:NSMakeRange(i * 2, 2)]];
-                    
-                    devSnByte[i] = strtoul([devSnSubStr[i] UTF8String],0,16);
-                }
-                
-                NSMutableArray *zhiLingSubAry = [NSMutableArray array];
-                for (int i = 0; i < zhiLingLong.length / 2; i++) {
-                    [zhiLingSubAry addObject:[zhiLingLong substringWithRange:NSMakeRange(i * 2, 2)]];
-                    zhiLing[i] = strtoul([zhiLingSubAry[i] UTF8String], 0, 16);
-                    
-                }
-                
-                Byte xinTiaoBao[39];
-                xinTiaoBao[0] = (Byte)'H';
-                xinTiaoBao[1] = (Byte)'M';
-                xinTiaoBao[2] = (Byte)'F';
-                xinTiaoBao[3] = (Byte)'F';
-                xinTiaoBao[4] = (Byte)'A';
-                xinTiaoBao[5] = (Byte)typeSnByte[0];
-                xinTiaoBao[6] = (Byte)typeSnByte[1];
-                xinTiaoBao[7] = (Byte)devSnByte[0];
-                xinTiaoBao[8] = (Byte)devSnByte[1];
-                xinTiaoBao[9] = (Byte)devSnByte[2];
-                xinTiaoBao[10] = (Byte)devSnByte[3];
-                xinTiaoBao[11] = (Byte)devSnByte[4];
-                xinTiaoBao[12] = (Byte)devSnByte[5];
-                xinTiaoBao[13] = (Byte)'w';
-                
-                for (int i = 14; i< 37; i++) {
-                    xinTiaoBao[i] = (Byte)zhiLing[i - 14];
-                }
-                
-                xinTiaoBao[38] = (Byte)'#';
-                //            for (int i = 0; i < sizeof(xinTiaoBao); i++) {
-                //                NSLog(@"%x" , xinTiaoBao[i]);
-                //            }
-                
-                NSData *data = [NSData dataWithBytes:xinTiaoBao length:sizeof(xinTiaoBao)];
-                [self.socket writeData:data withTimeout:-1 tag:0];
-            }
-            
-            
+        NSInteger length = string.length;
+        
+//        NSString *typeSn = [string substringWithRange:NSMakeRange(5, 4)];
+//        NSString *devSn = [string substringWithRange:NSMakeRange(9, 12)];
+        NSString *zhiLingLong = string;
+        
+//        Byte typeSnByte[2];
+//        Byte devSnByte[6];
+        Byte zhiLing[length / 2];
+        
+        
+//        NSMutableArray *typeSnSubStr = [NSMutableArray array];
+//        for (int i = 0; i < typeSn.length / 2; i++) {
+//            [typeSnSubStr addObject:[typeSn substringWithRange:NSMakeRange(i * 2, 2)]];
+//            typeSnByte[i] = strtoul([typeSnSubStr[i] UTF8String], 0, 16);
+//        }
+//
+//        NSMutableArray *devSnSubStr = [NSMutableArray array];
+//        for (int i = 0; i < devSn.length / 2; i++) {
+//            [devSnSubStr addObject: [devSn substringWithRange:NSMakeRange(i * 2, 2)]];
+//
+//            devSnByte[i] = strtoul([devSnSubStr[i] UTF8String],0,16);
+//        }
+        
+        NSMutableArray *zhiLingSubAry = [NSMutableArray array];
+        for (int i = 0; i < zhiLingLong.length / 2; i++) {
+            [zhiLingSubAry addObject:[zhiLingLong substringWithRange:NSMakeRange(i * 2, 2)]];
+            zhiLing[i] = strtoul([zhiLingSubAry[i] UTF8String], 0, 16);
         }
         
+//        Byte xinTiaoBao[length / 2];
+//        xinTiaoBao[0] = (Byte)'H';
+//        xinTiaoBao[1] = (Byte)'M';
+//        xinTiaoBao[2] = (Byte)'F';
+//        xinTiaoBao[3] = (Byte)'F';
+//        xinTiaoBao[4] = (Byte)'M';
+//        xinTiaoBao[5] = (Byte)typeSnByte[0];
+//        xinTiaoBao[6] = (Byte)typeSnByte[1];
+//        xinTiaoBao[7] = (Byte)devSnByte[0];
+//        xinTiaoBao[8] = (Byte)devSnByte[1];
+//        xinTiaoBao[9] = (Byte)devSnByte[2];
+//        xinTiaoBao[10] = (Byte)devSnByte[3];
+//        xinTiaoBao[11] = (Byte)devSnByte[4];
+//        xinTiaoBao[12] = (Byte)devSnByte[5];
+//        xinTiaoBao[13] = (Byte)'w';
+//
+//        for (int i = 14; i< 14 + length / 2; i++) {
+//            xinTiaoBao[i] = (Byte)zhiLing[i - 14];
+//        }
+//
+//        xinTiaoBao[14 + length / 2] = (Byte)'#';
+//        for (int i = 0; i < sizeof(zhiLing); i++) {
+//            NSLog(@"%x" , zhiLing[i]);
+//        }
         
-    } else if ([type isEqualToString:kLianJie]) {        NSInteger userSn = [string substringWithRange:NSMakeRange(2, 9)].integerValue;
+        NSData *data = [NSData dataWithBytes:zhiLing length:sizeof(zhiLing)];
+        [self.socket writeData:data withTimeout:-1 tag:0];
+    } else if ([type isEqualToString:kLianJie]) {
+        NSInteger userSn = [string substringWithRange:NSMakeRange(2, 9)].integerValue;
         
-        NSString *hexUserSn = [self ToHex:userSn];
+        NSString *hexUserSn = [NSString toHex:userSn];
         
         if (hexUserSn.length / 2 != 0) {
             hexUserSn = [NSString stringWithFormat:@"0%@" , hexUserSn];
@@ -591,7 +382,7 @@
         Byte devSnByte[6];
         
         
-        NSString *hexUserSn = [self ToHex:userSn];
+        NSString *hexUserSn = [NSString toHex:userSn];
         if (hexUserSn.length / 2 != 0) {
             hexUserSn = [NSString stringWithFormat:@"0%@" , hexUserSn];
         }
@@ -657,7 +448,7 @@
         Byte devSnByte[6];
         
         
-        NSString *hexUserSn = [self ToHex:userSn];
+        NSString *hexUserSn = [NSString toHex:userSn];
         if (hexUserSn.length / 2 != 0) {
             hexUserSn = [NSString stringWithFormat:@"0%@" , hexUserSn];
         }
@@ -716,68 +507,6 @@
     
 }
 
-
-/**
- *  将int类型的数据转化为16进制的数据
- *
- */
--(NSString *)ToHex:(long long int)tmpid
-{
-    NSString *nLetterValue;
-    NSString *str =@"";
-    long long int ttmpig;
-    for (int i = 0; i<9; i++) {
-        ttmpig=tmpid%16;
-        tmpid=tmpid/16;
-        switch (ttmpig)
-        {
-            case 10:
-                nLetterValue =@"A";break;
-            case 11:
-                nLetterValue =@"B";break;
-            case 12:
-                nLetterValue =@"C";break;
-            case 13:
-                nLetterValue =@"D";break;
-            case 14:
-                nLetterValue =@"E";break;
-            case 15:
-                nLetterValue =@"F";break;
-            default:nLetterValue=[[NSString alloc]initWithFormat:@"%lli",ttmpig];
-                
-        }
-        str = [nLetterValue stringByAppendingString:str];
-        if (tmpid == 0) {
-            break;
-        }
-        
-    }
-    return str;
-}
-
-
-//普通字符串转换为十六进制的。
-
-- (NSString *)hexStringFromString:(NSString *)string{
-    NSData *myD = [string dataUsingEncoding:NSUTF8StringEncoding];
-    Byte *bytes = (Byte *)[myD bytes];
-    //下面是Byte 转换为16进制。
-    NSString *hexStr=@"";
-    for(int i=0;i<[myD length];i++)
-        
-    {
-        NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
-        
-        if([newHexStr length]==1)
-            
-            hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
-        
-        else
-            
-            hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
-    }
-    return hexStr;
-}
 
 
 @end

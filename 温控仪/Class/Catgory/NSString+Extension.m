@@ -184,49 +184,6 @@
     return mAttStri;
 }
 
-//10进制转16进制
-+(NSString *)ToHex:(long long int)tmpid
-{
-    NSString *nLetterValue;
-    NSString *str =@"";
-    long long int ttmpig;
-    for (int i =0; i<9; i++) {
-        ttmpig=tmpid%16;
-        tmpid=tmpid/16;
-        switch (ttmpig)
-        {
-            case 10:
-                nLetterValue =@"A";break;
-            case 11:
-                nLetterValue =@"B";break;
-            case 12:
-                nLetterValue =@"C";break;
-            case 13:
-                nLetterValue =@"D";break;
-            case 14:
-                nLetterValue =@"E";break;
-            case 15:
-                nLetterValue =@"F";break;
-            default:nLetterValue=[[NSString alloc]initWithFormat:@"%lli",ttmpig];
-                
-        }
-        str = [nLetterValue stringByAppendingString:str];
-        
-        if (tmpid == 0) {
-            break;
-        }
-        
-    }
-
-    
-    if (str.length == 1) {
-        str = [NSString stringWithFormat:@"0%@" , str];
-    }
-    
-    str = [NSString stringWithFormat:@"0x%@" , str];
-    return str;
-}
-
 //将某个时间转化成 时间戳
 
 #pragma mark - 将某个时间转化成 时间戳
@@ -262,8 +219,8 @@
     NSString *hourTime = [nowTime substringWithRange:NSMakeRange(0, 2)];
     NSString *minuteTime = [nowTime substringWithRange:NSMakeRange(3, 2)];
     
-    NSString *hourHex = [[NSString ToHex:hourTime.integerValue] substringFromIndex:2];
-    NSString *minuteHex = [[NSString ToHex:minuteTime.integerValue] substringFromIndex:2];
+    NSString *hourHex = [[NSString toHex:hourTime.integerValue] substringFromIndex:2];
+    NSString *minuteHex = [[NSString toHex:minuteTime.integerValue] substringFromIndex:2];
     
     NSArray *array = @[hourHex , minuteHex];
     return array;
@@ -353,5 +310,106 @@
     NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
     return phoneVersion;
 }
+
+//普通字符串转换为十六进制的。
++ (NSString *)hexStringFromString:(NSString *)string{
+    NSData *myD = [string dataUsingEncoding:NSUTF8StringEncoding];
+    Byte *bytes = (Byte *)[myD bytes];
+    //下面是Byte 转换为16进制。
+    NSString *hexStr=@"";
+    for(int i=0;i<[myD length];i++)
+        
+    {
+        NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
+        
+        if([newHexStr length]==1)
+            
+            hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
+        
+        else
+            
+            hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
+    }
+    return hexStr;
+}
+
+/**
+ *  将int类型的数据转化为16进制的数据
+ *
+ */
++ (NSString *)toHex:(long long int)tmpid
+{
+    NSString *nLetterValue;
+    NSString *str =@"";
+    long long int ttmpig;
+    for (int i = 0; i<9; i++) {
+        ttmpig=tmpid%16;
+        tmpid=tmpid/16;
+        switch (ttmpig)
+        {
+            case 10:
+                nLetterValue =@"A";break;
+            case 11:
+                nLetterValue =@"B";break;
+            case 12:
+                nLetterValue =@"C";break;
+            case 13:
+                nLetterValue =@"D";break;
+            case 14:
+                nLetterValue =@"E";break;
+            case 15:
+                nLetterValue =@"F";break;
+            default:nLetterValue=[[NSString alloc]initWithFormat:@"%lli",ttmpig];
+                
+        }
+        str = [nLetterValue stringByAppendingString:str];
+        if (tmpid == 0) {
+            break;
+        }
+        
+    }
+    return str;
+}
+
+// 十六进制转换为普通字符串的。
++ (NSString *)stringFromHexString:(NSString *)hexString {  //
+    
+    char *myBuffer = (char *)malloc((int)[hexString length] / 2 + 1);
+    bzero(myBuffer, [hexString length] / 2 + 1);
+    for (int i = 0; i < [hexString length] - 1; i += 2) {
+        unsigned int anInt;
+        NSString * hexCharStr = [hexString substringWithRange:NSMakeRange(i, 2)];
+        NSScanner * scanner = [[NSScanner alloc] initWithString:hexCharStr] ;
+        [scanner scanHexInt:&anInt];
+        myBuffer[i / 2] = (char)anInt;
+    }
+    NSString *unicodeString = [NSString stringWithCString:myBuffer encoding:4];
+    return unicodeString;
+    
+    
+}
+
+
++ (NSString *)convertDataToHexStr:(NSData *)data {
+    if (!data || [data length] == 0) {
+        return @"";
+    }
+    NSMutableString *string = [[NSMutableString alloc] initWithCapacity:[data length] * 2];
+    
+    [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
+        unsigned char *dataBytes = (unsigned char*)bytes;
+        for (NSInteger i = 0; i < byteRange.length; i++) {
+            NSString *hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
+            if ([hexStr length] == 2) {
+                [string appendString:hexStr];
+            } else {
+                [string appendFormat:@"0%@", hexStr];
+            }
+        }
+    }];
+    
+    return string;
+}
+
 
 @end
