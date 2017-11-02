@@ -7,7 +7,6 @@
 //
 
 #import "AboutProductViewController.h"
-#import "AllTypeServiceViewController.h"
 #import "MineYouHuiQuanViewController.h"
 #import "UserFeedBackViewController.h"
 #import "GengXinRiZhiViewController.h"
@@ -76,25 +75,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-
-        
-        AllTypeServiceViewController *allServicesVC = [[AllTypeServiceViewController alloc]init];
-        allServicesVC.navigationItem.title = @"所有设备";
-        [self.navigationController pushViewController:allServicesVC animated:YES];
-        
-        
-    } else if (indexPath.row == 1) {
         MineYouHuiQuanViewController *youHuiQuanVC = [[MineYouHuiQuanViewController alloc]init];
         youHuiQuanVC.navigationItem.title = @"在线帮助";
         [self.navigationController pushViewController:youHuiQuanVC animated:YES];
-    } else if (indexPath.row == 2) {
+    } else if (indexPath.row == 1) {
         UserFeedBackViewController *userVC = [[UserFeedBackViewController alloc]init];
         
         userVC.model = self.model;
         userVC.navigationItem.title = @"建议反馈";
         [self.navigationController pushViewController:userVC animated:YES];
 
-    } else if (indexPath.row == 3) {
+    } else if (indexPath.row == 2) {
         GengXinRiZhiViewController *gengXinVC = [[GengXinRiZhiViewController alloc]init];
         gengXinVC.navigationItem.title = @"更新日志";
         [self.navigationController pushViewController:gengXinVC animated:YES];
@@ -118,7 +109,7 @@
 
 #pragma mark - rows的个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return 3;
 }
 
 @end

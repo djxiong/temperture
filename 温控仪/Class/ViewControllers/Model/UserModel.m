@@ -33,6 +33,7 @@
         }
     } if ([key isEqualToString:@"sn"]) {
         _sn = [value integerValue];
+        _hexUsersn = [NSString toHex:_sn];
     } if ([key isEqualToString:@"zmoney"]) {
         _zmoney = value;
     }
@@ -40,7 +41,7 @@
 
 - (NSString *)description {
     
-    return [NSString stringWithFormat:@"sn--%ld ,\n idd--%ld ,\n phone--%@ ,\n nickname--%@ ,\n headImageUrl--%@ ,\n email--%@ \n birthdate--%@ n, _sex--%ld" , (long)_sn , _idd , _phone , _nickname , _headImageUrl , _email , _birthdate , _sex];
+    return [NSString stringWithFormat:@"sn--%ld ,\n idd--%ld ,\n phone--%@ ,\n nickname--%@ ,\n headImageUrl--%@ ,\n email--%@ \n birthdate--%@ n, _sex--%ld , _hexUsersn--%@" , (long)_sn , _idd , _phone , _nickname , _headImageUrl , _email , _birthdate , _sex , _hexUsersn];
 }
 
 @end

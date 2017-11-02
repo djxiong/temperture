@@ -14,7 +14,6 @@
 @property (nonatomic , strong) NSString *imageUrl;
 @property (nonatomic , copy) NSString *indexUrl;
 
-@property (nonatomic , copy) NSString *typeSn;
 @property (nonatomic , strong) NSString *devSn;
 @property (nonatomic , strong) NSString *typeName;
 @property (nonatomic , copy) NSString *brand;
@@ -29,8 +28,4 @@
  */
 @property (nonatomic , assign) NSInteger ifConn;
 
-/**
- *  测试使用将来需要删除
- */
-@property (nonatomic , strong) NSString *devTypeSn;
 @end

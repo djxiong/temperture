@@ -24,12 +24,11 @@
 #pragma mark - 设置UI
 - (void)setUI{
     
-    
     UIView *pwdFiledView = [UIView creatViewWithFiledCoradiusOfPlaceholder:@"请输入密码" andSuperView:self.view];
     [pwdFiledView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kScreenW - kScreenW / 15.625, kScreenW / 8.3));
         make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.top.mas_equalTo(self.view.mas_top).offset(10);
+        make.top.mas_equalTo(self.view.mas_top).offset(10 + kHeight);
     }];
     self.pwdTectFiled = pwdFiledView.subviews[0];
     
@@ -43,6 +42,8 @@
     
     self.pwdTectFiled.secureTextEntry = YES;
     self.againPwdTectFiled.secureTextEntry = YES;
+    self.pwdTectFiled.keyboardType = UIKeyboardTypeDefault;
+    self.againPwdTectFiled.keyboardType = UIKeyboardTypeDefault;
     
     UIButton *submitBtn = [UIButton initWithTitle:@"提交" andColor:[UIColor redColor] andSuperView:self.view];
     [submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -131,14 +132,6 @@
         [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
         [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
         
-        UserModel *userModel = [[UserModel alloc]init];
-        for (NSString *key in [user allKeys]) {
-            [userModel setValue:user[key] forKey:key];
-        }
-        
-        kSocketTCP.userSn = [NSString stringWithFormat:@"%ld" , (long)userModel.sn];
-        //        [kSocketTCP cutOffSocket];
-        [kSocketTCP socketConnectHost];
         
         [kWindowRoot presentViewController:[[TabBarViewController alloc]init] animated:YES completion:^{
             [self.navigationController popToRootViewControllerAnimated:YES];

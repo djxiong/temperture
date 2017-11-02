@@ -11,8 +11,10 @@
 #import "SetServicesViewController.h"
 #import "HTMLBaseViewController.h"
 #import "CCLocationManager.h"
-#import "AllTypeServiceViewController.h"
 #import "FirstUserAlertView.h"
+#import "AllTypeServiceViewController.h"
+
+
 
 @interface MineSerivesViewController ()<UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout , HelpFunctionDelegate , CCLocationManagerZHCDelegate , UIGestureRecognizerDelegate , SendServiceModelToParentVCDelegate>
 @property (nonatomic , strong) UICollectionView *collectionView;
@@ -36,9 +38,10 @@
     
     
     if ([kStanderDefault objectForKey:@"userSn"]) {
-        self.userSn = [kStanderDefault objectForKey:@"userSn"];
-        kSocketTCP.userSn = [NSString stringWithFormat:@"%@" , [kStanderDefault objectForKey:@"userSn"]];
-        [kSocketTCP socketConnectHost];
+        NSString *sn = [kStanderDefault objectForKey:@"userSn"];
+        self.userSn = [NSString toHex:sn.integerValue];
+        kSocketTCP.userSn = self.userSn;
+        [kSocketTCP socketConnectHostWith:KALIHost port:kALIPort];
     }
     
     [self setNav];
@@ -50,11 +53,42 @@
 }
 
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"0f3649"]};
+    
+    for (int i = 0; i < self.haveArray.count; i++) {
+        MineServiceCollectionViewCell *cell = (MineServiceCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        cell.selectedImage.hidden = YES;
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"20c3df"]};
+    
+    self.navigationController.navigationBar.hidden = NO;
+    
+    if (self.userSn && self.serviceModel) {
+        [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%@%@Q#" , self.userSn , self.serviceModel.devSn] andType:kQuite andIsNewOrOld:nil];
+    }
+    
+    if ([kStanderDefault objectForKey:@"userSn"] != nil || [kStanderDefault objectForKey:@"userSn"] != NULL) {
+        NSDictionary *parameters = @{@"userSn": [kStanderDefault objectForKey:@"userSn"]};
+        [HelpFunction requestDataWithUrlString:kQueryTheUserdevice andParames:parameters andDelegate:self];
+    }
+}
+
+
+
 - (void)setNav {
     self.navigationItem.title = @"启联者";
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(addSerViceAtcion) image:@"addService_high" highImage:nil];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(backAtcion) image:nil highImage:nil];
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    self.navigationController.interactivePopGestureRecognizer
+    .delegate = self;
     
 }
 
@@ -134,34 +168,6 @@
     
 }
 
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"0f3649"]};
-    
-    for (int i = 0; i < self.haveArray.count; i++) {
-        MineServiceCollectionViewCell *cell = (MineServiceCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        cell.selectedImage.hidden = YES;
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"20c3df"]};
-    
-    self.navigationController.navigationBar.hidden = NO;
-    
-    if (self.userSn && self.serviceModel) {
-        [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%@%@%@Q#" , self.userSn , self.serviceModel.devTypeSn , self.serviceModel.devSn] andType:kQuite andIsNewOrOld:nil];
-    }
-    
-    NSDictionary *parameters = @{@"userSn": [kStanderDefault objectForKey:@"userSn"]};
-    [HelpFunction requestDataWithUrlString:kQueryTheUserdevice andParames:parameters andDelegate:self];
-    
-}
-
 #pragma mark - 获取代理的数据
 - (void)requestData:(HelpFunction *)requset queryUserdevice:(NSDictionary *)dddd{
     NSInteger state = [dddd[@"state"] integerValue];
@@ -189,7 +195,6 @@
                 [_haveArray addObject:serviceModel];
             }];
             [kStanderDefault setObject:@"YES" forKey:@"isHaveService"];
-            
             
             if (self.haveArray.count > 0) {
                 self.markView.hidden = YES;
@@ -235,12 +240,13 @@
     self.serviceModel = serviceModel;
 }
 
-#pragma mark - 开关的点击事件
+#pragma mark - 添加设备的点击事件
 - (void)addSerViceAtcion{
 
-    AllTypeServiceViewController *allTypeServiceVC = [[AllTypeServiceViewController alloc]init];
-    allTypeServiceVC.navigationItem.title = @"添加设备";
-    [self.navigationController pushViewController:allTypeServiceVC animated:YES];
+    AllTypeServiceViewController *allTypeVC = [[AllTypeServiceViewController alloc]init];
+    allTypeVC.navigationItem.title = @"添加设备";
+    [self.navigationController pushViewController:allTypeVC animated:YES];
+    
 }
 
 #pragma mark - collectionView有多少分区
@@ -291,7 +297,7 @@
     
     [kApplicate initServiceModel:model];
     kSocketTCP.serviceModel = model;
-    [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%@%@%@N#" , [kStanderDefault objectForKey:@"userSn"] , model.devTypeSn , model.devSn] andType:kAddService andIsNewOrOld:nil];
+    [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%@%@N#" , self.userSn ,  model.devSn] andType:kAddService andIsNewOrOld:nil];
     
     HTMLBaseViewController *htmlVC = [[HTMLBaseViewController alloc]init];
     htmlVC.serviceModel = model;

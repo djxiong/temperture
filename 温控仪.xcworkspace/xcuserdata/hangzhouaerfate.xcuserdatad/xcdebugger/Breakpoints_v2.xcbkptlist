@@ -19,28 +19,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/Catgory/Singleton.m"
-            timestampString = "528369549.02963"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-connectHost"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/HTMLBaseViewController/HTMLBaseViewController.m"
-            timestampString = "529214793.418095"
+            timestampString = "531285054.25346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-getMachineDeviceAtcion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/HTMLBaseViewController/HTMLBaseViewController.m"
-            timestampString = "529214793.422608"
+            timestampString = "531285054.253617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "-passValueWithBlock"
             landmarkType = "7">
          </BreakpointContent>
@@ -67,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
-            timestampString = "530162351.275377"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/ScanVC/VC/QQLBXScanViewController.m"
+            timestampString = "531114715.603256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "-onUdpSocket:didReceiveData:withTag:fromHost:port:"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "-showNextVCWithScanResult:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -83,13 +67,109 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
-            timestampString = "530162351.275981"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/ScanVC/QQLBXScanViewController.m"
+            timestampString = "531285054.253839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-sendMessage:"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-scanResultWithArray:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/ScanVC/QQLBXScanViewController.m"
+            timestampString = "531285054.253964"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "-scanResultWithArray:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/ScanVC/QQLBXScanViewController.m"
+            timestampString = "531285054.254073"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "-scanResultWithArray:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/ScanVC/QQLBXScanViewController.m"
+            timestampString = "531285054.254209"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "-showNextVCWithScanResult:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/Tools/NetWorkManager/CZNetworkManager.m"
+            timestampString = "531285054.254348"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-checkNetWork"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/Tools/NetWorkManager/CZNetworkManager.m"
+            timestampString = "531285054.254573"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-checkNetWork"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/Tools/NetWorkManager/CZNetworkManager.m"
+            timestampString = "531285054.254864"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "-checkNetWork"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

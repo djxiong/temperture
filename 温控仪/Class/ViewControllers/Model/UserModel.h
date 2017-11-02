@@ -11,12 +11,14 @@
 @interface UserModel : NSObject
 
 
-@property (nonatomic , strong) NSString *birthdate;
-@property (nonatomic , strong) NSString *email;
+@property (nonatomic , copy) NSString *birthdate;
+@property (nonatomic , copy) NSString *email;
 
-@property (nonatomic , strong) NSString *headImageUrl;
-@property (nonatomic , strong) NSString *nickname;
-@property (nonatomic , strong) NSString *phone;
+@property (nonatomic , copy) NSString *headImageUrl;
+@property (nonatomic , copy) NSString *nickname;
+@property (nonatomic , copy) NSString *phone;
+@property (nonatomic , copy) NSString *hexUsersn;
+
 @property (nonatomic , assign) NSInteger sex;
 @property (nonatomic , assign) NSInteger idd;
 @property (nonatomic , assign) NSInteger sn;

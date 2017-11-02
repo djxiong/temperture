@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AllTypeServiceModel.h"
-
+#import "BaseTableViewCell.h"
 
 @interface AllTypeServiceTableViewCell : UITableViewCell
 @property (nonatomic , assign) NSInteger count;

@@ -46,8 +46,15 @@
 
 //192.168.1.104  本地ip
 //114.55.5.92    外网ip
-#define kPort 6003
+#define kALIPort 6003
+#define KALIHost @"192.168.1.104"
 #define localhost @"114.55.5.92"
+
+#define kQILIANPort 8899
+#define KQILIANHost @"192.168.1.110"
+
+//网络单利
+#define kNetWork [CZNetworkManager shareCZNetworkManager]
 
 #define kXinTiao @"xinTiao"
 #define kZhiLing @"zhiLing"
@@ -182,6 +189,11 @@
 
 #define kACOLOR(R, G, B, A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
 
+//LBXScan 如果需要使用LBXScanViewController控制器代码，那么下载了那些模块，请定义对应的宏
+#define LBXScan_Define_Native  //包含native库
+#define LBXScan_Define_ZXing   //包含ZXing库
+#define LBXScan_Define_ZBar   //包含ZBar库
+#define LBXScan_Define_UI     //包含界面库
 
 /**
  *  注册登录

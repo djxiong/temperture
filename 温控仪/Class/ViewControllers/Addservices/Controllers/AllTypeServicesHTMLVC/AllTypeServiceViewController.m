@@ -48,7 +48,7 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    
     
 }
 
@@ -125,7 +125,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     return kScreenH / 13;
 }
 
@@ -137,3 +137,4 @@
 }
 
 @end
+

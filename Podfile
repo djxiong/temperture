@@ -4,4 +4,5 @@ pod 'Masonry'
 pod 'SDWebImage'
 pod 'SVProgressHUD'
 pod 'MJRefresh'
+pod 'LBXScan'
 end

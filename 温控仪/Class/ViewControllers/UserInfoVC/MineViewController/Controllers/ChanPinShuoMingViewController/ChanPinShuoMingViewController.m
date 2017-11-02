@@ -63,13 +63,13 @@
     [self.view addSubview: webView];
     webView.delegate = self;
     
-    NSURL *url = [NSURL URLWithString:kServiceDescriptionURL(self.typeSn, self.serviceModel.typeSn)];
+//    NSURL *url = [NSURL URLWithString:kServiceDescriptionURL(self.typeSn, self.serviceModel.typeSn)];
+//    
+//    if (_isFromMainVC) {
+//        url = [NSURL URLWithString:kServiceDescriptionURL(self.typeSn, self.serviceModel.devTypeSn)];
+//    }
     
-    if (_isFromMainVC) {
-        url = [NSURL URLWithString:kServiceDescriptionURL(self.typeSn, self.serviceModel.devTypeSn)];
-    }
-    
-    [webView loadRequest:[NSURLRequest requestWithURL:url]];
+//    [webView loadRequest:[NSURLRequest requestWithURL:url]];
     
     _searchView = [[UIActivityIndicatorView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:_searchView];

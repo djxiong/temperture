@@ -337,9 +337,7 @@ static HelpFunction *_request = nil;
         NSLog(@"CCCCCCCC");
         NSLog(@"%@" , self.urlString);
         
-        if ([kApplicate wheatherHaveNet]) {
-           [UIAlertController creatCancleAndRightAlertControllerWithHandle:nil andSuperViewController:[self getCurrentVC]  Title:@"网络异常，请重试"];
-        }
+        [[CZNetworkManager shareCZNetworkManager]checkNetWork];
         [_delegate requestData:self didFailLoadData:self.error];
     }];
     

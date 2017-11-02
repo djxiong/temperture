@@ -15,8 +15,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-
-- (NSInteger)wheatherHaveNet;
 - (void)initUserModel:(UserModel *)userModel;
 - (void)initServiceModel:(ServicesModel *)serviceModel;
 @end

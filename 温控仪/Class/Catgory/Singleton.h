@@ -33,7 +33,7 @@ return sharedInstance; \
 
 + (Singleton *)sharedInstance;
 
--(void)socketConnectHost;// socket连接
+-(void)socketConnectHostWith:(NSString *)host port:(NSInteger)port;// socket连接
 
 -(void)cutOffSocket;// 断开socket连接
 

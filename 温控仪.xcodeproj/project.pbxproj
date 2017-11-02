@@ -19,7 +19,6 @@
 		ED0019C11F4D645E009BD921 /* AboutProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED00196C1F4D645E009BD921 /* AboutProductViewController.m */; };
 		ED0019C21F4D645E009BD921 /* GengXinRiZhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019701F4D645E009BD921 /* GengXinRiZhiViewController.m */; };
 		ED0019C31F4D645E009BD921 /* AboutProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019741F4D645E009BD921 /* AboutProductCell.m */; };
-		ED0019C41F4D645E009BD921 /* ChanPinShuoMingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019771F4D645E009BD921 /* ChanPinShuoMingViewController.m */; };
 		ED0019C51F4D645E009BD921 /* ConnectWeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED00197A1F4D645E009BD921 /* ConnectWeViewController.m */; };
 		ED0019C61F4D645E009BD921 /* SumMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED00197F1F4D645E009BD921 /* SumMessageViewController.m */; };
 		ED0019C71F4D645E009BD921 /* SystemMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019831F4D645E009BD921 /* SystemMessageModel.m */; };
@@ -95,9 +94,6 @@
 		ED29B4381EC0638F007E5454 /* XMGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4221EC0638F007E5454 /* XMGNavigationController.m */; };
 		ED29B4391EC0638F007E5454 /* XMGRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4241EC0638F007E5454 /* XMGRefreshFooter.m */; };
 		ED29B43A1EC0638F007E5454 /* XMGRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4261EC0638F007E5454 /* XMGRefreshHeader.m */; };
-		ED29B46D1EC06A83007E5454 /* AllServicesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4401EC06A83007E5454 /* AllServicesCollectionViewCell.m */; };
-		ED29B46E1EC06A83007E5454 /* AllServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4421EC06A83007E5454 /* AllServicesViewController.m */; };
-		ED29B46F1EC06A83007E5454 /* AllTypeServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4451EC06A83007E5454 /* AllTypeServiceViewController.m */; };
 		ED29B4721EC06A83007E5454 /* MineSerivesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B44E1EC06A83007E5454 /* MineSerivesViewController.m */; };
 		ED29B4731EC06A83007E5454 /* MineServiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4521EC06A83007E5454 /* MineServiceCollectionViewCell.m */; };
 		ED29B4741EC06A83007E5454 /* ServiceBaseCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4541EC06A83007E5454 /* ServiceBaseCollectionCell.m */; };
@@ -113,7 +109,6 @@
 		ED7479211F4BE8F4005A9708 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7479201F4BE8F4005A9708 /* UserModel.m */; };
 		ED7479241F4BEB9E005A9708 /* FirstUserAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7479231F4BEB9E005A9708 /* FirstUserAlertView.m */; };
 		ED74793E1F4C119D005A9708 /* AllTypeServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED74793D1F4C119D005A9708 /* AllTypeServiceModel.m */; };
-		ED7479411F4C1420005A9708 /* AllTypeServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7479401F4C1420005A9708 /* AllTypeServiceTableViewCell.m */; };
 		ED7913F41ED579DB001DE08C /* ESP_ByteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7913D81ED579DB001DE08C /* ESP_ByteUtil.m */; };
 		ED7913F51ED579DB001DE08C /* ESP_CRC8.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7913DA1ED579DB001DE08C /* ESP_CRC8.m */; };
 		ED7913F61ED579DB001DE08C /* ESP_NetUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7913DC1ED579DB001DE08C /* ESP_NetUtil.m */; };
@@ -130,6 +125,22 @@
 		ED7914011ED579DC001DE08C /* ESPUDPSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7913F31ED579DB001DE08C /* ESPUDPSocketServer.m */; };
 		ED8E3C981EC15F640040FD3B /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8E3C971EC15F640040FD3B /* TabBarViewController.m */; };
 		ED8E3C9E1EC162F20040FD3B /* Wind.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED8E3C9D1EC162F20040FD3B /* Wind.plist */; };
+		EDDBDB1B1FA829EE00145525 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDBDB1A1FA829EE00145525 /* libiconv.2.4.0.tbd */; };
+		EDDBDB1D1FA829FA00145525 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDBDB1C1FA829FA00145525 /* Foundation.framework */; };
+		EDDBDB1F1FA82A0300145525 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDBDB1E1FA82A0300145525 /* libz.1.1.3.tbd */; };
+		EDDBDB201FA82A6700145525 /* StyleDIY.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB0A1FA8236400145525 /* StyleDIY.m */; };
+		EDDBDB211FA82A7100145525 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB071FA8236400145525 /* Global.m */; };
+		EDDBDB221FA82A7D00145525 /* QQLBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB091FA8236400145525 /* QQLBXScanViewController.m */; };
+		EDDBDB231FA82B2500145525 /* CreateBarCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB191FA8257400145525 /* CreateBarCodeViewController.m */; };
+		EDDBDB241FA82B3700145525 /* LBXScanPermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB171FA8255000145525 /* LBXScanPermissions.m */; };
+		EDDBDB251FA82B4500145525 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB061FA8236400145525 /* SettingViewController.m */; };
+		EDDBDB261FA82B6900145525 /* LBXAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB151FA8242600145525 /* LBXAlertAction.m */; };
+		EDDBDB291FA972D600145525 /* CZNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C9FDF1F9894DD0057C208 /* CZNetworkManager.m */; };
+		EDDBDB371FA9CD1000145525 /* AllServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB2F1FA9CA9600145525 /* AllServicesViewController.m */; };
+		EDDBDB391FA9CD1F00145525 /* AllTypeServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB321FA9CA9600145525 /* AllTypeServiceViewController.m */; };
+		EDDBDB3A1FA9CD2600145525 /* AllTypeServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB361FA9CA9600145525 /* AllTypeServiceTableViewCell.m */; };
+		EDDBDB3E1FAAB95A00145525 /* ChanPinShuoMingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB3D1FAAB86300145525 /* ChanPinShuoMingViewController.m */; };
+		EDDBDB441FAAC41000145525 /* AllServicesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDDBDB421FAAC3E600145525 /* AllServicesCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,8 +185,6 @@
 		ED0019701F4D645E009BD921 /* GengXinRiZhiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GengXinRiZhiViewController.m; sourceTree = "<group>"; };
 		ED0019731F4D645E009BD921 /* AboutProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProductCell.h; sourceTree = "<group>"; };
 		ED0019741F4D645E009BD921 /* AboutProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProductCell.m; sourceTree = "<group>"; };
-		ED0019761F4D645E009BD921 /* ChanPinShuoMingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChanPinShuoMingViewController.h; sourceTree = "<group>"; };
-		ED0019771F4D645E009BD921 /* ChanPinShuoMingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChanPinShuoMingViewController.m; sourceTree = "<group>"; };
 		ED0019791F4D645E009BD921 /* ConnectWeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectWeViewController.h; sourceTree = "<group>"; };
 		ED00197A1F4D645E009BD921 /* ConnectWeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectWeViewController.m; sourceTree = "<group>"; };
 		ED00197E1F4D645E009BD921 /* SumMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SumMessageViewController.h; sourceTree = "<group>"; };
@@ -327,12 +336,6 @@
 		ED29B4241EC0638F007E5454 /* XMGRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGRefreshFooter.m; sourceTree = "<group>"; };
 		ED29B4251EC0638F007E5454 /* XMGRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGRefreshHeader.h; sourceTree = "<group>"; };
 		ED29B4261EC0638F007E5454 /* XMGRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGRefreshHeader.m; sourceTree = "<group>"; };
-		ED29B43F1EC06A83007E5454 /* AllServicesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllServicesCollectionViewCell.h; sourceTree = "<group>"; };
-		ED29B4401EC06A83007E5454 /* AllServicesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllServicesCollectionViewCell.m; sourceTree = "<group>"; };
-		ED29B4411EC06A83007E5454 /* AllServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllServicesViewController.h; sourceTree = "<group>"; };
-		ED29B4421EC06A83007E5454 /* AllServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllServicesViewController.m; sourceTree = "<group>"; };
-		ED29B4441EC06A83007E5454 /* AllTypeServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTypeServiceViewController.h; sourceTree = "<group>"; };
-		ED29B4451EC06A83007E5454 /* AllTypeServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTypeServiceViewController.m; sourceTree = "<group>"; };
 		ED29B44D1EC06A83007E5454 /* MineSerivesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineSerivesViewController.h; sourceTree = "<group>"; };
 		ED29B44E1EC06A83007E5454 /* MineSerivesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineSerivesViewController.m; sourceTree = "<group>"; };
 		ED29B4511EC06A83007E5454 /* MineServiceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineServiceCollectionViewCell.h; sourceTree = "<group>"; };
@@ -341,12 +344,6 @@
 		ED29B4541EC06A83007E5454 /* ServiceBaseCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceBaseCollectionCell.m; sourceTree = "<group>"; };
 		ED29B4551EC06A83007E5454 /* WeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherView.h; sourceTree = "<group>"; };
 		ED29B4561EC06A83007E5454 /* WeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherView.m; sourceTree = "<group>"; };
-		ED4FB8921F7E425A00141D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = InfoPlist.strings; sourceTree = "<group>"; };
-		ED4FB8941F7E425A00141D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
-		ED4FB8971F7E425A00141D19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
-		ED4FB8991F7E425A00141D19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
-		ED4FB89C1F7E425A00141D19 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
-		ED4FB89E1F7E425A00141D19 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		ED5C9FDE1F9894DD0057C208 /* CZNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CZNetworkManager.h; sourceTree = "<group>"; };
 		ED5C9FDF1F9894DD0057C208 /* CZNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CZNetworkManager.m; sourceTree = "<group>"; };
 		ED6BFF8D1ED28ED800420596 /* TextFiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFiledView.h; sourceTree = "<group>"; };
@@ -371,8 +368,6 @@
 		ED7479231F4BEB9E005A9708 /* FirstUserAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstUserAlertView.m; sourceTree = "<group>"; };
 		ED74793C1F4C119D005A9708 /* AllTypeServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTypeServiceModel.h; sourceTree = "<group>"; };
 		ED74793D1F4C119D005A9708 /* AllTypeServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTypeServiceModel.m; sourceTree = "<group>"; };
-		ED74793F1F4C1420005A9708 /* AllTypeServiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTypeServiceTableViewCell.h; sourceTree = "<group>"; };
-		ED7479401F4C1420005A9708 /* AllTypeServiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTypeServiceTableViewCell.m; sourceTree = "<group>"; };
 		ED7913D71ED579DB001DE08C /* ESP_ByteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_ByteUtil.h; sourceTree = "<group>"; };
 		ED7913D81ED579DB001DE08C /* ESP_ByteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESP_ByteUtil.m; sourceTree = "<group>"; };
 		ED7913D91ED579DB001DE08C /* ESP_CRC8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESP_CRC8.h; sourceTree = "<group>"; };
@@ -405,6 +400,43 @@
 		ED8E3C961EC15F640040FD3B /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		ED8E3C971EC15F640040FD3B /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		ED8E3C9D1EC162F20040FD3B /* Wind.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Wind.plist; sourceTree = "<group>"; };
+		EDDBDB031FA8236300145525 /* QQLBXScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQLBXScanViewController.h; sourceTree = "<group>"; };
+		EDDBDB041FA8236300145525 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		EDDBDB051FA8236400145525 /* StyleDIY.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StyleDIY.h; sourceTree = "<group>"; };
+		EDDBDB061FA8236400145525 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		EDDBDB071FA8236400145525 /* Global.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
+		EDDBDB081FA8236400145525 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
+		EDDBDB091FA8236400145525 /* QQLBXScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQLBXScanViewController.m; sourceTree = "<group>"; };
+		EDDBDB0A1FA8236400145525 /* StyleDIY.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StyleDIY.m; sourceTree = "<group>"; };
+		EDDBDB0B1FA8242500145525 /* LBXAlertAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBXAlertAction.h; sourceTree = "<group>"; };
+		EDDBDB0D1FA8242600145525 /* UIActionSheet+LBXAlertAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+LBXAlertAction.h"; sourceTree = "<group>"; };
+		EDDBDB0E1FA8242600145525 /* UIActionSheet+LBXAlertAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+LBXAlertAction.m"; sourceTree = "<group>"; };
+		EDDBDB0F1FA8242600145525 /* UIAlertController+supportedInterfaceOrientations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+supportedInterfaceOrientations.h"; sourceTree = "<group>"; };
+		EDDBDB101FA8242600145525 /* UIAlertController+supportedInterfaceOrientations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+supportedInterfaceOrientations.m"; sourceTree = "<group>"; };
+		EDDBDB111FA8242600145525 /* UIAlertView+LBXAlertAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+LBXAlertAction.h"; sourceTree = "<group>"; };
+		EDDBDB121FA8242600145525 /* UIAlertView+LBXAlertAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+LBXAlertAction.m"; sourceTree = "<group>"; };
+		EDDBDB131FA8242600145525 /* UIWindow+LBXHierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+LBXHierarchy.h"; sourceTree = "<group>"; };
+		EDDBDB141FA8242600145525 /* UIWindow+LBXHierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+LBXHierarchy.m"; sourceTree = "<group>"; };
+		EDDBDB151FA8242600145525 /* LBXAlertAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBXAlertAction.m; sourceTree = "<group>"; };
+		EDDBDB161FA8255000145525 /* LBXScanPermissions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBXScanPermissions.h; sourceTree = "<group>"; };
+		EDDBDB171FA8255000145525 /* LBXScanPermissions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBXScanPermissions.m; sourceTree = "<group>"; };
+		EDDBDB181FA8257400145525 /* CreateBarCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateBarCodeViewController.h; sourceTree = "<group>"; };
+		EDDBDB191FA8257400145525 /* CreateBarCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateBarCodeViewController.m; sourceTree = "<group>"; };
+		EDDBDB1A1FA829EE00145525 /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
+		EDDBDB1C1FA829FA00145525 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EDDBDB1E1FA82A0300145525 /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
+		EDDBDB271FA82BA600145525 /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
+		EDDBDB281FA82BA600145525 /* UIImageView+CornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CornerRadius.h"; sourceTree = "<group>"; };
+		EDDBDB2E1FA9CA9600145525 /* AllServicesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllServicesViewController.h; sourceTree = "<group>"; };
+		EDDBDB2F1FA9CA9600145525 /* AllServicesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllServicesViewController.m; sourceTree = "<group>"; };
+		EDDBDB311FA9CA9600145525 /* AllTypeServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllTypeServiceViewController.h; sourceTree = "<group>"; };
+		EDDBDB321FA9CA9600145525 /* AllTypeServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllTypeServiceViewController.m; sourceTree = "<group>"; };
+		EDDBDB351FA9CA9600145525 /* AllTypeServiceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllTypeServiceTableViewCell.h; sourceTree = "<group>"; };
+		EDDBDB361FA9CA9600145525 /* AllTypeServiceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllTypeServiceTableViewCell.m; sourceTree = "<group>"; };
+		EDDBDB3C1FAAB86300145525 /* ChanPinShuoMingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChanPinShuoMingViewController.h; sourceTree = "<group>"; };
+		EDDBDB3D1FAAB86300145525 /* ChanPinShuoMingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChanPinShuoMingViewController.m; sourceTree = "<group>"; };
+		EDDBDB421FAAC3E600145525 /* AllServicesCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllServicesCollectionViewCell.m; sourceTree = "<group>"; };
+		EDDBDB431FAAC3E700145525 /* AllServicesCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllServicesCollectionViewCell.h; sourceTree = "<group>"; };
 		EF1087A6D4D9248F1EF398D2 /* libPods-温控仪.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-温控仪.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -413,6 +445,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDDBDB1F1FA82A0300145525 /* libz.1.1.3.tbd in Frameworks */,
+				EDDBDB1D1FA829FA00145525 /* Foundation.framework in Frameworks */,
+				EDDBDB1B1FA829EE00145525 /* libiconv.2.4.0.tbd in Frameworks */,
 				0CD206262CC65C567ACE9407 /* libPods-温控仪.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,6 +481,9 @@
 		1FE5A706D04E6A1CB090BF90 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EDDBDB1E1FA82A0300145525 /* libz.1.1.3.tbd */,
+				EDDBDB1C1FA829FA00145525 /* Foundation.framework */,
+				EDDBDB1A1FA829EE00145525 /* libiconv.2.4.0.tbd */,
 				EF1087A6D4D9248F1EF398D2 /* libPods-温控仪.a */,
 			);
 			name = Frameworks;
@@ -497,7 +535,6 @@
 			children = (
 				ED0019621F4D645E009BD921 /* AboutOusViewController */,
 				ED00196A1F4D645E009BD921 /* AboutProductViewController */,
-				ED0019751F4D645E009BD921 /* ChanPinShuoMingViewController */,
 				ED0019781F4D645E009BD921 /* ConnectWeViewController */,
 				ED00197B1F4D645E009BD921 /* MineMessageViewController */,
 				ED0019931F4D645E009BD921 /* MineYouHuiQuanViewController */,
@@ -574,18 +611,10 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		ED0019751F4D645E009BD921 /* ChanPinShuoMingViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ED0019761F4D645E009BD921 /* ChanPinShuoMingViewController.h */,
-				ED0019771F4D645E009BD921 /* ChanPinShuoMingViewController.m */,
-			);
-			path = ChanPinShuoMingViewController;
-			sourceTree = "<group>";
-		};
 		ED0019781F4D645E009BD921 /* ConnectWeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EDDBDB3B1FAAB86300145525 /* ChanPinShuoMingViewController */,
 				ED0019791F4D645E009BD921 /* ConnectWeViewController.h */,
 				ED00197A1F4D645E009BD921 /* ConnectWeViewController.m */,
 			);
@@ -890,9 +919,6 @@
 				ED8E3C961EC15F640040FD3B /* TabBarViewController.h */,
 				ED8E3C971EC15F640040FD3B /* TabBarViewController.m */,
 				ED29B3971EC05768007E5454 /* PrefixHeader.pch */,
-				ED4FB8901F7E425A00141D19 /* Base.lproj */,
-				ED4FB8951F7E425A00141D19 /* en.lproj */,
-				ED4FB89A1F7E425A00141D19 /* zh-Hans.lproj */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -1174,50 +1200,12 @@
 			isa = PBXGroup;
 			children = (
 				ED29B44C1EC06A83007E5454 /* MineSerivesViewController */,
-				ED29B4431EC06A83007E5454 /* AllTypeServicesTab */,
-				ED29B43D1EC06A83007E5454 /* AllServicesViewController */,
+				EDDBDB301FA9CA9600145525 /* AllTypeServicesHTMLVC */,
+				EDDBDB2A1FA9CA9600145525 /* AllServicesViewController */,
+				EDDBDAFD1FA821EC00145525 /* ScanVC */,
 				ED0019491F4D2095009BD921 /* SetServicesViewController */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		ED29B43D1EC06A83007E5454 /* AllServicesViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B4411EC06A83007E5454 /* AllServicesViewController.h */,
-				ED29B4421EC06A83007E5454 /* AllServicesViewController.m */,
-				ED29B43E1EC06A83007E5454 /* AllServicesCollectionViewCell */,
-			);
-			path = AllServicesViewController;
-			sourceTree = "<group>";
-		};
-		ED29B43E1EC06A83007E5454 /* AllServicesCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B43F1EC06A83007E5454 /* AllServicesCollectionViewCell.h */,
-				ED29B4401EC06A83007E5454 /* AllServicesCollectionViewCell.m */,
-			);
-			path = AllServicesCollectionViewCell;
-			sourceTree = "<group>";
-		};
-		ED29B4431EC06A83007E5454 /* AllTypeServicesTab */ = {
-			isa = PBXGroup;
-			children = (
-				ED29B4441EC06A83007E5454 /* AllTypeServiceViewController.h */,
-				ED29B4451EC06A83007E5454 /* AllTypeServiceViewController.m */,
-				ED29B4491EC06A83007E5454 /* View */,
-			);
-			name = AllTypeServicesTab;
-			path = AllTypeServicesHTMLVC;
-			sourceTree = "<group>";
-		};
-		ED29B4491EC06A83007E5454 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				ED74793F1F4C1420005A9708 /* AllTypeServiceTableViewCell.h */,
-				ED7479401F4C1420005A9708 /* AllTypeServiceTableViewCell.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		ED29B44C1EC06A83007E5454 /* MineSerivesViewController */ = {
@@ -1234,11 +1222,11 @@
 		ED29B44F1EC06A83007E5454 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				ED29B4501EC06A83007E5454 /* MineServiceCollectionViewCell */,
 				ED29B4551EC06A83007E5454 /* WeatherView.h */,
 				ED29B4561EC06A83007E5454 /* WeatherView.m */,
 				ED7479221F4BEB9E005A9708 /* FirstUserAlertView.h */,
 				ED7479231F4BEB9E005A9708 /* FirstUserAlertView.m */,
+				ED29B4501EC06A83007E5454 /* MineServiceCollectionViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1268,33 +1256,6 @@
 				ED74790F1F4BE6B8005A9708 /* HTMLBaseViewController.m */,
 			);
 			path = HTMLBaseViewController;
-			sourceTree = "<group>";
-		};
-		ED4FB8901F7E425A00141D19 /* Base.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				ED4FB8911F7E425A00141D19 /* InfoPlist.strings */,
-				ED4FB8931F7E425A00141D19 /* Localizable.strings */,
-			);
-			path = Base.lproj;
-			sourceTree = "<group>";
-		};
-		ED4FB8951F7E425A00141D19 /* en.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				ED4FB8961F7E425A00141D19 /* InfoPlist.strings */,
-				ED4FB8981F7E425A00141D19 /* Localizable.strings */,
-			);
-			path = en.lproj;
-			sourceTree = "<group>";
-		};
-		ED4FB89A1F7E425A00141D19 /* zh-Hans.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				ED4FB89B1F7E425A00141D19 /* InfoPlist.strings */,
-				ED4FB89D1F7E425A00141D19 /* Localizable.strings */,
-			);
-			path = "zh-Hans.lproj";
 			sourceTree = "<group>";
 		};
 		ED5C9FDC1F9894DD0057C208 /* Tools */ = {
@@ -1386,6 +1347,119 @@
 			);
 			path = UserInfoVC;
 			sourceTree = "<group>";
+		};
+		EDDBDAFD1FA821EC00145525 /* ScanVC */ = {
+			isa = PBXGroup;
+			children = (
+				EDDBDB031FA8236300145525 /* QQLBXScanViewController.h */,
+				EDDBDB091FA8236400145525 /* QQLBXScanViewController.m */,
+				EDDBDB021FA8234400145525 /* VC */,
+				EDDBDB011FA8233300145525 /* View */,
+			);
+			path = ScanVC;
+			sourceTree = "<group>";
+		};
+		EDDBDB011FA8233300145525 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EDDBDB081FA8236400145525 /* Global.h */,
+				EDDBDB071FA8236400145525 /* Global.m */,
+				EDDBDB051FA8236400145525 /* StyleDIY.h */,
+				EDDBDB0A1FA8236400145525 /* StyleDIY.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EDDBDB021FA8234400145525 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				EDDBDB041FA8236300145525 /* SettingViewController.h */,
+				EDDBDB061FA8236400145525 /* SettingViewController.m */,
+				EDDBDB0B1FA8242500145525 /* LBXAlertAction.h */,
+				EDDBDB151FA8242600145525 /* LBXAlertAction.m */,
+				EDDBDB161FA8255000145525 /* LBXScanPermissions.h */,
+				EDDBDB171FA8255000145525 /* LBXScanPermissions.m */,
+				EDDBDB181FA8257400145525 /* CreateBarCodeViewController.h */,
+				EDDBDB191FA8257400145525 /* CreateBarCodeViewController.m */,
+				EDDBDB0C1FA8242600145525 /* Class */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		EDDBDB0C1FA8242600145525 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				EDDBDB281FA82BA600145525 /* UIImageView+CornerRadius.h */,
+				EDDBDB271FA82BA600145525 /* UIImageView+CornerRadius.m */,
+				EDDBDB0D1FA8242600145525 /* UIActionSheet+LBXAlertAction.h */,
+				EDDBDB0E1FA8242600145525 /* UIActionSheet+LBXAlertAction.m */,
+				EDDBDB0F1FA8242600145525 /* UIAlertController+supportedInterfaceOrientations.h */,
+				EDDBDB101FA8242600145525 /* UIAlertController+supportedInterfaceOrientations.m */,
+				EDDBDB111FA8242600145525 /* UIAlertView+LBXAlertAction.h */,
+				EDDBDB121FA8242600145525 /* UIAlertView+LBXAlertAction.m */,
+				EDDBDB131FA8242600145525 /* UIWindow+LBXHierarchy.h */,
+				EDDBDB141FA8242600145525 /* UIWindow+LBXHierarchy.m */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		EDDBDB2A1FA9CA9600145525 /* AllServicesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EDDBDB2E1FA9CA9600145525 /* AllServicesViewController.h */,
+				EDDBDB2F1FA9CA9600145525 /* AllServicesViewController.m */,
+				EDDBDB2B1FA9CA9600145525 /* AllServicesCollectionViewCell */,
+			);
+			name = AllServicesViewController;
+			path = "温控仪/Class/ViewControllers/Addservices/Controllers/AllServicesViewController";
+			sourceTree = SOURCE_ROOT;
+		};
+		EDDBDB2B1FA9CA9600145525 /* AllServicesCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EDDBDB431FAAC3E700145525 /* AllServicesCollectionViewCell.h */,
+				EDDBDB421FAAC3E600145525 /* AllServicesCollectionViewCell.m */,
+			);
+			path = AllServicesCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		EDDBDB301FA9CA9600145525 /* AllTypeServicesHTMLVC */ = {
+			isa = PBXGroup;
+			children = (
+				EDDBDB311FA9CA9600145525 /* AllTypeServiceViewController.h */,
+				EDDBDB321FA9CA9600145525 /* AllTypeServiceViewController.m */,
+				EDDBDB331FA9CA9600145525 /* model */,
+				EDDBDB341FA9CA9600145525 /* View */,
+			);
+			name = AllTypeServicesHTMLVC;
+			path = "温控仪/Class/ViewControllers/Addservices/Controllers/AllTypeServicesHTMLVC";
+			sourceTree = SOURCE_ROOT;
+		};
+		EDDBDB331FA9CA9600145525 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		EDDBDB341FA9CA9600145525 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EDDBDB351FA9CA9600145525 /* AllTypeServiceTableViewCell.h */,
+				EDDBDB361FA9CA9600145525 /* AllTypeServiceTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EDDBDB3B1FAAB86300145525 /* ChanPinShuoMingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EDDBDB3C1FAAB86300145525 /* ChanPinShuoMingViewController.h */,
+				EDDBDB3D1FAAB86300145525 /* ChanPinShuoMingViewController.m */,
+			);
+			name = ChanPinShuoMingViewController;
+			path = "温控仪/Class/ViewControllers/UserInfoVC/MineViewController/Controllers/ChanPinShuoMingViewController";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -1576,11 +1650,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDDBDB441FAAC41000145525 /* AllServicesCollectionViewCell.m in Sources */,
+				EDDBDB3E1FAAB95A00145525 /* ChanPinShuoMingViewController.m in Sources */,
+				EDDBDB3A1FA9CD2600145525 /* AllTypeServiceTableViewCell.m in Sources */,
+				EDDBDB391FA9CD1F00145525 /* AllTypeServiceViewController.m in Sources */,
+				EDDBDB371FA9CD1000145525 /* AllServicesViewController.m in Sources */,
+				EDDBDB291FA972D600145525 /* CZNetworkManager.m in Sources */,
+				EDDBDB261FA82B6900145525 /* LBXAlertAction.m in Sources */,
+				EDDBDB251FA82B4500145525 /* SettingViewController.m in Sources */,
+				EDDBDB241FA82B3700145525 /* LBXScanPermissions.m in Sources */,
+				EDDBDB231FA82B2500145525 /* CreateBarCodeViewController.m in Sources */,
+				EDDBDB221FA82A7D00145525 /* QQLBXScanViewController.m in Sources */,
+				EDDBDB211FA82A7100145525 /* Global.m in Sources */,
+				EDDBDB201FA82A6700145525 /* StyleDIY.m in Sources */,
 				ED0019C91F4D645E009BD921 /* SystemMessageAndMineMessageTableViewCell.m in Sources */,
 				ED8E3C981EC15F640040FD3B /* TabBarViewController.m in Sources */,
 				ED7479101F4BE6B8005A9708 /* HTMLBaseViewController.m in Sources */,
 				ED00195B1F4D2095009BD921 /* FailContextViewController.m in Sources */,
-				ED29B46E1EC06A83007E5454 /* AllServicesViewController.m in Sources */,
 				ED29B3641EC05423007E5454 /* UUBarChart.m in Sources */,
 				ED6BFF951ED2CCCB00420596 /* CustomStyleBtn.m in Sources */,
 				ED0019C31F4D645E009BD921 /* AboutProductCell.m in Sources */,
@@ -1611,7 +1697,6 @@
 				ED0019D91F4D645E009BD921 /* MineViewController.m in Sources */,
 				ED29B3651EC05423007E5454 /* UUChart.m in Sources */,
 				ED29B38B1EC05423007E5454 /* AuthcodeView.m in Sources */,
-				ED29B46D1EC06A83007E5454 /* AllServicesCollectionViewCell.m in Sources */,
 				ED29B4361EC0638F007E5454 /* UITextField+Custom.m in Sources */,
 				ED7479241F4BEB9E005A9708 /* FirstUserAlertView.m in Sources */,
 				ED29B4371EC0638F007E5454 /* UIView+Extension.m in Sources */,
@@ -1651,17 +1736,14 @@
 				ED29B3661EC05423007E5454 /* UUChartConst.m in Sources */,
 				ED29B4341EC0638F007E5454 /* UIImageView+Extension.m in Sources */,
 				ED0019D31F4D645E009BD921 /* LocationCell.m in Sources */,
-				ED29B46F1EC06A83007E5454 /* AllTypeServiceViewController.m in Sources */,
 				ED29B4731EC06A83007E5454 /* MineServiceCollectionViewCell.m in Sources */,
 				ED74793E1F4C119D005A9708 /* AllTypeServiceModel.m in Sources */,
 				ED29B3861EC05423007E5454 /* XieYiNeiRongViewController.m in Sources */,
-				ED0019C41F4D645E009BD921 /* ChanPinShuoMingViewController.m in Sources */,
 				ED29B34E1EC05423007E5454 /* GCDAsyncUdpSocket.m in Sources */,
 				ED0019CC1F4D645E009BD921 /* BaseTableViewCell.m in Sources */,
 				ED7479211F4BE8F4005A9708 /* UserModel.m in Sources */,
 				ED29B3851EC05423007E5454 /* TableViewCell.m in Sources */,
 				ED0019BE1F4D645E009BD921 /* AboutOusTableViewController.m in Sources */,
-				ED7479411F4C1420005A9708 /* AllTypeServiceTableViewCell.m in Sources */,
 				ED29B3841EC05423007E5454 /* PZXVerificationTextField.m in Sources */,
 				ED29B4751EC06A83007E5454 /* WeatherView.m in Sources */,
 				ED29B34C1EC05423007E5454 /* AsyncUdpSocket.m in Sources */,
@@ -1734,54 +1816,6 @@
 			);
 			name = LaunchScreen.storyboard;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		ED4FB8911F7E425A00141D19 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ED4FB8921F7E425A00141D19 /* Base */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		ED4FB8931F7E425A00141D19 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ED4FB8941F7E425A00141D19 /* Base */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		ED4FB8961F7E425A00141D19 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ED4FB8971F7E425A00141D19 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		ED4FB8981F7E425A00141D19 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ED4FB8991F7E425A00141D19 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		ED4FB89B1F7E425A00141D19 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ED4FB89C1F7E425A00141D19 /* zh-Hans */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		ED4FB89D1F7E425A00141D19 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ED4FB89E1F7E425A00141D19 /* zh-Hans */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

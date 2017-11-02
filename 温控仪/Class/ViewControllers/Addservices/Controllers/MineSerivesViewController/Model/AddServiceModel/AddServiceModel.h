@@ -16,5 +16,6 @@
 @property (nonatomic , copy) NSString *bindUrl;
 @property (nonatomic , copy) NSString *brand;
 @property (nonatomic , copy) NSString *imageUrl;
+@property (nonatomic , copy) NSString *devSn;
 @property (nonatomic , assign) NSInteger slType;
 @end

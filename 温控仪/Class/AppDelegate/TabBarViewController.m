@@ -41,7 +41,7 @@
     
     
     self.tabBar.tintColor = [UIColor colorWithHexString:@"20c3df"];
-    self.delegate = self;
+    
 }
 
 @end

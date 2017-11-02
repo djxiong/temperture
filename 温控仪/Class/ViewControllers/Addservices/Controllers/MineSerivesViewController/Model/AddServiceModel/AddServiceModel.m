@@ -48,6 +48,10 @@
         _brand = value;
     }
     
+    if ([key isEqualToString:@"devSn"]) {
+        _devSn = value;
+    }
+    
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
@@ -56,7 +60,7 @@
 
 -(NSString *)description{
     
-    return [NSString stringWithFormat:@"typeSn--%@ , typeName--%@ , typeNumber--%@ , protocol--%@ , bindUrl--%@ , brand--%@" , _typeSn , _typeName , _typeNumber ,  _protocol , _bindUrl , _brand];
+    return [NSString stringWithFormat:@"typeSn--%@ , typeName--%@ , typeNumber--%@ , protocol--%@ , bindUrl--%@ , brand--%@ , _devSn--%@" , _typeSn , _typeName , _typeNumber ,  _protocol , _bindUrl , _brand , _devSn];
 }
 
 @end

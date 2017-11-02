@@ -255,8 +255,7 @@ static NSString *celled = @"celled";
     } else if (indexPath.section == 2) {
         
         if ([kApplicate.window.rootViewController isKindOfClass:[TabBarViewController class]]) {
-            
-            [self kStanderDefaultRemoveAllObject];
+            [[CZNetworkManager shareCZNetworkManager] removeAllObjectOfStanderDefault];
             
             
             XMGNavigationController *nav = [[XMGNavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
@@ -265,37 +264,11 @@ static NSString *celled = @"celled";
         } else {
             
             [self dismissViewControllerAnimated:YES completion:^{
-                [self kStanderDefaultRemoveAllObject];
+                [[CZNetworkManager shareCZNetworkManager] removeAllObjectOfStanderDefault];
             }];
         }
         
     }
-}
-
-- (void)kStanderDefaultRemoveAllObject {
-    [kStanderDefault removeObjectForKey:@"Login"];
-    [kStanderDefault removeObjectForKey:@"cityName"];
-    [kStanderDefault removeObjectForKey:@"password"];
-    [kStanderDefault removeObjectForKey:@"phone"];
-    [kStanderDefault removeObjectForKey:@"userSn"];
-    [kStanderDefault removeObjectForKey:@"userId"];
-    
-    [kStanderDefault removeObjectForKey:@"zhuYe"];
-    
-    [kStanderDefault removeObjectForKey:@"offBtn"];
-    [kStanderDefault removeObjectForKey:@"GanYiJiData"];
-    [kStanderDefault removeObjectForKey:@"ganYiJiHongGanDic"];
-    [kStanderDefault removeObjectForKey:@"GanYiJiIsWork"];
-    [kStanderDefault removeObjectForKey:@"AirData"];
-    [kStanderDefault removeObjectForKey:@"AirDingShiData"];
-    [kStanderDefault removeObjectForKey:@"kongZhiTai"];
-    
-    [kStanderDefault removeObjectForKey:@"data"];
-    [kStanderDefault removeObjectForKey:@"requestWeatherTime"];
-    [kStanderDefault removeObjectForKey:@"wearthDic"];
-    [kStanderDefault removeObjectForKey:@"GeRenInfo"];
-    kSocketTCP.isDuanXianChongLian = @"NO";
-    [kSocketTCP cutOffSocket];
 }
 
 - (void)sendPickerViewToVC:(UIPickerView *)picker {

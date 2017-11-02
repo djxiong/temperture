@@ -7,7 +7,6 @@
 //
 
 #import "HTMLBaseViewController.h"
-#import "AllServicesViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 @interface HTMLBaseViewController ()<HelpFunctionDelegate , UIWebViewDelegate>
 
@@ -58,7 +57,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
     if (self.serviceModel && self.userModel) {
-        [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%ld%@%@N#" , (long)self.userModel.sn , _serviceModel.devTypeSn , _serviceModel.devSn] andType:kAddService andIsNewOrOld:nil];
+        [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%@%@N#" , self.userModel.hexUsersn ,  _serviceModel.devSn] andType:kAddService andIsNewOrOld:nil];
     }
     
 }
@@ -89,11 +88,9 @@
             
         }
         
-        NSDictionary *userData = nil;
-        if ([bself.serviceModel.brand isKindOfClass:[NSNull class]]) {
-            userData = [NSDictionary dictionaryWithObjectsAndKeys:@(bself.userModel.sn) , @"userSn" , bself.serviceModel.devTypeSn , @"devTypeSn" , bself.serviceModel.devSn , @"devSn" , @(bself.serviceModel.userDeviceID) , @"UserDeviceID" , [NSString stringWithFormat:@"http://%@:8080/" , localhost] , @"ServieceIP" , nil];
-        } else {
-            userData = [NSDictionary dictionaryWithObjectsAndKeys:@(bself.userModel.sn) , @"userSn" , bself.serviceModel.devTypeSn , @"devTypeSn" , bself.serviceModel.devSn , @"devSn" , @(bself.serviceModel.userDeviceID) , @"UserDeviceID" , [NSString stringWithFormat:@"http://%@:8080/" , localhost] , @"ServieceIP" , [NSString stringWithFormat:@"%@%@" , bself.serviceModel.brand , bself.serviceModel.typeName], @"BrandName" , nil];
+        NSMutableDictionary *userData = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(bself.userModel.sn) , @"userSn" , bself.serviceModel.devSn , @"devSn" , @(bself.serviceModel.userDeviceID) , @"UserDeviceID" , [NSString stringWithFormat:@"http://%@:8080/" , localhost] , @"ServieceIP" , nil];
+        if (![bself.serviceModel.brand isKindOfClass:[NSNull class]]) {
+            [userData setObject:[NSString stringWithFormat:@"%@%@" , bself.serviceModel.brand , bself.serviceModel.typeName] forKey:@"BrandName"];
         }
         
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userData options:NSJSONWritingPrettyPrinted error:nil];
@@ -175,7 +172,7 @@
         }
         
 //        [sumStr appendString:@"#"];
-        
+       
         NSLog(@"发送给TCP的命令%@ , %@" , sumStr , parames);
         
         [kSocketTCP sendDataToHost:sumStr andType:kZhiLing andIsNewOrOld:kNew];

@@ -56,7 +56,7 @@
         
         _countdownBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:_countdownBtn];
-        [_countdownBtn setTitle:NSLocalizedString(@"Resend", nil) forState:UIControlStateNormal];
+        [_countdownBtn setTitle:@"重新发送" forState:UIControlStateNormal];
         [_countdownBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         _countdownBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_countdownBtn addTarget:self action:@selector(againSendAtcion) forControlEvents:UIControlEventTouchUpInside];
@@ -82,14 +82,14 @@
 }
 
 - (void)timeFireMethod {
-    [self.countdownBtn setTitle:[NSString stringWithFormat:@"%lds%@",(long)self.secondsCountDown , NSLocalizedString(@"AfterSecondsRe-Send", nil)] forState:UIControlStateNormal];
+    [self.countdownBtn setTitle:[NSString stringWithFormat:@"%lds%@",(long)self.secondsCountDown , @"后重新发送"] forState:UIControlStateNormal];
     
     if(self.secondsCountDown==0){
         [_countDownTimer invalidate];
         _countDownTimer = nil;
         
         self.data = 0;
-        [self.countdownBtn setTitle:NSLocalizedString(@"Resend", nil) forState:UIControlStateNormal];
+        [self.countdownBtn setTitle:@"重新发送" forState:UIControlStateNormal];
         self.countdownBtn.userInteractionEnabled = YES;
         
     }

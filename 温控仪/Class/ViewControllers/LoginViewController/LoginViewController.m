@@ -46,7 +46,7 @@
         make.top.mas_equalTo(kScreenH / 7.5);
     }];
     
-    TextFiledView *accFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:NSLocalizedString(@"LoginVC_AccPlaceholder", nil) andSuperView:self.view];
+    TextFiledView *accFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:@"请输入您的手机号码" andSuperView:self.view];
     [accFiledView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(kScreenH / 3.5);
         make.size.mas_equalTo(CGSizeMake(kScreenW, kScreenW / 7.2));
@@ -55,7 +55,7 @@
     self.acctextFiled = accFiledView.subviews[0];
     
 
-    TextFiledView *pwdFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:NSLocalizedString(@"LoginVC_PwdPlacrholder", nil) andSuperView:self.view];
+    TextFiledView *pwdFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:@"请输入密码" andSuperView:self.view];
     [pwdFiledView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(accFiledView.mas_bottom).offset(1);
         make.size.mas_equalTo(CGSizeMake(kScreenW, kScreenW / 7.2));
@@ -66,14 +66,14 @@
     self.pwdTectFiled.secureTextEntry = YES;
     
     
-    self.loginBtn = [UIButton creatBtnWithTitle:NSLocalizedString(@"LoginVC_login", nil) withLabelFont:k18 andBackGroundColor:[UIColor colorWithHexString:@"192a2f"] WithTarget:self andDoneAtcion:@selector(loginBtnAction) andSuperView:self.view];
+    self.loginBtn = [UIButton creatBtnWithTitle:@"登录" withLabelFont:k18 andBackGroundColor:[UIColor colorWithHexString:@"192a2f"] WithTarget:self andDoneAtcion:@selector(loginBtnAction) andSuperView:self.view];
     [self.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kStandardW, kScreenW / 7.5));
         make.centerX.mas_equalTo(accFiledView.mas_centerX);
         make.top.mas_equalTo(pwdFiledView.mas_bottom).offset(kScreenH / 7);
     }];
     
-    UIButton *registerBtn = [UIButton creatBtnWithTitle:[NSString stringWithFormat:@"%@>>" , NSLocalizedString(@"LoginVC_Register", nil)] withLabelFont:k15 andBackGroundColor:nil WithTarget:self andDoneAtcion:@selector(registerBtnAction) andSuperView:self.view];
+    UIButton *registerBtn = [UIButton creatBtnWithTitle:[NSString stringWithFormat:@"%@>>" , @"立即注册"] withLabelFont:k15 andBackGroundColor:nil WithTarget:self andDoneAtcion:@selector(registerBtnAction) andSuperView:self.view];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kStandardW / 2, kScreenW / 25));
         make.centerX.mas_equalTo(_loginBtn.mas_centerX);
@@ -81,7 +81,7 @@
     }];
     [registerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    UIButton *resertBtn = [UIButton creatBtnWithTitle:NSLocalizedString(@"LoginVC_ForgetPwd", nil) withLabelFont:k15 andBackGroundColor:nil WithTarget:self andDoneAtcion:@selector(forgetPwdBtnAction) andSuperView:self.view];
+    UIButton *resertBtn = [UIButton creatBtnWithTitle:@"忘记密码?" withLabelFont:k15 andBackGroundColor:nil WithTarget:self andDoneAtcion:@selector(forgetPwdBtnAction) andSuperView:self.view];
     [resertBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kStandardW / 2, kScreenW / 25));
         make.centerX.mas_equalTo(_loginBtn.mas_centerX);
@@ -126,18 +126,18 @@
         [HelpFunction requestDataWithUrlString:kLogin andParames:parameters andDelegate:self];
     } else {
         if (self.acctextFiled.text.length == 0) {
-            [self setAlertText:NSLocalizedString(@"AccEmpty", nil)];
+            [self setAlertText:@"账号输入为空"];
         }
         
         if (self.pwdTectFiled.text.length == 0) {
-            [self setAlertText:NSLocalizedString(@"PwdEmpty", nil)];
+            [self setAlertText:@"密码为空"];
         }
         
         if (self.acctextFiled.text.length != 11 || self.acctextFiled.text.length != 9) {
 
             [UIAlertController creatRightAlertControllerWithHandle:^{
                 self.acctextFiled.text = nil;
-            } andSuperViewController:self Title:NSLocalizedString(@"AccountFormatInputError", nil)];
+            } andSuperViewController:self Title:@"账号格式输入错误"];
             
         }
     }
@@ -157,14 +157,6 @@
         [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
         [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
         
-        UserModel *userModel = [[UserModel alloc]init];
-        for (NSString *key in [user allKeys]) {
-            [userModel setValue:user[key] forKey:key];
-        }
-        
-        kSocketTCP.userSn = [NSString stringWithFormat:@"%ld" , (long)userModel.sn];
-        [kSocketTCP socketConnectHost];
-        
         [kWindowRoot presentViewController:[[TabBarViewController alloc]init] animated:YES completion:^{
             self.acctextFiled.text = nil;
             self.pwdTectFiled.text = nil;
@@ -173,11 +165,11 @@
     } else {
         NSInteger state = [dic[@"state"] integerValue];
         if (state == 1) {
-            [self setAlertText:NSLocalizedString(@"AccOrPwdEmpty", nil)];
+            [self setAlertText:@"账号或密码为空"];
         } else if (state == 2) {
-            [self setAlertText:NSLocalizedString(@"UserNoRegistered", nil)];
+            [self setAlertText:@"用户未注册"];
         } else {
-            [self setAlertText:NSLocalizedString(@"PwdError", nil)];
+            [self setAlertText:@"密码错误"];
         }
     }
 }

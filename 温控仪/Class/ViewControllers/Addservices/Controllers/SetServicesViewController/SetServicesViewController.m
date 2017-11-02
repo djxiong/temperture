@@ -9,10 +9,7 @@
 #import "SetServicesViewController.h"
 #import "MineSerivesViewController.h"
 #import "SearchServicesViewController.h"
-#import <SystemConfiguration/CaptiveNetwork.h>
-@interface SetServicesViewController (){
-    CFDictionaryRef dictRef;
-}
+@interface SetServicesViewController ()
 
 @property (nonatomic , copy) NSString *wifiName;
 @property (nonatomic , strong) NSMutableArray *array;
@@ -27,20 +24,17 @@
     self.imageView.image = [UIImage imageNamed:@"addServiceBackImage"];
     
     [self setUI];
-    [self wifiName];
+    self.wifiName = [[CZNetworkManager shareCZNetworkManager]getWifiName];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (dictRef) {
+    if (self.wifiName != nil || self.wifiName != NULL) {
         
         if (![self.wifiName isEqualToString:@"Qinianerwky"]) {
             [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"请链接设备指定WIFI，否则设备无法绑定!"];
-        } else {
-            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"请输入当前局域网的正确WIFI信息，以是设备进入配网模式!"];
         }
-        
     } else {
         [UIAlertController creatRightAlertControllerWithHandle:^{
             [self.navigationController popViewControllerAnimated:YES];
@@ -94,58 +88,23 @@
     
 }
 
-#pragma mark - 获取本地wifi名字
-- (NSString *)getWifiName {
-    NSString *wifiName = nil;
-    
-    CFArrayRef wifiInterfaces = CNCopySupportedInterfaces();
-    
-    if (!wifiInterfaces) {
-        return nil;
-    }
-    
-    NSArray *interfaces = (__bridge NSArray *)wifiInterfaces;
-    
-    for (NSString *interfaceName in interfaces) {
-        dictRef = CNCopyCurrentNetworkInfo((__bridge CFStringRef)(interfaceName));
-        
-        if (dictRef) {
-            NSDictionary *networkInfo = (__bridge NSDictionary *)dictRef;
-            NSLog(@"%@" , networkInfo);
-            
-            wifiName = [networkInfo objectForKey:(__bridge NSString *)kCNNetworkInfoKeySSID];
-            
-            CFRelease(dictRef);
-        }
-    }
-    
-    CFRelease(wifiInterfaces);
-    return wifiName;
-}
-
-- (NSString *)wifiName {
-    if (_wifiName == nil) {
-        _wifiName = [self getWifiName];
-    }
-    return _wifiName;
-}
 
 - (void)setAddServiceModel:(AddServiceModel *)addServiceModel {
     _addServiceModel = addServiceModel;
     
-    switch (_addServiceModel.slType) {
-        case 1:
-            self.alertMessage = @"定时3秒";
-            break;
-        case 2:
-            self.alertMessage = @"开关3秒";
-            break;
-        case 3:
-            self.alertMessage = @"wifi3秒";
-            break;
-        default:
-            break;
-    }
+//    switch (_addServiceModel.slType) {
+//        case 1:
+//            self.alertMessage = @"定时3秒";
+//            break;
+//        case 2:
+//            self.alertMessage = @"开关3秒";
+//            break;
+//        case 3:
+//            self.alertMessage = @"wifi3秒";
+//            break;
+//        default:
+//            break;
+//    }
 }
 
 @end

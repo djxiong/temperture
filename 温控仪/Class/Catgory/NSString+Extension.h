@@ -121,4 +121,12 @@
  */
 + (NSString *)convertDataToHexStr:(NSData *)data;
 
+/**
+ 十六进制字符串转 NSData
+ 
+ @param hexString 十六进制字符
+ @return NSData
+ */
++ (NSData *)hexStringToData:(NSString *)hexString;
+
 @end

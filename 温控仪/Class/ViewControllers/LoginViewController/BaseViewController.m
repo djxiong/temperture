@@ -16,7 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
+
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"login_back"]];
     imageView.frame = kScreenFrame;
     [self.view addSubview:imageView];

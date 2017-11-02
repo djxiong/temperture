@@ -48,7 +48,7 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }];
             
-        } andSuperViewController:self Title:NSLocalizedString(@"RegistVC_RegisterSuccess", nil)];
+        } andSuperViewController:self Title:@"恭喜您，注册成功"];
     }
 }
 
@@ -73,7 +73,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whetherGegisterSuccess:) name:@"RegisterSuccess" object:nil];
     
     
-    TextFiledView *accTextFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:NSLocalizedString(@"EnterPhone", nil) andSuperView:self.view];
+    TextFiledView *accTextFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:@"请输入您的手机号码" andSuperView:self.view];
     [accTextFiledView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(kScreenH / 4.43);
         make.size.mas_equalTo(CGSizeMake(kScreenW, kScreenW / 7.2));
@@ -81,7 +81,7 @@
     }];
     self.accTectFiled = accTextFiledView.subviews[0];
     
-    TextFiledView *pwdTextFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:NSLocalizedString(@"LoginVC_PwdPlacrholder", nil) andSuperView:self.view];
+    TextFiledView *pwdTextFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:@"请输入密码" andSuperView:self.view];
     pwdTextFiledView.whetherdark = YES;
     [pwdTextFiledView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(accTextFiledView.mas_bottom);
@@ -92,7 +92,7 @@
     self.pwdTectFiled.keyboardType = UIKeyboardTypeDefault;
     self.pwdTectFiled.secureTextEntry = YES;
     
-    TextFiledView *verCodeTextFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:NSLocalizedString(@"EnterVertionCode", nil) andSuperView:self.view];
+    TextFiledView *verCodeTextFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:@"请输入验证码" andSuperView:self.view];
     [verCodeTextFiledView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(pwdTextFiledView.mas_bottom);
         make.size.mas_equalTo(CGSizeMake(kScreenW, kScreenW / 7.2));
@@ -108,14 +108,14 @@
         make.right.mas_equalTo(_verificationCodeTectFiled.mas_right);
     }];
     
-    UIButton *registerBtn = [UIButton creatBtnWithTitle:NSLocalizedString(@"LoginVC_Register", nil) withLabelFont:k18 andBackGroundColor:[UIColor colorWithHexString:@"192a2f"] WithTarget:self andDoneAtcion:@selector(registerAction1) andSuperView:self.view];
+    UIButton *registerBtn = [UIButton creatBtnWithTitle:@"立即注册" withLabelFont:k18 andBackGroundColor:[UIColor colorWithHexString:@"192a2f"] WithTarget:self andDoneAtcion:@selector(registerAction1) andSuperView:self.view];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kStandardW, kScreenW / 7.5));
         make.centerX.mas_equalTo(verCodeTextFiledView.mas_centerX);
         make.top.mas_equalTo(verCodeTextFiledView.mas_bottom).offset(kScreenH / 6.65);
     }];
     
-    UILabel *changLable = [UILabel creatLableWithTitle:NSLocalizedString(@"RegistVC_Agree", nil) andSuperView:self.view andFont:k12 andTextAligment:NSTextAlignmentCenter];
+    UILabel *changLable = [UILabel creatLableWithTitle:@"点击'立即注册'，即表示你同意遵守欧众" andSuperView:self.view andFont:k12 andTextAligment:NSTextAlignmentCenter];
     changLable.textColor = kWhiteColor;
     changLable.layer.borderWidth = 0;
     [changLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -124,7 +124,7 @@
         make.top.mas_equalTo(registerBtn.mas_bottom).offset(kScreenH / 5.55);
     }];
     
-    UILabel *heLable = [UILabel creatLableWithTitle:NSLocalizedString(@"RegistVC_With", nil) andSuperView:self.view andFont:k12 andTextAligment:NSTextAlignmentCenter];
+    UILabel *heLable = [UILabel creatLableWithTitle:@"和" andSuperView:self.view andFont:k12 andTextAligment:NSTextAlignmentCenter];
     heLable.layer.borderWidth = 0;
     heLable.textColor = kWhiteColor;
     [heLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -134,7 +134,7 @@
     }];
     
     
-    UILabel *xieYiLable = [UILabel creatLableWithTitle:NSLocalizedString(@"RegistVC_XieYi", nil) andSuperView:self.view andFont:k12 andTextAligment:NSTextAlignmentRight];
+    UILabel *xieYiLable = [UILabel creatLableWithTitle:@"协议内容" andSuperView:self.view andFont:k12 andTextAligment:NSTextAlignmentRight];
     xieYiLable.textColor = kWhiteColor;
     xieYiLable.layer.borderWidth = 0;
     [xieYiLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -148,7 +148,7 @@
     
     
     
-    UILabel *yinSiLable = [UILabel creatLableWithTitle:NSLocalizedString(@"RegistVC_YinSi", nil) andSuperView:self.view andFont:k12 andTextAligment:NSTextAlignmentLeft];
+    UILabel *yinSiLable = [UILabel creatLableWithTitle:@"隐私政策" andSuperView:self.view andFont:k12 andTextAligment:NSTextAlignmentLeft];
     yinSiLable.textColor = kWhiteColor;
     yinSiLable.layer.borderWidth = 0;
     [yinSiLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -170,7 +170,7 @@
     [self.markView addSubview:bgView];
     self.markView.alpha = 0;
     
-    self.alertMessageView = [[AlertMessageView alloc]initWithFrame:CGRectMake((kScreenW - kScreenW / 1.4) / 2, (kScreenH - kScreenH / 2.66) / 2, kScreenW / 1.4, kScreenH / 2.66) TitleText:NSLocalizedString(@"EnterVertionCode", nil) andBtnTarget:self andCancleAtcion:@selector(cancleAtcion)];
+    self.alertMessageView = [[AlertMessageView alloc]initWithFrame:CGRectMake((kScreenW - kScreenW / 1.4) / 2, (kScreenH - kScreenH / 2.66) / 2, kScreenW / 1.4, kScreenH / 2.66) TitleText:@"请输入验证码" andBtnTarget:self andCancleAtcion:@selector(cancleAtcion)];
     [self.view addSubview:self.alertMessageView];
 
     self.alertMessageView.alpha = 0;
@@ -206,7 +206,7 @@
             
             if (self.accTectFiled.text == nil) {
                 
-                [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"AccEmpty", nil)];
+                [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"账号输入为空"];
             } else {
                 
                 self.alertMessageView.phoneNumber = self.accTectFiled.text;
@@ -241,12 +241,12 @@
         }
         
     } else if (state == 1) {
-        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"InputValueError", nil)];
+        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"输入值异常"];
     } else if (state == 3) {
         
         [UIAlertController creatRightAlertControllerWithHandle:^{
             [self.navigationController popViewControllerAnimated:YES];
-        } andSuperViewController:self Title:NSLocalizedString(@"AccExiteSoLogin", nil)];
+        } andSuperViewController:self Title:@"此账户已存在，请直接登录"];
     }
 }
 
@@ -279,24 +279,24 @@
             if (self.accTectFiled.text.length != 11) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     self.accTectFiled.text = nil;
-                } andSuperViewController:self Title:NSLocalizedString(@"PhoneFormattedError", nil)];
+                } andSuperViewController:self Title:@"手机号码格式不正确"];
             } else if ( self.pwdTectFiled.text.length < 6 || self.pwdTectFiled.text.length > 12) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     self.pwdTectFiled.text = nil;
-                } andSuperViewController:self Title:NSLocalizedString(@"PwdFormat", nil)];
+                } andSuperViewController:self Title:@"密码长度必须大于6位并小于16位"];
             } else if (![self.verificationCodeTectFiled.text isEqualToString:self.authView.authCodeStr]) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     self.verificationCodeTectFiled.text = nil;
-                } andSuperViewController:self Title:NSLocalizedString(@"YourVerificationCodeErrorSoRe-Enter", nil)];
+                } andSuperViewController:self Title:@"您输入的验证码错误，请重新输入"];
             }
         }
     } else {
         if (self.accTectFiled.text.length == 0) {
-            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"PhoneNumberEmpty", nil)];
+            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"手机号码为空"];
         } else if (self.pwdTectFiled.text.length == 0) {
-            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"PwdEmpty", nil)];
+            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"密码为空"];
         } else if (self.verificationCodeTectFiled.text.length == 0) {
-            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"VerificationCodeEmpty", nil)];
+            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"验证码为空"];
         }
     }
 }
