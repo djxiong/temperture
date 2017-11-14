@@ -55,12 +55,16 @@
 
 - (void)whetherGegisterSuccess:(NSNotification *)post {
     NSString *success = post.userInfo[@"RegisterSuccess"];
+    NSString *vercodeStr = post.userInfo[@"VercodeStr"];
 //    NSLog(@"%@" , success);
     if ([success isEqualToString:@"YES"]) {
         
         [self cancleAtcion];
         
-        NSDictionary *parameters = @{@"user.phone":self.accTectFiled.text , @"user.password" : self.pwdTectFiled.text};
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{@"user.phone":self.accTectFiled.text , @"user.password" : self.pwdTectFiled.text ,@"code" : vercodeStr , @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]}];
+        if ([kStanderDefault objectForKey:@"GeTuiClientId"]) {
+            [parameters setObject:@"ua.clientId" forKey:[kStanderDefault objectForKey:@"GeTuiClientId"]];
+        }
         [kStanderDefault setObject:self.pwdTectFiled.text forKey:@"password"];
         [kStanderDefault setObject:self.accTectFiled.text forKey:@"phone"];
         [HelpFunction requestDataWithUrlString:kRegisterURL andParames:parameters andDelegate:self];

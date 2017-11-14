@@ -16,13 +16,10 @@
 @interface SearchServicesViewController ()<AsyncUdpSocketDelegate , HelpFunctionDelegate , UITableViewDelegate , UITableViewDataSource>
 @property (nonatomic , strong) AsyncUdpSocket *updSocket;
 
+@property (strong, nonatomic) NSString *pwdStr;
+@property (strong, nonatomic)  NSString *wifiNameStr;
+
 @property (nonatomic , copy) NSString *devTypeSn;
-
-@property (nonatomic , assign) CGFloat index;
-
-@property (nonatomic , assign) NSInteger count;
-@property (nonatomic , assign) NSInteger num;
-
 @property (nonatomic , strong) UILabel *searchLable;
 @property (nonatomic , strong) UILabel *registerLable;
 @property (nonatomic , strong) UILabel *addLable;
@@ -34,11 +31,11 @@
 
 @property (nonatomic , copy) NSString *message;
 
+@property (nonatomic , strong) NSTimer *repeatTimer;
+@property (nonatomic , strong) UIAlertController *alertVC;
 @end
 
 @implementation SearchServicesViewController
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,10 +54,12 @@
     [self sendMessage:@"FF00010102"];
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
    
+    [self.repeatTimer invalidate];
+    self.repeatTimer = nil;
+    [SVProgressHUD dismiss];
     [self.updSocket close];
     self.updSocket = nil;
 }
@@ -72,6 +71,9 @@
 
 #pragma mark - UDP
 -(void)openUDPServer{
+    
+    [self.updSocket close];
+    self.updSocket = nil;
     
     //初始化udp
     AsyncUdpSocket *tempSocket=[[AsyncUdpSocket alloc] initWithDelegate:self];
@@ -109,26 +111,32 @@
     self.searchLable.textColor = kMainColor;
     
     NSLog(@"%@" , data);
-    [self.dataAry removeAllObjects];
     
     NSString *str = [NSString convertDataToHexStr:data];
     
-    if ([str isEqualToString:@"FF000382010187"] || [str isEqualToString:@"ff000382010187"]) {
-        self.registerLable.textColor = kMainColor;
-        
-        
-        
-        MineSerivesViewController *tabVC = [[MineSerivesViewController alloc]init];
-        tabVC.fromAddVC = @"YES";
-        for (UIViewController *vc in self.navigationController.childViewControllers) {
-            if ([vc isKindOfClass:[tabVC class]]) {
-                [self.navigationController popToViewController:vc animated:YES];
-            }
+    if (str.length == 14) {
+        if ([str isEqualToString:@"FF000382010187"] || [str isEqualToString:@"ff000382010187"]) {
+            self.addLable.textColor = kMainColor;
+            
+            [self bindServiceRequest];
+            return YES;
+        } else {
+            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"密码输入错误，请重新输入"];
         }
-        
-        return YES;
     }
     
+    [self calculateData:str];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        self.registerLable.textColor = kMainColor;
+    });
+    
+    return YES;
+}
+
+#pragma mark - 解析TCP数据
+- (void)calculateData:(NSString *)str {
     NSString *length = [NSString stringWithFormat:@"%.4lx" , (str.length - 6) / 2];
     NSString *headStr = [NSString stringWithFormat:@"ff%@81" , length];
     str = [str substringWithRange:NSMakeRange(headStr.length, str.length - headStr.length)];
@@ -138,6 +146,7 @@
     firstObj = [firstObj substringFromIndex:2];
     [subAry replaceObjectAtIndex:0 withObject:firstObj];
     
+    [self.dataAry removeAllObjects];
     for (NSString *subStr in subAry) {
         NSArray *subAry2 = [subStr componentsSeparatedByString:@"00"];
         NSString *firObj = subAry2[0];
@@ -150,67 +159,78 @@
         [self.dataAry addObject:firObj];
         
     }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
-    
-    return YES;
 }
 
-
-#pragma mark - 代理反馈
-- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
+#pragma mark - 绑定设备的网络请求
+- (void)bindServiceRequest {
+    NSDictionary *parames = [NSMutableDictionary dictionary];
+    [parames setValuesForKeysWithDictionary:@{@"ud.userSn" : [kStanderDefault objectForKey:@"userSn"] ,  @"ud.devSn" : self.serviceModel.devSn , @"ud.devTypeSn" : self.serviceModel.typeSn, @"phoneType":@(2) , @"ud.devTypeNumber":self.serviceModel.typeNumber}];
     
-    NSDictionary *dic = data[0];
-    NSLog(@"%@" , dic);
-    
-    if ([dic[@"state"] integerValue] == 0) {
-        [self determineAndBindTheDevice];
-    } else if ([dic[@"state"] integerValue] == 2 ) {
-        [UIAlertController creatRightAlertControllerWithHandle:^{
-            [self determineAndBindTheDevice];
-        } andSuperViewController:self Title:@"此设备已绑定"];
+    if ([kStanderDefault objectForKey:@"cityName"] && [kStanderDefault objectForKey:@"provience"]) {
+        NSString *city = [kStanderDefault objectForKey:@"cityName"];
         
-    } else if ([dic[@"state"] integerValue] == 1){
-        
-        [UIAlertController creatRightAlertControllerWithHandle:^{
-            [self addServiceFail];
-        } andSuperViewController:self Title:@"此设备绑定失败"];
-        
+        NSString *subStr = [city substringWithRange:NSMakeRange(city.length - 1, 1)];
+        if (![subStr isEqualToString:@"市"]) {
+            city = [NSString stringWithFormat:@"%@市" , city];
+        }
+        [parames setValuesForKeysWithDictionary:@{@"province" : [kStanderDefault objectForKey:@"provience"] , @"city" : city}];
     }
+    
+    
+    self.repeatTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(repeatRequestBindURL:) userInfo:parames repeats:YES];
 }
 
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    [UIAlertController creatRightAlertControllerWithHandle:^{
+- (void)repeatRequestBindURL:(NSTimer *)time {
+    
+    NSDictionary *parames = [time userInfo];
+    
+    [kNetWork requestPOSTUrlString:self.serviceModel.bindUrl parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+        
+        [SVProgressHUD dismiss];
+        [self.repeatTimer invalidate];
+        self.repeatTimer = nil;
+        
+        NSLog(@"%@" , responseObject);
+        
+        NSInteger state = [responseObject[@"state"] integerValue];
+        if (state == 0 || state == 2) {
+            [UIAlertController creatRightAlertControllerWithHandle:^{
+                [self determineAndBindTheDevice];
+            } andSuperViewController:self Title:@"此设备绑定成功"];
+            
+        } else if (state == 1){
+            [self addServiceFail];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD dismiss];
         [self addServiceFail];
-    } andSuperViewController:self Title:@"此设备绑定失败"];
+    }];
 }
 
 #pragma mark - 绑定设备失败
 - (void)addServiceFail {
-    [self.updSocket close];
-    self.updSocket = nil;
-    FailContextViewController *failVC = [[FailContextViewController alloc]init];
-    failVC.navigationItem.title = @"失败";
-    [self.navigationController pushViewController:failVC animated:YES];
+    
+    if (!self.alertVC) {
+        self.alertVC = [UIAlertController creatRightAlertControllerWithHandle:^{
+            
+            FailContextViewController *failVC = [[FailContextViewController alloc]init];
+            failVC.navigationItem.title = @"失败";
+            failVC.serviceModel = self.serviceModel;
+            [self.navigationController pushViewController:failVC animated:YES];
+        } andSuperViewController:[[HelpFunction shareHelpFunction]getPresentedViewController] Title:@"此设备绑定失败"];
+    }
 }
+
 #pragma mark - 判断并绑定设备
 - (void)determineAndBindTheDevice {
     
-    [kStanderDefault setObject:@"YES" forKey:@"isHaveServices"];
-    [kStanderDefault setObject:@"YES" forKey:@"Login"];
-    
-    
     MineSerivesViewController *tabVC = [[MineSerivesViewController alloc]init];
     tabVC.fromAddVC = @"YES";
-    
     for (UIViewController *vc in self.navigationController.childViewControllers) {
         if ([vc isKindOfClass:[tabVC class]]) {
             [self.navigationController popToViewController:vc animated:YES];
         }
     }
-    
     
     [self.updSocket close];
 }
@@ -309,7 +329,7 @@
         [self sendMessage:self.message];
         self.refreshBtn.userInteractionEnabled = NO;
         self.refreshBtn.backgroundColor = [UIColor grayColor];
-        
+        [SVProgressHUD show];
     } andSuperViewController:self];
     
 }
@@ -319,9 +339,8 @@
 }
 
 #pragma mark - 懒加载
-- (void)setAddServiceModel:(AddServiceModel *)addServiceModel {
-    _addServiceModel = addServiceModel;
-    NSLog(@"%@" , _addServiceModel);
+- (void)setServiceModel:(ServicesModel *)serviceModel {
+    _serviceModel = serviceModel;
 }
 
 - (NSString *)message {

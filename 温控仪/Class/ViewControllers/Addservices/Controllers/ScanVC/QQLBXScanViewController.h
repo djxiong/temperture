@@ -31,12 +31,5 @@
 @property (nonatomic, strong) UIButton *btnPhoto;
 //闪光灯
 @property (nonatomic, strong) UIButton *btnFlash;
-//我的二维码
-//@property (nonatomic, strong) UIButton *btnMyQR;
-
-
-
-
-
-
+@property (nonatomic , strong) ServicesModel *serviceModel;
 @end

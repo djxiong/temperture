@@ -362,6 +362,7 @@
             default:nLetterValue=[[NSString alloc]initWithFormat:@"%lli",ttmpig];
                 
         }
+        
         str = [nLetterValue stringByAppendingString:str];
         if (tmpid == 0) {
             break;

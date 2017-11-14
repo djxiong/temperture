@@ -9,6 +9,7 @@
 #import "QQLBXScanViewController.h"
 #import "CreateBarCodeViewController.h"
 #import "LBXScanVideoZoomView.h"
+#import "BindServiceVC.h"
 #import "SetServicesViewController.h"
 
 @interface QQLBXScanViewController ()
@@ -160,16 +161,8 @@
     [_btnPhoto setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_btn_photo_down"] forState:UIControlStateHighlighted];
     [_btnPhoto addTarget:self action:@selector(openPhoto) forControlEvents:UIControlEventTouchUpInside];
     
-//    self.btnMyQR = [[UIButton alloc]init];
-//    _btnMyQR.bounds = _btnFlash.bounds;
-//    _btnMyQR.center = CGPointMake(CGRectGetWidth(_bottomItemsView.frame) * 3/4, CGRectGetHeight(_bottomItemsView.frame)/2);
-//    [_btnMyQR setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_btn_myqrcode_nor"] forState:UIControlStateNormal];
-//    [_btnMyQR setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_btn_myqrcode_down"] forState:UIControlStateHighlighted];
-//    [_btnMyQR addTarget:self action:@selector(myQRCode) forControlEvents:UIControlEventTouchUpInside];
-    
     [_bottomItemsView addSubview:_btnFlash];
     [_bottomItemsView addSubview:_btnPhoto];
-//    [_bottomItemsView addSubview:_btnMyQR];
     
 }
 
@@ -226,11 +219,20 @@
 
 - (void)showNextVCWithScanResult:(LBXScanResult*)strResult
 {
-    SetServicesViewController *vc = [SetServicesViewController new];
-    vc.addServiceModel.devSn = strResult.strScanned;
-    vc.navigationItem.title = @"添加设备";
-    [self.navigationController pushViewController:vc animated:YES];
+//    BindServiceVC *bindSreviceVC = [BindServiceVC new];
+//    self.serviceModel.devSn = strResult.strScanned;
+//    bindSreviceVC.serviceModel = self.serviceModel;
+//    bindSreviceVC.navigationItem.title = @"添加设备";
+//    [self.navigationController pushViewController:bindSreviceVC animated:YES];
+    
+    SetServicesViewController *setSerVC = [[SetServicesViewController alloc]init];
+    self.serviceModel.devSn = strResult.strScanned;
+    setSerVC.serviceModel = self.serviceModel;
+    setSerVC.navigationItem.title = @"添加设备";
+    [self.navigationController pushViewController:setSerVC animated:YES];
+    
 }
+
 
 
 #pragma mark -底部功能项
@@ -268,6 +270,8 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
+- (void)setServiceModel:(ServicesModel *)serviceModel {
+    _serviceModel = serviceModel;
+}
 
 @end

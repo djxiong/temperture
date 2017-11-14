@@ -55,6 +55,7 @@
 
 - (void)setServiceModel:(ServicesModel *)serviceModel {
     _serviceModel = serviceModel;
+   
 }
 
 // socket连接
@@ -76,6 +77,9 @@
 -(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
 {
     NSLog(@"%@" , host);
+    
+    [self sendDataToHost:nil andType:kLianJie];
+    
     [_duanXianChongLian invalidate];
     _duanXianChongLian = nil;
     [_socket readDataWithTimeout:-1 tag:0];
@@ -84,7 +88,7 @@
 // 心跳连接
 -(void)longConnectToSocket{
     
-    [self sendDataToHost:[NSString stringWithFormat:@"HM%@*#",  self.userSn] andType:kXinTiao andIsNewOrOld:kOld];
+    [self sendDataToHost:nil andType:kXinTiao];
     
 }
 // 切断socket
@@ -114,15 +118,12 @@
     [self cutOffSocket];
     [self socketConnectHostWith:self.socketHost port:self.socketPort];
     
-    if (self.userSn && self.serviceModel) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self sendDataToHost:[NSString stringWithFormat:@"HM%@%@N#" , self.userSn , self.serviceModel.devSn] andType:kAddService andIsNewOrOld:nil];
-        });
-    }
+    [self sendDataToHost:nil andType:kAddService];
 }
 
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
+    
     if (data) {
         [_duanXianChongLian invalidate];
         _duanXianChongLian = nil;
@@ -139,10 +140,14 @@
             devSnByte[i] = strtoul([devSnSubStr[i] UTF8String],0,16);
         }
         
-        if (![newMessage isEqualToString:@"QUIT"] && ![newMessage isEqualToString:@"CONNECTED"]) {
+        if (![newMessage isEqualToString:@"QUIT"]) {
             
-            str = [str substringFromIndex:18];
-            str = [str substringToIndex:str.length - 1];
+            if (!self.whetherConnected) {
+                if ([str hasPrefix:@"484d4646"]) {
+                    str = [str substringFromIndex:16];
+                    str = [str substringToIndex:str.length - 2];
+                }
+            }
             
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kServiceOrder object:self userInfo:[NSDictionary dictionaryWithObject:str forKey:@"Message"]]];
             
@@ -158,8 +163,6 @@
             
             [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:kWindowRoot Title:@"您的账号在其他设备登陆"];
             
-        } else if ([newMessage isEqualToString:@"CONNECTED"]){
-            [self sendDataToHost:[NSString stringWithFormat:@"HM%@N#" , self.userSn] andType:kLianJie andIsNewOrOld:kOld];
         }
     }
     
@@ -169,33 +172,37 @@
 
 
 - (void)setUserSn:(NSString *)userSn {
-    
-    _userSn = [NSString toHex:[userSn integerValue]];
+    _userSn = userSn;
 }
 
 - (void)enableBackgroundingOnSocket {
     [self.socket enableBackgroundingOnSocket];
 }
 
-- (void)sendDataToHost:(NSString *)string andType:(NSString *)type andIsNewOrOld:(NSString *)isNewOrOld{
-    //    NSLog(@"%@ , %@ , %@" , string , type , isNewOrOld);
+- (void)sendDataToHost:(NSString *)string andType:(NSString *)type {
+//    NSLog(@"%@ , %@ , %@" , string , type , isNewOrOld);
     
     NSString *userSn = self.userSn;
-    Byte userSnByte[userSn.length / 2];
+    Byte userSnByte[4];
     
-    NSMutableArray *userSnSubStr = [NSMutableArray array];
-    for (int i = 0; i < userSn.length / 2; i++) {
-        [userSnSubStr addObject:[userSn substringWithRange:NSMakeRange(2 * i, 2)]];
-        userSnByte[i] = strtoul([userSnSubStr[i] UTF8String], 0, 16);
+    for (int i = 0; i < 4; i++) {
+        NSString *subStr = nil;
+        if (i != 3) {
+            subStr = [userSn substringToIndex:2];
+            userSn = [userSn substringFromIndex:2];
+        } else {
+            subStr = userSn;
+        }
+
+        userSnByte[i] = strtoul([subStr UTF8String], 0, 16);
     }
     
     NSString *devSn = self.serviceModel.devSn;
     Byte devSnByte[devSn.length / 2];
     
-    NSMutableArray *devSnSubStr = [NSMutableArray array];
     for (int i = 0; i < devSn.length / 2; i++) {
-        [devSnSubStr addObject:[devSn substringWithRange:NSMakeRange(2 * i, 2)]];
-        devSnByte[i] = strtoul([userSnSubStr[i] UTF8String], 0, 16);
+        NSString *subStr = [devSn substringWithRange:NSMakeRange(2 * i, 2)];
+        devSnByte[i] = strtoul([subStr UTF8String], 0, 16);
     }
     
     NSData *data = nil;
@@ -217,31 +224,32 @@
         
         NSInteger length = string.length;
         NSString *zhiLingLong = string;
-        Byte zhiLing[length / 2 + 1];
+        Byte zhiLing[length / 2];
         
-        NSMutableArray *zhiLingSubAry = [NSMutableArray array];
         for (int i = 0; i < length / 2; i++) {
-            [zhiLingSubAry addObject:[zhiLingLong substringWithRange:NSMakeRange(i * 2, 2)]];
-            zhiLing[i] = strtoul([zhiLingSubAry[i] UTF8String], 0, 16);
-        }
-        zhiLing[length / 2] = (Byte)'#';
-        
-        Byte orderByteAry[length / 2 + 13];
-        orderByteAry[0] = (Byte)'H';
-        orderByteAry[1] = (Byte)'M';
-        orderByteAry[2] = (Byte)'F';
-        orderByteAry[3] = (Byte)'F';
-        orderByteAry[4] = (Byte)'A';
-        for (int i = 5; i < 9; i++) {
-            orderByteAry[i] = (Byte)devSnByte[i - 5];
+            NSString *subStr = [zhiLingLong substringWithRange:NSMakeRange(2 * i, 2)];
+            zhiLing[i] = strtoul([subStr UTF8String], 0, 16);
         }
         
-        orderByteAry[9] = (Byte)'w';
-        for (int i = 10; i <= length / 2 + 10; i++) {
-            orderByteAry[i] = (Byte)zhiLing[i - 10];
+        if (self.whetherConnected) {
+            data = [NSData dataWithBytes:zhiLing length:sizeof(zhiLing)];
+        } else {
+            Byte orderByteAry[length / 2 + 9];
+            orderByteAry[0] = (Byte)'H';
+            orderByteAry[1] = (Byte)'M';
+            orderByteAry[2] = (Byte)'F';
+            orderByteAry[3] = (Byte)'F';
+            orderByteAry[4] = (Byte)'A';
+            orderByteAry[5] = devSnByte[0];
+            orderByteAry[6] = devSnByte[1];
+            orderByteAry[7] = (Byte)'w';
+            for (int i = 8; i < length / 2 + 8; i++) {
+                orderByteAry[i] = (Byte)zhiLing[i - 8];
+            }
+            orderByteAry[length / 2 + 8] = (Byte)'#';
+            data = [NSData dataWithBytes:orderByteAry length:sizeof(orderByteAry)];
         }
         
-        data = [NSData dataWithBytes:orderByteAry length:sizeof(orderByteAry)];
     } else if ([type isEqualToString:kLianJie]) {
         
         Byte connectByteAry[8];
@@ -257,31 +265,28 @@
         
         data = [NSData dataWithBytes:connectByteAry length:sizeof(connectByteAry)];
         
-        [self sendDataToHost:[NSString stringWithFormat:@"HM%@*#",  self.userSn] andType:kXinTiao andIsNewOrOld:kOld];
+        [self sendDataToHost:nil andType:kXinTiao];
         self.connectTimer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(longConnectToSocket) userInfo:nil repeats:YES];
         
     } else if ([type isEqualToString:kAddService]) {
         
-        Byte addServiceBao[14];
+        Byte addServiceBao[10];
         addServiceBao[0] = (Byte)'H';
         addServiceBao[1] = (Byte)'M';
         
         for (int i = 2; i < 6; i++) {
             addServiceBao[i] = (Byte)userSnByte[i - 2];
         }
-        
-        for (int i = 6; i < 10; i++) {
-            addServiceBao[i] = (Byte)devSnByte[i - 6];
-        }
-        
-        addServiceBao[10] = (Byte)'N';
-        addServiceBao[11] = (Byte)'#';
+        addServiceBao[6] = devSnByte[0];
+        addServiceBao[7] = devSnByte[1];
+        addServiceBao[8] = (Byte)'N';
+        addServiceBao[9] = (Byte)'#';
         
         data = [NSData dataWithBytes:addServiceBao length:sizeof(addServiceBao)];
         NSLog(@"设备连接成功");
     } else if ([type isEqualToString:kQuite]) {
         
-        Byte quiteByteAry[14];
+        Byte quiteByteAry[10];
         quiteByteAry[0] = (Byte)'H';
         quiteByteAry[1] = (Byte)'M';
         
@@ -289,12 +294,11 @@
             quiteByteAry[i] = (Byte)userSnByte[i - 2];
         }
         
-        for (int i = 6; i < 10; i++) {
-            quiteByteAry[i] = (Byte)devSnByte[i - 6];
-        }
+        quiteByteAry[6] = devSnByte[0];
+        quiteByteAry[7] = devSnByte[1];
         
-        quiteByteAry[10] = (Byte)'Q';
-        quiteByteAry[11] = (Byte)'#';
+        quiteByteAry[8] = (Byte)'Q';
+        quiteByteAry[9] = (Byte)'#';
         
         data = [NSData dataWithBytes:quiteByteAry length:sizeof(quiteByteAry)];
         
@@ -304,7 +308,4 @@
     
     [self.socket writeData:data withTimeout:-1 tag:0];
 }
-
-
-
 @end

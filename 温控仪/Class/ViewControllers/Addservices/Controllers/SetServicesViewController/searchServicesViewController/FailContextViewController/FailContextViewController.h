@@ -10,5 +10,5 @@
 #import "BaseViewController.h"
 
 @interface FailContextViewController : BaseViewController
-
+@property (nonatomic , strong) ServicesModel *serviceModel;
 @end

@@ -91,8 +91,6 @@
             }
             
         }
-//        
-//        self.layer.masksToBounds = YES;
     }
     
 }

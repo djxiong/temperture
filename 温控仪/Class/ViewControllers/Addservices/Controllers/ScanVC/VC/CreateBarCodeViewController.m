@@ -9,7 +9,7 @@
 #import "CreateBarCodeViewController.h"
 #import "LBXAlertAction.h"
 #import "LBXScanNative.h"
-#import "ZXingWrapper.h"
+//#import "ZXingWrapper.h"
 #import "UIImageView+CornerRadius.h"
 #import "Global.h"
 
@@ -131,9 +131,6 @@
         case SLT_Native:
               _qrImgView.image = [LBXScanNative createQRWithString:@"lbxia20091227@foxmail.com" QRSize:_qrImgView.bounds.size];
             break;
-        case SLT_ZXing:
-            _qrImgView.image = [ZXingWrapper createCodeWithString:@"lbxia20091227@foxmail.com" size:_qrImgView.bounds.size CodeFomart:kBarcodeFormatQRCode];
-            break;
             
         default:
             break;
@@ -189,10 +186,7 @@
         case SLT_Native:
           [self showError:@"native暂不支持EAN13条形码"];
             break;
-        case SLT_ZXing:
-            _tImgView.image = [ZXingWrapper createCodeWithString:@"6944551723107" size:_qrImgView.bounds.size CodeFomart:kBarcodeFormatEan13];
-            break;
-            
+       
         default:
             break;
     }
@@ -206,11 +200,6 @@
     switch ([Global sharedManager].libraryType) {
         case SLT_Native:
             _tImgView.image = [LBXScanNative createBarCodeWithString:@"283657461695996598" QRSize:_qrImgView.bounds.size];
-            break;
-        case SLT_ZXing:
-             _tImgView.image = [ZXingWrapper createCodeWithString:@"283657461695996598" size:_qrImgView.bounds.size CodeFomart:kBarcodeFormatCode128];
-            
-//             _tImgView.image = [ZXingWrapper createCodeWithString:@"283657461695996598123456" size:_qrImgView.bounds.size CodeFomart:kBarcodeFormatITF];
             break;
             
         default:

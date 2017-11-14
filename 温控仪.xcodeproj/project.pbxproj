@@ -43,6 +43,8 @@
 		ED0019DA1F4D645E009BD921 /* HeadPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019B91F4D645E009BD921 /* HeadPortraitView.m */; };
 		ED0019DB1F4D645E009BD921 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019BB1F4D645E009BD921 /* MineTableViewCell.m */; };
 		ED0019DC1F4D645E009BD921 /* OvalCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019BD1F4D645E009BD921 /* OvalCircleView.m */; };
+		ED1230DA1FB1A03300BB0663 /* CZPlistTools.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1230D91FB1A03300BB0663 /* CZPlistTools.m */; };
+		ED29096C1FB1618600F40236 /* BindServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29096B1FB1618600F40236 /* BindServiceVC.m */; };
 		ED29B1FB1EC05264007E5454 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B1FA1EC05264007E5454 /* main.m */; };
 		ED29B2061EC05264007E5454 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2051EC05264007E5454 /* Assets.xcassets */; };
 		ED29B2091EC05264007E5454 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2071EC05264007E5454 /* LaunchScreen.storyboard */; };
@@ -233,6 +235,10 @@
 		ED0019BB1F4D645E009BD921 /* MineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
 		ED0019BC1F4D645E009BD921 /* OvalCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvalCircleView.h; sourceTree = "<group>"; };
 		ED0019BD1F4D645E009BD921 /* OvalCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OvalCircleView.m; sourceTree = "<group>"; };
+		ED1230D81FB1A03300BB0663 /* CZPlistTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CZPlistTools.h; sourceTree = "<group>"; };
+		ED1230D91FB1A03300BB0663 /* CZPlistTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CZPlistTools.m; sourceTree = "<group>"; };
+		ED29096A1FB1618600F40236 /* BindServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindServiceVC.h; sourceTree = "<group>"; };
+		ED29096B1FB1618600F40236 /* BindServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindServiceVC.m; sourceTree = "<group>"; };
 		ED29B1F61EC05264007E5454 /* 温控仪.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "温控仪.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED29B1FA1EC05264007E5454 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ED29B2051EC05264007E5454 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -829,6 +835,15 @@
 			path = MineViewController/View;
 			sourceTree = "<group>";
 		};
+		ED2909691FB1615000F40236 /* BindServiceVC */ = {
+			isa = PBXGroup;
+			children = (
+				ED29096A1FB1618600F40236 /* BindServiceVC.h */,
+				ED29096B1FB1618600F40236 /* BindServiceVC.m */,
+			);
+			path = BindServiceVC;
+			sourceTree = "<group>";
+		};
 		ED29B1ED1EC05264007E5454 = {
 			isa = PBXGroup;
 			children = (
@@ -1203,6 +1218,7 @@
 				EDDBDB301FA9CA9600145525 /* AllTypeServicesHTMLVC */,
 				EDDBDB2A1FA9CA9600145525 /* AllServicesViewController */,
 				EDDBDAFD1FA821EC00145525 /* ScanVC */,
+				ED2909691FB1615000F40236 /* BindServiceVC */,
 				ED0019491F4D2095009BD921 /* SetServicesViewController */,
 			);
 			path = Controllers;
@@ -1271,6 +1287,8 @@
 			children = (
 				ED5C9FDE1F9894DD0057C208 /* CZNetworkManager.h */,
 				ED5C9FDF1F9894DD0057C208 /* CZNetworkManager.m */,
+				ED1230D81FB1A03300BB0663 /* CZPlistTools.h */,
+				ED1230D91FB1A03300BB0663 /* CZPlistTools.m */,
 			);
 			path = NetWorkManager;
 			sourceTree = "<group>";
@@ -1651,6 +1669,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDDBDB441FAAC41000145525 /* AllServicesCollectionViewCell.m in Sources */,
+				ED1230DA1FB1A03300BB0663 /* CZPlistTools.m in Sources */,
 				EDDBDB3E1FAAB95A00145525 /* ChanPinShuoMingViewController.m in Sources */,
 				EDDBDB3A1FA9CD2600145525 /* AllTypeServiceTableViewCell.m in Sources */,
 				EDDBDB391FA9CD1F00145525 /* AllTypeServiceViewController.m in Sources */,
@@ -1728,6 +1747,7 @@
 				ED29B3311EC05423007E5454 /* AppDelegate.m in Sources */,
 				ED74791B1F4BE8E8005A9708 /* ServicesModel.m in Sources */,
 				ED29B3821EC05423007E5454 /* AlertMessageView.m in Sources */,
+				ED29096C1FB1618600F40236 /* BindServiceVC.m in Sources */,
 				ED29B42F1EC0638F007E5454 /* UIAlertController+Custom.m in Sources */,
 				ED7913F71ED579DB001DE08C /* ESP_WifiUtil.m in Sources */,
 				ED00195A1F4D2095009BD921 /* SetServicesViewController.m in Sources */,

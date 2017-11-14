@@ -24,12 +24,12 @@ return sharedInstance; \
 @property (nonatomic, copy  ) NSString       *socketHost;   // socket的Host
 @property (nonatomic, assign) UInt16         socketPort;    // socket的prot
 
-
-
 @property (nonatomic , strong) ServicesModel *serviceModel;
 
 @property (nonatomic , copy) NSString *userSn;
 @property (nonatomic , copy) NSString *isDuanXianChongLian;
+
+@property (nonatomic , assign) BOOL whetherConnected;
 
 + (Singleton *)sharedInstance;
 
@@ -43,7 +43,7 @@ return sharedInstance; \
  *  @param string 发送的内容
  *  @param type   发送的类型
  */
-- (void)sendDataToHost:(NSString *)string andType:(NSString *)type andIsNewOrOld:(NSString *)isNewOrOld;
+- (void)sendDataToHost:(NSString *)string andType:(NSString *)type;
 
 - (void)enableBackgroundingOnSocket;
 // 心跳连接

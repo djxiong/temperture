@@ -21,7 +21,7 @@
 
 @property (nonatomic , strong) UIAlertController *alertVC;
 @property (nonatomic , strong) UIAlertController *alertController;
-@property (nonatomic , strong) UserModel *userModel;
+@property (nonatomic , strong) NSString *userHexSn;
 @property (nonatomic , strong) ServicesModel *serviceModel;
 @property (nonatomic , strong) UIView *markview;
 @end
@@ -123,12 +123,12 @@
 }
 
 - (void)setUpEnterForeground {
-    if (self.userModel && self.serviceModel) {
+    if (self.userHexSn && self.serviceModel) {
         
-        kSocketTCP.userSn = self.userModel.hexUsersn;
-        [kSocketTCP socketConnectHostWith:KALIHost port:kALIPort];
+        [kSocketTCP socketConnectHostWith:kSocketTCP.socketHost port:kSocketTCP.socketPort];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%@%@N#" , self.userModel.hexUsersn , _serviceModel.devSn] andType:kAddService andIsNewOrOld:nil];
+            [kSocketTCP sendDataToHost:nil andType:kAddService];
+            
         });
     }
     
@@ -144,10 +144,8 @@
     
 }
 
-- (void)initUserModel:(UserModel *)userModel {
-    
-    self.userModel = [[UserModel alloc]init];
-    self.userModel = userModel;
+- (void)initUserHexSn:(NSString *)userHexSn {
+    self.userHexSn = userHexSn;
 }
 
 - (void)initServiceModel:(ServicesModel *)serviceModel {

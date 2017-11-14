@@ -33,7 +33,9 @@
 
 #define BackGroupHeight kScreenH / 2.964444
 
-#define kVersion @"5.0.1"
+#define kVersion @"1.0.0"
+
+#define iOS10 ([[UIDevice currentDevice].systemVersion doubleValue] >= 10.0)
 
 // 是否是 iPhone X
 #define kWhetheriPhoneX (kScreenW == 375.0 && kScreenH == 812.0 ?true:false)
@@ -48,13 +50,17 @@
 //114.55.5.92    外网ip
 #define kALIPort 6003
 #define KALIHost @"192.168.1.104"
-#define localhost @"114.55.5.92"
 
 #define kQILIANPort 8899
 #define KQILIANHost @"192.168.1.110"
 
 //网络单利
 #define kNetWork [CZNetworkManager shareCZNetworkManager]
+
+//沙盒单利
+#define kPlistTools [CZPlistTools shareCZPlistTools]
+
+
 
 #define kXinTiao @"xinTiao"
 #define kZhiLing @"zhiLing"
@@ -160,6 +166,7 @@
 #import "UIBarButtonItem+Extension.h"
 #import "SVProgressHUD.h"
 #import "CZNetworkManager.h"
+#import "CZPlistTools.h"
 
 //#import "UIView+Btn.h"
 
@@ -191,8 +198,8 @@
 
 //LBXScan 如果需要使用LBXScanViewController控制器代码，那么下载了那些模块，请定义对应的宏
 #define LBXScan_Define_Native  //包含native库
-#define LBXScan_Define_ZXing   //包含ZXing库
-#define LBXScan_Define_ZBar   //包含ZBar库
+//#define LBXScan_Define_ZXing   //包含ZXing库
+//#define LBXScan_Define_ZBar   //包含ZBar库
 #define LBXScan_Define_UI     //包含界面库
 
 /**
@@ -203,34 +210,34 @@
  *  用户注册
  * 在出册用户之前，查询用户手机是否已被注册
  */
-#define kJiaoYanZhangHu [NSString stringWithFormat:@"http://%@:8080/smarthome/user/queryPhone" , localhost]
+#define kJiaoYanZhangHu [NSString stringWithFormat:@"http://%@:8080/smarthome/user/queryPhone" , KALIHost]
 
 
-#define kQueryTheUserdevice [NSString stringWithFormat:@"http://%@:8080/smarthome/userDevice/queryUserDevice", localhost]
+#define kQueryTheUserdevice [NSString stringWithFormat:@"http://%@:8080/smarthome/userDevice/queryUserDevice", KALIHost]
 
 /**
  *  发送短信
  *
  */
-#define kFaSongDuanXin [NSString stringWithFormat:@"http://%@:8080/smarthome/user/sendCode" , localhost]
+#define kFaSongDuanXin [NSString stringWithFormat:@"http://%@:8080/smarthome/user/sendCode" , KALIHost]
 
 /**
  *  注册信息提交
  *
  */
-#define kRegisterURL [NSString stringWithFormat:@"http://%@:8080/smarthome/user/register" , localhost]
+#define kRegisterURL [NSString stringWithFormat:@"http://%@:8080/smarthome/user/register" , KALIHost]
 
 /**
  *  修改密码，包括登入后修改密码和忘记密码
  *
  */
-#define kChongZhiMiMa [NSString stringWithFormat:@"http://%@:8080/smarthome/user/modifyPassword" , localhost]
+#define kChongZhiMiMa [NSString stringWithFormat:@"http://%@:8080/smarthome/user/modifyPassword" , KALIHost]
 
 /**
  *  用户登入
  *
  */
-#define kLogin [NSString stringWithFormat:@"http://%@:8080/smarthome/user/login", localhost]
+#define kLogin [NSString stringWithFormat:@"http://%@:8080/smarthome/user/login", KALIHost]
 
 
 
@@ -244,25 +251,25 @@
  *  修改用户信息
  *
  */
-#define kXiuGaiXinXi [NSString stringWithFormat:@"http://%@:8080/smarthome/user/modifyUserInfo", localhost]
+#define kXiuGaiXinXi [NSString stringWithFormat:@"http://%@:8080/smarthome/user/modifyUserInfo", KALIHost]
 
 /**
  *  用户上传头像
  *
  */
-#define kShangChuanTouXiang [NSString stringWithFormat:@"http://%@:8080/smarthome/user/uploadUserHeadphoto", localhost]
+#define kShangChuanTouXiang [NSString stringWithFormat:@"http://%@:8080/smarthome/user/uploadUserHeadphoto", KALIHost]
 
 /**
  *  查询用户地址
  *
  */
-#define kChaXunYongHuDiZhi [NSString stringWithFormat:@"http://%@:8080/smarthome/user/queryUserAddress", localhost]
+#define kChaXunYongHuDiZhi [NSString stringWithFormat:@"http://%@:8080/smarthome/user/queryUserAddress", KALIHost]
 
 /**
  *  修改用户地址
  *
  */
-#define kXiuGaiYongHuDiZhi [NSString stringWithFormat:@"http://%@:8080/smarthome/user/modifyUserAddress", localhost]
+#define kXiuGaiYongHuDiZhi [NSString stringWithFormat:@"http://%@:8080/smarthome/user/modifyUserAddress", KALIHost]
 
 
 
@@ -275,36 +282,36 @@
  *  查询最新版本号
  *
  */
-#define kChaXunBanBenHao [NSString stringWithFormat:@"http://%@:8080/smarthome/app/queryLatestVersion", localhost]
+#define kChaXunBanBenHao [NSString stringWithFormat:@"http://%@:8080/smarthome/app/queryLatestVersion", KALIHost]
 
 /**
  *  查询消息接口
  *
  */
-#define kXiaoXiJieKou [NSString stringWithFormat:@"http://%@:8080/smarthome/app/queryMessage", localhost]
+#define kXiaoXiJieKou [NSString stringWithFormat:@"http://%@:8080/smarthome/app/queryMessage", KALIHost]
 
 /**
  *  查询消息接口
  *
  */
-#define kSystemMessageJieKou [NSString stringWithFormat:@"http://%@:8080/smarthome/app/queryPublicMessage", localhost]
+#define kSystemMessageJieKou [NSString stringWithFormat:@"http://%@:8080/smarthome/app/queryPublicMessage", KALIHost]
 
 /**
  *  查询消息接口
  *
  */
-#define kUserReadSystemMessageCount [NSString stringWithFormat:@"http://%@:8080/smarthome/app/increasePMReadCount", localhost]
+#define kUserReadSystemMessageCount [NSString stringWithFormat:@"http://%@:8080/smarthome/app/increasePMReadCount", KALIHost]
 /**
  *  用户反馈借口
  *
  */
-#define kYongHuFanKui [NSString stringWithFormat:@"http://%@:8080/smarthome/app/addFeedback", localhost]
+#define kYongHuFanKui [NSString stringWithFormat:@"http://%@:8080/smarthome/app/addFeedback", KALIHost]
 
 /**
  *  更多产品
  *
  */
-#define kGengDuoChanPin [NSString stringWithFormat:@"http://%@:8080/smarthome/deviceType/queryMoreProduct", localhost]
+#define kGengDuoChanPin [NSString stringWithFormat:@"http://%@:8080/smarthome/deviceType/queryMoreProduct", KALIHost]
 
 
 
@@ -317,25 +324,25 @@
  *  关于我们
  *
  */
-#define kAboutOurs [NSString stringWithFormat:@"http://%@:8080/smarthome/app/aboutus", localhost]
+#define kAboutOurs [NSString stringWithFormat:@"http://%@:8080/smarthome/app/aboutus", KALIHost]
 
 /**
  *  产品说明
  *
  */
-#define kChanPinShuo [NSString stringWithFormat:@"http://%@:8080/smarthome/app/introduction", localhost]
+#define kChanPinShuo [NSString stringWithFormat:@"http://%@:8080/smarthome/app/introduction", KALIHost]
 
 /**
  *  在线帮助
  *
  */
-#define kZaiXianBangZhu [NSString stringWithFormat:@"http://%@:8080/smarthome/app/help", localhost]
+#define kZaiXianBangZhu [NSString stringWithFormat:@"http://%@:8080/smarthome/app/help", KALIHost]
 
 /**
  *  更新日志
  *
  */
-#define kGengXinRiZhi [NSString stringWithFormat:@"http://%@:8080/smarthome/app/log/ios", localhost]
+#define kGengXinRiZhi [NSString stringWithFormat:@"http://%@:8080/smarthome/app/log/ios", KALIHost]
 
 /**
  *  天气接口
@@ -345,8 +352,9 @@
 /**
  *  所有设备类型借口
  */
-#define kAllTypeServiceURL [NSString stringWithFormat:@"http://%@:8080/smarthome/deviceType/queryTypeList", localhost]
+#define kAllTypeServiceURL [NSString stringWithFormat:@"http://%@:8080/smarthome/deviceType/queryTypeList", KALIHost]
 
 #define kServiceDescriptionURL(typeSn , devTypeSn) [NSString stringWithFormat:@"http://112.124.48.212/webpage/%@/%@/introduction/index.html" , typeSn , devTypeSn]
+
 
 #endif

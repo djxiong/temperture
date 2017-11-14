@@ -7,8 +7,9 @@
 //
 
 #import "FailContextViewController.h"
-#import "SetServicesViewController.h"
-
+#import "AllTypeServiceViewController.h"
+#import "MineSerivesViewController.h"
+#import "UserFeedBackViewController.h"
 @interface FailContextViewController ()<UIGestureRecognizerDelegate>
 @end
 
@@ -17,15 +18,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.imageView.image = [UIImage imageNamed:@"addServiceBackImage"];
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(noAtcion) image:nil highImage:nil];
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+   
     [self setUI];
     
-    
+    [self setupNav];
 }
 
-- (void)noAtcion {
+- (void)setupNav {
     
+    self.navigationController
+    .interactivePopGestureRecognizer.delegate = self;
+    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setImage:[UIImage imageNamed:@"navigationButtonReturn"] forState:UIControlStateNormal];
+    [backButton setTitle:@"返回主界面" forState:UIControlStateNormal];
+    [backButton setTitleColor:kMainColor forState:UIControlStateNormal];
+    backButton.titleLabel.font = [UIFont systemFontOfSize:k15];
+    [backButton sizeToFit];
+    // 这句代码放在sizeToFit后面
+    backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    backButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    [backButton addTarget:self action:@selector(backAtcion) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+}
+
+- (void)backAtcion {
+    MineSerivesViewController *tabVC = [[MineSerivesViewController alloc]init];
+    tabVC.fromAddVC = @"YES";
+    
+    for (UIViewController *vc in self.navigationController.childViewControllers) {
+        if ([vc isKindOfClass:[tabVC class]]) {
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
@@ -38,7 +64,7 @@
     [self.view addSubview:view];
     view.backgroundColor = [UIColor redColor];
     
-    UILabel *lable1 = [UILabel creatLableWithTitle:@"添加失败!" andSuperView:view andFont:k17 andTextAligment:NSTextAlignmentLeft];
+    UILabel *lable1 = [UILabel creatLableWithTitle:@"绑定失败!" andSuperView:view andFont:k17 andTextAligment:NSTextAlignmentLeft];
     lable1.layer.borderWidth = 0;
     [lable1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kScreenW / 8.3);
@@ -47,7 +73,7 @@
     }];
     lable1.textColor = [UIColor whiteColor];
     
-    UILabel *lable2 = [UILabel creatLableWithTitle:@"产品名称+型号" andSuperView:view andFont:k15 andTextAligment:NSTextAlignmentLeft];
+    UILabel *lable2 = [UILabel creatLableWithTitle:[NSString stringWithFormat:@"%@%@" , self.serviceModel.brand , self.serviceModel.typeName] andSuperView:view andFont:k15 andTextAligment:NSTextAlignmentLeft];
     lable2.layer.borderWidth = 0;
     [lable2 mas_makeConstraints:^(MASConstraintMaker *make) {
 
@@ -149,16 +175,26 @@
 #pragma mark - 重试按钮点击事件
 - (void)againBtnAction {
     
-    SetServicesViewController *setSerVC = [[SetServicesViewController alloc]init];
-    setSerVC.navigationItem.title = @"添加设备";
-    [self.navigationController pushViewController:setSerVC animated:YES];
+    AllTypeServiceViewController *allTypeVC = [[AllTypeServiceViewController alloc]init];
+    allTypeVC.navigationItem.title = @"添加设备";
+    [self.navigationController pushViewController:allTypeVC animated:YES];
     
 }
 
 #pragma mark - 在线反馈按钮点击事件
 - (void)fanKuiBtnAction {
     
+    UserFeedBackViewController *fanKuiVC = [[UserFeedBackViewController alloc]init];
+    fanKuiVC.navigationItem.title = @"在线反馈";
+    [self.navigationController pushViewController:fanKuiVC animated:YES];
     
+}
+
+- (void)setServiceModel:(ServicesModel *)serviceModel {
+    _serviceModel = serviceModel;
+    if (_serviceModel.brand == nil) {
+        _serviceModel.brand = @"";
+    }
 }
 
 @end

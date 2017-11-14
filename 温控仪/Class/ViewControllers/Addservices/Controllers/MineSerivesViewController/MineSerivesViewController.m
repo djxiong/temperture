@@ -14,22 +14,41 @@
 #import "FirstUserAlertView.h"
 #import "AllTypeServiceViewController.h"
 
-
-
-@interface MineSerivesViewController ()<UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout , HelpFunctionDelegate , CCLocationManagerZHCDelegate , UIGestureRecognizerDelegate , SendServiceModelToParentVCDelegate>
+@interface MineSerivesViewController ()<UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout , CCLocationManagerZHCDelegate , UIGestureRecognizerDelegate , SendServiceModelToParentVCDelegate>
 @property (nonatomic , strong) UICollectionView *collectionView;
 
 
 @property (nonatomic , strong) UIViewController *childViewController;
 @property (nonatomic , strong) NSMutableArray *haveArray;
-@property (nonatomic , copy) NSString *userSn;
 @property (nonatomic , strong) ServicesModel *serviceModel;
-
 @property (nonatomic , strong) UIView *markView;
+
+@property (nonatomic , copy) NSString *userSn;
+@property (nonatomic , copy) NSString *userHexSn;
 
 @end
 
 @implementation MineSerivesViewController
+
+- (NSString *)userSn {
+    if (!_userSn) {
+        if ([kStanderDefault objectForKey:@"userSn"]) {
+            _userSn = [kStanderDefault objectForKey:@"userSn"];
+        }
+    }
+    return _userSn;
+}
+
+- (NSString *)userHexSn {
+    if (!_userHexSn) {
+        _userHexSn = [NSString toHex:self.userSn.integerValue];
+        if (_userHexSn.length != 8) {
+            _userHexSn = [NSString stringWithFormat:@"0%@" , _userHexSn];
+        }
+    }
+    return _userHexSn;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -37,10 +56,8 @@
     [kStanderDefault setObject:@"YES" forKey:@"Login"];
     
     
-    if ([kStanderDefault objectForKey:@"userSn"]) {
-        NSString *sn = [kStanderDefault objectForKey:@"userSn"];
-        self.userSn = [NSString toHex:sn.integerValue];
-        kSocketTCP.userSn = self.userSn;
+    if (self.userSn) {
+        kSocketTCP.userSn = self.userHexSn;
         [kSocketTCP socketConnectHostWith:KALIHost port:kALIPort];
     }
     
@@ -71,17 +88,51 @@
     
     self.navigationController.navigationBar.hidden = NO;
     
-    if (self.userSn && self.serviceModel) {
-        [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%@%@Q#" , self.userSn , self.serviceModel.devSn] andType:kQuite andIsNewOrOld:nil];
+    if (self.userHexSn && self.serviceModel) {
+        [kSocketTCP sendDataToHost:nil andType:kQuite];
     }
     
-    if ([kStanderDefault objectForKey:@"userSn"] != nil || [kStanderDefault objectForKey:@"userSn"] != NULL) {
-        NSDictionary *parameters = @{@"userSn": [kStanderDefault objectForKey:@"userSn"]};
-        [HelpFunction requestDataWithUrlString:kQueryTheUserdevice andParames:parameters andDelegate:self];
+    if (self.userSn) {
+        NSDictionary *parameters = @{@"userSn": @(self.userSn.integerValue)};
+        
+        [kNetWork requestPOSTUrlString:kQueryTheUserdevice parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
+            NSInteger state = [responseObject[@"state"] integerValue];
+            if (state == 0) {
+                
+                if ([responseObject[@"data"] isKindOfClass:[NSNull class]]) {
+                    self.markView.hidden = NO;
+                    return ;
+                }
+                NSMutableArray *dataArray = responseObject[@"data"];
+                
+                if (dataArray.count > 0) {
+                    [self.haveArray removeAllObjects];
+                    [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        NSDictionary *dic = obj;
+                        
+                        ServicesModel *serviceModel = [[ServicesModel alloc]init];
+                        [serviceModel setValuesForKeysWithDictionary:dic];
+                        serviceModel.userDeviceID = [obj[@"id"] integerValue];
+                        serviceModel.ifConn = [obj[@"ifConn"] integerValue];
+                        [_haveArray addObject:serviceModel];
+                    }];
+                    [kStanderDefault setObject:@"YES" forKey:@"isHaveService"];
+                    
+                    if (self.haveArray.count > 0) {
+                        self.markView.hidden = YES;
+                        
+                    } else {
+                        self.markView.hidden = NO;
+                    }
+                    [self.collectionView reloadData];
+                }
+            }
+        } failure:^(NSError * _Nonnull error){
+            
+        }];
+        
     }
 }
-
-
 
 - (void)setNav {
     self.navigationItem.title = @"启联者";
@@ -168,49 +219,6 @@
     
 }
 
-#pragma mark - 获取代理的数据
-- (void)requestData:(HelpFunction *)requset queryUserdevice:(NSDictionary *)dddd{
-    NSInteger state = [dddd[@"state"] integerValue];
-    if (state == 0) {
-        
-        if ([dddd[@"data"] isKindOfClass:[NSNull class]]) {
-            self.markView.hidden = NO;
-            return ;
-        }
-        NSMutableArray *dataArray = dddd[@"data"];
-        
-        if (dataArray.count > 0) {
-            [self.haveArray removeAllObjects];
-            [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSDictionary *dic = obj;
-                
-                if ([dic[@"brand"] isKindOfClass:[NSNull class]]) {
-                    [dic setValue:@"" forKey:@"brand"];
-                }
-                
-                ServicesModel *serviceModel = [[ServicesModel alloc]init];
-                [serviceModel setValuesForKeysWithDictionary:dic];
-                serviceModel.userDeviceID = [obj[@"id"] integerValue];
-                serviceModel.ifConn = [obj[@"ifConn"] integerValue];
-                [_haveArray addObject:serviceModel];
-            }];
-            [kStanderDefault setObject:@"YES" forKey:@"isHaveService"];
-            
-            if (self.haveArray.count > 0) {
-                self.markView.hidden = YES;
-                [self.collectionView reloadData];
-            } else {
-                self.markView.hidden = NO;
-            }
-            
-        }
-    }
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
-}
-
 - (void)getCityNameAndProvience:(NSArray *)address {
     NSString *cityName = address[0];
     
@@ -219,8 +227,6 @@
     }
     [kStanderDefault setObject:cityName forKey:@"cityName"];
 }
-
-
 
 #pragma mark - 向右滑动返回主界面
 - (void)swipeGesture22:(UISwipeGestureRecognizer *)swipe {
@@ -296,12 +302,16 @@
     model = self.haveArray[indexPath.row];
     
     [kApplicate initServiceModel:model];
+    [kApplicate initUserHexSn:self.userHexSn];
+    
     kSocketTCP.serviceModel = model;
-    [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%@%@N#" , self.userSn ,  model.devSn] andType:kAddService andIsNewOrOld:nil];
+
+    [kSocketTCP sendDataToHost:nil andType:kAddService];
     
     HTMLBaseViewController *htmlVC = [[HTMLBaseViewController alloc]init];
+    htmlVC.connectState = CONNECTED_CONNECTALI;
     htmlVC.serviceModel = model;
-    htmlVC.sendServiceModelToParentVCDelegate = self;
+    htmlVC.delegate = self;
     [self.navigationController pushViewController:htmlVC animated:YES];
 }
 

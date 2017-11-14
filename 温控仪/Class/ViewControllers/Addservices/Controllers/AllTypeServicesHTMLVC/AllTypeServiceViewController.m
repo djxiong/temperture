@@ -12,6 +12,7 @@
 #import "AllTypeServiceModel.h"
 #import "AllTypeServiceTableViewCell.h"
 
+
 @interface AllTypeServiceViewController ()<UITableViewDelegate , UITableViewDataSource , HelpFunctionDelegate>
 @property (nonatomic , copy) NSString *devType;
 @property (nonatomic , strong) NSMutableArray *dataArray;
@@ -28,7 +29,10 @@
     
     [self setAlertView];
     
-    [HelpFunction requestDataWithUrlString:kAllTypeServiceURL andParames:nil andDelegate:self];
+    [self requestAllTypesService];
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -50,6 +54,37 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
+}
+
+- (void)requestAllTypesService {
+    [kNetWork requestPOSTUrlString:kAllTypeServiceURL parameters:nil isSuccess:^(NSDictionary * _Nullable responseObject) {
+        
+        [kPlistTools saveDataToFile:responseObject name:@"AllTypesServices"];
+        
+        [self setDataWith:responseObject];
+        
+    } failure:^(NSError * _Nonnull error) {
+        if ([kPlistTools whetherExite:@"AllTypesServices"]) {
+            NSDictionary *dic = [kPlistTools readDataFromFile:@"AllTypesServices"];
+            [self setDataWith:dic];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"当前网络不可用，\n请检查您的网络设置"];
+        }
+    }];
+}
+
+- (void)setDataWith:(NSDictionary *)dic {
+    if ([dic[@"data"] isKindOfClass:[NSArray class]]) {
+        NSArray *arr = [NSArray arrayWithArray:dic[@"data"]];
+        
+        for (NSDictionary *dd in arr) {
+            AllTypeServiceModel *model = [[AllTypeServiceModel alloc]init];
+            [model setValuesForKeysWithDictionary:dd];
+            [self.dataArray addObject:model];
+        }
+        
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - 代理返回的数据

@@ -24,16 +24,22 @@
     self.imageView.image = [UIImage imageNamed:@"addServiceBackImage"];
     
     [self setUI];
-    self.wifiName = [[CZNetworkManager shareCZNetworkManager]getWifiName];
+}
+
+- (NSString *)getWifiName {
+    return [[CZNetworkManager shareCZNetworkManager] getWifiName];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (self.wifiName != nil || self.wifiName != NULL) {
+    if ([self getWifiName] != nil || [self getWifiName] != NULL) {
         
-        if (![self.wifiName isEqualToString:@"Qinianerwky"]) {
-            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"请链接设备指定WIFI，否则设备无法绑定!"];
+        if (![[self getWifiName] isEqualToString:@"Qinianerwky"]) {
+            [UIAlertController creatRightAlertControllerWithHandle:^{
+                [kNetWork pushToWIFISetVC];
+                return ;
+            } andSuperViewController:self Title:@"请链接设备指定WIFI，否则设备无法绑定!"];
         }
     } else {
         [UIAlertController creatRightAlertControllerWithHandle:^{
@@ -57,7 +63,7 @@
         make.top.mas_equalTo(self.view.mas_top).offset(kScreenH / 11 + kHeight);
     }];
 
-    UILabel *firstLable = [UILabel creatLableWithTitle:[NSString stringWithFormat:@"请把手机当前WIFI连接到烤箱的WIFI"] andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
+    UILabel *firstLable = [UILabel creatLableWithTitle:[NSString stringWithFormat:@"请把手机当前WIFI连接到'Qinianerwky'的WIFI"] andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
     firstLable.textColor = [UIColor whiteColor];
     firstLable.layer.borderWidth = 0;
     [firstLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -81,30 +87,27 @@
 #pragma mark - 下一步按钮点击事件
 - (void)neaxtBtnAction {
     
+    if (![[self getWifiName] isEqualToString:@"Qinianerwky"]) {
+        [UIAlertController creatRightAlertControllerWithHandle:^{
+            [kNetWork pushToWIFISetVC];
+            return ;
+        } andSuperViewController:self Title:@"未连接到指定WIFI，无法进行配网设置"];
+    }
+    
     SearchServicesViewController *searVC = [[SearchServicesViewController alloc]init];
-    searVC.navigationItem.title = @"添加设备";
-    searVC.addServiceModel = self.addServiceModel;
+    searVC.serviceModel = self.serviceModel;
+    searVC.navigationItem.title = @"设备配网";
     [self.navigationController pushViewController:searVC animated:YES];
     
 }
 
 
-- (void)setAddServiceModel:(AddServiceModel *)addServiceModel {
-    _addServiceModel = addServiceModel;
-    
-//    switch (_addServiceModel.slType) {
-//        case 1:
-//            self.alertMessage = @"定时3秒";
-//            break;
-//        case 2:
-//            self.alertMessage = @"开关3秒";
-//            break;
-//        case 3:
-//            self.alertMessage = @"wifi3秒";
-//            break;
-//        default:
-//            break;
-//    }
+- (void)setServiceModel:(ServicesModel *)serviceModel {
+    _serviceModel = serviceModel;
+    _serviceModel.devSn = [NSString toHex:[_serviceModel.devSn integerValue]];
+    if (_serviceModel.devSn.length != 4) {
+        _serviceModel.devSn = [NSString stringWithFormat:@"0%@" , _serviceModel.devSn];
+    }
 }
 
 @end

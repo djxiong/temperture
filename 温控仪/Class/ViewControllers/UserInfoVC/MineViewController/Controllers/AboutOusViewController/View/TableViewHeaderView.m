@@ -17,7 +17,7 @@
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo"]];
         [self addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(kScreenW / 4.5, kScreenW / 4.5));
+            make.size.mas_equalTo(CGSizeMake(kScreenW / 3.5, kScreenW / 12.5));
             make.centerX.mas_equalTo(self.centerX);
             make.centerY.mas_equalTo(self.centerY).offset(-kScreenW / 20);
         }];

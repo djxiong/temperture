@@ -9,25 +9,24 @@
 #import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
+typedef enum : NSUInteger {
+    CONNECTED_ZHILIAN,
+    CONNECTED_CONNECTALI,
+} CONNECTED_STATE;
+
 @protocol SendServiceModelToParentVCDelegate <NSObject>
 
+@optional
 - (void)sendServiceModelToParentVC:(ServicesModel *)serviceModel;
+- (void)serviceCurrentConnectedState:(CONNECTED_STATE)state;
+
 @end
 
 @interface HTMLBaseViewController : UIViewController
 
+@property (nonatomic , assign) CONNECTED_STATE connectState;
 @property (nonatomic , strong) ServicesModel *serviceModel;
 @property (nonatomic , strong) UserModel *userModel;
-@property (nonatomic , strong) NSMutableDictionary *dic;
+@property (nonatomic , assign) id<SendServiceModelToParentVCDelegate> delegate;
 
-@property (nonatomic , strong) NSIndexPath *indexPath;
-
-@property (nonatomic , strong) UIWebView *webView;
-@property (nonatomic , strong) UIActivityIndicatorView *searchView;
-
-@property (nonatomic , strong) JSContext *context;
-@property (nonatomic , assign) id<SendServiceModelToParentVCDelegate> sendServiceModelToParentVCDelegate;
-
-- (void)passValueWithBlock;
-- (void)getMachineDeviceAtcion:(NSNotification *)post;
 @end

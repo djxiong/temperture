@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-- (void)initUserModel:(UserModel *)userModel;
+- (void)initUserHexSn:(NSString *)userHexSn;
 - (void)initServiceModel:(ServicesModel *)serviceModel;
 @end
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <LBXScanViewStyle.h>
-#import <ZXBarcodeFormat.h>
+//#import <ZXBarcodeFormat.h>
 
 
 @interface StyleDIY : NSObject
@@ -41,6 +41,6 @@
 + (LBXScanViewStyle*)notSquare;
 
 #pragma mark -ZXing码格式类型转native
-+ (NSString*)convertZXBarcodeFormat:(ZXBarcodeFormat)barCodeFormat;
+//+ (NSString*)convertZXBarcodeFormat:(ZXBarcodeFormat)barCodeFormat;
 
 @end

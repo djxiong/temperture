@@ -10,6 +10,14 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 @interface HTMLBaseViewController ()<HelpFunctionDelegate , UIWebViewDelegate>
 
+@property (nonatomic , strong) NSMutableDictionary *dic;
+
+@property (nonatomic , strong) NSIndexPath *indexPath;
+
+@property (nonatomic , strong) UIWebView *webView;
+@property (nonatomic , strong) UIActivityIndicatorView *searchView;
+
+@property (nonatomic , strong) JSContext *context;
 
 @end
 
@@ -22,14 +30,36 @@
     
     [kStanderDefault setObject:@"YES" forKey:@"Login"];
     
-    NSDictionary *parames = nil;
+    NSMutableDictionary *parames = [NSMutableDictionary dictionaryWithDictionary:@{@"loginName" : [kStanderDefault objectForKey:@"phone"] , @"password" : [kStanderDefault objectForKey:@"password"] , @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]}];
     if ([kStanderDefault objectForKey:@"GeTuiClientId"]) {
-        parames = @{@"loginName" : [kStanderDefault objectForKey:@"phone"] , @"password" : [kStanderDefault objectForKey:@"password"] , @"ua.clientId" : [kStanderDefault objectForKey:@"GeTuiClientId"], @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]};
-    } else {
-        parames = @{@"loginName" : [kStanderDefault objectForKey:@"phone"] , @"password" : [kStanderDefault objectForKey:@"password"] , @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]};
+
+        [parames setObject:[kStanderDefault objectForKey:@"GeTuiClientId"] forKey:@"ua.clientId"];
     }
     
-    [HelpFunction requestDataWithUrlString:kLogin andParames:parames andDelegate:self];
+    [kNetWork requestPOSTUrlString:kLogin parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+        NSDictionary *dic = responseObject;
+        if ([dic[@"state"] integerValue] == 0) {
+            
+            NSDictionary *user = dic[@"data"];
+            
+            [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
+            [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
+            
+            _userModel = [[UserModel alloc]init];
+            for (NSString *key in [user allKeys]) {
+                [_userModel setValue:user[key] forKey:key];
+            }
+            
+            [self webView:_webView shouldStartLoadWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@""]] navigationType:UIWebViewNavigationTypeLinkClicked];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [kNetWork noNetWork];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
+    }];
     
     _webView = [[UIWebView alloc]initWithFrame:kScreenFrame];
     [self.view addSubview:_webView];
@@ -57,7 +87,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
     if (self.serviceModel && self.userModel) {
-        [kSocketTCP sendDataToHost:[NSString stringWithFormat:@"HM%@%@N#" , self.userModel.hexUsersn ,  _serviceModel.devSn] andType:kAddService andIsNewOrOld:nil];
+        [kSocketTCP sendDataToHost:nil andType:kAddService];
     }
     
 }
@@ -66,9 +96,12 @@
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    if (self.serviceModel) {
-        [_sendServiceModelToParentVCDelegate sendServiceModelToParentVC:self.serviceModel];
-        
+    if ([_delegate respondsToSelector:@selector(sendServiceModelToParentVC:)] && _delegate) {
+        [_delegate sendServiceModelToParentVC:self.serviceModel];
+    }
+    
+    if ([_delegate respondsToSelector:@selector(serviceCurrentConnectedState:)]) {
+        [_delegate serviceCurrentConnectedState:self.connectState];
     }
     
 }
@@ -88,7 +121,23 @@
             
         }
         
-        NSMutableDictionary *userData = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(bself.userModel.sn) , @"userSn" , bself.serviceModel.devSn , @"devSn" , @(bself.serviceModel.userDeviceID) , @"UserDeviceID" , [NSString stringWithFormat:@"http://%@:8080/" , localhost] , @"ServieceIP" , nil];
+        
+        NSMutableDictionary *userData = [NSMutableDictionary
+                                         dictionary];
+        
+        if (bself.userModel.sn) {
+            [userData setObject:@(bself.userModel.sn) forKey:@"userSn"];
+        }
+        if (bself.serviceModel.devSn) {
+            [userData setObject:bself.serviceModel.devSn forKey:@"devSn"];
+        }
+        if (bself.serviceModel.userDeviceID) {
+            [userData setObject:@(bself.serviceModel.userDeviceID) forKey:@"UserDeviceID"];
+        }
+        if (KALIHost) {
+            [userData setObject:[NSString stringWithFormat:@"http://%@:8080/" , KALIHost] forKey:@"ServieceIP"];
+        }
+
         if (![bself.serviceModel.brand isKindOfClass:[NSNull class]]) {
             [userData setObject:[NSString stringWithFormat:@"%@%@" , bself.serviceModel.brand , bself.serviceModel.typeName] forKey:@"BrandName"];
         }
@@ -99,17 +148,6 @@
         
         NSString *orderStr = [NSString stringWithFormat:@"GetUserData(%@)" , jsonStr];
         [bself.context evaluateScript:orderStr];
-        
-        NSString *key = [NSString stringWithFormat:@"%@" , NSStringFromClass([bself.navigationController.childViewControllers[1] class])];
-        
-        if ([kStanderDefault objectForKey:key]) {
-            
-            NSString *time = [kStanderDefault objectForKey:key];
-            NSString *sendTimeToHtml = [NSString stringWithFormat:@"GetWebData(%@)" , time];
-            NSLog(@"%@" , sendTimeToHtml);
-            [bself.context evaluateScript:sendTimeToHtml];
-        }
-        
     };
     
     return YES;
@@ -175,7 +213,7 @@
        
         NSLog(@"发送给TCP的命令%@ , %@" , sumStr , parames);
         
-        [kSocketTCP sendDataToHost:sumStr andType:kZhiLing andIsNewOrOld:kNew];
+        [kSocketTCP sendDataToHost:sumStr andType:kZhiLing];
     };
 }
 
@@ -228,12 +266,7 @@
 
 - (void)setServiceModel:(ServicesModel *)serviceModel {
     _serviceModel = serviceModel;
-    
-    NSLog(@"%@" , _serviceModel);
-    
-    _serviceModel.indexUrl = [NSString stringWithFormat:@"http://%@:8080/smarthome/app/7A00/7A31A" , @"192.168.1.104"];
 }
-
 
 - (NSMutableDictionary *)dic {
     if (!_dic) {

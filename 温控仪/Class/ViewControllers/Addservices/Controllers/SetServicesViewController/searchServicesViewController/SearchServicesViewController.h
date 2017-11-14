@@ -10,16 +10,9 @@
 #import "BaseViewController.h"
 @interface SearchServicesViewController : BaseViewController
 
-@property (nonatomic , strong) AddServiceModel *addServiceModel;
+@property (nonatomic , strong) ServicesModel *serviceModel;
 
-/**
- 密码
- */
-@property (strong, nonatomic) NSString *pwdStr;
-/**
- 账号
- */
-@property (strong, nonatomic)  NSString *wifiNameStr;
+
 
 @property (nonatomic , strong) NSString *deviceSn;
 @end

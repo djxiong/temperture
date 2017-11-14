@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface AddServiceModel : NSObject
+
+@property (nonatomic , copy) NSString *indexUrl;
 @property (nonatomic , strong) NSString *typeSn;
 @property (nonatomic , copy) NSString *typeName;
 @property (nonatomic , copy) NSString *typeNumber;

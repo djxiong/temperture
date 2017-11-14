@@ -10,15 +10,18 @@
 
 @interface ServicesModel : NSObject
 
-@property (nonatomic , copy) NSString *bindUrl;
-@property (nonatomic , strong) NSString *imageUrl;
 @property (nonatomic , copy) NSString *indexUrl;
-
-@property (nonatomic , strong) NSString *devSn;
-@property (nonatomic , strong) NSString *typeName;
-@property (nonatomic , copy) NSString *brand;
-@property (nonatomic , assign) NSInteger userDeviceID;
+@property (nonatomic , strong) NSString *typeSn;
+@property (nonatomic , copy) NSString *typeName;
+@property (nonatomic , copy) NSString *typeNumber;
 @property (nonatomic , copy) NSString *protocol;
+@property (nonatomic , copy) NSString *bindUrl;
+@property (nonatomic , copy) NSString *brand;
+@property (nonatomic , copy) NSString *imageUrl;
+@property (nonatomic , copy) NSString *devSn;
+@property (nonatomic , assign) NSInteger slType;
+
+@property (nonatomic , assign) NSInteger userDeviceID;
 @property (nonatomic , assign) NSInteger slTypeInt;
 
 @property (nonatomic , copy) NSString *definedName;

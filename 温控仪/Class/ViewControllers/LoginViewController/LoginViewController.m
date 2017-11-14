@@ -118,7 +118,10 @@
     if ( (self.acctextFiled.text.length == 11 || self.acctextFiled.text.length == 9) && [UITextField validateNumber:self.acctextFiled.text]  && self.pwdTectFiled.text != nil) {
         
         [SVProgressHUD show];
-        NSDictionary *parameters = @{@"loginName":self.acctextFiled.text , @"password" : self.pwdTectFiled.text,@"ua.phoneType" : @(2)};
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{@"loginName":self.acctextFiled.text , @"password" : self.pwdTectFiled.text ,@"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]}];
+        if ([kStanderDefault objectForKey:@"GeTuiClientId"]) {
+            [parameters setObject:@"ua.clientId" forKey:[kStanderDefault objectForKey:@"GeTuiClientId"]];
+        }
         
         [kStanderDefault setObject:self.pwdTectFiled.text forKey:@"password"];
         [kStanderDefault setObject:self.acctextFiled.text forKey:@"phone"];
