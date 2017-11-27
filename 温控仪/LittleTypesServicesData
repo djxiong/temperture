@@ -1,0 +1,35 @@
+{
+  "success" : true,
+  "data" : [
+    {
+      "id" : 2,
+      "protocol" : "HMSMARTz1",
+      "indexUrl" : "http:\/\/192.168.1.104:8080\/smarthome\/app\/7A00\/7A31A",
+      "brand" : "启联者",
+      "typeNumber" : "7A31A",
+      "logoUrl" : null,
+      "imageUrl" : "http:\/\/112.124.48.212\/image\/device\/7A31A.jpg",
+      "typeSn" : "7A31",
+      "level" : 2,
+      "bindUrl" : "http:\/\/192.168.1.104:8080\/smarthome\/thermostat\/bindDevice",
+      "slType" : 5,
+      "typeName" : "电热鼓风干燥箱"
+    },
+    {
+      "id" : 3,
+      "protocol" : "HMSMARTz1",
+      "indexUrl" : "http:\/\/192.168.1.104:8080\/smarthome\/app\/7A00\/7A31B",
+      "brand" : "启联者",
+      "typeNumber" : "7A31B",
+      "logoUrl" : null,
+      "imageUrl" : "http:\/\/112.124.48.212\/image\/device\/7A31B.jpg",
+      "typeSn" : "7A31",
+      "level" : 2,
+      "bindUrl" : "http:\/\/192.168.1.104:8080\/smarthome\/thermostat\/bindDevice",
+      "slType" : 5,
+      "typeName" : "真空干燥箱"
+    }
+  ],
+  "message" : null,
+  "state" : 0
+}

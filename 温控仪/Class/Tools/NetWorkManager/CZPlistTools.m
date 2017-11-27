@@ -19,23 +19,36 @@ static CZPlistTools *tools = nil;
     return tools;
 }
 
-- (BOOL)whetherExite:(NSString *)fileName {
+- (NSString *)whetherExite:(NSString *)fileName {
 
     NSString *filePath = [self appendDocumentPath:fileName];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL result = [fileManager fileExistsAtPath:filePath];
     NSLog(@"这个文件存在：%@",result?@"是的":@"不存在");
+    return filePath;
+}
+
+- (BOOL)saveDataToBundle:(id)data name:(NSString *)fileName {
+    NSString *filePath = [self whetherExite:fileName];
+    NSLog(@"%@" , filePath);
+
+    NSData *dddd = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
+    
+    BOOL result = [dddd writeToFile:filePath atomically:YES];
+    
+    NSLog(@"缓存：%@",result?@"成功":@"失败");
     return result;
 }
 
-- (BOOL)saveDataToFile:(NSDictionary *)data name:(NSString *)fileName {
-    NSString *filePath = [self appendDocumentPath:fileName];
+- (BOOL)saveDataToFile:(id)data name:(NSString *)fileName {
+    NSString *filePath = [self whetherExite:fileName];
     NSLog(@"%@" , filePath);
     
-    NSData *data2 = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
+    NSData *dddd = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
     
-    BOOL result = [data2 writeToFile:filePath atomically:YES];
+    BOOL result = [dddd writeToFile:filePath atomically:YES];
     
+    NSLog(@"缓存：%@",result?@"成功":@"失败");
     return result;
 }
 
@@ -45,15 +58,44 @@ static CZPlistTools *tools = nil;
     
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    
-//    NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:filePath];
     return dic;
     
 }
 
+- (NSDictionary *)readDataFromBundle:(NSString *)fileName {
+    NSString *filePath = [self appendBundlePath:fileName];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    return dic;
+}
+
 - (NSString *)appendDocumentPath:(NSString *)fileName {
     
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist" , fileName]];
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    // 拼接文件路径
+    NSString *path = [doc stringByAppendingPathComponent:[NSString stringWithFormat:@"%@" , fileName]];
+    return path;
+}
+
+- (NSString *)appendBundlePath:(NSString *)fileName {
+    
+    NSString *filePath = [[NSBundle mainBundle]pathForResource:fileName ofType:nil];
+    return filePath;
+}
+
+- (void)saveFixedDataToFile {
+    NSDictionary * userData = [self readDataFromBundle:UserData];
+    [self saveDataToFile:userData name:UserData];
+    
+    NSDictionary * mineServicesData = [self readDataFromBundle:MineServicesData];
+    [self saveDataToFile:mineServicesData name:MineServicesData];
+    
+    NSDictionary * bigTypesServicesData = [self readDataFromBundle:BigTypesServicesData];
+    [self saveDataToFile:bigTypesServicesData name:BigTypesServicesData];
+    
+    NSDictionary * littleTypesServicesData = [self readDataFromBundle:LittleTypesServicesData];
+    [self saveDataToFile:littleTypesServicesData name:LittleTypesServicesData];
 }
 
 @end

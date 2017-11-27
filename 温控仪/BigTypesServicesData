@@ -1,0 +1,12 @@
+{
+  "success" : true,
+  "data" : [
+    {
+      "typeSn" : "7A00",
+      "imageUrl" : "http:\/\/112.124.48.212\/image\/device\/icon\/7A00.png",
+      "typeName" : "干燥箱"
+    }
+  ],
+  "message" : null,
+  "state" : 0
+}

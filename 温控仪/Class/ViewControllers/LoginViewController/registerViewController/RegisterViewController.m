@@ -33,25 +33,6 @@
     [super viewDidLoad];
     [self setUI];
 }
-- (void)requestServicesData:(HelpFunction *)request didOK:(NSDictionary *)dic {
-    NSInteger state = [dic[@"state"] integerValue];
-    
-    if (state == 0) {
-        
-        NSDictionary *user = dic[@"data"];
-        
-        [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
-        [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
-        [UIAlertController creatRightAlertControllerWithHandle:^{
-
-            [kWindowRoot presentViewController:[[TabBarViewController alloc]init] animated:YES completion:^{
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }];
-            
-        } andSuperViewController:self Title:@"恭喜您，注册成功"];
-    }
-}
-
 
 - (void)whetherGegisterSuccess:(NSNotification *)post {
     NSString *success = post.userInfo[@"RegisterSuccess"];
@@ -67,7 +48,27 @@
         }
         [kStanderDefault setObject:self.pwdTectFiled.text forKey:@"password"];
         [kStanderDefault setObject:self.accTectFiled.text forKey:@"phone"];
-        [HelpFunction requestDataWithUrlString:kRegisterURL andParames:parameters andDelegate:self];
+        
+        [kNetWork requestPOSTUrlString:kRegisterURL parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
+            NSInteger state = [responseObject[@"state"] integerValue];
+            
+            if (state == 0) {
+                
+                NSDictionary *user = responseObject[@"data"];
+                
+                [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
+                [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
+                [UIAlertController creatRightAlertControllerWithHandle:^{
+                    
+                    [kWindowRoot presentViewController:[[TabBarViewController alloc]init] animated:YES completion:^{
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }];
+                    
+                } andSuperViewController:self Title:@"恭喜您，注册成功"];
+            }
+        } failure:^(NSError * _Nonnull error) {
+            [kNetWork noNetWork];
+        }];
     }
 }
 
@@ -112,7 +113,7 @@
         make.right.mas_equalTo(_verificationCodeTectFiled.mas_right);
     }];
     
-    UIButton *registerBtn = [UIButton creatBtnWithTitle:@"立即注册" withLabelFont:k18 andBackGroundColor:[UIColor colorWithHexString:@"192a2f"] WithTarget:self andDoneAtcion:@selector(registerAction1) andSuperView:self.view];
+    UIButton *registerBtn = [UIButton creatBtnWithTitle:@"立即注册" withLabelFont:k18 andBackGroundColor:[UIColor colorWithHexString:@"192a2f"] WithTarget:self andDoneAtcion:@selector(registerAction) andSuperView:self.view];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kStandardW, kScreenW / 7.5));
         make.centerX.mas_equalTo(verCodeTextFiledView.mas_centerX);
@@ -190,74 +191,6 @@
     [self.view endEditing:YES];
 }
 
-#pragma mark - 代理返回的数据
-- (void)requestData:(HelpFunction *)request didSuccess:(NSDictionary *)dddd {
-    
-    //    NSLog(@"%@" , dddd);
-    
-    NSInteger state = [dddd[@"state"] integerValue];
-    if (state == 0) {
-        
-        //判断输入的时候是验证图片中显示的验证码
-        if (![self.verificationCodeTectFiled.text isEqualToString:self.authView.authCodeStr]) {
-            //验证不匹配，验证码和输入框抖动
-            CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.x"];
-            anim.repeatCount = 1;
-            anim.values = @[@-20 , @20 , @-20];
-            [self.verificationCodeTectFiled.layer addAnimation:anim forKey:nil];
-            
-        } else {
-            
-            if (self.accTectFiled.text == nil) {
-                
-                [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"账号输入为空"];
-            } else {
-                
-                self.alertMessageView.phoneNumber = self.accTectFiled.text;
-                
-                [UIView animateWithDuration:.3 animations:^{
-                    self.markView.alpha = .8;
-                    self.alertMessageView.alpha = 1;
-                    
-                }];
-                
-                
-                PZXVerificationCodeView *pzxView = [self.alertMessageView viewWithTag:10003];
-                UITextField *firstTf = [pzxView viewWithTag:100];
-                [firstTf becomeFirstResponder];
-                
-                CGRect frame = self.alertMessageView.frame;
-                int offset = frame.origin.y + frame.size.height - (kScreenH - (216+36)) + kScreenW / 10;
-
-                NSTimeInterval animationDuration = 0.30f;
-                [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
-                [UIView setAnimationDuration:animationDuration];
-                
-                if(offset > 0)
-                {
-                    self.alertMessageView.frame = CGRectMake((kScreenW - kScreenW / 1.4) / 2, (kScreenH - kScreenH / 2.66) / 2 - offset, kScreenW / 1.4, kScreenH / 2.66);
-
-                }
-                
-                [UIView commitAnimations];
-                
-            }
-        }
-        
-    } else if (state == 1) {
-        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"输入值异常"];
-    } else if (state == 3) {
-        
-        [UIAlertController creatRightAlertControllerWithHandle:^{
-            [self.navigationController popViewControllerAnimated:YES];
-        } andSuperViewController:self Title:@"此账户已存在，请直接登录"];
-    }
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
-}
-
 #pragma mark - 隐私政策点击事件
 - (void)yinSiAtcion{
     YinSiViewController *yinSiVC = [[YinSiViewController alloc]init];
@@ -273,12 +206,73 @@
 }
 
 #pragma mark - 立即注册按钮点击事件
-- (void)registerAction1{
+- (void)registerAction{
     
     if (self.accTectFiled.text.length > 0 && self.pwdTectFiled.text.length > 0 && self.verificationCodeTectFiled.text.length > 0) {
         if (self.accTectFiled.text.length == 11 && [NSString validateNumber:self.accTectFiled.text] && self.pwdTectFiled.text.length >= 6 && self.pwdTectFiled.text.length <= 12 && [self.verificationCodeTectFiled.text isEqualToString:self.authView.authCodeStr]) {
             NSDictionary *parameters = @{@"phone":self.accTectFiled.text};
             [HelpFunction requestDataWithUrlString:kJiaoYanZhangHu andParames:parameters andDelegate:self];
+            
+            [kNetWork requestPOSTUrlString:kJiaoYanZhangHu parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
+                NSInteger state = [responseObject[@"state"] integerValue];
+                if (state == 0) {
+                    if (![self.verificationCodeTectFiled.text isEqualToString:self.authView.authCodeStr]) {
+                        //验证不匹配，验证码和输入框抖动
+                        CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.x"];
+                        anim.repeatCount = 1;
+                        anim.values = @[@-20 , @20 , @-20];
+                        [self.verificationCodeTectFiled.layer addAnimation:anim forKey:nil];
+                        
+                    } else {
+                        
+                        if (self.accTectFiled.text == nil) {
+                            
+                            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"账号输入为空"];
+                        } else {
+                            
+                            self.alertMessageView.phoneNumber = self.accTectFiled.text;
+                            
+                            [UIView animateWithDuration:.3 animations:^{
+                                self.markView.alpha = .8;
+                                self.alertMessageView.alpha = 1;
+                                
+                            }];
+                            
+                            
+                            PZXVerificationCodeView *pzxView = [self.alertMessageView viewWithTag:10003];
+                            UITextField *firstTf = [pzxView viewWithTag:100];
+                            [firstTf becomeFirstResponder];
+                            
+                            CGRect frame = self.alertMessageView.frame;
+                            int offset = frame.origin.y + frame.size.height - (kScreenH - (216+36)) + kScreenW / 10;
+                            
+                            NSTimeInterval animationDuration = 0.30f;
+                            [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+                            [UIView setAnimationDuration:animationDuration];
+                            
+                            if(offset > 0)
+                            {
+                                self.alertMessageView.frame = CGRectMake((kScreenW - kScreenW / 1.4) / 2, (kScreenH - kScreenH / 2.66) / 2 - offset, kScreenW / 1.4, kScreenH / 2.66);
+                                
+                            }
+                            
+                            [UIView commitAnimations];
+                            
+                        }
+                    }
+                    
+                } else if (state == 1) {
+                    [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"输入值异常"];
+                } else if (state == 3) {
+                    
+                    [UIAlertController creatRightAlertControllerWithHandle:^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    } andSuperViewController:self Title:@"此账户已存在，请直接登录"];
+                }
+            } failure:^(NSError * _Nonnull error) {
+                [kNetWork noNetWork];
+            }];
+            
         } else {
             if (self.accTectFiled.text.length != 11) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{

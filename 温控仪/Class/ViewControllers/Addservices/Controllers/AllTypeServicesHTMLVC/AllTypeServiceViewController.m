@@ -31,8 +31,6 @@
     
     [self requestAllTypesService];
     
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -59,13 +57,13 @@
 - (void)requestAllTypesService {
     [kNetWork requestPOSTUrlString:kAllTypeServiceURL parameters:nil isSuccess:^(NSDictionary * _Nullable responseObject) {
         
-        [kPlistTools saveDataToFile:responseObject name:@"AllTypesServices"];
+        [kPlistTools saveDataToFile:responseObject name:BigTypesServicesData];
         
         [self setDataWith:responseObject];
         
     } failure:^(NSError * _Nonnull error) {
-        if ([kPlistTools whetherExite:@"AllTypesServices"]) {
-            NSDictionary *dic = [kPlistTools readDataFromFile:@"AllTypesServices"];
+        if ([kPlistTools whetherExite:BigTypesServicesData]) {
+            NSDictionary *dic = [kPlistTools readDataFromFile:BigTypesServicesData];
             [self setDataWith:dic];
         } else {
             [SVProgressHUD showErrorWithStatus:@"当前网络不可用，\n请检查您的网络设置"];

@@ -12,13 +12,12 @@
 
 @property (nonatomic , strong) NSMutableDictionary *dic;
 
-@property (nonatomic , strong) NSIndexPath *indexPath;
-
 @property (nonatomic , strong) UIWebView *webView;
 @property (nonatomic , strong) UIActivityIndicatorView *searchView;
-
 @property (nonatomic , strong) JSContext *context;
 
+@property (nonatomic , assign) BOOL whetherNetWork;
+@property (nonatomic , assign) BOOL delegateService;
 @end
 
 @implementation HTMLBaseViewController
@@ -27,58 +26,17 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    self.delegateService = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMachineDeviceAtcion:) name:kServiceOrder object:nil];
+    
+    [self setData];
+    [self webView];
+    [self searchView];
     
     [kStanderDefault setObject:@"YES" forKey:@"Login"];
     
-    NSMutableDictionary *parames = [NSMutableDictionary dictionaryWithDictionary:@{@"loginName" : [kStanderDefault objectForKey:@"phone"] , @"password" : [kStanderDefault objectForKey:@"password"] , @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]}];
-    if ([kStanderDefault objectForKey:@"GeTuiClientId"]) {
-
-        [parames setObject:[kStanderDefault objectForKey:@"GeTuiClientId"] forKey:@"ua.clientId"];
-    }
-    
-    [kNetWork requestPOSTUrlString:kLogin parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
-        NSDictionary *dic = responseObject;
-        if ([dic[@"state"] integerValue] == 0) {
-            
-            NSDictionary *user = dic[@"data"];
-            
-            [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
-            [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
-            
-            _userModel = [[UserModel alloc]init];
-            for (NSString *key in [user allKeys]) {
-                [_userModel setValue:user[key] forKey:key];
-            }
-            
-            [self webView:_webView shouldStartLoadWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@""]] navigationType:UIWebViewNavigationTypeLinkClicked];
-        }
-    } failure:^(NSError * _Nonnull error) {
-        [kNetWork noNetWork];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
-        });
-        
-    }];
-    
-    _webView = [[UIWebView alloc]initWithFrame:kScreenFrame];
-    [self.view addSubview:_webView];
-    _webView.scrollView.scrollEnabled = NO;
-    _webView.backgroundColor = [UIColor clearColor];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    self.webView.delegate = self;
-    
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.serviceModel.indexUrl]]];
-    
-    _searchView = [[UIActivityIndicatorView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    [self.view addSubview:_searchView];
-    _searchView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    [_searchView startAnimating];
-    
     [self passValueWithBlock];
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMachineDeviceAtcion:) name:kServiceOrder object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -104,8 +62,76 @@
         [_delegate serviceCurrentConnectedState:self.connectState];
     }
     
+    if ([_delegate respondsToSelector:@selector(whetherDelegateService:)]) {
+        [_delegate whetherDelegateService:self.delegateService];
+    }
+    
 }
 
+- (void)setData {
+    NSDictionary *userData = [kPlistTools readDataFromFile:UserData];
+    [self setUserData:userData];
+}
+
+- (void)setUserData:(NSDictionary *)dic {
+    
+    if ([dic[@"state"] integerValue] == 0) {
+        
+        NSDictionary *user = dic[@"data"];
+        [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
+        [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
+        
+        _userModel = [[UserModel alloc]init];
+        for (NSString *key in [user allKeys]) {
+            [_userModel setValue:user[key] forKey:key];
+        }
+    }
+}
+
+#pragma mark - 懒加载
+- (UIWebView *)webView {
+    if (!_webView) {
+        _webView = [[UIWebView alloc]initWithFrame:kScreenFrame];
+        [self.view addSubview:_webView];
+        _webView.scrollView.scrollEnabled = NO;
+        _webView.backgroundColor = [UIColor clearColor];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+        _webView.delegate = self;
+        
+        [kNetWork requestPOSTUrlString:kAllTypeServiceURL parameters:nil isSuccess:^(NSDictionary * _Nullable responseObject) {
+            self.whetherNetWork = YES;
+            if(self.serviceModel.indexUrl) {
+                [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.serviceModel.indexUrl]]];
+            } else {
+                [self loadLocalWEB];
+            }
+        } failure:^(NSError * _Nonnull error) {
+            self.whetherNetWork = NO;
+            [self loadLocalWEB];
+        }];
+    }
+    return _webView;
+}
+
+- (void)loadLocalWEB {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
+    NSString *htmlString = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [[NSURL alloc] initWithString:htmlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [_webView loadRequest:request];
+}
+
+- (UIActivityIndicatorView *)searchView {
+    if (!_searchView) {
+        _searchView = [[UIActivityIndicatorView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [self.view addSubview:_searchView];
+        _searchView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        [_searchView startAnimating];
+    }
+    return _searchView;
+}
+
+#pragma mark - WebView 代理
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     _context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     
@@ -114,13 +140,10 @@
     _context[@"PageLoadIOS"] = ^{
         
         if (bself.searchView) {
-            
             dispatch_async(dispatch_get_main_queue(), ^{
                 bself.searchView.hidden = YES;
             });
-            
         }
-        
         
         NSMutableDictionary *userData = [NSMutableDictionary
                                          dictionary];
@@ -155,8 +178,7 @@
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
-    
+
     //    __block typeof(self)bself = self;
     __block typeof (self)bself = self;
     _context[@"ShowRemind"] = ^() {
@@ -179,10 +201,14 @@
     __block typeof(self)bself = self;
     context[@"BackIOS"] = ^() {
         
+        NSArray *ary = [JSContext currentArguments];
+        
+        if (ary.count != 0) {
+            self.delegateService = YES;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             [bself.navigationController popViewControllerAnimated:YES];
         });
-        
     };
     
     context[@"OrderWebToIOS"] = ^() {
@@ -197,21 +223,24 @@
         NSArray *array = [arrarString componentsSeparatedByString:@","];
         
         NSMutableString *sumStr = [NSMutableString string];
-//        [sumStr appendFormat:@"%@", [NSString stringWithFormat:@"HMFFM%@%@w" , self.serviceModel.devTypeSn, self.serviceModel.devSn]];
         
         for (NSString *sub in array) {
-            
             if (sub.length == 1) {
                 [sumStr appendFormat:@"0%@", [NSString toHex:sub.integerValue]];
-                
             } else {
                 [sumStr appendFormat:@"%@", [NSString toHex:sub.integerValue]];
             }
         }
-        
-//        [sumStr appendString:@"#"];
        
         NSLog(@"发送给TCP的命令%@ , %@" , sumStr , parames);
+        
+        if (!self.whetherNetWork) {
+            if (self.connectState != CONNECTED_ZHILIAN) {
+                [UIAlertController creatRightAlertControllerWithHandle:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                } andSuperViewController:self Title:@"当前无网络，并使用的是云端模式!"];
+            }
+        }
         
         [kSocketTCP sendDataToHost:sumStr andType:kZhiLing];
     };
@@ -224,7 +253,6 @@
     for (NSInteger i = sumStr.length - 2; i > 0; i = i - 2) {
         [sumStr insertString:@"," atIndex:i];
     }
-    
     
     NSString *callJSstring = nil;
     callJSstring = [NSString stringWithFormat:@"ReceiveOrder('%@')" , sumStr];
@@ -240,39 +268,11 @@
     
 }
 
-
-- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
-    NSDictionary *dic = data[0];
-    //    NSLog(@"%@" , dic);
-    if ([dic[@"state"] integerValue] == 0) {
-        
-        NSDictionary *user = dic[@"data"];
-        
-        [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
-        [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
-        
-        _userModel = [[UserModel alloc]init];
-        for (NSString *key in [user allKeys]) {
-            [_userModel setValue:user[key] forKey:key];
-        }
-        
-        [self webView:_webView shouldStartLoadWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@""]] navigationType:UIWebViewNavigationTypeLinkClicked];
-    }
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
-}
-
 - (void)setServiceModel:(ServicesModel *)serviceModel {
     _serviceModel = serviceModel;
-}
-
-- (NSMutableDictionary *)dic {
-    if (!_dic) {
-        _dic = [NSMutableDictionary dictionary];
+    if (self.connectState == CONNECTED_ZHILIAN) {
+        _serviceModel.indexUrl = nil;
     }
-    return _dic;
 }
 
 - (void)dealloc {

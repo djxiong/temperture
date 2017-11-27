@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/LoginViewController/ForgetPwdViewController/ChongZhiPwdViewController/ChongZhiPwdViewController.m"
-            timestampString = "531650267.187661"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/AppDelegate/ViewController.m"
+            timestampString = "533031395.737362"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-doneBtnAtcion"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/LoginViewController/ForgetPwdViewController/ChongZhiPwdViewController/ChongZhiPwdViewController.m"
-            timestampString = "531650315.509314"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/HTMLBaseViewController/HTMLBaseViewController.m"
+            timestampString = "533469148.924791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "-requestData:didSuccess:"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "-webView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,61 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
-            timestampString = "532250519.199546"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/HTMLBaseViewController/HTMLBaseViewController.m"
+            timestampString = "533469148.924861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "-repeatRequestBindURL:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SearchServicesViewController repeatRequestBindURL:]"
-                  moduleName = "&#x6e29;&#x63a7;&#x4eea;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hangzhouaerfate/Desktop/%E6%B8%A9%E6%8E%A7%E4%BB%AA/%E6%B8%A9%E6%8E%A7%E4%BB%AA/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
-                  timestampString = "532338214.395313"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "104">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__53-[SearchServicesViewController repeatRequestBindURL:]_block_invoke"
-                  moduleName = "&#x6e29;&#x63a7;&#x4eea;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hangzhouaerfate/Desktop/%E6%B8%A9%E6%8E%A7%E4%BB%AA/%E6%B8%A9%E6%8E%A7%E4%BB%AA/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
-                  timestampString = "532338214.396748"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
-            timestampString = "532250519.199623"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "-repeatRequestBindURL:"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-webView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -115,13 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
-            timestampString = "532250519.199682"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/MineSerivesViewController/MineSerivesViewController.m"
+            timestampString = "533468829.535916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "-repeatRequestBindURL:"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-setData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -131,45 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/AppDelegate/AppDelegate.m"
-            timestampString = "532338214.291061"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/MineSerivesViewController/MineSerivesViewController.m"
+            timestampString = "533468829.536282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "-setUpEnterForeground"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/AllTypeServicesHTMLVC/AllTypeServiceViewController.m"
-            timestampString = "532257706.654409"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "-requestAllTypesService"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/AllTypeServicesHTMLVC/AllTypeServiceViewController.m"
-            timestampString = "532257706.654658"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "-requestAllTypesService"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-setData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

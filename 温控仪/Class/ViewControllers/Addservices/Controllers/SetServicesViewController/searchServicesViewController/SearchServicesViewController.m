@@ -117,11 +117,12 @@
     if (str.length == 14) {
         if ([str isEqualToString:@"FF000382010187"] || [str isEqualToString:@"ff000382010187"]) {
             self.addLable.textColor = kMainColor;
-            
-            [self bindServiceRequest];
+            [self determineAndBindTheDevice];
             return YES;
         } else {
-            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"密码输入错误，请重新输入"];
+            [UIAlertController creatRightAlertControllerWithHandle:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            } andSuperViewController:self Title:@"配网失败请重试。"];
         }
     }
     
@@ -161,77 +162,18 @@
     }
 }
 
-#pragma mark - 绑定设备的网络请求
-- (void)bindServiceRequest {
-    NSDictionary *parames = [NSMutableDictionary dictionary];
-    [parames setValuesForKeysWithDictionary:@{@"ud.userSn" : [kStanderDefault objectForKey:@"userSn"] ,  @"ud.devSn" : self.serviceModel.devSn , @"ud.devTypeSn" : self.serviceModel.typeSn, @"phoneType":@(2) , @"ud.devTypeNumber":self.serviceModel.typeNumber}];
-    
-    if ([kStanderDefault objectForKey:@"cityName"] && [kStanderDefault objectForKey:@"provience"]) {
-        NSString *city = [kStanderDefault objectForKey:@"cityName"];
-        
-        NSString *subStr = [city substringWithRange:NSMakeRange(city.length - 1, 1)];
-        if (![subStr isEqualToString:@"市"]) {
-            city = [NSString stringWithFormat:@"%@市" , city];
-        }
-        [parames setValuesForKeysWithDictionary:@{@"province" : [kStanderDefault objectForKey:@"provience"] , @"city" : city}];
-    }
-    
-    
-    self.repeatTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(repeatRequestBindURL:) userInfo:parames repeats:YES];
-}
-
-- (void)repeatRequestBindURL:(NSTimer *)time {
-    
-    NSDictionary *parames = [time userInfo];
-    
-    [kNetWork requestPOSTUrlString:self.serviceModel.bindUrl parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
-        
-        [SVProgressHUD dismiss];
-        [self.repeatTimer invalidate];
-        self.repeatTimer = nil;
-        
-        NSLog(@"%@" , responseObject);
-        
-        NSInteger state = [responseObject[@"state"] integerValue];
-        if (state == 0 || state == 2) {
-            [UIAlertController creatRightAlertControllerWithHandle:^{
-                [self determineAndBindTheDevice];
-            } andSuperViewController:self Title:@"此设备绑定成功"];
-            
-        } else if (state == 1){
-            [self addServiceFail];
-        }
-    } failure:^(NSError * _Nonnull error) {
-        [SVProgressHUD dismiss];
-        [self addServiceFail];
-    }];
-}
-
-#pragma mark - 绑定设备失败
-- (void)addServiceFail {
-    
-    if (!self.alertVC) {
-        self.alertVC = [UIAlertController creatRightAlertControllerWithHandle:^{
-            
-            FailContextViewController *failVC = [[FailContextViewController alloc]init];
-            failVC.navigationItem.title = @"失败";
-            failVC.serviceModel = self.serviceModel;
-            [self.navigationController pushViewController:failVC animated:YES];
-        } andSuperViewController:[[HelpFunction shareHelpFunction]getPresentedViewController] Title:@"此设备绑定失败"];
-    }
-}
-
 #pragma mark - 判断并绑定设备
 - (void)determineAndBindTheDevice {
     
-    MineSerivesViewController *tabVC = [[MineSerivesViewController alloc]init];
-    tabVC.fromAddVC = @"YES";
-    for (UIViewController *vc in self.navigationController.childViewControllers) {
-        if ([vc isKindOfClass:[tabVC class]]) {
-            [self.navigationController popToViewController:vc animated:YES];
+    [UIAlertController creatRightAlertControllerWithHandle:^{
+        MineSerivesViewController *tabVC = [[MineSerivesViewController alloc]init];
+        tabVC.fromAddVC = @"YES";
+        for (UIViewController *vc in self.navigationController.childViewControllers) {
+            if ([vc isKindOfClass:[tabVC class]]) {
+                [self.navigationController popToViewController:vc animated:YES];
+            }
         }
-    }
-    
+    } andSuperViewController:self Title:@"配网成功"];
     [self.updSocket close];
 }
 

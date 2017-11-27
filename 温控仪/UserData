@@ -1,0 +1,17 @@
+{
+  "success" : true,
+  "data" : {
+    "phone" : "18767112313",
+    "password" : "E10ADC3949BA59ABBE56E057F20F883E",
+    "headImageId" : 1,
+    "id" : 1,
+    "nickname" : "啦啦啦",
+    "headImageUrl" : "http:\/\/112.124.48.212\/image\/headphoto\/100000001\/20171113170015.jpg",
+    "sn" : 100000001,
+    "email" : null,
+    "birthdate" : "2017-11-14",
+    "sex" : 1
+  },
+  "message" : null,
+  "state" : 0
+}

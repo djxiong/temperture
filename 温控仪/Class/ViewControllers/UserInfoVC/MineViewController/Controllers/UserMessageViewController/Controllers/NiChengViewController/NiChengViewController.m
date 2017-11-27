@@ -82,26 +82,14 @@
             parames = @{@"user.sn" : @(self.userModel.sn) , @"user.email" : self.textFiled.text};
         }
         
-        NSLog(@"%@" , parames);
-        
-        [HelpFunction requestDataWithUrlString:kXiuGaiXinXi andParames:parames andDelegate:self];
-        
+        [kNetWork requestPOSTUrlString:kXiuGaiXinXi parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+            if ([responseObject[@"success"] integerValue] == 1) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        } failure:^(NSError * _Nonnull error) {
+            [kNetWork noNetWork];
+        }];
     }
-
-   
-}
-
-- (void)requestData:(HelpFunction *)request didSuccess:(NSDictionary *)dddd {
-    NSLog(@"%@" , dddd);
-    
-    if ([dddd[@"success"] integerValue] == 1) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

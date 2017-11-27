@@ -182,27 +182,29 @@
 - (void)sendDataToHost:(NSString *)string andType:(NSString *)type {
 //    NSLog(@"%@ , %@ , %@" , string , type , isNewOrOld);
     
-    NSString *userSn = self.userSn;
     Byte userSnByte[4];
-    
-    for (int i = 0; i < 4; i++) {
-        NSString *subStr = nil;
-        if (i != 3) {
-            subStr = [userSn substringToIndex:2];
-            userSn = [userSn substringFromIndex:2];
-        } else {
-            subStr = userSn;
+    if (self.userSn) {
+        NSString *userSn = self.userSn;
+        for (int i = 0; i < 4; i++) {
+            NSString *subStr = nil;
+            if (i != 3) {
+                subStr = [userSn substringToIndex:2];
+                userSn = [userSn substringFromIndex:2];
+            } else {
+                subStr = userSn;
+            }
+            userSnByte[i] = strtoul([subStr UTF8String], 0, 16);
         }
-
-        userSnByte[i] = strtoul([subStr UTF8String], 0, 16);
     }
     
-    NSString *devSn = self.serviceModel.devSn;
-    Byte devSnByte[devSn.length / 2];
-    
-    for (int i = 0; i < devSn.length / 2; i++) {
-        NSString *subStr = [devSn substringWithRange:NSMakeRange(2 * i, 2)];
-        devSnByte[i] = strtoul([subStr UTF8String], 0, 16);
+    Byte devSnByte[4];
+    if (self.serviceModel.devSn) {
+        NSString *devSn = self.serviceModel.devSn;
+        
+        for (int i = 0; i < devSn.length / 2; i++) {
+            NSString *subStr = [devSn substringWithRange:NSMakeRange(2 * i, 2)];
+            devSnByte[i] = strtoul([subStr UTF8String], 0, 16);
+        }
     }
     
     NSData *data = nil;

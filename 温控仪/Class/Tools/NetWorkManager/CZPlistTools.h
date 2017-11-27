@@ -18,14 +18,20 @@
  @param fileName 文件名称
  @return 是否存在
  */
-- (BOOL)whetherExite:(NSString *)fileName;
+- (NSString *)whetherExite:(NSString *)fileName;
 
 /**
  保存数据到沙盒中
 
  @param fileName 文件名称
  */
-- (BOOL)saveDataToFile:(NSDictionary *)data name:(NSString *)fileName;
+- (BOOL)saveDataToBundle:(id)data name:(NSString *)fileName;
+/**
+ 保存数据到沙盒中
+ 
+ @param fileName 文件名称
+ */
+- (BOOL)saveDataToFile:(id)data name:(NSString *)fileName;
 
 /**
  从沙盒中读取文件
@@ -36,11 +42,13 @@
 - (NSDictionary *)readDataFromFile:(NSString *)fileName;
 
 /**
- 文件目录
+ 从Bundle中获取本地数据
 
- @param fileName 文件名称
- @return 文件目录
+ @param fileName 本地数据名称
+ @return 获取的数据
  */
-- (NSString *)appendDocumentPath:(NSString *)fileName;
+- (NSDictionary *)readDataFromBundle:(NSString *)fileName;
+
+- (void)saveFixedDataToFile;
 
 @end

@@ -274,7 +274,6 @@ static HelpFunction *_request = nil;
         return ;
     }
     
-    
     AFHTTPSessionManager *mananger = [AFHTTPSessionManager manager];
     mananger.responseSerializer = [AFHTTPResponseSerializer serializer];
     

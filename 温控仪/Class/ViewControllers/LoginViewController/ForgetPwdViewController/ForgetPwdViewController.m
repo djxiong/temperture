@@ -160,67 +160,60 @@
     if (self.accTectFiled.text.length == 11) {
         NSDictionary *parameters = @{@"phone":self.accTectFiled.text};
         [HelpFunction requestDataWithUrlString:kJiaoYanZhangHu andParames:parameters andDelegate:self];
+        
+        [kNetWork requestPOSTUrlString:kJiaoYanZhangHu parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
+            
+            //    NSLog(@"%@" , dddd);
+            
+            NSInteger state = [responseObject[@"state"] integerValue];
+            if (state == 0) {
+                [UIAlertController creatRightAlertControllerWithHandle:^{
+                    self.accTectFiled.text = nil;
+                } andSuperViewController:self Title:@"此账户不存在"];
+            } else if (state == 1) {
+                [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"输入值异常"];
+            } else if (state == 3) {
+                self.sendDuanXinBtn.userInteractionEnabled = NO;
+                self.sendDuanXinBtn.backgroundColor = [UIColor grayColor];
+                
+                self.secondsCountDown = 60;
+                self.countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeFireMethod) userInfo:nil repeats:YES];
+                NSInteger sendTimeInterVal = [NSString getNowTimeInterval];
+                [kStanderDefault setObject:@(sendTimeInterVal) forKey:@"sendTimeInterVal"];
+                
+                
+                NSDictionary *parameters = @{@"dest":self.accTectFiled.text , @"bool" : @(1)};
+                [HelpFunction requestDataWithUrlString:kFaSongDuanXin andParames:parameters andDelegate:self];
+                
+                [kNetWork requestPOSTUrlString:kFaSongDuanXin parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
+                    NSDictionary *dic = responseObject;
+                    
+                    if (dic[@"data"]) {
+                        NSInteger state = [dic[@"state"] integerValue];
+                        
+                        if (state == 0) {
+                            NSDictionary *data = dic[@"data"];
+                            NSString *code = data[@"code"];
+                            NSString *userSn = data[@"userSn"];
+                            
+                            self.data = code;
+                            _userSn = userSn;
+                            NSLog(@"%@ , %@" , self.data , userSn);
+                        }
+                    }
+                } failure:^(NSError * _Nonnull error) {
+                    [kNetWork noNetWork];
+                }];
+            }
+        } failure:^(NSError * _Nonnull error) {
+            [kNetWork noNetWork];
+        }];
     } else {
         [UIAlertController creatRightAlertControllerWithHandle:^{
             self.pwdTectFiled.text = nil;
         } andSuperViewController:self Title:@"手机号码格式不正确"];
     }
     
-}
-
-- (void)requestData:(HelpFunction *)request didSuccess:(NSDictionary *)dddd {
-    
-    //    NSLog(@"%@" , dddd);
-    
-    NSInteger state = [dddd[@"state"] integerValue];
-    if (state == 0) {
-        [UIAlertController creatRightAlertControllerWithHandle:^{
-            self.accTectFiled.text = nil;
-        } andSuperViewController:self Title:@"此账户不存在"];
-    } else if (state == 1) {
-        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"输入值异常"];
-    } else if (state == 3) {
-        
-        {
-            NSDictionary *parameters = @{@"dest":self.accTectFiled.text , @"bool" : @(1)};
-            [HelpFunction requestDataWithUrlString:kFaSongDuanXin andParames:parameters andDelegate:self];
-            
-            NSInteger sendTimeInterVal = [NSString getNowTimeInterval];
-            [kStanderDefault setObject:@(sendTimeInterVal) forKey:@"sendTimeInterVal"];
-            
-            self.sendDuanXinBtn.userInteractionEnabled = NO;
-            self.sendDuanXinBtn.backgroundColor = [UIColor grayColor];
-            
-            self.secondsCountDown = 60;
-            
-            self.countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeFireMethod) userInfo:nil repeats:YES];
-        }
-    }
-}
-
-
-#pragma mark - 代理返回的数据
-- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
-    NSDictionary *dic = data[0];
-    
-    if (dic[@"data"]) {
-        NSInteger state = [dic[@"state"] integerValue];
-        
-        if (state == 0) {
-            NSDictionary *data = dic[@"data"];
-            NSString *code = data[@"code"];
-            NSString *userSn = data[@"userSn"];
-            
-            self.data = code;
-            _userSn = userSn;
-            NSLog(@"%@ , %@" , self.data , userSn);
-        }
-    }
-
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
 }
 
 -(void)timeFireMethod{

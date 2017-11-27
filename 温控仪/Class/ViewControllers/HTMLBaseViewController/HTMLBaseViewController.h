@@ -20,6 +20,8 @@ typedef enum : NSUInteger {
 - (void)sendServiceModelToParentVC:(ServicesModel *)serviceModel;
 - (void)serviceCurrentConnectedState:(CONNECTED_STATE)state;
 
+- (void)whetherDelegateService:(BOOL)delateService;
+
 @end
 
 @interface HTMLBaseViewController : UIViewController

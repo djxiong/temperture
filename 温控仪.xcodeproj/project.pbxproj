@@ -100,6 +100,10 @@
 		ED29B4731EC06A83007E5454 /* MineServiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4521EC06A83007E5454 /* MineServiceCollectionViewCell.m */; };
 		ED29B4741EC06A83007E5454 /* ServiceBaseCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4541EC06A83007E5454 /* ServiceBaseCollectionCell.m */; };
 		ED29B4751EC06A83007E5454 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B4561EC06A83007E5454 /* WeatherView.m */; };
+		ED2B15CA1FC7FC5F00247CE3 /* BigTypesServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED2B15C61FC7FC5E00247CE3 /* BigTypesServicesData */; };
+		ED2B15CB1FC7FC5F00247CE3 /* UserData in Resources */ = {isa = PBXBuildFile; fileRef = ED2B15C71FC7FC5E00247CE3 /* UserData */; };
+		ED2B15CC1FC7FC5F00247CE3 /* MineServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED2B15C81FC7FC5F00247CE3 /* MineServicesData */; };
+		ED2B15CD1FC7FC5F00247CE3 /* LittleTypesServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED2B15C91FC7FC5F00247CE3 /* LittleTypesServicesData */; };
 		ED6BFF8F1ED28ED800420596 /* TextFiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF8E1ED28ED800420596 /* TextFiledView.m */; };
 		ED6BFF921ED29A3700420596 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF911ED29A3700420596 /* BaseViewController.m */; };
 		ED6BFF951ED2CCCB00420596 /* CustomStyleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF941ED2CCCB00420596 /* CustomStyleBtn.m */; };
@@ -127,6 +131,14 @@
 		ED7914011ED579DC001DE08C /* ESPUDPSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7913F31ED579DB001DE08C /* ESPUDPSocketServer.m */; };
 		ED8E3C981EC15F640040FD3B /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8E3C971EC15F640040FD3B /* TabBarViewController.m */; };
 		ED8E3C9E1EC162F20040FD3B /* Wind.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED8E3C9D1EC162F20040FD3B /* Wind.plist */; };
+		EDB250CB1FCC17D500DDF1B6 /* build.js in Resources */ = {isa = PBXBuildFile; fileRef = EDB250CA1FCC17D500DDF1B6 /* build.js */; };
+		EDBF1F701FC55E8400E2DDB6 /* backbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = EDBF1F671FC55E8400E2DDB6 /* backbtn.png */; };
+		EDBF1F711FC55E8400E2DDB6 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EDBF1F681FC55E8400E2DDB6 /* bg.png */; };
+		EDBF1F731FC55E8400E2DDB6 /* jquery-3.1.1.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EDBF1F6A1FC55E8400E2DDB6 /* jquery-3.1.1.min.js */; };
+		EDBF1F741FC55E8400E2DDB6 /* reset.css in Resources */ = {isa = PBXBuildFile; fileRef = EDBF1F6B1FC55E8400E2DDB6 /* reset.css */; };
+		EDBF1F751FC55E8400E2DDB6 /* setbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = EDBF1F6C1FC55E8400E2DDB6 /* setbtn.png */; };
+		EDBF1F761FC55E8400E2DDB6 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = EDBF1F6D1FC55E8400E2DDB6 /* index.html */; };
+		EDBF1F771FC55E8400E2DDB6 /* receiveorder.js in Resources */ = {isa = PBXBuildFile; fileRef = EDBF1F6F1FC55E8400E2DDB6 /* receiveorder.js */; };
 		EDDBDB1B1FA829EE00145525 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDBDB1A1FA829EE00145525 /* libiconv.2.4.0.tbd */; };
 		EDDBDB1D1FA829FA00145525 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDBDB1C1FA829FA00145525 /* Foundation.framework */; };
 		EDDBDB1F1FA82A0300145525 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDBDB1E1FA82A0300145525 /* libz.1.1.3.tbd */; };
@@ -350,6 +362,11 @@
 		ED29B4541EC06A83007E5454 /* ServiceBaseCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceBaseCollectionCell.m; sourceTree = "<group>"; };
 		ED29B4551EC06A83007E5454 /* WeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherView.h; sourceTree = "<group>"; };
 		ED29B4561EC06A83007E5454 /* WeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherView.m; sourceTree = "<group>"; };
+		ED2B15B31FC6AA3700247CE3 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		ED2B15C61FC7FC5E00247CE3 /* BigTypesServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BigTypesServicesData; sourceTree = "<group>"; };
+		ED2B15C71FC7FC5E00247CE3 /* UserData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserData; sourceTree = "<group>"; };
+		ED2B15C81FC7FC5F00247CE3 /* MineServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MineServicesData; sourceTree = "<group>"; };
+		ED2B15C91FC7FC5F00247CE3 /* LittleTypesServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LittleTypesServicesData; sourceTree = "<group>"; };
 		ED5C9FDE1F9894DD0057C208 /* CZNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CZNetworkManager.h; sourceTree = "<group>"; };
 		ED5C9FDF1F9894DD0057C208 /* CZNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CZNetworkManager.m; sourceTree = "<group>"; };
 		ED6BFF8D1ED28ED800420596 /* TextFiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFiledView.h; sourceTree = "<group>"; };
@@ -406,6 +423,14 @@
 		ED8E3C961EC15F640040FD3B /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		ED8E3C971EC15F640040FD3B /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		ED8E3C9D1EC162F20040FD3B /* Wind.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Wind.plist; sourceTree = "<group>"; };
+		EDB250CA1FCC17D500DDF1B6 /* build.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = build.js; sourceTree = "<group>"; };
+		EDBF1F671FC55E8400E2DDB6 /* backbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbtn.png; sourceTree = "<group>"; };
+		EDBF1F681FC55E8400E2DDB6 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		EDBF1F6A1FC55E8400E2DDB6 /* jquery-3.1.1.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-3.1.1.min.js"; sourceTree = "<group>"; };
+		EDBF1F6B1FC55E8400E2DDB6 /* reset.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = reset.css; sourceTree = "<group>"; };
+		EDBF1F6C1FC55E8400E2DDB6 /* setbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setbtn.png; sourceTree = "<group>"; };
+		EDBF1F6D1FC55E8400E2DDB6 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		EDBF1F6F1FC55E8400E2DDB6 /* receiveorder.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = receiveorder.js; sourceTree = "<group>"; };
 		EDDBDB031FA8236300145525 /* QQLBXScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQLBXScanViewController.h; sourceTree = "<group>"; };
 		EDDBDB041FA8236300145525 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		EDDBDB051FA8236400145525 /* StyleDIY.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StyleDIY.h; sourceTree = "<group>"; };
@@ -879,6 +904,10 @@
 		ED29B1F91EC05264007E5454 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED2B15C61FC7FC5E00247CE3 /* BigTypesServicesData */,
+				ED2B15C91FC7FC5F00247CE3 /* LittleTypesServicesData */,
+				ED2B15C81FC7FC5F00247CE3 /* MineServicesData */,
+				ED2B15C71FC7FC5E00247CE3 /* UserData */,
 				ED8E3C9D1EC162F20040FD3B /* Wind.plist */,
 				ED29B2051EC05264007E5454 /* Assets.xcassets */,
 				ED29B20A1EC05264007E5454 /* Info.plist */,
@@ -916,6 +945,7 @@
 		ED29B22D1EC05423007E5454 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				EDBF1F641FC55E8400E2DDB6 /* Sources */,
 				ED5C9FDC1F9894DD0057C208 /* Tools */,
 				ED29B22E1EC05423007E5454 /* AppDelegate */,
 				ED29B2B81EC05423007E5454 /* ViewControllers */,
@@ -1289,6 +1319,7 @@
 				ED5C9FDF1F9894DD0057C208 /* CZNetworkManager.m */,
 				ED1230D81FB1A03300BB0663 /* CZPlistTools.h */,
 				ED1230D91FB1A03300BB0663 /* CZPlistTools.m */,
+				ED2B15B31FC6AA3700247CE3 /* Header.h */,
 			);
 			path = NetWorkManager;
 			sourceTree = "<group>";
@@ -1364,6 +1395,45 @@
 				ED0019B71F4D645E009BD921 /* View */,
 			);
 			path = UserInfoVC;
+			sourceTree = "<group>";
+		};
+		EDBF1F641FC55E8400E2DDB6 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				EDBF1F651FC55E8400E2DDB6 /* WenKongYiH5Code */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		EDBF1F651FC55E8400E2DDB6 /* WenKongYiH5Code */ = {
+			isa = PBXGroup;
+			children = (
+				EDBF1F661FC55E8400E2DDB6 /* dist */,
+				EDBF1F6D1FC55E8400E2DDB6 /* index.html */,
+				EDBF1F6E1FC55E8400E2DDB6 /* public */,
+			);
+			path = WenKongYiH5Code;
+			sourceTree = "<group>";
+		};
+		EDBF1F661FC55E8400E2DDB6 /* dist */ = {
+			isa = PBXGroup;
+			children = (
+				EDBF1F671FC55E8400E2DDB6 /* backbtn.png */,
+				EDBF1F681FC55E8400E2DDB6 /* bg.png */,
+				EDB250CA1FCC17D500DDF1B6 /* build.js */,
+				EDBF1F6A1FC55E8400E2DDB6 /* jquery-3.1.1.min.js */,
+				EDBF1F6B1FC55E8400E2DDB6 /* reset.css */,
+				EDBF1F6C1FC55E8400E2DDB6 /* setbtn.png */,
+			);
+			path = dist;
+			sourceTree = "<group>";
+		};
+		EDBF1F6E1FC55E8400E2DDB6 /* public */ = {
+			isa = PBXGroup;
+			children = (
+				EDBF1F6F1FC55E8400E2DDB6 /* receiveorder.js */,
+			);
+			path = public;
 			sourceTree = "<group>";
 		};
 		EDDBDAFD1FA821EC00145525 /* ScanVC */ = {
@@ -1593,8 +1663,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED8E3C9E1EC162F20040FD3B /* Wind.plist in Resources */,
+				ED2B15CA1FC7FC5F00247CE3 /* BigTypesServicesData in Resources */,
+				EDBF1F771FC55E8400E2DDB6 /* receiveorder.js in Resources */,
+				EDB250CB1FCC17D500DDF1B6 /* build.js in Resources */,
+				EDBF1F761FC55E8400E2DDB6 /* index.html in Resources */,
+				EDBF1F741FC55E8400E2DDB6 /* reset.css in Resources */,
+				ED2B15CB1FC7FC5F00247CE3 /* UserData in Resources */,
+				EDBF1F751FC55E8400E2DDB6 /* setbtn.png in Resources */,
 				ED7913FB1ED579DB001DE08C /* EspTouchDemo-Info.plist in Resources */,
+				ED2B15CD1FC7FC5F00247CE3 /* LittleTypesServicesData in Resources */,
+				EDBF1F711FC55E8400E2DDB6 /* bg.png in Resources */,
 				ED29B2091EC05264007E5454 /* LaunchScreen.storyboard in Resources */,
+				ED2B15CC1FC7FC5F00247CE3 /* MineServicesData in Resources */,
+				EDBF1F701FC55E8400E2DDB6 /* backbtn.png in Resources */,
+				EDBF1F731FC55E8400E2DDB6 /* jquery-3.1.1.min.js in Resources */,
 				ED29B2061EC05264007E5454 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

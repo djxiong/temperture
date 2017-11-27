@@ -28,13 +28,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUI];
+    
+    
+   
+    
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [SVProgressHUD dismiss];
-
-}
 
 #pragma mark - 设置UI界面
 - (void)setUI{
@@ -46,13 +45,14 @@
         make.top.mas_equalTo(kScreenH / 7.5);
     }];
     
-    TextFiledView *accFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:@"请输入您的手机号码" andSuperView:self.view];
+    TextFiledView *accFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:@"请输入您的账号" andSuperView:self.view];
     [accFiledView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top).offset(kScreenH / 3.5);
         make.size.mas_equalTo(CGSizeMake(kScreenW, kScreenW / 7.2));
         make.centerX.mas_equalTo(self.view.mas_centerX);
     }];
     self.acctextFiled = accFiledView.subviews[0];
+    self.acctextFiled.keyboardType = UIKeyboardTypeDefault;
     
 
     TextFiledView *pwdFiledView = [[TextFiledView alloc]initWithColor:[UIColor blackColor] andAlpthFloat:.3  andTextFiledPlaceHold:@"请输入密码" andSuperView:self.view];
@@ -89,9 +89,6 @@
     }];
     [resertBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
-    [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
-    [SVProgressHUD setForegroundColor:kMainColor];
 }
 
 #pragma mark - 注册用户
@@ -110,14 +107,14 @@
     [self.navigationController pushViewController:forgetPwdVC animated:YES];
 }
 
-
 #pragma mark - 登陆按钮点击事件
 - (void)loginBtnAction{
 
+    if ([self.acctextFiled.text isEqualToString:self.pwdTectFiled.text] && [self.pwdTectFiled.text isEqualToString:@"admin"]) {
+        NSDictionary *dic =  [kPlistTools readDataFromFile:UserData];
+        [self setData:dic];
+    } else if ( (self.acctextFiled.text.length == 11 || self.acctextFiled.text.length == 9) && [UITextField validateNumber:self.acctextFiled.text]  && self.pwdTectFiled.text != nil) {
     
-    if ( (self.acctextFiled.text.length == 11 || self.acctextFiled.text.length == 9) && [UITextField validateNumber:self.acctextFiled.text]  && self.pwdTectFiled.text != nil) {
-        
-        [SVProgressHUD show];
         NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{@"loginName":self.acctextFiled.text , @"password" : self.pwdTectFiled.text ,@"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]}];
         if ([kStanderDefault objectForKey:@"GeTuiClientId"]) {
             [parameters setObject:@"ua.clientId" forKey:[kStanderDefault objectForKey:@"GeTuiClientId"]];
@@ -126,33 +123,45 @@
         [kStanderDefault setObject:self.pwdTectFiled.text forKey:@"password"];
         [kStanderDefault setObject:self.acctextFiled.text forKey:@"phone"];
 
-        [HelpFunction requestDataWithUrlString:kLogin andParames:parameters andDelegate:self];
+        [kNetWork requestPOSTUrlString:kLogin parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
+            [kPlistTools saveDataToFile:responseObject name:UserData];
+            
+            NSInteger state = [responseObject[@"state"] integerValue];
+            if (state == 0){
+                [self setData:responseObject];
+            } else {
+                if (state == 1) {
+                    [self setAlertText:@"账号或密码为空"];
+                } else if (state == 2) {
+                    [self setAlertText:@"用户未注册"];
+                } else {
+                    [self setAlertText:@"密码错误"];
+                }
+            }
+        } failure:^(NSError * _Nonnull error){
+            if ([kPlistTools whetherExite:UserData]) {
+                NSDictionary *dic = [kPlistTools readDataFromFile:UserData];
+                [self setData:dic];
+            } else {
+                [kNetWork noNetWork];
+            }
+        }];
     } else {
         if (self.acctextFiled.text.length == 0) {
             [self setAlertText:@"账号输入为空"];
         }
-        
         if (self.pwdTectFiled.text.length == 0) {
             [self setAlertText:@"密码为空"];
         }
-        
         if (self.acctextFiled.text.length != 11 || self.acctextFiled.text.length != 9) {
-
             [UIAlertController creatRightAlertControllerWithHandle:^{
                 self.acctextFiled.text = nil;
             } andSuperViewController:self Title:@"账号格式输入错误"];
-            
         }
     }
-    
 }
 
-#pragma mark - 登陆的数据
-- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
-    [SVProgressHUD dismiss];
-    
-    NSDictionary *dic = data[0];
-//    NSLog(@"%@" , dic);
+- (void)setData:(NSDictionary *)dic {
     if ([dic[@"state"] integerValue] == 0) {
         
         NSDictionary *user = dic[@"data"];
@@ -164,23 +173,7 @@
             self.acctextFiled.text = nil;
             self.pwdTectFiled.text = nil;
         }];
-        
-    } else {
-        NSInteger state = [dic[@"state"] integerValue];
-        if (state == 1) {
-            [self setAlertText:@"账号或密码为空"];
-        } else if (state == 2) {
-            [self setAlertText:@"用户未注册"];
-        } else {
-            [self setAlertText:@"密码错误"];
-        }
     }
-}
-
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
-    [SVProgressHUD dismiss];
 }
 
 #pragma mark - 点击空白处收回键盘

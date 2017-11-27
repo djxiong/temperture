@@ -15,7 +15,6 @@
 #import "LaunchScreenViewController.h"
 #import "HTMLBaseViewController.h"
 
-
 #define STOREAPPID @"1113948983"
 @interface AppDelegate ()<GCDAsyncSocketDelegate , AsyncSocketDelegate , HelpFunctionDelegate>
 
@@ -41,7 +40,7 @@
     [self setRootViewController];
     [[CZNetworkManager shareCZNetworkManager]checkNetWork];
     
-    
+    [kPlistTools saveFixedDataToFile];
 
     return YES;
 }
@@ -131,7 +130,6 @@
             
         });
     }
-    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

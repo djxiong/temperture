@@ -41,26 +41,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"f2f4fb"];
-    NSDictionary *parames = nil;
-    if ([kStanderDefault objectForKey:@"GeTuiClientId"]) {
-        parames = @{@"loginName" : [kStanderDefault objectForKey:@"phone"] , @"password" : [kStanderDefault objectForKey:@"password"] , @"ua.clientId" : [kStanderDefault objectForKey:@"GeTuiClientId"], @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]};
-    } else {
-        parames = @{@"loginName" : [kStanderDefault objectForKey:@"phone"] , @"password" : [kStanderDefault objectForKey:@"password"] , @"ua.phoneType" : @(2), @"ua.phoneBrand":@"iPhone" , @"ua.phoneModel":[NSString getDeviceName] , @"ua.phoneSystem":[NSString getDeviceSystemVersion]};
-    }
     
-    [HelpFunction requestDataWithUrlString:kLogin andParames:parames andDelegate:self];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getHeadImage:) name:@"headImage" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getNiCheng:) name:@"niCheng" object:nil];
-    
-    parames = @{@"page" : @(1) , @"rows" : @10};
-    [HelpFunction requestDataWithUrlString:kSystemMessageJieKou andParames:parames andDelegate:self];
+    [self setNotifi];
     
     [self setNav];
     
     [self setUI];
     
+    [self setData];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -74,6 +62,75 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar
     .titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"20c3df"]};
+}
+
+- (void)setNotifi {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getHeadImage:) name:@"headImage" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getNiCheng:) name:@"niCheng" object:nil];
+}
+
+- (void)setData {
+    NSDictionary *userData = [kPlistTools readDataFromFile:UserData];
+    [self setUserData:userData];
+    
+    NSDictionary *parames = @{@"page" : @(1) , @"rows" : @10};
+    
+    [kNetWork requestPOSTUrlString:kSystemMessageJieKou parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+        if ([responseObject[@"total"] isKindOfClass:[NSNull class]]) {
+            return ;
+        }
+        
+        NSInteger total = [responseObject[@"total"] integerValue];
+        if (total > 0) {
+            
+            NSArray *data = responseObject[@"rows"];
+            
+            if (data.count > 0) {
+                NSMutableArray *dataArray = [NSMutableArray array];
+                [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    SystemMessageModel *model = [[SystemMessageModel alloc]init];
+                    [model setValuesForKeysWithDictionary:obj];
+                    [dataArray addObject:model];
+                }];
+                
+                SystemMessageModel *model = [[SystemMessageModel alloc]init];
+                model = [dataArray firstObject];
+                
+                
+                if (![[kStanderDefault objectForKey:@"SystemMessageTime"] isKindOfClass:[NSNull class]]) {
+                    NSString *messageTime = [kStanderDefault objectForKey:@"SystemMessageTime"];
+                    if ([messageTime compare:model.addTime]) {
+                        self.systemMessageIsShowPrompt = @"YES";
+                    } else {
+                        self.systemMessageIsShowPrompt = @"NO";
+                    }
+                } else {
+                    self.systemMessageIsShowPrompt = @"YES";
+                }
+            }
+        }
+        
+        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:1 inSection:0];
+        [self.tableVIew reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+    } failure:^(NSError * _Nonnull error) {
+        [kNetWork noNetWork];
+    }];
+}
+
+- (void)setUserData:(NSDictionary *)dic {
+    
+    if ([dic[@"state"] integerValue] == 0) {
+        
+        NSDictionary *user = dic[@"data"];
+        [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
+        [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
+        _userModel = [[UserModel alloc]init];
+        for (NSString *key in [user allKeys]) {
+            [_userModel setValue:user[key] forKey:key];
+        }
+        _headPortraitView.userModel = self.userModel;
+    }
 }
 
 - (void)setNav {
@@ -102,72 +159,6 @@
     NSIndexPath *indexpath = [NSIndexPath indexPathForRow:row inSection:section];
     MineTableViewCell *cell = (MineTableViewCell *)[self.tableVIew cellForRowAtIndexPath:indexpath];
     return cell;
-}
-
-- (void)requestData:(HelpFunction *)request didSuccess:(NSDictionary *)dddd {
-//    NSLog(@"%@" , dddd);
-    
-    if ([dddd[@"total"] isKindOfClass:[NSNull class]]) {
-        return ;
-    }
-    
-    NSInteger total = [dddd[@"total"] integerValue];
-    if (total > 0) {
-        
-        NSArray *data = dddd[@"rows"];
-        
-        if (data.count > 0) {
-            NSMutableArray *dataArray = [NSMutableArray array];
-            [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                SystemMessageModel *model = [[SystemMessageModel alloc]init];
-                [model setValuesForKeysWithDictionary:obj];
-                [dataArray addObject:model];
-            }];
-            
-            SystemMessageModel *model = [[SystemMessageModel alloc]init];
-            model = [dataArray firstObject];
-            
-            
-            if (![[kStanderDefault objectForKey:@"SystemMessageTime"] isKindOfClass:[NSNull class]]) {
-                NSString *messageTime = [kStanderDefault objectForKey:@"SystemMessageTime"];
-                if ([messageTime compare:model.addTime]) {
-                    self.systemMessageIsShowPrompt = @"YES";
-                } else {
-                    self.systemMessageIsShowPrompt = @"NO";
-                }
-            } else {
-                self.systemMessageIsShowPrompt = @"YES";
-            }
-        }
-    }
-    
-    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:1 inSection:0];
-    [self.tableVIew reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-}
-
-
-#pragma mark - 获取代理的数据
-- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
-    NSDictionary *dic = data[0];
-//    NSLog(@"%@" , dic);
-    if ([dic[@"state"] integerValue] == 0) {
-        
-        NSDictionary *user = dic[@"data"];
-        
-        [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
-        [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
-        
-        self.userModel = [[UserModel alloc]init];
-        for (NSString *key in [user allKeys]) {
-            [self.userModel setValue:user[key] forKey:key];
-        }
-        _headPortraitView.userModel = self.userModel;
-        
-    }
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
 }
 
 #pragma mark - 获取头像
@@ -317,7 +308,6 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.contentView.backgroundColor = [UIColor clearColor];
 }
-
 
 //弹出列表方法presentSnsIconSheetView需要设置delegate为self
 -(BOOL)isDirectShareInIconActionSheet

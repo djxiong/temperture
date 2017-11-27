@@ -61,10 +61,14 @@
         [kSocketTCP socketConnectHostWith:KALIHost port:kALIPort];
     }
     
+    [self setNotifai];
+    
     [self setNav];
     
     [self setUI];
 
+    [self setData];
+    
     [[CCLocationManager shareLocation] getNowCityNameAndProvienceName:self];
     
 }
@@ -91,46 +95,71 @@
     if (self.userHexSn && self.serviceModel) {
         [kSocketTCP sendDataToHost:nil andType:kQuite];
     }
-    
+}
+
+- (void)setNotifai {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(bindService) name:BindService object:nil];
+}
+#pragma mark - 绑定成功刷新数据
+- (void)bindService {
+    [self setData];
+}
+
+- (void)setData {
     if (self.userSn) {
+        
         NSDictionary *parameters = @{@"userSn": @(self.userSn.integerValue)};
         
         [kNetWork requestPOSTUrlString:kQueryTheUserdevice parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
+            
+            [kPlistTools saveDataToFile:responseObject name:MineServicesData];
             NSInteger state = [responseObject[@"state"] integerValue];
             if (state == 0) {
-                
-                if ([responseObject[@"data"] isKindOfClass:[NSNull class]]) {
-                    self.markView.hidden = NO;
-                    return ;
-                }
-                NSMutableArray *dataArray = responseObject[@"data"];
-                
-                if (dataArray.count > 0) {
-                    [self.haveArray removeAllObjects];
-                    [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        NSDictionary *dic = obj;
-                        
-                        ServicesModel *serviceModel = [[ServicesModel alloc]init];
-                        [serviceModel setValuesForKeysWithDictionary:dic];
-                        serviceModel.userDeviceID = [obj[@"id"] integerValue];
-                        serviceModel.ifConn = [obj[@"ifConn"] integerValue];
-                        [_haveArray addObject:serviceModel];
-                    }];
-                    [kStanderDefault setObject:@"YES" forKey:@"isHaveService"];
-                    
-                    if (self.haveArray.count > 0) {
-                        self.markView.hidden = YES;
-                        
-                    } else {
-                        self.markView.hidden = NO;
-                    }
-                    [self.collectionView reloadData];
-                }
+                [self setDataWith:responseObject];
             }
-        } failure:^(NSError * _Nonnull error){
             
+        } failure:^(NSError * _Nonnull error){
+            if ([kPlistTools whetherExite:MineServicesData]) {
+                NSDictionary *dic = [kPlistTools readDataFromFile:MineServicesData];
+                [self setDataWith:dic];
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"当前网络不可用，\n请检查您的网络设置"];
+            }
         }];
+    }
+}
+
+- (void)setDataWith:(NSDictionary *)dic {
+    
+    NSInteger state = [dic[@"state"] integerValue];
+    if (state == 0) {
         
+        if ([dic[@"data"] isKindOfClass:[NSNull class]]) {
+            self.markView.hidden = NO;
+            return ;
+        }
+        NSMutableArray *dataArray = dic[@"data"];
+        
+        if (dataArray.count > 0) {
+            [self.haveArray removeAllObjects];
+            [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSDictionary *dic = obj;
+                
+                ServicesModel *serviceModel = [[ServicesModel alloc]init];
+                [serviceModel setValuesForKeysWithDictionary:dic];
+                serviceModel.userDeviceID = [obj[@"id"] integerValue];
+                serviceModel.ifConn = [obj[@"ifConn"] integerValue];
+                [_haveArray addObject:serviceModel];
+            }];
+            [kStanderDefault setObject:@"YES" forKey:@"isHaveService"];
+            
+            if (self.haveArray.count > 0) {
+                self.markView.hidden = YES;
+            } else {
+                self.markView.hidden = NO;
+            }
+            [self.collectionView reloadData];
+        }
     }
 }
 
@@ -244,6 +273,12 @@
 
 - (void)sendServiceModelToParentVC:(ServicesModel *)serviceModel {
     self.serviceModel = serviceModel;
+}
+
+- (void)whetherDelegateService:(BOOL)delateService {
+    if (delateService) {
+        [self setData];
+    }
 }
 
 #pragma mark - 添加设备的点击事件

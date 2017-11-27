@@ -106,13 +106,6 @@
         _nameLable.text = @"用户名";
     }
     
-    
-    //        if (_userModel.sex == 0) {
-    //            _sexLable.text = @"♂";
-    //        } else {
-    //            _sexLable.text = @"♀";
-    //        }
-    
 }
 
 @end

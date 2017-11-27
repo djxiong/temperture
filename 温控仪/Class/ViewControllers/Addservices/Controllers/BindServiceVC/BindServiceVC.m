@@ -49,7 +49,7 @@
             [self determineAndBindTheDevice];
         } else if ([responseObject[@"state"] integerValue] == 2 ) {
             [UIAlertController creatRightAlertControllerWithHandle:^{
-                [self determineAndBindTheDevice];
+                [self returnMinSerVC];
             } andSuperViewController:self Title:@"此设备已绑定"];
             
         } else if ([responseObject[@"state"] integerValue] == 1){
@@ -83,6 +83,16 @@
     [kStanderDefault setObject:@"YES" forKey:@"isHaveServices"];
     [kStanderDefault setObject:@"YES" forKey:@"Login"];
     
+    [UIAlertController creatRightAlertControllerWithHandle:^{
+        [self returnMinSerVC];
+    } andSuperViewController:self Title:@"设备绑定成功"];
+    
+}
+
+- (void)returnMinSerVC {
+    
+    [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:BindService object:nil]];
+    
     MineSerivesViewController *tabVC = [[MineSerivesViewController alloc]init];
     tabVC.fromAddVC = @"YES";
     for (UIViewController *vc in self.navigationController.childViewControllers) {
@@ -90,7 +100,6 @@
             [self.navigationController popToViewController:vc animated:YES];
         }
     }
-    
 }
 
 - (void)setServiceModel:(ServicesModel *)serviceModel {

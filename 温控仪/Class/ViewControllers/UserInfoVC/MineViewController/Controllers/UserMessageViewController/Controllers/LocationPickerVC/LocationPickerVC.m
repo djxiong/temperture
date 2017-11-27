@@ -141,8 +141,6 @@ static NSString *celled = @"celled";
         return ;
     }
     
- 
-    
     NSString *diZhiStr = [NSString stringWithFormat:@"%@-%@" , addrProvince , addrCity];
     
     if (_delegate && [_delegate respondsToSelector:@selector(sendDiZhiDataToProvienceVC:)]) {
@@ -158,24 +156,15 @@ static NSString *celled = @"celled";
         
         parames = @{ @"address.userSn" : @(self.userModel.sn) , @"address.id" : @(self.diZhiModel.idd) , @"address.addrProvince" : addrProvince , @"address.addrCity" : addrCity , @"address.addrCounty" : addrCounty , @"address.addrDetail" : addrDetail , @"address.postcode" : postcode , @"address.receiverName" : receiverName , @"address.receiverPhone" : receiverPhone};
     }
-    NSLog(@"%@" , parames);
-    [HelpFunction requestDataWithUrlString:kXiuGaiYongHuDiZhi andParames:parames andDelegate:self];
     
-}
-
-
-
-#pragma mark - 代理返回的数据代理
-- (void)requestData:(HelpFunction *)request didSuccess:(NSDictionary *)dddd {
-//    NSLog(@"%@" , dddd);
+    [kNetWork requestPOSTUrlString:kXiuGaiYongHuDiZhi parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+        if ([responseObject[@"success"] integerValue] == 1) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [kNetWork noNetWork];
+    }];
     
-    if ([dddd[@"success"] integerValue] == 1) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
 }
 
 - (LocationCell *)tableViewindexPathForRow:(NSInteger)row inSection:(NSInteger)section {
