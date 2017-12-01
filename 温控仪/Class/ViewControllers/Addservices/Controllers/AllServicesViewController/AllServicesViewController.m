@@ -10,18 +10,22 @@
 #import "SetServicesViewController.h"
 #import "ServicesModel.h"
 #import "AddServiceModel.h"
-#import "AllServicesCollectionViewCell.h"
 #import "ChanPinShuoMingViewController.h"
+#import "AllServicesCollectionViewCell.h"
+#import "SearchServicesViewController.h"
+#import "SetServicesViewController.h"
+#import "HTMLBaseViewController.h"
 
-
-@interface AllServicesViewController ()<UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout,  HelpFunctionDelegate>
-@property (nonatomic , strong) NSMutableArray *array;
-@property (nonatomic , strong) NSMutableArray *addModelArray;
+#import "QQLBXScanViewController.h"
+#import "Global.h"
+#import "StyleDIY.h"
+@interface AllServicesViewController ()<UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout,  HelpFunctionDelegate , SendServiceModelToParentVCDelegate>
+@property (nonatomic , strong) NSMutableArray *modelArray;
 @property (nonatomic , strong) UICollectionView *collectionView;
+@property (nonatomic , copy) NSString *userSn;
 @end
 
 @implementation AllServicesViewController
-
 
 - (void)setupUI{
     
@@ -49,24 +53,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self setupUI];
     
+    [self requestData];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
+- (void)requestData {
     NSDictionary *parames = @{@"typeSn":self.typeSn};
-    [HelpFunction requestDataWithUrlString:kGengDuoChanPin andParames:parames andDelegate:self];
     
+    [kNetWork requestPOSTUrlString:kGengDuoChanPin parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+        [kPlistTools saveDataToFile:responseObject name:LittleTypesServicesData];
+        [self setDataWith:responseObject];
+    } failure:^(NSError * _Nonnull error) {
+        if ([kPlistTools whetherExite:LittleTypesServicesData]) {
+            NSDictionary *dic = [kPlistTools readDataFromFile:LittleTypesServicesData];
+            [self setDataWith:dic];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"当前网络不可用，\n请检查您的网络设置"];
+        }
+    }];
 }
-#pragma mark - 代理返回的数据
-- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
-    NSDictionary *dic = data[0];
+
+- (void)setDataWith:(NSDictionary *)dic {
     
-    self.array = [NSMutableArray array];
-    self.addModelArray = [NSMutableArray array];
+    self.modelArray = [NSMutableArray array];
     if ([dic[@"data"] isKindOfClass:[NSArray class]]) {
         NSArray *arr = [NSArray arrayWithArray:dic[@"data"]];
         
@@ -74,22 +85,12 @@
             
             ServicesModel *model = [[ServicesModel alloc]init];
             [model setValuesForKeysWithDictionary:dd];
-            if (![dd[@"slType"] isKindOfClass:[NSNull class]]) {
-                model.slTypeInt = [dd[@"slType"] integerValue];
-            }
-            AddServiceModel *addModel = [[AddServiceModel alloc]init];
-            [addModel setValuesForKeysWithDictionary:dd];
-            [self.array addObject:model];
-            [self.addModelArray addObject:addModel];
+            [self.modelArray addObject:model];
         }
         
         [self.collectionView reloadData];
     }
     
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
 }
 
 #pragma mark - collectionView有多少分区
@@ -99,7 +100,7 @@
 
 #pragma mark - 每个分区rows的个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.array.count;
+    return self.modelArray.count;
 }
 
 #pragma mark - 生成items
@@ -107,10 +108,10 @@
     
     AllServicesCollectionViewCell *cell = (AllServicesCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
     
-    cell.dataCount = self.array.count;
+    cell.dataCount = self.modelArray.count;
     cell.indexPath = indexPath;
     ServicesModel *model = [[ServicesModel alloc]init];
-    model = self.array[indexPath.row];
+    model = self.modelArray[indexPath.row];
     cell.serviceModel = model;
     
     return cell;
@@ -119,23 +120,70 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     ServicesModel *model = [[ServicesModel alloc]init];
-    model = self.array[indexPath.row];
-    
-    AddServiceModel *addModel = [[AddServiceModel alloc]init];
-    addModel = self.addModelArray[indexPath.row];
-    
+    model = self.modelArray[indexPath.row];
     if ([self.navigationItem.title isEqualToString:@"添加设备"]) {
-        SetServicesViewController *setSerVC = [[SetServicesViewController alloc]init];
-        setSerVC.addServiceModel = addModel;
-        setSerVC.navigationItem.title = self.navigationItem.title;
-        [self.navigationController pushViewController:setSerVC animated:YES];
+        
+        [UIAlertController creatSheetControllerWithFirstHandle:^{
+            SetServicesViewController *setserVC = [[SetServicesViewController alloc]init];
+            setserVC.serviceModel = model;
+            setserVC.navigationItem.title = @"添加设备";
+            [self.navigationController pushViewController:setserVC animated:YES];
+        } andFirstTitle:@"设备配网" andSecondHandle:^{
+            QQLBXScanViewController *vc = [QQLBXScanViewController new];
+            vc.libraryType = [Global sharedManager].libraryType;
+            vc.scanCodeType = [Global sharedManager].scanCodeType;
+            vc.style = [StyleDIY qqStyle];
+            vc.serviceModel = model;
+            vc.isVideoZoom = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        } andSecondTitle:@"绑定设备" andThirtHandle:^{
+            if (![[kNetWork getWifiName] isEqualToString:@"Qinianerwky"]) {
+                [UIAlertController creatRightAlertControllerWithHandle:^{
+                    [kNetWork pushToWIFISetVC];
+                    return ;
+                } andSuperViewController:self Title:@"未连接到指定的'Qinianerwky'的WIFI，无法使用直连模式"];
+            }
+            
+            
+            HTMLBaseViewController *htmlVC = [[HTMLBaseViewController alloc]init];
+            htmlVC.connectState = CONNECTED_ZHILIAN;
+            htmlVC.serviceModel = model;
+            htmlVC.delegate = self;
+            kSocketTCP.serviceModel = model;
+            [kSocketTCP socketConnectHostWith:KQILIANHost port:kQILIANPort];
+            kSocketTCP.whetherConnected = YES;
+            
+            [self.navigationController pushViewController:htmlVC animated:YES];
+        } andThirtTitle:@"直连模式" andForthHandle:nil andForthTitle:nil andSuperViewController:self];
+        
     } else {
         ChanPinShuoMingViewController *chanPinShuoMingVC = [[ChanPinShuoMingViewController alloc]init];
-        chanPinShuoMingVC.serviceModel = model;
         chanPinShuoMingVC.typeSn = self.typeSn;
+        
         [self.navigationController pushViewController:chanPinShuoMingVC animated:YES];
+    }
+    
+}
+
+- (void)serviceCurrentConnectedState:(CONNECTED_STATE)state {
+    if (state == CONNECTED_ZHILIAN) {
+        if (self.userSn) {
+            kSocketTCP.userSn = [NSString toHex:self.userSn.integerValue];
+            [kSocketTCP socketConnectHostWith:KALIHost port:kALIPort];
+        }
     }
 }
 
+- (NSString *)userSn {
+    if (!_userSn ) {
+        if ([kStanderDefault objectForKey:@"userSn"]) {
+            _userSn = [kStanderDefault objectForKey:@"userSn"];
+        } else {
+            _userSn = nil;
+        }
+        
+    }
+    return _userSn;
+}
 
 @end

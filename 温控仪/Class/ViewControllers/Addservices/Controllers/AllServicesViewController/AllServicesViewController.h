@@ -11,3 +11,4 @@
 @interface AllServicesViewController : UIViewController
 @property (nonatomic , copy) NSString *typeSn;
 @end
+
