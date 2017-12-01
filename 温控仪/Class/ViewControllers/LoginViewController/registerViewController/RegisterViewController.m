@@ -50,6 +50,7 @@
         [kStanderDefault setObject:self.accTectFiled.text forKey:@"phone"];
         
         [kNetWork requestPOSTUrlString:kRegisterURL parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
+            [kPlistTools saveDataToFile:responseObject name:UserData];
             NSInteger state = [responseObject[@"state"] integerValue];
             
             if (state == 0) {
@@ -211,7 +212,6 @@
     if (self.accTectFiled.text.length > 0 && self.pwdTectFiled.text.length > 0 && self.verificationCodeTectFiled.text.length > 0) {
         if (self.accTectFiled.text.length == 11 && [NSString validateNumber:self.accTectFiled.text] && self.pwdTectFiled.text.length >= 6 && self.pwdTectFiled.text.length <= 12 && [self.verificationCodeTectFiled.text isEqualToString:self.authView.authCodeStr]) {
             NSDictionary *parameters = @{@"phone":self.accTectFiled.text};
-            [HelpFunction requestDataWithUrlString:kJiaoYanZhangHu andParames:parameters andDelegate:self];
             
             [kNetWork requestPOSTUrlString:kJiaoYanZhangHu parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
                 NSInteger state = [responseObject[@"state"] integerValue];

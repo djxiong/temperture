@@ -159,7 +159,12 @@
                 self.markView.hidden = NO;
             }
             [self.collectionView reloadData];
+        } else {
+            
+            self.markView.hidden = NO;
         }
+        
+        
     }
 }
 

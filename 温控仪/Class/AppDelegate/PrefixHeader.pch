@@ -49,7 +49,7 @@
 //192.168.1.104  本地ip
 //114.55.5.92    外网ip
 #define kALIPort 6003
-#define KALIHost @"192.168.1.104"
+#define KALIHost @"119.29.133.237"
 
 #define kQILIANPort 8899
 #define KQILIANHost @"192.168.1.110"
@@ -59,8 +59,6 @@
 
 //沙盒单利
 #define kPlistTools [CZPlistTools shareCZPlistTools]
-
-
 
 #define kXinTiao @"xinTiao"
 #define kZhiLing @"zhiLing"

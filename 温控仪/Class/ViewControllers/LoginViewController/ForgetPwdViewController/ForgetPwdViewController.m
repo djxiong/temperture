@@ -159,7 +159,6 @@
     
     if (self.accTectFiled.text.length == 11) {
         NSDictionary *parameters = @{@"phone":self.accTectFiled.text};
-        [HelpFunction requestDataWithUrlString:kJiaoYanZhangHu andParames:parameters andDelegate:self];
         
         [kNetWork requestPOSTUrlString:kJiaoYanZhangHu parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
             
@@ -183,7 +182,6 @@
                 
                 
                 NSDictionary *parameters = @{@"dest":self.accTectFiled.text , @"bool" : @(1)};
-                [HelpFunction requestDataWithUrlString:kFaSongDuanXin andParames:parameters andDelegate:self];
                 
                 [kNetWork requestPOSTUrlString:kFaSongDuanXin parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
                     NSDictionary *dic = responseObject;

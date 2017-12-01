@@ -772,10 +772,10 @@
 		ED00199F1F4D645E009BD921 /* UserMessageViewController */ = {
 			isa = PBXGroup;
 			children = (
-				ED0019A01F4D645E009BD921 /* Controllers */,
-				ED0019AB1F4D645E009BD921 /* GeRenModel */,
 				ED0019AE1F4D645E009BD921 /* UserMessageViewController.h */,
 				ED0019AF1F4D645E009BD921 /* UserMessageViewController.m */,
+				ED0019A01F4D645E009BD921 /* Controllers */,
+				ED0019AB1F4D645E009BD921 /* GeRenModel */,
 				ED0019B01F4D645E009BD921 /* View */,
 			);
 			path = UserMessageViewController;
@@ -1967,6 +1967,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2008,6 +2009,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2018,6 +2020,8 @@
 			baseConfigurationReference = 71473BA6F0B15487B83E533A /* Pods-温控仪.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WA9VRUVC47;
 				GCC_PREFIX_HEADER = "/Users/hangzhouaerfate/Desktop/温控仪/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
@@ -2026,6 +2030,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiChang.temperatureControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -2034,6 +2040,8 @@
 			baseConfigurationReference = E05F0AF728501C089A388FE4 /* Pods-温控仪.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WA9VRUVC47;
 				GCC_PREFIX_HEADER = "/Users/hangzhouaerfate/Desktop/温控仪/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
@@ -2042,6 +2050,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiChang.temperatureControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -2054,6 +2064,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/温控仪.app/温控仪";
 			};
 			name = Debug;
@@ -2067,6 +2078,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/温控仪.app/温控仪";
 			};
 			name = Release;
@@ -2079,6 +2091,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
 				TEST_TARGET_NAME = "温控仪";
 			};
 			name = Debug;
@@ -2091,6 +2104,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
 				TEST_TARGET_NAME = "温控仪";
 			};
 			name = Release;

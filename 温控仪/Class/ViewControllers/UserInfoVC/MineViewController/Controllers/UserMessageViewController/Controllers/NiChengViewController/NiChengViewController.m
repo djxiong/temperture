@@ -96,7 +96,6 @@
     [self.view endEditing:YES];
 }
 
-
 - (void)setUserModel:(UserModel *)userModel {
     _userModel = userModel;
 }

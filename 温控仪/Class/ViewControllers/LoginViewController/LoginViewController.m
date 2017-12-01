@@ -109,8 +109,11 @@
 
 #pragma mark - 登陆按钮点击事件
 - (void)loginBtnAction{
-
-    if ([self.acctextFiled.text isEqualToString:self.pwdTectFiled.text] && [self.pwdTectFiled.text isEqualToString:@"admin"]) {
+    
+    NSString *accText = [self.acctextFiled.text lowercaseString];
+    NSString *pwdText = [self.pwdTectFiled.text lowercaseString];
+    
+    if ([accText isEqualToString:pwdText] && [pwdText isEqualToString:@"admin"]) {
         NSDictionary *dic =  [kPlistTools readDataFromFile:UserData];
         [self setData:dic];
     } else if ( (self.acctextFiled.text.length == 11 || self.acctextFiled.text.length == 9) && [UITextField validateNumber:self.acctextFiled.text]  && self.pwdTectFiled.text != nil) {
@@ -139,12 +142,7 @@
                 }
             }
         } failure:^(NSError * _Nonnull error){
-            if ([kPlistTools whetherExite:UserData]) {
-                NSDictionary *dic = [kPlistTools readDataFromFile:UserData];
-                [self setData:dic];
-            } else {
-                [kNetWork noNetWork];
-            }
+            [kNetWork noNetWork];
         }];
     } else {
         if (self.acctextFiled.text.length == 0) {

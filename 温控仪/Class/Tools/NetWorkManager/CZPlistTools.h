@@ -49,6 +49,4 @@
  */
 - (NSDictionary *)readDataFromBundle:(NSString *)fileName;
 
-- (void)saveFixedDataToFile;
-
 @end
