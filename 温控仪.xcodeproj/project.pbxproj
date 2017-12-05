@@ -104,6 +104,10 @@
 		ED2B15CB1FC7FC5F00247CE3 /* UserData in Resources */ = {isa = PBXBuildFile; fileRef = ED2B15C71FC7FC5E00247CE3 /* UserData */; };
 		ED2B15CC1FC7FC5F00247CE3 /* MineServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED2B15C81FC7FC5F00247CE3 /* MineServicesData */; };
 		ED2B15CD1FC7FC5F00247CE3 /* LittleTypesServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED2B15C91FC7FC5F00247CE3 /* LittleTypesServicesData */; };
+		ED44DFEC1FD67E9F00635164 /* BigTypesServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED44DFE81FD67E9F00635164 /* BigTypesServicesData */; };
+		ED44DFED1FD67E9F00635164 /* UserData in Resources */ = {isa = PBXBuildFile; fileRef = ED44DFE91FD67E9F00635164 /* UserData */; };
+		ED44DFEE1FD67E9F00635164 /* MineServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED44DFEA1FD67E9F00635164 /* MineServicesData */; };
+		ED44DFEF1FD67E9F00635164 /* LittleTypesServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED44DFEB1FD67E9F00635164 /* LittleTypesServicesData */; };
 		ED6BFF8F1ED28ED800420596 /* TextFiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF8E1ED28ED800420596 /* TextFiledView.m */; };
 		ED6BFF921ED29A3700420596 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF911ED29A3700420596 /* BaseViewController.m */; };
 		ED6BFF951ED2CCCB00420596 /* CustomStyleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF941ED2CCCB00420596 /* CustomStyleBtn.m */; };
@@ -367,6 +371,10 @@
 		ED2B15C71FC7FC5E00247CE3 /* UserData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserData; sourceTree = "<group>"; };
 		ED2B15C81FC7FC5F00247CE3 /* MineServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MineServicesData; sourceTree = "<group>"; };
 		ED2B15C91FC7FC5F00247CE3 /* LittleTypesServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LittleTypesServicesData; sourceTree = "<group>"; };
+		ED44DFE81FD67E9F00635164 /* BigTypesServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BigTypesServicesData; path = "温控仪/BigTypesServicesData"; sourceTree = SOURCE_ROOT; };
+		ED44DFE91FD67E9F00635164 /* UserData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = UserData; path = "温控仪/UserData"; sourceTree = SOURCE_ROOT; };
+		ED44DFEA1FD67E9F00635164 /* MineServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MineServicesData; path = "温控仪/MineServicesData"; sourceTree = SOURCE_ROOT; };
+		ED44DFEB1FD67E9F00635164 /* LittleTypesServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LittleTypesServicesData; path = "温控仪/LittleTypesServicesData"; sourceTree = SOURCE_ROOT; };
 		ED5C9FDE1F9894DD0057C208 /* CZNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CZNetworkManager.h; sourceTree = "<group>"; };
 		ED5C9FDF1F9894DD0057C208 /* CZNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CZNetworkManager.m; sourceTree = "<group>"; };
 		ED6BFF8D1ED28ED800420596 /* TextFiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFiledView.h; sourceTree = "<group>"; };
@@ -1400,6 +1408,10 @@
 		EDBF1F641FC55E8400E2DDB6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				ED44DFE81FD67E9F00635164 /* BigTypesServicesData */,
+				ED44DFEB1FD67E9F00635164 /* LittleTypesServicesData */,
+				ED44DFEA1FD67E9F00635164 /* MineServicesData */,
+				ED44DFE91FD67E9F00635164 /* UserData */,
 				EDBF1F651FC55E8400E2DDB6 /* WenKongYiH5Code */,
 			);
 			path = Sources;
@@ -1620,7 +1632,7 @@
 					ED29B1F51EC05264007E5454 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = WA9VRUVC47;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					ED29B20E1EC05265007E5454 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -1662,13 +1674,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED44DFEF1FD67E9F00635164 /* LittleTypesServicesData in Resources */,
 				ED8E3C9E1EC162F20040FD3B /* Wind.plist in Resources */,
 				ED2B15CA1FC7FC5F00247CE3 /* BigTypesServicesData in Resources */,
 				EDBF1F771FC55E8400E2DDB6 /* receiveorder.js in Resources */,
 				EDB250CB1FCC17D500DDF1B6 /* build.js in Resources */,
 				EDBF1F761FC55E8400E2DDB6 /* index.html in Resources */,
+				ED44DFEE1FD67E9F00635164 /* MineServicesData in Resources */,
 				EDBF1F741FC55E8400E2DDB6 /* reset.css in Resources */,
 				ED2B15CB1FC7FC5F00247CE3 /* UserData in Resources */,
+				ED44DFED1FD67E9F00635164 /* UserData in Resources */,
+				ED44DFEC1FD67E9F00635164 /* BigTypesServicesData in Resources */,
 				EDBF1F751FC55E8400E2DDB6 /* setbtn.png in Resources */,
 				ED7913FB1ED579DB001DE08C /* EspTouchDemo-Info.plist in Resources */,
 				ED2B15CD1FC7FC5F00247CE3 /* LittleTypesServicesData in Resources */,
@@ -1967,7 +1983,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
+				PROVISIONING_PROFILE = "56c4bb4b-2ff1-4a2b-b7b4-263564caab39";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2009,7 +2025,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
+				PROVISIONING_PROFILE = "56c4bb4b-2ff1-4a2b-b7b4-263564caab39";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2020,8 +2036,8 @@
 			baseConfigurationReference = 71473BA6F0B15487B83E533A /* Pods-温控仪.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WA9VRUVC47;
 				GCC_PREFIX_HEADER = "/Users/hangzhouaerfate/Desktop/温控仪/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
@@ -2030,8 +2046,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiChang.temperatureControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8e71d584-4c34-47e1-b38d-97404b2cc760";
+				PROVISIONING_PROFILE_SPECIFIER = "WenKongYiAdHoc Distribution";
 			};
 			name = Debug;
 		};
@@ -2040,8 +2056,8 @@
 			baseConfigurationReference = E05F0AF728501C089A388FE4 /* Pods-温控仪.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WA9VRUVC47;
 				GCC_PREFIX_HEADER = "/Users/hangzhouaerfate/Desktop/温控仪/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
@@ -2050,8 +2066,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiChang.temperatureControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8e71d584-4c34-47e1-b38d-97404b2cc760";
+				PROVISIONING_PROFILE_SPECIFIER = "WenKongYiAdHoc Distribution";
 			};
 			name = Release;
 		};
@@ -2064,7 +2080,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
+				PROVISIONING_PROFILE = "56c4bb4b-2ff1-4a2b-b7b4-263564caab39";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/温控仪.app/温控仪";
 			};
 			name = Debug;
@@ -2078,7 +2094,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
+				PROVISIONING_PROFILE = "56c4bb4b-2ff1-4a2b-b7b4-263564caab39";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/温控仪.app/温控仪";
 			};
 			name = Release;
@@ -2091,7 +2107,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
+				PROVISIONING_PROFILE = "56c4bb4b-2ff1-4a2b-b7b4-263564caab39";
 				TEST_TARGET_NAME = "温控仪";
 			};
 			name = Debug;
@@ -2104,7 +2120,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.haiChang.InternationalEdition.---UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "935dccfa-2c4c-4bdc-a035-cac2256e4b3a";
+				PROVISIONING_PROFILE = "56c4bb4b-2ff1-4a2b-b7b4-263564caab39";
 				TEST_TARGET_NAME = "温控仪";
 			};
 			name = Release;

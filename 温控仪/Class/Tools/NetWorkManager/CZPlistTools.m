@@ -84,4 +84,20 @@ static CZPlistTools *tools = nil;
     return filePath;
 }
 
+- (void)saveFixedDataToFile {
+    
+    NSDictionary *userData = [self readDataFromBundle:@"UserData"];
+    [self saveDataToFile:userData name:@"UserData"];
+    
+    NSDictionary *mineServicesData = [self readDataFromBundle:@"MineServicesData"];
+    [self saveDataToFile:mineServicesData name:@"MineServicesData"];
+    
+    NSDictionary *littleTypesServicesData = [self readDataFromBundle:@"LittleTypesServicesData"];
+    [self saveDataToFile:littleTypesServicesData name:@"LittleTypesServicesData"];
+    
+    NSDictionary *bigTypesServicesData = [self readDataFromBundle:@"BigTypesServicesData"];
+    [self saveDataToFile:bigTypesServicesData name:@"BigTypesServicesData"];
+    
+}
+
 @end
