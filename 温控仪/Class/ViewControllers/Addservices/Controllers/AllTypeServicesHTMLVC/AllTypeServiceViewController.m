@@ -16,11 +16,19 @@
 @interface AllTypeServiceViewController ()<UITableViewDelegate , UITableViewDataSource , HelpFunctionDelegate>
 @property (nonatomic , copy) NSString *devType;
 @property (nonatomic , strong) NSMutableArray *dataArray;
+@property (nonatomic , strong) NSMutableArray *typeSnAry;
 @property (nonatomic , strong) NSIndexPath *selectedIndexPath;
 
 @end
 
 @implementation AllTypeServiceViewController
+
+- (NSMutableArray *)typeSnAry {
+    if (!_typeSnAry) {
+        _typeSnAry = [NSMutableArray array];
+    }
+    return _typeSnAry;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -77,8 +85,9 @@
         
         for (NSDictionary *dd in arr) {
             AllTypeServiceModel *model = [[AllTypeServiceModel alloc]init];
-            [model setValuesForKeysWithDictionary:dd];
+            [model yy_modelSetWithDictionary:dd];
             [self.dataArray addObject:model];
+            [self.typeSnAry addObject:[NSString stringWithFormat:@"%@" , model.typeSn]];
         }
         
         [self.tableView reloadData];
@@ -149,11 +158,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    NSString *typeSn = self.typeSnAry[indexPath.row];
     
-    AllTypeServiceModel *allTypeServiceModel = _dataArray[indexPath.row];
     AllServicesViewController *allServiceVC = [[AllServicesViewController alloc]init];
     allServiceVC.navigationItem.title = self.navigationItem.title;
-    allServiceVC.typeSn = [NSString stringWithFormat:@"%@" , allTypeServiceModel.typeSn];
+    allServiceVC.typeSn = typeSn;
     [self.navigationController pushViewController:allServiceVC animated:YES];
 }
 

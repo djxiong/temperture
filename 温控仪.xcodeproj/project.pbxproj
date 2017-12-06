@@ -104,10 +104,6 @@
 		ED2B15CB1FC7FC5F00247CE3 /* UserData in Resources */ = {isa = PBXBuildFile; fileRef = ED2B15C71FC7FC5E00247CE3 /* UserData */; };
 		ED2B15CC1FC7FC5F00247CE3 /* MineServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED2B15C81FC7FC5F00247CE3 /* MineServicesData */; };
 		ED2B15CD1FC7FC5F00247CE3 /* LittleTypesServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED2B15C91FC7FC5F00247CE3 /* LittleTypesServicesData */; };
-		ED44DFEC1FD67E9F00635164 /* BigTypesServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED44DFE81FD67E9F00635164 /* BigTypesServicesData */; };
-		ED44DFED1FD67E9F00635164 /* UserData in Resources */ = {isa = PBXBuildFile; fileRef = ED44DFE91FD67E9F00635164 /* UserData */; };
-		ED44DFEE1FD67E9F00635164 /* MineServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED44DFEA1FD67E9F00635164 /* MineServicesData */; };
-		ED44DFEF1FD67E9F00635164 /* LittleTypesServicesData in Resources */ = {isa = PBXBuildFile; fileRef = ED44DFEB1FD67E9F00635164 /* LittleTypesServicesData */; };
 		ED6BFF8F1ED28ED800420596 /* TextFiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF8E1ED28ED800420596 /* TextFiledView.m */; };
 		ED6BFF921ED29A3700420596 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF911ED29A3700420596 /* BaseViewController.m */; };
 		ED6BFF951ED2CCCB00420596 /* CustomStyleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF941ED2CCCB00420596 /* CustomStyleBtn.m */; };
@@ -371,10 +367,6 @@
 		ED2B15C71FC7FC5E00247CE3 /* UserData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserData; sourceTree = "<group>"; };
 		ED2B15C81FC7FC5F00247CE3 /* MineServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MineServicesData; sourceTree = "<group>"; };
 		ED2B15C91FC7FC5F00247CE3 /* LittleTypesServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LittleTypesServicesData; sourceTree = "<group>"; };
-		ED44DFE81FD67E9F00635164 /* BigTypesServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BigTypesServicesData; path = "温控仪/BigTypesServicesData"; sourceTree = SOURCE_ROOT; };
-		ED44DFE91FD67E9F00635164 /* UserData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = UserData; path = "温控仪/UserData"; sourceTree = SOURCE_ROOT; };
-		ED44DFEA1FD67E9F00635164 /* MineServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MineServicesData; path = "温控仪/MineServicesData"; sourceTree = SOURCE_ROOT; };
-		ED44DFEB1FD67E9F00635164 /* LittleTypesServicesData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LittleTypesServicesData; path = "温控仪/LittleTypesServicesData"; sourceTree = SOURCE_ROOT; };
 		ED5C9FDE1F9894DD0057C208 /* CZNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CZNetworkManager.h; sourceTree = "<group>"; };
 		ED5C9FDF1F9894DD0057C208 /* CZNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CZNetworkManager.m; sourceTree = "<group>"; };
 		ED6BFF8D1ED28ED800420596 /* TextFiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFiledView.h; sourceTree = "<group>"; };
@@ -1171,6 +1163,8 @@
 		ED29B30E1EC05423007E5454 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ED7479131F4BE885005A9708 /* AddServiceModel.h */,
+				ED7479141F4BE885005A9708 /* AddServiceModel.m */,
 				ED7479161F4BE8DD005A9708 /* DiZhiModel.h */,
 				ED7479171F4BE8DD005A9708 /* DiZhiModel.m */,
 				ED7479191F4BE8E8005A9708 /* ServicesModel.h */,
@@ -1267,7 +1261,6 @@
 			children = (
 				ED29B44D1EC06A83007E5454 /* MineSerivesViewController.h */,
 				ED29B44E1EC06A83007E5454 /* MineSerivesViewController.m */,
-				ED7479111F4BE885005A9708 /* Model */,
 				ED29B44F1EC06A83007E5454 /* View */,
 			);
 			path = MineSerivesViewController;
@@ -1341,23 +1334,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		ED7479111F4BE885005A9708 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				ED7479121F4BE885005A9708 /* AddServiceModel */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		ED7479121F4BE885005A9708 /* AddServiceModel */ = {
-			isa = PBXGroup;
-			children = (
-				ED7479131F4BE885005A9708 /* AddServiceModel.h */,
-				ED7479141F4BE885005A9708 /* AddServiceModel.m */,
-			);
-			path = AddServiceModel;
-			sourceTree = "<group>";
-		};
 		ED7913D61ED579DB001DE08C /* SmarkLink */ = {
 			isa = PBXGroup;
 			children = (
@@ -1408,10 +1384,6 @@
 		EDBF1F641FC55E8400E2DDB6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				ED44DFE81FD67E9F00635164 /* BigTypesServicesData */,
-				ED44DFEB1FD67E9F00635164 /* LittleTypesServicesData */,
-				ED44DFEA1FD67E9F00635164 /* MineServicesData */,
-				ED44DFE91FD67E9F00635164 /* UserData */,
 				EDBF1F651FC55E8400E2DDB6 /* WenKongYiH5Code */,
 			);
 			path = Sources;
@@ -1632,7 +1604,7 @@
 					ED29B1F51EC05264007E5454 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = WA9VRUVC47;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					ED29B20E1EC05265007E5454 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -1674,17 +1646,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED44DFEF1FD67E9F00635164 /* LittleTypesServicesData in Resources */,
 				ED8E3C9E1EC162F20040FD3B /* Wind.plist in Resources */,
 				ED2B15CA1FC7FC5F00247CE3 /* BigTypesServicesData in Resources */,
 				EDBF1F771FC55E8400E2DDB6 /* receiveorder.js in Resources */,
 				EDB250CB1FCC17D500DDF1B6 /* build.js in Resources */,
 				EDBF1F761FC55E8400E2DDB6 /* index.html in Resources */,
-				ED44DFEE1FD67E9F00635164 /* MineServicesData in Resources */,
 				EDBF1F741FC55E8400E2DDB6 /* reset.css in Resources */,
 				ED2B15CB1FC7FC5F00247CE3 /* UserData in Resources */,
-				ED44DFED1FD67E9F00635164 /* UserData in Resources */,
-				ED44DFEC1FD67E9F00635164 /* BigTypesServicesData in Resources */,
 				EDBF1F751FC55E8400E2DDB6 /* setbtn.png in Resources */,
 				ED7913FB1ED579DB001DE08C /* EspTouchDemo-Info.plist in Resources */,
 				ED2B15CD1FC7FC5F00247CE3 /* LittleTypesServicesData in Resources */,
@@ -2036,9 +2004,9 @@
 			baseConfigurationReference = 71473BA6F0B15487B83E533A /* Pods-温控仪.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = WA9VRUVC47;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "/Users/hangzhouaerfate/Desktop/温控仪/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -2046,8 +2014,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiChang.temperatureControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8e71d584-4c34-47e1-b38d-97404b2cc760";
-				PROVISIONING_PROFILE_SPECIFIER = "WenKongYiAdHoc Distribution";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -2056,9 +2024,9 @@
 			baseConfigurationReference = E05F0AF728501C089A388FE4 /* Pods-温控仪.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = WA9VRUVC47;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "/Users/hangzhouaerfate/Desktop/温控仪/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -2066,8 +2034,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiChang.temperatureControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8e71d584-4c34-47e1-b38d-97404b2cc760";
-				PROVISIONING_PROFILE_SPECIFIER = "WenKongYiAdHoc Distribution";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

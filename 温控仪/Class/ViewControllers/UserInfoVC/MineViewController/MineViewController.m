@@ -90,7 +90,7 @@
                 NSMutableArray *dataArray = [NSMutableArray array];
                 [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     SystemMessageModel *model = [[SystemMessageModel alloc]init];
-                    [model setValuesForKeysWithDictionary:obj];
+                    [model yy_modelSetWithDictionary:obj];
                     [dataArray addObject:model];
                 }];
                 
@@ -126,9 +126,8 @@
         [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
         [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
         _userModel = [[UserModel alloc]init];
-        for (NSString *key in [user allKeys]) {
-            [_userModel setValue:user[key] forKey:key];
-        }
+        [_userModel yy_modelSetWithDictionary:user];
+        
         _headPortraitView.userModel = self.userModel;
     }
 }

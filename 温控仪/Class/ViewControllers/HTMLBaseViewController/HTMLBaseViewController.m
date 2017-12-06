@@ -82,9 +82,8 @@
         [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
         
         _userModel = [[UserModel alloc]init];
-        for (NSString *key in [user allKeys]) {
-            [_userModel setValue:user[key] forKey:key];
-        }
+        
+        [_userModel yy_modelSetWithDictionary:user];
     }
 }
 
@@ -238,7 +237,7 @@
             if (self.connectState != CONNECTED_ZHILIAN) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     [self.navigationController popViewControllerAnimated:YES];
-                } andSuperViewController:self Title:@"当前无网络，并使用的是云端模式!"];
+                } andSuperViewController:self Title:@"当当前连接的WIFI无网络或手机无网络，请切换到可用的网络。"];
             }
         }
         

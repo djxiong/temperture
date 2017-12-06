@@ -166,6 +166,7 @@
 #import "CZNetworkManager.h"
 #import "CZPlistTools.h"
 #import "Header.h"
+#import "YYModel.h"
 
 //#import "UIView+Btn.h"
 

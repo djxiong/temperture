@@ -136,6 +136,8 @@
         
         if ([dic[@"data"] isKindOfClass:[NSNull class]]) {
             self.markView.hidden = NO;
+            [_haveArray removeAllObjects];
+            [self.collectionView reloadData];
             return ;
         }
         NSMutableArray *dataArray = dic[@"data"];
@@ -146,9 +148,7 @@
                 NSDictionary *dic = obj;
                 
                 ServicesModel *serviceModel = [[ServicesModel alloc]init];
-                [serviceModel setValuesForKeysWithDictionary:dic];
-                serviceModel.userDeviceID = [obj[@"id"] integerValue];
-                serviceModel.ifConn = [obj[@"ifConn"] integerValue];
+                [serviceModel yy_modelSetWithDictionary:dic];
                 [_haveArray addObject:serviceModel];
             }];
             [kStanderDefault setObject:@"YES" forKey:@"isHaveService"];
@@ -158,13 +158,11 @@
             } else {
                 self.markView.hidden = NO;
             }
-            [self.collectionView reloadData];
-        } else {
-            
+        } else {   
             self.markView.hidden = NO;
         }
         
-        
+        [self.collectionView reloadData];
     }
 }
 

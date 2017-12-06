@@ -35,7 +35,8 @@
     
     /** 创建布局参数 */
     UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake((kScreenW - kScreenW * 2 / 25) / 2, kScreenH / 5.12);
+
+    flowLayout.itemSize = CGSizeMake((kScreenW - kScreenW * 8 / 75) / 2, kScreenH / 5.12);
     flowLayout.minimumLineSpacing = kScreenW * 2 / 75;
     flowLayout.sectionInset = UIEdgeInsetsMake(kScreenW * 2 / 75, kScreenW * 2 / 75, kScreenW * 2 / 75, kScreenW * 2 / 75);
     
@@ -84,7 +85,7 @@
         for (NSDictionary *dd in arr) {
             
             ServicesModel *model = [[ServicesModel alloc]init];
-            [model setValuesForKeysWithDictionary:dd];
+            [model yy_modelSetWithDictionary:dd];
             [self.modelArray addObject:model];
         }
         

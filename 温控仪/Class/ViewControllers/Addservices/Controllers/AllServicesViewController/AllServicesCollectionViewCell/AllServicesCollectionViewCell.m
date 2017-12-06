@@ -17,7 +17,8 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, (kScreenW - kScreenW * 2 / 25) / 2, kScreenH / 5.12)];
+//    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, (kScreenW - kScreenW * 2 / 25) / 2, kScreenH / 5.12)];
+    UIView *view = [[UIView alloc]initWithFrame:self.contentView.bounds];
     [self.contentView addSubview:view];
     self.contentView.backgroundColor = [UIColor whiteColor];
     view.layer.cornerRadius = 5;
