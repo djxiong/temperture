@@ -14,8 +14,6 @@
 
 static CZNetworkManager *helper = nil;
 
-
-
 @implementation CZNetworkManager
 
 - (void)removeAllObjectOfStanderDefault {
