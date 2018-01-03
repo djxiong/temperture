@@ -17,7 +17,7 @@
 #undef  RGBCOLOR
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
-@interface UserFeedBackViewController ()<UITextViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIImagePickerControllerDelegate,UINavigationControllerDelegate , HelpFunctionDelegate>
+@interface UserFeedBackViewController ()<UITextViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) PlaceholderTextView * textView;
 
 @property (nonatomic, strong) UIView * aView;
@@ -276,15 +276,6 @@
 //    NSLog(@"%@" , post.userInfo[@"model"]);
 //    
 //}
-
-#pragma mark - 代理返回的数据
-- (void)requestData:(HelpFunction *)request didSuccess:(NSDictionary *)dddd{
-    NSLog(@"%@" , dddd);
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
-}
 
 #pragma mark CollectionView DataSource
 

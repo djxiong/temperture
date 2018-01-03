@@ -51,7 +51,8 @@
 #define kALIPort 6003
 #define KALIHost @"119.29.133.237"
 
-#define kQILIANPort 8899
+#define kQILIAN_UDP_Port 49000
+#define kQILIAN_TCP_Port 8899
 #define KQILIANHost @"192.168.1.110"
 
 //网络单利
@@ -149,7 +150,6 @@
 #import "NSObject+GetDeviceModel.h"
 #import "UIAlertController+Custom.h"
 #import "UserModel.h"
-#import "HelpFunction.h"
 #import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
 #import "StateModel.h"
@@ -159,7 +159,6 @@
 #import "UIImageView+Extension.h"
 #import "NSString+Extension.h"
 #import "UIColor+Extensions.h"
-//#import "UIViewController+Swizzled.h"
 #import "AddServiceModel.h"
 #import "UIBarButtonItem+Extension.h"
 #import "SVProgressHUD.h"
@@ -167,6 +166,8 @@
 #import "CZPlistTools.h"
 #import "Header.h"
 #import "YYModel.h"
+#import "GCDAsyncUdpSocket.h"
+
 
 //#import "UIView+Btn.h"
 
@@ -322,9 +323,15 @@
 
 /**
  *  关于我们
- *
+ *  欧众的
  */
-#define kAboutOurs [NSString stringWithFormat:@"http://%@:8080/smarthome/app/aboutus", KALIHost]
+#define kOZAboutOurs [NSString stringWithFormat:@"http://%@:8080/smarthome/app/aboutus/oz", KALIHost]
+
+/**
+ *  关于我们
+ *  启联者的
+ */
+#define kQLZAboutOurs [NSString stringWithFormat:@"http://%@:8080/smarthome/app/aboutus/qlz", KALIHost]
 
 /**
  *  产品说明
@@ -355,6 +362,8 @@
 #define kAllTypeServiceURL [NSString stringWithFormat:@"http://%@:8080/smarthome/deviceType/queryTypeList", KALIHost]
 
 #define kServiceDescriptionURL(typeSn , devTypeSn) [NSString stringWithFormat:@"http://112.124.48.212/webpage/%@/%@/introduction/index.html" , typeSn , devTypeSn]
+
+
 
 
 #endif

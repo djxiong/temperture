@@ -51,7 +51,7 @@ static CZNetworkManager *helper = nil;
         helper.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain",nil];
 
         [helper.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-        helper.requestSerializer.timeoutInterval = 5.0f;
+        helper.requestSerializer.timeoutInterval = 1.0f;
         [helper.requestSerializer didChangeValueForKey:@"timeoutInterval"];
         
         
@@ -270,7 +270,11 @@ static CZNetworkManager *helper = nil;
     NSString * urlString = @"App-Prefs:root=WIFI";
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlString]]) {
         if (iOS10) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:nil];
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:nil];
+            } else {
+                // Fallback on earlier versions
+            }
         } else {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=WIFI"]];
         }

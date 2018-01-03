@@ -22,7 +22,7 @@
 #import "CustomPickerView.h"
 
 #import <AVFoundation/AVFoundation.h>
-@interface UserMessageViewController ()<UITableViewDataSource , UITableViewDelegate , HelpFunctionDelegate , SendDiZhiDataToProvienceVCDelegate , SendNickOrEmailToPreviousVCDelegate, CustomPickerViewDelegate>
+@interface UserMessageViewController ()<UITableViewDataSource , UITableViewDelegate , SendDiZhiDataToProvienceVCDelegate , SendNickOrEmailToPreviousVCDelegate, CustomPickerViewDelegate>
 
 @property (strong, nonatomic)  CustomPickerView *myDatePicker;
 @property (nonatomic , strong) CustomPickerView *sexPicker;
@@ -52,34 +52,31 @@ static NSString *celled = @"celled";
         NSLog(@"%@" , self.geRenModel);
     }
     
-    
-    [HelpFunction requestDataWithUrlString:kChaXunYongHuDiZhi andParames:@{@"userSn" : @(self.userModel.sn)} andDelegate:self];
-    
-    
-}
-
-#pragma mark - 代理返回数据
-- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
-//    NSLog(@"%@" , data[0]);
-    NSDictionary *dic = data[0];
-    
-    if (![dic[@"data"] isKindOfClass:[NSArray class]]) {
-        return ;
-    } else {
-        NSArray *aray = [NSArray arrayWithArray:dic[@"data"]];
-        NSDictionary *dd = aray[0];
-    
-        self.diZhiModel = [[DiZhiModel alloc]init];
-        [self.diZhiModel setValuesForKeysWithDictionary:dd];
+    [kNetWork requestPOSTUrlString:kChaXunYongHuDiZhi parameters:@{@"userSn" : @(self.userModel.sn)} isSuccess:^(NSDictionary * _Nullable responseObject) {
+        //    NSLog(@"%@" , data[0]);
+        NSDictionary *dic = responseObject;
         
-        for (NSString *key in dd) {
-            if ([key isEqualToString:@"id"]) {
-                self.diZhiModel.idd = [dd[key] integerValue];
+        if (![dic[@"data"] isKindOfClass:[NSArray class]]) {
+            return ;
+        } else {
+            NSArray *aray = [NSArray arrayWithArray:dic[@"data"]];
+            NSDictionary *dd = aray[0];
+            
+            self.diZhiModel = [[DiZhiModel alloc]init];
+            [self.diZhiModel setValuesForKeysWithDictionary:dd];
+            
+            for (NSString *key in dd) {
+                if ([key isEqualToString:@"id"]) {
+                    self.diZhiModel.idd = [dd[key] integerValue];
+                }
             }
+            
+            [self.tableView reloadData];
         }
         
-        [self.tableView reloadData];
-    }
+    } failure:^(NSError * _Nonnull error) {
+        [kNetWork noNetWork];
+    }];
     
 }
 
@@ -124,17 +121,6 @@ static NSString *celled = @"celled";
     NSLog(@"%@" , dic);
     [kStanderDefault setValue:dic forKey:@"GeRenInfo"];
     
-}
-- (void)requestServicesData:(HelpFunction *)request didOK:(NSDictionary *)dic {
-    NSLog(@"%@" , dic);
-}
-
-- (void)requestData:(HelpFunction *)request didSuccess:(NSDictionary *)dddd {
-    NSLog(@"%@" , dddd);
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
 }
 
 #pragma mark - TableView的代理事件
@@ -286,8 +272,13 @@ static NSString *celled = @"celled";
         
         self.sexPicker = nil;
         NSDictionary *parames = @{@"user.sn" : @(self.userModel.sn) , @"user.sex" : @(sex)};
-        NSLog(@"%@" , parames);
-        [HelpFunction requestDataWithUrlString:kXiuGaiXinXi andParames:parames andDelegate:self];
+        
+        [kNetWork requestPOSTUrlString:kXiuGaiXinXi parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+            
+        } failure:^(NSError * _Nonnull error) {
+            
+        }];
+        
     }
 }
 
@@ -310,7 +301,11 @@ static NSString *celled = @"celled";
         
         NSDictionary *parames = @{@"user.sn" : @(self.userModel.sn) , @"user.birthdate" : time};
         NSLog(@"%@" , parames);
-        [HelpFunction requestDataWithUrlString:kXiuGaiXinXi andParames:parames andDelegate:self];
+        [kNetWork requestPOSTUrlString:kXiuGaiXinXi parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+            
+        } failure:^(NSError * _Nonnull error) {
+            
+        }];
     }
     
     

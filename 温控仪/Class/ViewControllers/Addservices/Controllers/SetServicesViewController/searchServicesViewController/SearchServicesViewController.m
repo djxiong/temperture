@@ -8,13 +8,17 @@
 
 #import "SearchServicesViewController.h"
 #import "FailContextViewController.h"
-#import "AsyncUdpSocket.h"
+
+#import "GCDAsyncUdpSocket.h"
+
 #import "MineSerivesViewController.h"
 #import "LXGradientProcessView.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
 
-@interface SearchServicesViewController ()<AsyncUdpSocketDelegate , HelpFunctionDelegate , UITableViewDelegate , UITableViewDataSource>
-@property (nonatomic , strong) AsyncUdpSocket *updSocket;
+@interface SearchServicesViewController ()<GCDAsyncUdpSocketDelegate ,  UITableViewDelegate , UITableViewDataSource>
+
+@property (nonatomic , strong) GCDAsyncUdpSocket *sendUdpSocket;
+
 
 @property (strong, nonatomic) NSString *pwdStr;
 @property (strong, nonatomic)  NSString *wifiNameStr;
@@ -49,46 +53,45 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self sendMessage:@"FF00010102"];
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-   
+    
     [self.repeatTimer invalidate];
     self.repeatTimer = nil;
     [SVProgressHUD dismiss];
-    [self.updSocket close];
-    self.updSocket = nil;
+    [self.sendUdpSocket close];
+    self.sendUdpSocket = nil;
 }
 
 - (void)refreshAtcion {
     [self openUDPServer];
-    [self sendMessage:@"FF00010102"];
 }
 
 #pragma mark - UDP
 -(void)openUDPServer{
+    [SVProgressHUD show];
     
-    [self.updSocket close];
-    self.updSocket = nil;
+    [self.sendUdpSocket close];
+    self.sendUdpSocket = nil;
     
-    //初始化udp
-    AsyncUdpSocket *tempSocket=[[AsyncUdpSocket alloc] initWithDelegate:self];
-    self.updSocket = tempSocket;
+    //1.创建一个 udp socket用来和服务器端进行通讯
+    GCDAsyncUdpSocket *sendUdpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(0, 0)];
+    //2.banding一个端口(可选),如果不绑定端口, 那么就会随机产生一个随机的电脑唯一的端口
+    //端口数字范围(1024,2^16-1)
+    NSError * error = nil;
+    [sendUdpSocket bindToPort:8085 error:&error];
+    //启用广播
+    [sendUdpSocket enableBroadcast:YES error:&error];
+    if (error) {//监听错误打印错误信息
+        NSLog(@"error:%@",error);
+    }else {//监听成功则开始接收信息
+        [sendUdpSocket beginReceiving:&error];
+    }
     
-    //绑定端口
-    NSError *error = nil;
-    [self.updSocket bindToPort:6004 error:&error];
+    self.sendUdpSocket = sendUdpSocket;
     
-    [self.updSocket enableBroadcast:YES error:nil];
+    [self sendMessage:@"FF00010102"];
     
-//    [self.updSocket joinMulticastGroup:@"192.168.1.110" error:&error];
-    
-    //启动接收线程
-    [self.updSocket receiveWithTimeout:-1 tag:0];
 }
 
 //连接建好后处理相应send Events
@@ -97,35 +100,34 @@
     NSLog(@"UDP发送数据--\n%@" , message);
     
     NSData *data = [NSString hexStringToData:message];
-    //开始发送
-    [self.updSocket sendData:data toHost:@"192.168.1.110"
-                        port:49000
-                 withTimeout:-1
-                         tag:0];
+    [self.sendUdpSocket sendData:data toHost:KQILIANHost port:kQILIAN_UDP_Port withTimeout:-1 tag:0];
 }
 
-- (BOOL)onUdpSocket:(AsyncUdpSocket *)sock didReceiveData:(NSData *)data withTag:(long)tag fromHost:(NSString *)host port:(UInt16)port {
+#pragma mark -GCDAsyncUdpSocketDelegate
+-(void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext{
     
-    [self.updSocket close];
-    self.updSocket = nil;
-    self.searchLable.textColor = kMainColor;
+    [SVProgressHUD dismiss];
     
-    NSLog(@"%@" , data);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.searchLable.textColor = kMainColor;
+    });
     
-    NSString *str = [NSString convertDataToHexStr:data];
-    
-    if (str.length == 14) {
-        if ([str isEqualToString:@"FF000382010187"] || [str isEqualToString:@"ff000382010187"]) {
-            self.addLable.textColor = kMainColor;
-            [self determineAndBindTheDevice];
-            return YES;
-        } else {
-            [UIAlertController creatRightAlertControllerWithHandle:^{
-                [self.navigationController popViewControllerAnimated:YES];
-            } andSuperViewController:self Title:@"配网失败请重试。"];
-        }
+    if (data == nil) {
+        [UIAlertController creatRightAlertControllerWithHandle:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        } andSuperViewController:self Title:@"配网失败请重试。"];
     }
     
+    NSString *str = [NSString convertDataToHexStr:data];
+    if (str.length == 14) {
+        if ([str isEqualToString:@"FF000382010187"] || [str isEqualToString:@"ff000382010187"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.addLable.textColor = kMainColor;
+            });
+            [self determineAndBindTheDevice];
+            return ;
+        }
+    }
     [self calculateData:str];
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -133,12 +135,28 @@
         self.registerLable.textColor = kMainColor;
     });
     
-    return YES;
+    [sock receiveOnce:nil];
+    
+    //    NSString *ip = [GCDAsyncUdpSocket hostFromAddress:address];
+    //    uint16_t port = [GCDAsyncUdpSocket portFromAddress:address];
+    //    // 继续来等待接收下一次消息
+    //    NSLog(@"收到服务端的响应 [%@:%d] %@", ip, port, data);
+    //    //此处根据实际和硬件商定的需求决定是否主动回一条消息
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //        NSString *msg = @"我收到了";
+    //        NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+    //        [sock sendData:data toHost:ip port:port withTimeout:0.1 tag:200];
+    //    });
+}
+
+- (void)udpSocketDidClose:(GCDAsyncUdpSocket *)sock withError:(NSError *)error
+{
+    NSLog(@"udpSocket关闭");
 }
 
 #pragma mark - 解析TCP数据
 - (void)calculateData:(NSString *)str {
-    NSString *length = [NSString stringWithFormat:@"%.4x" , (str.length - 6) / 2];
+    NSString *length = [NSString stringWithFormat:@"%.4lx" , (str.length - 6) / 2];
     NSString *headStr = [NSString stringWithFormat:@"ff%@81" , length];
     str = [str substringWithRange:NSMakeRange(headStr.length, str.length - headStr.length)];
     
@@ -151,9 +169,14 @@
     for (NSString *subStr in subAry) {
         NSArray *subAry2 = [subStr componentsSeparatedByString:@"00"];
         NSString *firObj = subAry2[0];
+        
+        if (firObj == nil || firObj == NULL || [firObj isKindOfClass:[NSNull class]] || [firObj isEqualToString:@""]) {
+            continue;
+        }
+        
         firObj = [NSString stringFromHexString:firObj];
         
-        if (firObj == nil || firObj == NULL) {
+        if (firObj == nil || firObj == NULL || [firObj isKindOfClass:[NSNull class]] || [firObj isEqualToString:@""]) {
             continue;
         }
         
@@ -174,7 +197,7 @@
             }
         }
     } andSuperViewController:self Title:@"配网成功"];
-    [self.updSocket close];
+    [self.sendUdpSocket close];
 }
 
 #pragma mark - 设置UI
@@ -328,3 +351,4 @@
 
 
 @end
+

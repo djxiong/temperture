@@ -14,7 +14,7 @@
 #import "XMGRefreshHeader.h"
 #import "SystemMessageNoMore.h"
 
-@interface SystemMessageViewController ()<UITableViewDataSource , UITableViewDelegate , HelpFunctionDelegate>{
+@interface SystemMessageViewController ()<UITableViewDataSource , UITableViewDelegate>{
     NSUInteger pages;
 }
 @property (nonatomic , strong) NSMutableArray *dataArray;
@@ -101,13 +101,57 @@
     //调用读取数据的方法
     NSDictionary *parames = @{@"page" : @(pages) , @"rows" : @10};
     
+    [self loadData:parames];
     
+    
+}
+
+- (void)loadData:(NSDictionary *)parames {
     if ([self.navigationItem.title isEqualToString:@"系统消息"]) {
-        [HelpFunction requestDataWithUrlString:kSystemMessageJieKou andParames:parames andDelegate:self];
+        
+        [kNetWork requestPOSTUrlString:kSystemMessageJieKou parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+            
+            if ([responseObject[@"total"] isKindOfClass:[NSNull class]]) {
+                [self noHaveMessage];
+                return ;
+            }
+            
+            NSInteger total = [responseObject[@"total"] integerValue];
+            if (total > 0) {
+                
+                NSArray *data = responseObject[@"rows"];
+                
+                if (data.count > 0) {
+                    
+                    if (pages == 1) [self.dataArray removeAllObjects];
+                    [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        SystemMessageModel *model = [[SystemMessageModel alloc]init];
+                        [model setValuesForKeysWithDictionary:obj];
+                        NSLog(@"%@" , model);
+                        [self.dataArray addObject:model];
+                    }];
+                    
+                    SystemMessageModel *model = [[SystemMessageModel alloc]init];
+                    model = [self.dataArray firstObject];
+                    [kStanderDefault setValue:model.addTime forKey:@"SystemMessageTime"];
+                    
+                    [self.tableView reloadData];
+                    [self.tableView.mj_header endRefreshing];
+                    [self.tableView.mj_footer endRefreshing];
+                } else {
+                    [self noHaveMessage];
+                }
+            } else if (total == 0) {
+                [self noHaveMessage];
+            }
+            
+        } failure:^(NSError * _Nonnull error) {
+            [self noHaveMessage];
+        }];
+        
     } else {
         [self noHaveMessage];
     }
-    
 }
 
 - (void)loadMoreTopics {
@@ -115,53 +159,7 @@
     pages++;
     NSDictionary *parames = @{@"page" : @(pages) , @"rows" : @10};
     
-    if ([self.navigationItem.title isEqualToString:@"系统消息"]) {
-        [HelpFunction requestDataWithUrlString:kSystemMessageJieKou andParames:parames andDelegate:self];
-    } else {
-        [self noHaveMessage];
-    }
-}
-
-- (void)requestData:(HelpFunction *)request didSuccess:(NSDictionary *)dddd {
-    
-    if ([dddd[@"total"] isKindOfClass:[NSNull class]]) {
-        [self noHaveMessage];
-        return ;
-    }
-    
-    NSInteger total = [dddd[@"total"] integerValue];
-    if (total > 0) {
-        
-        NSArray *data = dddd[@"rows"];
-        
-        if (data.count > 0) {
-            
-            if (pages == 1) [self.dataArray removeAllObjects];
-            [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                SystemMessageModel *model = [[SystemMessageModel alloc]init];
-                [model setValuesForKeysWithDictionary:obj];
-                NSLog(@"%@" , model);
-                [self.dataArray addObject:model];
-            }];
-            
-            SystemMessageModel *model = [[SystemMessageModel alloc]init];
-            model = [self.dataArray firstObject];
-            [kStanderDefault setValue:model.addTime forKey:@"SystemMessageTime"];
-            
-            [self.tableView reloadData];
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView.mj_footer endRefreshing];
-        } else {
-            [self noHaveMessage];
-        }
-    } else if (total == 0) {
-        [self noHaveMessage];
-    }
-    
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    [self noHaveMessage];
+    [self loadData:parames];
 }
 
 - (void)noHaveMessage {
@@ -223,8 +221,6 @@
     
     NSLog(@"%@" , @(model.idd.integerValue));
     
-    [HelpFunction requestDataWithUrlString:kUserReadSystemMessageCount andParames:@{@"id" : @(model.idd.integerValue)} andDelegate:self];
-    
     SystemMessageWebViewController *systemWebVC = [[SystemMessageWebViewController alloc]init];
     systemWebVC.model = model;
     
@@ -232,7 +228,6 @@
     [self.navigationController pushViewController:systemWebVC animated:YES];
     
 }
-- (void)requestDataWithDontHaveReturnValue:(HelpFunction *)request {
-    
-}
+
+
 @end

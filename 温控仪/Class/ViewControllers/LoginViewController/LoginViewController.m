@@ -14,7 +14,7 @@
 #import "TextFiledView.h"
 
 
-@interface LoginViewController ()<UITextFieldDelegate  , HelpFunctionDelegate>
+@interface LoginViewController ()<UITextFieldDelegate>
 
 @property (nonatomic , strong) UITextField *pwdTectFiled;
 @property (nonatomic , strong) UITextField *acctextFiled;
@@ -113,8 +113,12 @@
     NSString *accText = [self.acctextFiled.text lowercaseString];
     NSString *pwdText = [self.pwdTectFiled.text lowercaseString];
     
-    if ([accText isEqualToString:pwdText] && [pwdText isEqualToString:@"admin"]) {
-        NSDictionary *dic =  [kPlistTools readDataFromFile:UserData];
+    [kStanderDefault setObject:accText forKey:@"password"];
+    [kStanderDefault setObject:pwdText forKey:@"phone"];
+    
+    if (([pwdText isEqualToString:@"admin"] || [pwdText isEqualToString:@"user"]) && [accText isEqualToString:pwdText]) {
+//        NSDictionary *dic =  [kPlistTools readDataFromFile:UserData];
+        NSDictionary *dic = [kPlistTools readDataFromBundle:UserData];
         [self setData:dic];
     } else if ( (self.acctextFiled.text.length == 11 || self.acctextFiled.text.length == 9) && [UITextField validateNumber:self.acctextFiled.text]  && self.pwdTectFiled.text != nil) {
     
@@ -123,11 +127,7 @@
             [parameters setObject:@"ua.clientId" forKey:[kStanderDefault objectForKey:@"GeTuiClientId"]];
         }
         
-        [kStanderDefault setObject:self.pwdTectFiled.text forKey:@"password"];
-        [kStanderDefault setObject:self.acctextFiled.text forKey:@"phone"];
-
         [kNetWork requestPOSTUrlString:kLogin parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
-            [kPlistTools saveDataToFile:responseObject name:UserData];
             
             NSInteger state = [responseObject[@"state"] integerValue];
             if (state == 0){
@@ -142,7 +142,11 @@
                 }
             }
         } failure:^(NSError * _Nonnull error){
-            [kNetWork noNetWork];
+            
+            [UIAlertController creatRightAlertControllerWithHandle:^{
+                self.acctextFiled.text = nil;
+                self.pwdTectFiled.text = nil;
+            } andSuperViewController:self Title:@"当前无网络，请登录公共账号admin"];
         }];
     } else {
         if (self.acctextFiled.text.length == 0) {
@@ -160,6 +164,8 @@
 }
 
 - (void)setData:(NSDictionary *)dic {
+    
+    [kPlistTools saveDataToFile:dic name:UserData];
     if ([dic[@"state"] integerValue] == 0) {
         
         NSDictionary *user = dic[@"data"];

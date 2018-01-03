@@ -16,7 +16,7 @@
 #import "TabBarViewController.h"
 #import "TextFiledView.h"
 
-@interface RegisterViewController ()<HelpFunctionDelegate>
+@interface RegisterViewController ()
 @property (nonatomic , retain) UITextField *accTectFiled;
 @property (nonatomic , retain) UITextField *pwdTectFiled;
 @property (nonatomic , retain) UITextField *verificationCodeTectFiled;

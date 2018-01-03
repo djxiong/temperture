@@ -13,7 +13,7 @@
 #import "AllTypeServiceTableViewCell.h"
 
 
-@interface AllTypeServiceViewController ()<UITableViewDelegate , UITableViewDataSource , HelpFunctionDelegate>
+@interface AllTypeServiceViewController ()<UITableViewDelegate , UITableViewDataSource>
 @property (nonatomic , copy) NSString *devType;
 @property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , strong) NSMutableArray *typeSnAry;
@@ -92,29 +92,6 @@
         
         [self.tableView reloadData];
     }
-}
-
-#pragma mark - 代理返回的数据
-- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
-    NSDictionary *dic = data[0];
-    //    NSLog(@"%@" , dic);
-    
-    if ([dic[@"data"] isKindOfClass:[NSArray class]]) {
-        NSArray *arr = [NSArray arrayWithArray:dic[@"data"]];
-        
-        for (NSDictionary *dd in arr) {
-            AllTypeServiceModel *model = [[AllTypeServiceModel alloc]init];
-            [model setValuesForKeysWithDictionary:dd];
-            [self.dataArray addObject:model];
-        }
-        
-        [self.tableView reloadData];
-    }
-    
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

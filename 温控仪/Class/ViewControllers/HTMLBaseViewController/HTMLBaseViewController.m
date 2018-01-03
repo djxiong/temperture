@@ -8,7 +8,7 @@
 
 #import "HTMLBaseViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
-@interface HTMLBaseViewController ()<HelpFunctionDelegate , UIWebViewDelegate>
+@interface HTMLBaseViewController ()<UIWebViewDelegate>
 
 @property (nonatomic , strong) NSMutableDictionary *dic;
 
@@ -97,17 +97,28 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         _webView.delegate = self;
         
-        [kNetWork requestPOSTUrlString:kAllTypeServiceURL parameters:nil isSuccess:^(NSDictionary * _Nullable responseObject) {
-            self.whetherNetWork = YES;
+//        [kNetWork requestPOSTUrlString:kAllTypeServiceURL parameters:nil isSuccess:^(NSDictionary * _Nullable responseObject) {
+//            self.whetherNetWork = YES;
+//            if(self.serviceModel.indexUrl) {
+//                [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.serviceModel.indexUrl]]];
+//            } else {
+//                [self loadLocalWEB];
+//            }
+//        } failure:^(NSError * _Nonnull error) {
+//            self.whetherNetWork = NO;
+//            [self loadLocalWEB];
+//        }];
+        
+        if (self.connectState == CONNECTED_ZHILIAN) {
+            [self loadLocalWEB];
+        } else {
             if(self.serviceModel.indexUrl) {
                 [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.serviceModel.indexUrl]]];
             } else {
                 [self loadLocalWEB];
             }
-        } failure:^(NSError * _Nonnull error) {
-            self.whetherNetWork = NO;
-            [self loadLocalWEB];
-        }];
+        }
+        
     }
     return _webView;
 }
@@ -146,12 +157,17 @@
         
         NSMutableDictionary *userData = [NSMutableDictionary
                                          dictionary];
-        
+        if ([kStanderDefault objectForKey:@"password"]) {
+            [userData setObject:[kStanderDefault objectForKey:@"password"] forKey:@"identity"];
+        }
         if (bself.userModel.sn) {
             [userData setObject:@(bself.userModel.sn) forKey:@"userSn"];
         }
         if (bself.serviceModel.devSn) {
             [userData setObject:bself.serviceModel.devSn forKey:@"devSn"];
+        }
+        if (bself.serviceModel.devTypeNumber) {
+            [userData setObject:bself.serviceModel.devTypeNumber forKey:@"devTypeNumber"];
         }
         if (bself.serviceModel.userDeviceID) {
             [userData setObject:@(bself.serviceModel.userDeviceID) forKey:@"UserDeviceID"];
@@ -237,7 +253,7 @@
             if (self.connectState != CONNECTED_ZHILIAN) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     [self.navigationController popViewControllerAnimated:YES];
-                } andSuperViewController:self Title:@"当当前连接的WIFI无网络或手机无网络，请切换到可用的网络。"];
+                } andSuperViewController:self Title:@"当前连接的WIFI无网络或手机无网络，请切换到可用的网络。"];
             }
         }
         
@@ -264,7 +280,6 @@
     
     [_context evaluateScript:callJSstring];
     sumStr = nil;
-    
 }
 
 - (void)setServiceModel:(ServicesModel *)serviceModel {

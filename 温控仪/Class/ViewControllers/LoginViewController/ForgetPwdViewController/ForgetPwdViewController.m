@@ -10,7 +10,7 @@
 #import "ChongZhiPwdViewController.h"
 #import "TextFiledView.h"
 
-@interface ForgetPwdViewController ()<UITextFieldDelegate , HelpFunctionDelegate>
+@interface ForgetPwdViewController ()<UITextFieldDelegate>
 @property (nonatomic , strong) UIButton *nextBtn2;
 
 @property (nonatomic , strong) UITextField *pwdTectFiled;

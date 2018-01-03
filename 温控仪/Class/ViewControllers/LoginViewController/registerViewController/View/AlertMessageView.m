@@ -11,7 +11,7 @@
 
 #define kSpace ((self.height - kScreenW / 20 - 5 - self.height / 7 - self.height / 10 - self.height / 8 - self.height / 5) / 5)
 
-@interface AlertMessageView ()<HelpFunctionDelegate>
+@interface AlertMessageView ()
 @property(nonatomic,strong)PZXVerificationCodeView *pzxView;
 @property (nonatomic , strong) UILabel *phoneLabel;
 @property (nonatomic , strong) NSString *data;
@@ -103,7 +103,29 @@
     self.countdownBtn.userInteractionEnabled = NO;
     
     NSDictionary *parameters = @{@"dest":self.phoneNumber , @"bool" : @(0)};
-    [HelpFunction requestDataWithUrlString:kFaSongDuanXin andParames:parameters andDelegate:self];
+    
+    [kNetWork requestPOSTUrlString:kFaSongDuanXin parameters:parameters isSuccess:^(NSDictionary * _Nullable responseObject) {
+        NSDictionary *dic = responseObject;
+        NSLog(@"%@" , dic);
+        
+        if (dic[@"data"]) {
+            NSInteger state = [dic[@"state"] integerValue];
+            
+            if (state == 0) {
+                NSDictionary *data = dic[@"data"];
+                NSString *code = data[@"code"];
+                self.data = code;
+                
+                _pzxView.sendMessage = self.data;
+                
+                NSLog(@"%@" , self.data);
+            }
+        }
+        
+    } failure:^(NSError * _Nonnull error) {
+        [kNetWork noNetWork];
+    }];
+    
 }
 
 - (void)setPhoneNumber:(NSString *)phoneNumber {
@@ -116,30 +138,4 @@
     }
     
 }
-
-#pragma mark - 代理返回的数据
-- (void)requestData:(HelpFunction *)request didFinishLoadingDtaArray:(NSMutableArray *)data {
-    NSDictionary *dic = data[0];
-    NSLog(@"%@" , dic);
-    
-    if (dic[@"data"]) {
-        NSInteger state = [dic[@"state"] integerValue];
-        
-        if (state == 0) {
-            NSDictionary *data = dic[@"data"];
-            NSString *code = data[@"code"];
-            self.data = code;
-            
-            _pzxView.sendMessage = self.data;
-            
-            NSLog(@"%@" , self.data);
-        }
-    }
-    
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
-}
-
 @end

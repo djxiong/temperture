@@ -71,7 +71,7 @@
             failVC.navigationItem.title = @"失败";
             failVC.serviceModel = self.serviceModel;
             [self.navigationController pushViewController:failVC animated:YES];
-        } andSuperViewController:[[HelpFunction shareHelpFunction]getPresentedViewController] Title:@"此设备绑定失败"];
+        } andSuperViewController:[kPlistTools getPresentedViewController] Title:@"此设备绑定失败"];
         
     }
     

@@ -10,7 +10,7 @@
 #import "LocationCell.h"
 #import "UserMessageViewController.h"
 
-@interface LocationPickerVC () < UITextFieldDelegate , HelpFunctionDelegate>
+@interface LocationPickerVC () < UITextFieldDelegate>
 
 @end
 

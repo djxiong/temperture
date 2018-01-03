@@ -22,7 +22,7 @@
 #import "AboutProductViewController.h"
 #import "SetServicesViewController.h"
 
-@interface MineViewController ()<UITableViewDataSource , UITableViewDelegate ,  HelpFunctionDelegate>
+@interface MineViewController ()<UITableViewDataSource , UITableViewDelegate>
 @property (nonatomic , copy) NSString *systemMessageIsShowPrompt;
 @property (nonatomic , strong) UITableView *tableVIew;
 @property (nonatomic , strong) UILabel *nameLable;
@@ -178,7 +178,6 @@
         self.nameLable.text = post.userInfo[@"niCheng"];
     }
 }
-
 
 
 #pragma mark - 头像点击事件

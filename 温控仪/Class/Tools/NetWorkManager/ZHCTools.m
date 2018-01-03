@@ -20,7 +20,7 @@ static ZHCTools *tools = nil;
     return tools;
 }
 
-- (void)setAlertText:(NSString *)text viewController:(UIViewController *)controller handle:(void (^)())handler{
+- (void)setAlertText:(NSString *)text viewController:(UIViewController *)controller handle:(void (^)(void))handler{
     [UIAlertController creatRightAlertControllerWithHandle:handler andSuperViewController:controller Title:text];
 }
 

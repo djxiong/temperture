@@ -51,4 +51,6 @@
 
 - (void)saveFixedDataToFile;
 
+- (UIViewController *)getPresentedViewController;
+
 @end

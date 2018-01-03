@@ -19,7 +19,7 @@
 #import "QQLBXScanViewController.h"
 #import "Global.h"
 #import "StyleDIY.h"
-@interface AllServicesViewController ()<UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout,  HelpFunctionDelegate , SendServiceModelToParentVCDelegate>
+@interface AllServicesViewController ()<UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout , SendServiceModelToParentVCDelegate>
 @property (nonatomic , strong) NSMutableArray *modelArray;
 @property (nonatomic , strong) UICollectionView *collectionView;
 @property (nonatomic , copy) NSString *userSn;
@@ -151,7 +151,7 @@
             htmlVC.serviceModel = model;
             htmlVC.delegate = self;
             kSocketTCP.serviceModel = model;
-            [kSocketTCP socketConnectHostWith:KQILIANHost port:kQILIANPort];
+            [kSocketTCP socketConnectHostWith:KQILIANHost port:kQILIAN_TCP_Port];
             kSocketTCP.whetherConnected = YES;
             
             [self.navigationController pushViewController:htmlVC animated:YES];

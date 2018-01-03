@@ -31,7 +31,7 @@
     webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview: webView];
     
-    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:kAboutOurs]];
+    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:kQLZAboutOurs]];
     [webView loadRequest:request];
     webView.delegate = self;
     

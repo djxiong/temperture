@@ -8,7 +8,7 @@
 
 #import "NiChengViewController.h"
 #import "UserMessageViewController.h"
-@interface NiChengViewController ()<HelpFunctionDelegate , UITextFieldDelegate>
+@interface NiChengViewController ()<UITextFieldDelegate>
 @property (nonatomic , strong) UITextField *textFiled;
 
 @end

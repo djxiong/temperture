@@ -25,6 +25,8 @@ static CZPlistTools *tools = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL result = [fileManager fileExistsAtPath:filePath];
     NSLog(@"这个文件存在：%@",result?@"是的":@"不存在");
+    
+    
     return filePath;
 }
 
@@ -57,6 +59,12 @@ static CZPlistTools *tools = nil;
     NSLog(@"%@" , filePath);
     
     NSData *data = [NSData dataWithContentsOfFile:filePath];
+    
+    if (data == nil) {
+        filePath = [self appendBundlePath:fileName];
+        data = [NSData dataWithContentsOfFile:filePath];
+    }
+    
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     return dic;
     
@@ -106,6 +114,17 @@ static CZPlistTools *tools = nil;
         [self saveDataToFile:bigTypesServicesData name:@"BigTypesServicesData"];
     }
     
+}
+
+- (UIViewController *)getPresentedViewController
+{
+    UIViewController *appRootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *topVC = appRootVC;
+    if (topVC.presentedViewController) {
+        topVC = topVC.presentedViewController;
+    }
+    
+    return topVC;
 }
 
 @end

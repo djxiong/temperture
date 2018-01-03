@@ -100,12 +100,17 @@
         }];
     }
     
-    if (![_userModel.nickname isKindOfClass:[NSNull class]]) {
-        _nameLable.text = _userModel.nickname;
-    } else {
-        _nameLable.text = @"用户名";
+    NSString *nickName = nil;
+    if ([kStanderDefault objectForKey:@"password"] != nil) {
+        nickName = [kStanderDefault objectForKey:@"password"];
+        if ([nickName isEqualToString:@"admin"] || [nickName isEqualToString:@"user"]) {
+            _nameLable.text = nickName;
+        } else if (![_userModel.nickname isKindOfClass:[NSNull class]]) {
+            _nameLable.text = _userModel.nickname;
+        } else {
+            _nameLable.text = @"用户名";
+        }
     }
-    
 }
 
 @end

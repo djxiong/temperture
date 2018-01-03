@@ -8,18 +8,14 @@
 
 #import "AppDelegate.h"
 #import "TabBarViewController.h"
-#import "AsyncSocket.h"
-#import "Reachability.h"
 #import "LoginViewController.h"
 #import "XMGNavigationController.h"
 #import "LaunchScreenViewController.h"
 #import "HTMLBaseViewController.h"
 
 #define STOREAPPID @"1113948983"
-@interface AppDelegate ()<GCDAsyncSocketDelegate , AsyncSocketDelegate , HelpFunctionDelegate>
+@interface AppDelegate ()<GCDAsyncSocketDelegate>
 
-@property (nonatomic , strong) UIAlertController *alertVC;
-@property (nonatomic , strong) UIAlertController *alertController;
 @property (nonatomic , strong) NSString *userHexSn;
 @property (nonatomic , strong) ServicesModel *serviceModel;
 @property (nonatomic , strong) UIView *markview;
@@ -35,13 +31,18 @@
     
     NSLog(@"%f , %f" , kScreenW , kScreenH);
     
-    _alertController = nil;
-    
     [self setRootViewController];
     [[CZNetworkManager shareCZNetworkManager]checkNetWork];
     
     [kPlistTools saveFixedDataToFile];
 
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier {
+    if ([extensionPointIdentifier isEqualToString:@"com.apple.keyboard-service"]) {
+        return NO;
+    }
     return YES;
 }
 

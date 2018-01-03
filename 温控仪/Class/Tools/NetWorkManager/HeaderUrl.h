@@ -15,6 +15,8 @@
 #define kPort 6003
 #define localhost @"114.55.5.92"
 
+#define kMineServiceNavTitle @"智能空净"
+
 /**
  *  注册登录
  */

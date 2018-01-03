@@ -78,7 +78,7 @@
 {
     NSLog(@"%@" , host);
     
-    [self sendDataToHost:nil andType:kLianJie];
+//    [self sendDataToHost:nil andType:kLianJie];
     
     [_duanXianChongLian invalidate];
     _duanXianChongLian = nil;
@@ -140,7 +140,7 @@
             devSnByte[i] = strtoul([devSnSubStr[i] UTF8String],0,16);
         }
         
-        if (![newMessage isEqualToString:@"QUIT"]) {
+        if (![newMessage isEqualToString:@"QUIT"] && ![newMessage isEqualToString:@"CONNECTED"]) {
             
             if (!self.whetherConnected) {
                 if ([str hasPrefix:@"484d4646"]) {
@@ -163,6 +163,9 @@
             
             [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:kWindowRoot Title:@"您的账号在其他设备登陆"];
             
+        }
+        else if ([newMessage isEqualToString:@"CONNECTED"]){
+            [self sendDataToHost:nil andType:kLianJie];
         }
     }
     

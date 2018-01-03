@@ -9,7 +9,7 @@
 #import "UserInfoCommonCell.h"
 #import "BDImagePicker.h"
 
-@interface UserInfoCommonCell ()<HelpFunctionDelegate>
+@interface UserInfoCommonCell ()
 
 
 @end
@@ -79,7 +79,7 @@
     else if (self.indexPath.section == 2) {
         if (self.indexPath.row == 0) {
             self.view.backgroundColor = [UIColor whiteColor];
-            self.view.layer.cornerRadius = 5;
+//            self.view.layer.cornerRadius = 5;
             self.fenGeView.hidden = YES;
             self.lable.hidden = YES;
             self.jianTouImage.hidden = YES;
@@ -109,24 +109,18 @@
             }
             
             NSDictionary *parems = @{@"userSn" : @(self.userModel.sn) , @"files" : data};
-            
-            [HelpFunction requestDataWithUrlString:kShangChuanTouXiang andParames:parems andImage:self.headPortraitImageView.image andDelegate:self];
+            [kNetWork requestPOSTUrlString:kShangChuanTouXiang parameters:parems isSuccess:^(NSDictionary * _Nullable responseObject) {
+                if (self.headPortraitImageView.image) {
+                    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"headImage" object:self userInfo:[NSDictionary dictionaryWithObject:self.headPortraitImageView.image forKey:@"headImage"]]];
+                }
+                
+            } failure:^(NSError * _Nonnull error) {
+                [kNetWork noNetWork];
+            }];
         }
     }];
 }
 
-- (void)requestData:(HelpFunction *)request didSuccess:(NSDictionary *)dddd {
-    NSLog(@"%@" , dddd);
-    
-    if (self.headPortraitImageView.image) {
-        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"headImage" object:self userInfo:[NSDictionary dictionaryWithObject:self.headPortraitImageView.image forKey:@"headImage"]]];
-    }
-    
-}
-
-- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
-    NSLog(@"%@" , error);
-}
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

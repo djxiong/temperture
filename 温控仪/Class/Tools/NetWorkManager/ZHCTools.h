@@ -11,5 +11,5 @@
 @interface ZHCTools : NSObject
 
 + (instancetype)shareZHCTools;
-- (void)setAlertText:(NSString *)text viewController:(UIViewController *)controller handle:(void (^)())handler;
+- (void)setAlertText:(NSString *)text viewController:(UIViewController *)controller handle:(void (^)(void))handler;
 @end
