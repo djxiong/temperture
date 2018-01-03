@@ -97,27 +97,17 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         _webView.delegate = self;
         
-//        [kNetWork requestPOSTUrlString:kAllTypeServiceURL parameters:nil isSuccess:^(NSDictionary * _Nullable responseObject) {
-//            self.whetherNetWork = YES;
-//            if(self.serviceModel.indexUrl) {
-//                [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.serviceModel.indexUrl]]];
-//            } else {
-//                [self loadLocalWEB];
-//            }
-//        } failure:^(NSError * _Nonnull error) {
-//            self.whetherNetWork = NO;
-//            [self loadLocalWEB];
-//        }];
-        
-        if (self.connectState == CONNECTED_ZHILIAN) {
-            [self loadLocalWEB];
-        } else {
+        [kNetWork requestPOSTUrlString:kAllTypeServiceURL parameters:nil isSuccess:^(NSDictionary * _Nullable responseObject) {
+            self.whetherNetWork = YES;
             if(self.serviceModel.indexUrl) {
                 [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.serviceModel.indexUrl]]];
             } else {
                 [self loadLocalWEB];
             }
-        }
+        } failure:^(NSError * _Nonnull error) {
+            self.whetherNetWork = NO;
+            [self loadLocalWEB];
+        }];
         
     }
     return _webView;
@@ -204,6 +194,9 @@
         }
         NSLog(@"%@" , arrarString);
         
+        if ([arrarString isEqualToString:@"[]"]) {
+            return ;
+        }
         [UIAlertController creatCancleAndRightAlertControllerWithHandle:nil andSuperViewController:bself Title:arrarString];
         
     };
