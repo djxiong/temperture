@@ -14,17 +14,17 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - LBXScan/LBXNative (2.2):
+  - LBXScan/LBXNative (2.3):
     - LBXScan/Types (~> 2.2)
-  - LBXScan/Types (2.2)
-  - LBXScan/UI (2.2):
+  - LBXScan/Types (2.3)
+  - LBXScan/UI (2.3):
     - LBXScan/Types (~> 2.2)
-  - Masonry (1.0.2)
-  - MJRefresh (3.1.12)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
-  - SVProgressHUD (2.0.3)
+  - Masonry (1.1.0)
+  - MJRefresh (3.1.15.1)
+  - SDWebImage (4.2.3):
+    - SDWebImage/Core (= 4.2.3)
+  - SDWebImage/Core (4.2.3)
+  - SVProgressHUD (2.2.2)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
@@ -39,11 +39,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  LBXScan: 31b69c9657404133324e6b68ef814802ef9cacc0
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
-  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  LBXScan: e51449f0832d1fe17da632af0d22adeb3cfa3543
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
+  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
 PODFILE CHECKSUM: e2ba409fd334c4ab423410d38316dfd837d5d603

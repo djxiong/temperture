@@ -43,6 +43,7 @@
 		ED0019DA1F4D645E009BD921 /* HeadPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019B91F4D645E009BD921 /* HeadPortraitView.m */; };
 		ED0019DB1F4D645E009BD921 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019BB1F4D645E009BD921 /* MineTableViewCell.m */; };
 		ED0019DC1F4D645E009BD921 /* OvalCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019BD1F4D645E009BD921 /* OvalCircleView.m */; };
+		ED00F14320046EC200453966 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED00F14220046EC200453966 /* Launch Screen.storyboard */; };
 		ED093A911FFCC13F00D0C593 /* backbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = ED093A801FFCC13F00D0C593 /* backbtn.png */; };
 		ED093A921FFCC13F00D0C593 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = ED093A811FFCC13F00D0C593 /* bg.png */; };
 		ED093A931FFCC13F00D0C593 /* build.js in Resources */ = {isa = PBXBuildFile; fileRef = ED093A821FFCC13F00D0C593 /* build.js */; };
@@ -248,6 +249,7 @@
 		ED0019BB1F4D645E009BD921 /* MineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
 		ED0019BC1F4D645E009BD921 /* OvalCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvalCircleView.h; sourceTree = "<group>"; };
 		ED0019BD1F4D645E009BD921 /* OvalCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OvalCircleView.m; sourceTree = "<group>"; };
+		ED00F14220046EC200453966 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		ED093A801FFCC13F00D0C593 /* backbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbtn.png; sourceTree = "<group>"; };
 		ED093A811FFCC13F00D0C593 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		ED093A821FFCC13F00D0C593 /* build.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = build.js; sourceTree = "<group>"; };
@@ -950,6 +952,7 @@
 				ED29B2051EC05264007E5454 /* Assets.xcassets */,
 				ED29B20A1EC05264007E5454 /* Info.plist */,
 				ED29B1FA1EC05264007E5454 /* main.m */,
+				ED00F14220046EC200453966 /* Launch Screen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1634,6 +1637,7 @@
 				ED29B2061EC05264007E5454 /* Assets.xcassets in Resources */,
 				ED093A971FFCC13F00D0C593 /* guanbtn.png in Resources */,
 				ED093A9C1FFCC13F00D0C593 /* index.html in Resources */,
+				ED00F14320046EC200453966 /* Launch Screen.storyboard in Resources */,
 				ED093A991FFCC13F00D0C593 /* jiarekai.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1966,7 +1970,7 @@
 				GCC_PREFIX_HEADER = "/Users/hangzhouaerfate/Desktop/温控仪/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiChang.temperatureControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1986,7 +1990,7 @@
 				GCC_PREFIX_HEADER = "/Users/hangzhouaerfate/Desktop/温控仪/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiChang.temperatureControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";

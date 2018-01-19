@@ -15,6 +15,14 @@
 #import "LXGradientProcessView.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
 
+#define kUDPFirstTag 101
+#define kUDPSecondTag 102
+#define kUDPThirtTag 103
+#define kUDPForthTag 104
+#define kUDPFifthTag 105
+#define kUDPSixthTag 106
+#define kUDPSeventhTag 107
+
 @interface SearchServicesViewController ()<GCDAsyncUdpSocketDelegate ,  UITableViewDelegate , UITableViewDataSource>
 
 @property (nonatomic , strong) GCDAsyncUdpSocket *sendUdpSocket;
@@ -35,7 +43,8 @@
 
 @property (nonatomic , copy) NSString *message;
 
-@property (nonatomic , strong) NSTimer *repeatTimer;
+@property (nonatomic,copy) NSString *macInfo;
+
 @property (nonatomic , strong) UIAlertController *alertVC;
 @end
 
@@ -49,22 +58,25 @@
     
     [self openUDPServer];
     
+    [self sendMessage:@"HF-A11ASSISTHREAD" toHost:KQILIANHost tag:kUDPFirstTag];
+    
     [self setUI];
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    [self.repeatTimer invalidate];
-    self.repeatTimer = nil;
+    [self cancle];
+}
+
+- (void)cancle {
     [SVProgressHUD dismiss];
     [self.sendUdpSocket close];
     self.sendUdpSocket = nil;
 }
 
 - (void)refreshAtcion {
-    [self openUDPServer];
+    [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost tag:kUDPSeventhTag];
 }
 
 #pragma mark - UDP
@@ -90,21 +102,40 @@
     
     self.sendUdpSocket = sendUdpSocket;
     
-    [self sendMessage:@"FF00010102"];
+    
     
 }
 
 //连接建好后处理相应send Events
--(void)sendMessage:(NSString*)message
+-(void)sendMessage:(NSString*)message toHost:(NSString *)host tag:(long)tag
 {
     NSLog(@"UDP发送数据--\n%@" , message);
     
-    NSData *data = [NSString hexStringToData:message];
-    [self.sendUdpSocket sendData:data toHost:KQILIANHost port:kQILIAN_UDP_Port withTimeout:-1 tag:0];
+//    NSData *data = [NSString hexStringToData:message];
+    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+    [self.sendUdpSocket sendData:data toHost:KQILIANHost port:48899 withTimeout:-1 tag:tag];
 }
 
 #pragma mark -GCDAsyncUdpSocketDelegate
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
+    if (tag == kUDPFirstTag) {
+        [self sendMessage:@"+ok" toHost:KQILIANHost tag:kUDPSecondTag];
+    } else if (tag == kUDPSecondTag) {
+        [self sendMessage:@"AT+REGEN=MAC\r\n" toHost:KQILIANHost tag:kUDPThirtTag];
+    } else if (tag == kUDPThirtTag) {
+        [self sendMessage:@"AT+REGTCP=every\r\n" toHost:KQILIANHost tag:kUDPForthTag];
+    } else if (tag == kUDPForthTag) {
+        [self sendMessage:@"AT+TCPPTB=6001\r\n" toHost:KQILIANHost tag:kUDPFifthTag];
+    } else if (tag == kUDPFifthTag) {
+        [self sendMessage:@"AT+TCPADDB=119.29.133.237\r\n" toHost:KQILIANHost tag:kUDPSixthTag];
+    } else if (tag == kUDPSixthTag) {
+        [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost tag:kUDPSeventhTag];
+    }
+}
+
 -(void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext{
+    NSString *ip = [GCDAsyncUdpSocket hostFromAddress:address];
+    uint16_t port = [GCDAsyncUdpSocket portFromAddress:address];
     
     [SVProgressHUD dismiss];
     
@@ -118,7 +149,39 @@
         } andSuperViewController:self Title:@"配网失败请重试。"];
     }
     
-    NSString *str = [NSString convertDataToHexStr:data];
+//    NSString *str = [NSString convertDataToHexStr:data];
+    NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"收到服务端的响应 [%@:%d] %@ ,NSThread --%@", ip, port, str , [NSThread currentThread]);
+    
+    if ([str containsString:@"\n"] && [str containsString:@","]) {
+        NSArray *array = [str componentsSeparatedByString:@"\n"];
+    
+        for (int i = 1; i < array.count; i++) {
+            NSString *wifiInfo = array[i];
+            NSArray *wifiAry = [wifiInfo componentsSeparatedByString:@","];
+            
+            if (wifiAry.count <= 1 || [wifiAry[1] isEqualToString:@"SSID"]) {
+                continue;
+            }
+            
+            [self.dataAry addObject:wifiAry[1]];
+        }
+        NSLog(@"%@ , %@" , array , self.dataAry);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            self.registerLable.textColor = kMainColor;
+        });
+
+    } else {
+        if ([str containsString:@","]) {
+            NSArray *serviceInfo = [str componentsSeparatedByString:@","];
+            if (serviceInfo.count == 3) {
+                self.macInfo = serviceInfo[1];
+            }
+        }
+    }
+    
     if (str.length == 14) {
         if ([str isEqualToString:@"FF000382010187"] || [str isEqualToString:@"ff000382010187"]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -128,25 +191,9 @@
             return ;
         }
     }
-    [self calculateData:str];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-        self.registerLable.textColor = kMainColor;
-    });
     
     [sock receiveOnce:nil];
     
-    //    NSString *ip = [GCDAsyncUdpSocket hostFromAddress:address];
-    //    uint16_t port = [GCDAsyncUdpSocket portFromAddress:address];
-    //    // 继续来等待接收下一次消息
-    //    NSLog(@"收到服务端的响应 [%@:%d] %@", ip, port, data);
-    //    //此处根据实际和硬件商定的需求决定是否主动回一条消息
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //        NSString *msg = @"我收到了";
-    //        NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
-    //        [sock sendData:data toHost:ip port:port withTimeout:0.1 tag:200];
-    //    });
 }
 
 - (void)udpSocketDidClose:(GCDAsyncUdpSocket *)sock withError:(NSError *)error
@@ -155,6 +202,31 @@
 }
 
 #pragma mark - 解析TCP数据
+- (BOOL)isIPAddress:(NSString *)string {
+    NSString *regex = [NSString stringWithFormat:@"^(\\\\d{1,3})\\\\.(\\\\d{1,3})\\\\.(\\\\d{1,3})\\\\.(\\\\d{1,3})$"];
+    
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    BOOL rc = [pre evaluateWithObject:string];
+    
+    if (rc) {
+        NSArray *componds = [string componentsSeparatedByString:@","];
+        
+        BOOL v = YES;
+        for (NSString *s in componds) {
+            if (s.integerValue > 255) {
+                v = NO;
+                break;
+            }
+        }
+        
+        return v;
+    }
+    
+    return NO;
+}
+
+
+
 - (void)calculateData:(NSString *)str {
     NSString *length = [NSString stringWithFormat:@"%.4lx" , (str.length - 6) / 2];
     NSString *headStr = [NSString stringWithFormat:@"ff%@81" , length];
@@ -290,8 +362,9 @@
     NSString *name = cell.textLabel.text;
     self.wifiNameStr = name;
     [UIAlertController creatAlertControllerWithFirstTextfiledPlaceholder:nil andFirstTextfiledText:name andFirstAtcion:nil andWhetherEdite:NO WithSecondTextfiledPlaceholder:@"请输入WIFI密码" andSecondTextfiledText:nil andSecondAtcion:@selector(secondTextFieldsValueDidChange:) andAlertTitle:@"输入WiFi信息" andAlertMessage:@"输入 wifi 信息后，点击'好的',把当前WIFI信息发送给设备。" andTextfiledAtcionTarget:self andSureHandle:^{
+        [self cancle];
         [self openUDPServer];
-        [self sendMessage:self.message];
+        [self sendMessage:self.message toHost:KQILIANHost tag:0];
         self.refreshBtn.userInteractionEnabled = NO;
         self.refreshBtn.backgroundColor = [UIColor grayColor];
         [SVProgressHUD show];

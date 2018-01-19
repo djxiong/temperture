@@ -233,19 +233,22 @@
         NSMutableString *sumStr = [NSMutableString string];
         
         for (NSString *sub in array) {
-            if (sub.length == 1) {
-                [sumStr appendFormat:@"0%@", [NSString toHex:sub.integerValue]];
+            
+           NSString *subtwo = [NSString toHex:sub.integerValue];
+
+            if (subtwo.length == 1) {
+                [sumStr appendFormat:@"0%@", subtwo];
             } else {
-                [sumStr appendFormat:@"%@", [NSString toHex:sub.integerValue]];
+                [sumStr appendFormat:@"%@", subtwo];
             }
         }
        
-        NSLog(@"发送给TCP的命令%@ , %@" , sumStr , parames);
+//        NSLog(@"发送给TCP的命令%@ , %@" , sumStr , parames);
         
         if (!self.whetherNetWork) {
             if (self.connectState != CONNECTED_ZHILIAN) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [kNetWork pushToWIFISetVC];
                 } andSuperViewController:self Title:@"当前连接的WIFI无网络或手机无网络，请切换到可用的网络。"];
             }
         }

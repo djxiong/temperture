@@ -116,7 +116,8 @@ function ReceiveOrder(bd){
 		bdd[4] = bdd[4]>=0?bdd[4]:bdd[4]+256
 		bdd[5] = bdd[5]>=0?bdd[5]:bdd[5]+256
 	}
-	if(bdd.lenght>=8){
+    //ShowRemind(bdd.length)
+	if(bdd.length>=8){
 		switch (bdd[3])
 		{
 			case 0:
@@ -277,11 +278,11 @@ function ReceiveOrder(bd){
 		}
 	}else{
 		if(atm==1){
-			MCstate.sTempReading.splice(4,1,bdd[3])
-	        MCstate.sTempReading.splice(5,1,bdd[4])
+			MCstate.sTempReading.splice(3,1,bdd[3])
+	        MCstate.sTempReading.splice(4,1,bdd[4])
 		}else if(atm==2){
-			MCstate.sCountdownSetting.splice(4,1,bdd[3])
-	        MCstate.sCountdownSetting.splice(5,1,bdd[4])
+			MCstate.sCountdownSetting.splice(3,1,bdd[3])
+	        MCstate.sCountdownSetting.splice(4,1,bdd[4])
 		}
 	}
 	
@@ -421,7 +422,7 @@ $(document).ready(function(){
             js.OrderWebToAndroid(getmsg);
         }
 	}
-	setInterval(alltime,2000)
+	setInterval(alltime,10000)
 	if(ISIOS) {
 		PageLoadIOS();
 	} else {

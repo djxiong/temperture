@@ -43,7 +43,7 @@
         }
     } else {
         [UIAlertController creatRightAlertControllerWithHandle:^{
-            [self.navigationController popViewControllerAnimated:YES];
+            [kNetWork pushToWIFISetVC];
         } andSuperViewController:kWindowRoot Title:@"您当前没有连接WIFI，设备无法添加"];
     }
 }
