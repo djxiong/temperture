@@ -15,6 +15,9 @@
 #import "LXGradientProcessView.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
 
+#define kPort48899 48899
+#define kPort49000 49000
+
 #define kUDPFirstTag 101
 #define kUDPSecondTag 102
 #define kUDPThirtTag 103
@@ -58,7 +61,7 @@
     
     [self openUDPServer];
     
-    [self sendMessage:@"HF-A11ASSISTHREAD" toHost:KQILIANHost tag:kUDPFirstTag];
+    [self sendMessage:@"HF-A11ASSISTHREAD" toHost:KQILIANHost toPort:kPort48899 tag:kUDPFirstTag];
     
     [self setUI];
     
@@ -76,7 +79,7 @@
 }
 
 - (void)refreshAtcion {
-    [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost tag:kUDPSeventhTag];
+    [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSeventhTag];
 }
 
 #pragma mark - UDP
@@ -107,29 +110,29 @@
 }
 
 //连接建好后处理相应send Events
--(void)sendMessage:(NSString*)message toHost:(NSString *)host tag:(long)tag
+-(void)sendMessage:(NSString*)message toHost:(NSString *)host toPort:(NSInteger)port tag:(long)tag
 {
     NSLog(@"UDP发送数据--\n%@" , message);
     
 //    NSData *data = [NSString hexStringToData:message];
     NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
-    [self.sendUdpSocket sendData:data toHost:KQILIANHost port:48899 withTimeout:-1 tag:tag];
+    [self.sendUdpSocket sendData:data toHost:KQILIANHost port:port withTimeout:-1 tag:tag];
 }
 
 #pragma mark -GCDAsyncUdpSocketDelegate
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
     if (tag == kUDPFirstTag) {
-        [self sendMessage:@"+ok" toHost:KQILIANHost tag:kUDPSecondTag];
+        [self sendMessage:@"+ok" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSecondTag];
     } else if (tag == kUDPSecondTag) {
-        [self sendMessage:@"AT+REGEN=MAC\r\n" toHost:KQILIANHost tag:kUDPThirtTag];
+        [self sendMessage:@"AT+REGEN=MAC\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPThirtTag];
     } else if (tag == kUDPThirtTag) {
-        [self sendMessage:@"AT+REGTCP=every\r\n" toHost:KQILIANHost tag:kUDPForthTag];
+        [self sendMessage:@"AT+REGTCP=every\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPForthTag];
     } else if (tag == kUDPForthTag) {
-        [self sendMessage:@"AT+TCPPTB=6001\r\n" toHost:KQILIANHost tag:kUDPFifthTag];
+        [self sendMessage:@"AT+TCPPTB=6001\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPFifthTag];
     } else if (tag == kUDPFifthTag) {
-        [self sendMessage:@"AT+TCPADDB=119.29.133.237\r\n" toHost:KQILIANHost tag:kUDPSixthTag];
+        [self sendMessage:@"AT+TCPADDB=119.29.133.237\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSixthTag];
     } else if (tag == kUDPSixthTag) {
-        [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost tag:kUDPSeventhTag];
+        [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSeventhTag];
     }
 }
 
@@ -143,14 +146,13 @@
         self.searchLable.textColor = kMainColor;
     });
     
-    if (data == nil) {
-        [UIAlertController creatRightAlertControllerWithHandle:^{
-            [self.navigationController popViewControllerAnimated:YES];
-        } andSuperViewController:self Title:@"配网失败请重试。"];
-    }
     
 //    NSString *str = [NSString convertDataToHexStr:data];
     NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    
+    if (str == NULL || str == nil || [str isKindOfClass:[NSNull class]]) {
+        str = [NSString convertDataToHexStr:data];
+    }
     
     NSLog(@"收到服务端的响应 [%@:%d] %@ ,NSThread --%@", ip, port, str , [NSThread currentThread]);
     
@@ -362,12 +364,11 @@
     NSString *name = cell.textLabel.text;
     self.wifiNameStr = name;
     [UIAlertController creatAlertControllerWithFirstTextfiledPlaceholder:nil andFirstTextfiledText:name andFirstAtcion:nil andWhetherEdite:NO WithSecondTextfiledPlaceholder:@"请输入WIFI密码" andSecondTextfiledText:nil andSecondAtcion:@selector(secondTextFieldsValueDidChange:) andAlertTitle:@"输入WiFi信息" andAlertMessage:@"输入 wifi 信息后，点击'好的',把当前WIFI信息发送给设备。" andTextfiledAtcionTarget:self andSureHandle:^{
-        [self cancle];
         [self openUDPServer];
-        [self sendMessage:self.message toHost:KQILIANHost tag:0];
+        NSData *data = [NSString hexStringToData:self.message];
+        [self.sendUdpSocket sendData:data toHost:KQILIANHost port:kPort49000 withTimeout:-1 tag:0];
         self.refreshBtn.userInteractionEnabled = NO;
         self.refreshBtn.backgroundColor = [UIColor grayColor];
-        [SVProgressHUD show];
     } andSuperViewController:self];
     
 }

@@ -68,12 +68,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/MineSerivesViewController/MineSerivesViewController.m"
-            timestampString = "538051013.4137"
+            timestampString = "538054190.985747"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "283"
             endingLineNumber = "283"
             landmarkName = "-whetherDelegateService:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
+            timestampString = "538054190.985833"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-udpSocket:didReceiveData:fromAddress:withFilterContext:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
+            timestampString = "538054190.98625"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "-udpSocket:didReceiveData:fromAddress:withFilterContext:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
