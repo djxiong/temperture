@@ -108,10 +108,8 @@
 		ED2EDDFB201ECE55006DC29E /* kaibtn.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2EDDED201ECE55006DC29E /* kaibtn.png */; };
 		ED2EDDFC201ECE55006DC29E /* setbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2EDDEE201ECE55006DC29E /* setbtn.png */; };
 		ED2EDDFD201ECE55006DC29E /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = ED2EDDEF201ECE55006DC29E /* index.html */; };
-		ED2EDDFE201ECE55006DC29E /* receiveorder.js in Resources */ = {isa = PBXBuildFile; fileRef = ED2EDDF1201ECE55006DC29E /* receiveorder.js */; };
 		ED2EDE01201ECEF4006DC29E /* jquery-3.1.1.min.js in Resources */ = {isa = PBXBuildFile; fileRef = ED2EDDFF201ECEF4006DC29E /* jquery-3.1.1.min.js */; };
 		ED2EDE02201ECEF4006DC29E /* reset.css in Resources */ = {isa = PBXBuildFile; fileRef = ED2EDE00201ECEF4006DC29E /* reset.css */; };
-		ED2EDE04201ED43A006DC29E /* build.js in Resources */ = {isa = PBXBuildFile; fileRef = ED2EDE03201ED43A006DC29E /* build.js */; };
 		ED6BFF8F1ED28ED800420596 /* TextFiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF8E1ED28ED800420596 /* TextFiledView.m */; };
 		ED6BFF921ED29A3700420596 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF911ED29A3700420596 /* BaseViewController.m */; };
 		ED6BFF951ED2CCCB00420596 /* CustomStyleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF941ED2CCCB00420596 /* CustomStyleBtn.m */; };
@@ -141,6 +139,8 @@
 		ED8E3C9E1EC162F20040FD3B /* Wind.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED8E3C9D1EC162F20040FD3B /* Wind.plist */; };
 		EDA767661FFC8F5600BA2C75 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA767631FFC8F5600BA2C75 /* GCDAsyncSocket.m */; };
 		EDA767671FFC8F5600BA2C75 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA767651FFC8F5600BA2C75 /* GCDAsyncUdpSocket.m */; };
+		EDC3992A201F20B70047210B /* build.js in Resources */ = {isa = PBXBuildFile; fileRef = EDC39929201F20B70047210B /* build.js */; };
+		EDC3992E201F265D0047210B /* receiveorder.js in Resources */ = {isa = PBXBuildFile; fileRef = EDC3992D201F265C0047210B /* receiveorder.js */; };
 		EDDBDB1B1FA829EE00145525 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDBDB1A1FA829EE00145525 /* libiconv.2.4.0.tbd */; };
 		EDDBDB1D1FA829FA00145525 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDBDB1C1FA829FA00145525 /* Foundation.framework */; };
 		EDDBDB1F1FA82A0300145525 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDBDB1E1FA82A0300145525 /* libz.1.1.3.tbd */; };
@@ -367,10 +367,8 @@
 		ED2EDDED201ECE55006DC29E /* kaibtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kaibtn.png; sourceTree = "<group>"; };
 		ED2EDDEE201ECE55006DC29E /* setbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setbtn.png; sourceTree = "<group>"; };
 		ED2EDDEF201ECE55006DC29E /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		ED2EDDF1201ECE55006DC29E /* receiveorder.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = receiveorder.js; sourceTree = "<group>"; };
 		ED2EDDFF201ECEF4006DC29E /* jquery-3.1.1.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-3.1.1.min.js"; path = "温控仪/Class/Sources/wenkongyi/jquery-3.1.1.min.js"; sourceTree = SOURCE_ROOT; };
 		ED2EDE00201ECEF4006DC29E /* reset.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = reset.css; path = "温控仪/Class/Sources/wenkongyi/reset.css"; sourceTree = SOURCE_ROOT; };
-		ED2EDE03201ED43A006DC29E /* build.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = build.js; sourceTree = "<group>"; };
 		ED5C9FDE1F9894DD0057C208 /* CZNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CZNetworkManager.h; sourceTree = "<group>"; };
 		ED5C9FDF1F9894DD0057C208 /* CZNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CZNetworkManager.m; sourceTree = "<group>"; };
 		ED6BFF8D1ED28ED800420596 /* TextFiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFiledView.h; sourceTree = "<group>"; };
@@ -431,6 +429,8 @@
 		EDA767631FFC8F5600BA2C75 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		EDA767641FFC8F5600BA2C75 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		EDA767651FFC8F5600BA2C75 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		EDC39929201F20B70047210B /* build.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = build.js; sourceTree = "<group>"; };
+		EDC3992D201F265C0047210B /* receiveorder.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = receiveorder.js; sourceTree = "<group>"; };
 		EDDBDB031FA8236300145525 /* QQLBXScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQLBXScanViewController.h; sourceTree = "<group>"; };
 		EDDBDB041FA8236300145525 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		EDDBDB051FA8236400145525 /* StyleDIY.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StyleDIY.h; sourceTree = "<group>"; };
@@ -1265,7 +1265,7 @@
 		ED2EDDE2201ECE55006DC29E /* dist */ = {
 			isa = PBXGroup;
 			children = (
-				ED2EDE03201ED43A006DC29E /* build.js */,
+				EDC39929201F20B70047210B /* build.js */,
 				ED2EDDE3201ECE55006DC29E /* backbtn.png */,
 				ED2EDDE4201ECE55006DC29E /* bg.png */,
 				ED2EDDE6201ECE55006DC29E /* build.js.map */,
@@ -1286,7 +1286,7 @@
 			children = (
 				ED2EDDFF201ECEF4006DC29E /* jquery-3.1.1.min.js */,
 				ED2EDE00201ECEF4006DC29E /* reset.css */,
-				ED2EDDF1201ECE55006DC29E /* receiveorder.js */,
+				EDC3992D201F265C0047210B /* receiveorder.js */,
 			);
 			path = public;
 			sourceTree = "<group>";
@@ -1613,6 +1613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED2EDDFC201ECE55006DC29E /* setbtn.png in Resources */,
+				EDC3992E201F265D0047210B /* receiveorder.js in Resources */,
 				ED2EDDFA201ECE55006DC29E /* jiarekai.png in Resources */,
 				ED2EDDF6201ECE55006DC29E /* fengjikai.png in Resources */,
 				ED2EDDFB201ECE55006DC29E /* kaibtn.png in Resources */,
@@ -1621,12 +1622,11 @@
 				ED2EDDFD201ECE55006DC29E /* index.html in Resources */,
 				ED8E3C9E1EC162F20040FD3B /* Wind.plist in Resources */,
 				ED2B15CA1FC7FC5F00247CE3 /* BigTypesServicesData in Resources */,
-				ED2EDE04201ED43A006DC29E /* build.js in Resources */,
+				EDC3992A201F20B70047210B /* build.js in Resources */,
 				ED2EDDF5201ECE55006DC29E /* fengjiguan.png in Resources */,
 				ED2B15CB1FC7FC5F00247CE3 /* UserData in Resources */,
 				ED2EDDF9201ECE55006DC29E /* jiareguan.png in Resources */,
 				ED7913FB1ED579DB001DE08C /* EspTouchDemo-Info.plist in Resources */,
-				ED2EDDFE201ECE55006DC29E /* receiveorder.js in Resources */,
 				ED2B15CD1FC7FC5F00247CE3 /* LittleTypesServicesData in Resources */,
 				ED2EDDF7201ECE55006DC29E /* gou.png in Resources */,
 				ED2EDE02201ECEF4006DC29E /* reset.css in Resources */,

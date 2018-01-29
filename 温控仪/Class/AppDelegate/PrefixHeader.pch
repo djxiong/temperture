@@ -49,7 +49,7 @@
 //192.168.1.104  本地ip
 //119.29.133.237    外网ip
 #define kALIPort 6003
-#define KALIHost @"119.29.133.237"
+#define KALIHost @"192.168.1.104"
 
 #define kQILIAN_UDP_Port 49000
 #define kQILIAN_TCP_Port 8899

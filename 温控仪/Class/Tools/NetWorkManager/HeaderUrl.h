@@ -13,7 +13,7 @@
 //192.168.1.104  本地ip
 //114.55.5.92    外网ip
 #define kPort 6003
-#define localhost @"114.55.5.92"
+#define localhost @"192.168.1.104"
 
 #define kMineServiceNavTitle @"智能空净"
 

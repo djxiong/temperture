@@ -44,7 +44,7 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
-    if (self.serviceModel && self.userModel) {
+    if (self.serviceModel.devSn && self.userModel) {
         [kSocketTCP sendDataToHost:nil andType:kAddService];
     }
     

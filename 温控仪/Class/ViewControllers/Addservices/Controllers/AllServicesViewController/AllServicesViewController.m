@@ -178,7 +178,12 @@
 - (void)serviceCurrentConnectedState:(CONNECTED_STATE)state {
     if (state == CONNECTED_ZHILIAN) {
         if (self.userSn) {
-            kSocketTCP.userSn = [NSString toHex:self.userSn.integerValue];
+            NSString *userSn = [NSString toHex:self.userSn.integerValue];
+            if (userSn.length != 8) {
+                userSn = [NSString stringWithFormat:@"0%@" , userSn];
+            }
+            
+            kSocketTCP.userSn = userSn;
             [kSocketTCP socketConnectHostWith:KALIHost port:kALIPort];
         }
     }

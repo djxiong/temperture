@@ -339,6 +339,7 @@
     ServicesModel *model = [[ServicesModel alloc]init];
     model = self.haveArray[indexPath.row];
     
+    kSocketTCP.whetherConnected = NO;
     [kApplicate initServiceModel:model];
     [kApplicate initUserHexSn:self.userHexSn];
     

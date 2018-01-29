@@ -284,8 +284,8 @@ function ReceiveOrder(bd){
 			MCstate.sTempReading.splice(3,1,bdd[3])
 	        MCstate.sTempReading.splice(4,1,bdd[4])
 		}else if(atm==2){
-			MCstate.sCountdownSetting.splice(3,1,bdd[3])
-	        MCstate.sCountdownSetting.splice(4,1,bdd[4])
+			MCstate.sCountdownReading.splice(3,1,bdd[3])
+	        MCstate.sCountdownReading.splice(4,1,bdd[4])
 		}
 	}
 	
@@ -449,7 +449,7 @@ $(document).ready(function(){
 			atm = 2;
 			var getmsg=[0x01,0x03,0x00,0x03,0x00,0x01,0x74,0x0A]
 		}
-		console.log(getmsg)
+		console.log(atm)
 		if(ISIOS){
             OrderWebToIOS(getmsg);
         }else{
