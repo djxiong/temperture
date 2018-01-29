@@ -51,24 +51,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/Tools/NetWorkManager/CZPlistTools.m"
-            timestampString = "534223360.543438"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-saveFixedDataToFile"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/MineSerivesViewController/MineSerivesViewController.m"
-            timestampString = "538054190.985747"
+            timestampString = "538051013.4137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "283"
@@ -83,13 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
-            timestampString = "538054190.985833"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+            timestampString = "538647476.085479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "-udpSocket:didReceiveData:fromAddress:withFilterContext:"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-bindServiceRequest"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -99,14 +83,156 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/searchServicesViewController/SearchServicesViewController.m"
-            timestampString = "538054190.98625"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+            timestampString = "538647476.086225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "-udpSocket:didReceiveData:fromAddress:withFilterContext:"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "-bindServiceRequest"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+            timestampString = "538647476.086678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-bindServiceRequest"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__35-[BindServiceVC bindServiceRequest]_block_invoke"
+                  moduleName = "&#x6e29;&#x63a7;&#x4eea;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hangzhouaerfate/Desktop/%E6%B8%A9%E6%8E%A7%E4%BB%AA/%E6%B8%A9%E6%8E%A7%E4%BB%AA/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+                  timestampString = "538903203.3826309"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "428">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__35-[BindServiceVC bindServiceRequest]_block_invoke_2"
+                  moduleName = "&#x6e29;&#x63a7;&#x4eea;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hangzhouaerfate/Desktop/%E6%B8%A9%E6%8E%A7%E4%BB%AA/%E6%B8%A9%E6%8E%A7%E4%BB%AA/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+                  timestampString = "538903203.384046"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_"
+                  moduleName = "&#x6e29;&#x63a7;&#x4eea;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hangzhouaerfate/Desktop/%E6%B8%A9%E6%8E%A7%E4%BB%AA/%E6%B8%A9%E6%8E%A7%E4%BB%AA/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+                  timestampString = "538903203.385432"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "&#x6e29;&#x63a7;&#x4eea;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hangzhouaerfate/Desktop/%E6%B8%A9%E6%8E%A7%E4%BB%AA/%E6%B8%A9%E6%8E%A7%E4%BB%AA/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+                  timestampString = "538903203.386815"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+            timestampString = "538647476.0871021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-bindServiceRequest"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+            timestampString = "538647476.087584"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-bindServiceRequest"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BindServiceVC bindServiceRequest]"
+                  moduleName = "&#x6e29;&#x63a7;&#x4eea;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hangzhouaerfate/Desktop/%E6%B8%A9%E6%8E%A7%E4%BB%AA/%E6%B8%A9%E6%8E%A7%E4%BB%AA/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+                  timestampString = "538903203.395775"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "1692">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__35-[BindServiceVC bindServiceRequest]_block_invoke"
+                  moduleName = "&#x6e29;&#x63a7;&#x4eea;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hangzhouaerfate/Desktop/%E6%B8%A9%E6%8E%A7%E4%BB%AA/%E6%B8%A9%E6%8E%A7%E4%BB%AA/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
+                  timestampString = "538903203.397496"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

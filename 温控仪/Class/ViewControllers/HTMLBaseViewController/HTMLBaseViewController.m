@@ -147,8 +147,8 @@
         
         NSMutableDictionary *userData = [NSMutableDictionary
                                          dictionary];
-        if ([kStanderDefault objectForKey:@"password"]) {
-            [userData setObject:[kStanderDefault objectForKey:@"password"] forKey:@"identity"];
+        if ([kStanderDefault objectForKey:@"phone"]) {
+            [userData setObject:[kStanderDefault objectForKey:@"phone"] forKey:@"identity"];
         }
         if (bself.userModel.sn) {
             [userData setObject:@(bself.userModel.sn) forKey:@"userSn"];
@@ -181,7 +181,7 @@
     return YES;
 }
 
-
+#pragma mark - webView 加载完成--弹窗
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 
     //    __block typeof(self)bself = self;
@@ -202,7 +202,7 @@
     };
 }
 
-
+#pragma mark - 发送给TCP
 - (void)passValueWithBlock {
     
     JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
@@ -243,7 +243,7 @@
             }
         }
        
-//        NSLog(@"发送给TCP的命令%@ , %@" , sumStr , parames);
+        NSLog(@"发送给TCP的命令%@ , %@" , sumStr , parames);
         
         if (!self.whetherNetWork) {
             if (self.connectState != CONNECTED_ZHILIAN) {
@@ -257,6 +257,7 @@
     };
 }
 
+#pragma mark - 发送给H5
 - (void)getMachineDeviceAtcion:(NSNotification *)post {
     NSMutableString *sumStr = nil;
     sumStr = [NSMutableString stringWithString:post.userInfo[@"Message"]];

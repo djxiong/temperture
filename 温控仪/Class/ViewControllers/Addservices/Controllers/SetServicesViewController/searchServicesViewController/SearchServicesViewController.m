@@ -79,7 +79,9 @@
 }
 
 - (void)refreshAtcion {
-    [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSeventhTag];
+//    [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSeventhTag];
+    NSData *data = [NSString hexStringToData:@"FF00010102"];
+    [self.sendUdpSocket sendData:data toHost:KQILIANHost port:kQILIAN_UDP_Port withTimeout:-1 tag:0];
 }
 
 #pragma mark - UDP
@@ -132,7 +134,8 @@
     } else if (tag == kUDPFifthTag) {
         [self sendMessage:@"AT+TCPADDB=119.29.133.237\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSixthTag];
     } else if (tag == kUDPSixthTag) {
-        [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSeventhTag];
+//        [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSeventhTag];
+        [self refreshAtcion];
     }
 }
 
@@ -152,6 +155,22 @@
     
     if (str == NULL || str == nil || [str isKindOfClass:[NSNull class]]) {
         str = [NSString convertDataToHexStr:data];
+        
+        if (str.length == 14) {
+            if ([str isEqualToString:@"FF000382010187"] || [str isEqualToString:@"ff000382010187"]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.addLable.textColor = kMainColor;
+                });
+                [self determineAndBindTheDevice];
+                return ;
+            }
+        } else {
+            [self calculateData:str];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                self.registerLable.textColor = kMainColor;
+            });
+        }
     }
     
     NSLog(@"收到服务端的响应 [%@:%d] %@ ,NSThread --%@", ip, port, str , [NSThread currentThread]);

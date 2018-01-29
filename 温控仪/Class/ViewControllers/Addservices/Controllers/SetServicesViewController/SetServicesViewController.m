@@ -35,7 +35,7 @@
     
     if ([self getWifiName] != nil || [self getWifiName] != NULL) {
         
-        if (![[self getWifiName] isEqualToString:@"Qinianerwky"]) {
+        if (![[self getWifiName] isEqualToString:kWIFIName]) {
             [UIAlertController creatRightAlertControllerWithHandle:^{
                 [kNetWork pushToWIFISetVC];
                 return ;
@@ -63,7 +63,7 @@
         make.top.mas_equalTo(self.view.mas_top).offset(kScreenH / 11 + kHeight);
     }];
 
-    UILabel *firstLable = [UILabel creatLableWithTitle:[NSString stringWithFormat:@"请把手机当前WIFI连接到'Qinianerwky'的WIFI"] andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
+    UILabel *firstLable = [UILabel creatLableWithTitle:[NSString stringWithFormat:@"请把手机当前WIFI连接到'%@'的WIFI" , kWIFIName] andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
     firstLable.textColor = [UIColor whiteColor];
     firstLable.layer.borderWidth = 0;
     [firstLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -87,7 +87,7 @@
 #pragma mark - 下一步按钮点击事件
 - (void)neaxtBtnAction {
     
-    if (![[self getWifiName] isEqualToString:@"Qinianerwky"]) {
+    if (![[self getWifiName] isEqualToString:kWIFIName]) {
         [UIAlertController creatRightAlertControllerWithHandle:^{
             [kNetWork pushToWIFISetVC];
             return ;

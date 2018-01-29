@@ -142,11 +142,11 @@
         
         if (![newMessage isEqualToString:@"QUIT"] && ![newMessage isEqualToString:@"CONNECTED"]) {
             
-            if (!self.whetherConnected) {
-                if ([str hasPrefix:@"484d4646"]) {
-                    str = [str substringFromIndex:16];
-                    str = [str substringToIndex:str.length - 2];
-                }
+            
+            
+            if (![self.serviceModel.devSn isKindOfClass:[NSNull class]] && self.serviceModel.devSn != nil && self.serviceModel.devSn != NULL &&[str hasPrefix:self.serviceModel.devSn]) {
+                str = [str substringFromIndex:12];
+                //                    str = [str substringToIndex:str.length - 2];
             }
             
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kServiceOrder object:self userInfo:[NSDictionary dictionaryWithObject:str forKey:@"Message"]]];
@@ -200,7 +200,7 @@
         }
     }
     
-    Byte devSnByte[4];
+    Byte devSnByte[self.serviceModel.devSn.length / 2];
     if (self.serviceModel.devSn) {
         NSString *devSn = self.serviceModel.devSn;
         
@@ -227,6 +227,10 @@
         
     } else if ([type isEqualToString:kZhiLing]) {
         
+        if (!self.whetherConnected) {
+            string = [NSString stringWithFormat:@"%@%@" , self.serviceModel.devSn , string];
+        }
+        
         NSInteger length = string.length;
         NSString *zhiLingLong = string;
         Byte zhiLing[length / 2];
@@ -239,20 +243,20 @@
         if (self.whetherConnected) {
             data = [NSData dataWithBytes:zhiLing length:sizeof(zhiLing)];
         } else {
-            Byte orderByteAry[length / 2 + 9];
-            orderByteAry[0] = (Byte)'H';
-            orderByteAry[1] = (Byte)'M';
-            orderByteAry[2] = (Byte)'F';
-            orderByteAry[3] = (Byte)'F';
-            orderByteAry[4] = (Byte)'A';
-            orderByteAry[5] = devSnByte[0];
-            orderByteAry[6] = devSnByte[1];
-            orderByteAry[7] = (Byte)'w';
-            for (int i = 8; i < length / 2 + 8; i++) {
-                orderByteAry[i] = (Byte)zhiLing[i - 8];
-            }
-            orderByteAry[length / 2 + 8] = (Byte)'#';
-            data = [NSData dataWithBytes:orderByteAry length:sizeof(orderByteAry)];
+//            Byte orderByteAry[length / 2 + 9];
+//            orderByteAry[0] = (Byte)'H';
+//            orderByteAry[1] = (Byte)'M';
+//            orderByteAry[2] = (Byte)'F';
+//            orderByteAry[3] = (Byte)'F';
+//            orderByteAry[4] = (Byte)'A';
+//            orderByteAry[5] = devSnByte[0];
+//            orderByteAry[6] = devSnByte[1];
+//            orderByteAry[7] = (Byte)'w';
+//            for (int i = 8; i < length / 2 + 8; i++) {
+//                orderByteAry[i] = (Byte)zhiLing[i - 8];
+//            }
+//            orderByteAry[length / 2 + 8] = (Byte)'#';
+            data = [NSData dataWithBytes:zhiLing length:sizeof(zhiLing)];
         }
         
     } else if ([type isEqualToString:kLianJie]) {
@@ -275,23 +279,24 @@
         
     } else if ([type isEqualToString:kAddService]) {
         
-        Byte addServiceBao[10];
+        Byte addServiceBao[14];
         addServiceBao[0] = (Byte)'H';
         addServiceBao[1] = (Byte)'M';
         
         for (int i = 2; i < 6; i++) {
             addServiceBao[i] = (Byte)userSnByte[i - 2];
         }
-        addServiceBao[6] = devSnByte[0];
-        addServiceBao[7] = devSnByte[1];
-        addServiceBao[8] = (Byte)'N';
-        addServiceBao[9] = (Byte)'#';
+        for (int i = 6; i < 12; i++) {
+            addServiceBao[i] = (Byte)devSnByte[i - 6];
+        }
+        addServiceBao[12] = (Byte)'N';
+        addServiceBao[13] = (Byte)'#';
         
         data = [NSData dataWithBytes:addServiceBao length:sizeof(addServiceBao)];
         NSLog(@"设备连接成功");
     } else if ([type isEqualToString:kQuite]) {
         
-        Byte quiteByteAry[10];
+        Byte quiteByteAry[14];
         quiteByteAry[0] = (Byte)'H';
         quiteByteAry[1] = (Byte)'M';
         
@@ -299,11 +304,11 @@
             quiteByteAry[i] = (Byte)userSnByte[i - 2];
         }
         
-        quiteByteAry[6] = devSnByte[0];
-        quiteByteAry[7] = devSnByte[1];
-        
-        quiteByteAry[8] = (Byte)'Q';
-        quiteByteAry[9] = (Byte)'#';
+        for (int i = 6; i < 12; i++) {
+            quiteByteAry[i] = (Byte)devSnByte[i - 6];
+        }
+        quiteByteAry[12] = (Byte)'Q';
+        quiteByteAry[13] = (Byte)'#';
         
         data = [NSData dataWithBytes:quiteByteAry length:sizeof(quiteByteAry)];
         

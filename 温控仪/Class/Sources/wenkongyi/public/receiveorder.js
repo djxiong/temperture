@@ -109,6 +109,10 @@ function ReceiveOrder(bd){
 		bdd[4] = parseInt(bdd[4],16)
 		bdd[5] = parseInt(bdd[5],16)
 	}else{
+		bdd=[]
+		for(i in bd){
+			bdd[i]=bd[i]
+		}
 		bdd[0] = bdd[0]>=0?bdd[0]:bdd[0]+256
 		bdd[1] = bdd[1]>=0?bdd[1]:bdd[1]+256
 		bdd[2] = bdd[2]>=0?bdd[2]:bdd[2]+256
@@ -116,14 +120,13 @@ function ReceiveOrder(bd){
 		bdd[4] = bdd[4]>=0?bdd[4]:bdd[4]+256
 		bdd[5] = bdd[5]>=0?bdd[5]:bdd[5]+256
 	}
-    //ShowRemind(bdd.length)
 	if(bdd.length>=8){
 		switch (bdd[3])
 		{
 			case 0:
 			  /*MCstate.sTempReading = bdd*/
-			  MCstate.sTempReading.splice(4,1,bdd[4])
-	          MCstate.sTempReading.splice(5,1,bdd[5])
+			  /*MCstate.sTempReading.splice(4,1,bdd[4])
+	          MCstate.sTempReading.splice(5,1,bdd[5])*/
 			  break;
 			case 1:
 			  /*MCstate.fTempSetting = bdd*/
@@ -136,8 +139,8 @@ function ReceiveOrder(bd){
 	          MCstate.fCountdownSetting.splice(5,1,bdd[5])
 			  break;
 			case 3:
-			  MCstate.sCountdownSetting.splice(4,1,bdd[4])
-	          MCstate.sCountdownSetting.splice(5,1,bdd[5])
+			  /*MCstate.sCountdownSetting.splice(4,1,bdd[4])
+	          MCstate.sCountdownSetting.splice(5,1,bdd[5])*/
 			  break;
 			case 4:
 			  MCstate.fZeroScaleCorrection.splice(4,1,bdd[4])
@@ -298,7 +301,10 @@ function GetUserData(a){
 	MCstate.UserDeviceID = a.UserDeviceID;
 	MCstate.ServieceIP = a.ServieceIP;
 	MCstate.BrandName = a.BrandName;
-	
+	MCstate.devTypeNumber = a.devTypeNumber
+
+
+
 	$.ajax({
 	
 		type: "POST",
@@ -317,8 +323,13 @@ function GetUserData(a){
 			if(data){
 
 				for(var i in data){
-					MCstate[i].splice(4,1,parseInt(data[i][4],16))
-					MCstate[i].splice(5,1,parseInt(data[i][5],16))
+					if(i=='sTempReading' || i=='sCountdownReading'){
+						MCstate[i].splice(3,1,parseInt(data[i][3],16))
+						MCstate[i].splice(4,1,parseInt(data[i][4],16))
+					}else{
+						MCstate[i].splice(4,1,parseInt(data[i][4],16))
+						MCstate[i].splice(5,1,parseInt(data[i][5],16))
+					}
 				}
 				
 			}
@@ -327,6 +338,29 @@ function GetUserData(a){
 			MCstate.identity = a.identity;
 		}	
 	})
+
+	$.ajax({
+        type: "POST",
+        url: MCstate.ServieceIP +"smarthome/auth/queryAuthMenu",
+        data: {
+            'userSn': MCstate.userSn,
+            'devTypeNumber': MCstate.devTypeNumber,
+        },
+        dataType: "json",
+        success: function(data) {
+            if(ISIOS){
+                ShowRemind(JSON.stringify(data));
+            }else{
+                js.ShowRemind(JSON.stringify(data));
+            }
+            MCstate.authlist = data
+        },
+        error: function() {
+
+        }
+    })
+
+	/*$('.app_top_tit').html(a.devTypeNumber)*/
 }
 
 
@@ -405,7 +439,7 @@ function GetUserData(a){
 	/*var data = [1,6,0,1,1,44]
 	CRC16ForModbusLH(data,0,6)*/
 
-
+var set
 $(document).ready(function(){
 	function alltime(){
 		if(atm==2 || atm==0){
@@ -422,7 +456,8 @@ $(document).ready(function(){
             js.OrderWebToAndroid(getmsg);
         }
 	}
-	setInterval(alltime,10000)
+	set=setInterval(alltime,10000)
+	
 	if(ISIOS) {
 		PageLoadIOS();
 	} else {

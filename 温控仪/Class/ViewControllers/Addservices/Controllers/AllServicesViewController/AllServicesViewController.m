@@ -125,11 +125,20 @@
     if ([self.navigationItem.title isEqualToString:@"添加设备"]) {
         
         [UIAlertController creatSheetControllerWithFirstHandle:^{
+            
             SetServicesViewController *setserVC = [[SetServicesViewController alloc]init];
             setserVC.serviceModel = model;
             setserVC.navigationItem.title = @"添加设备";
             [self.navigationController pushViewController:setserVC animated:YES];
         } andFirstTitle:@"设备配网" andSecondHandle:^{
+            
+            NSString *phone = [kStanderDefault objectForKey:@"phone"];
+            if ([phone isEqualToString:@"admin"] || [phone isEqualToString:@"user"]) {
+                [UIAlertController creatRightAlertControllerWithHandle:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                } andSuperViewController:self Title:@"当前为公共账号，无法添加设备"];
+            }
+            
             QQLBXScanViewController *vc = [QQLBXScanViewController new];
             vc.libraryType = [Global sharedManager].libraryType;
             vc.scanCodeType = [Global sharedManager].scanCodeType;
@@ -138,11 +147,11 @@
             vc.isVideoZoom = YES;
             [self.navigationController pushViewController:vc animated:YES];
         } andSecondTitle:@"绑定设备" andThirtHandle:^{
-            if (![[kNetWork getWifiName] isEqualToString:@"Qinianerwky"]) {
+            if (![[kNetWork getWifiName] isEqualToString:kWIFIName]) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     [kNetWork pushToWIFISetVC];
                     return ;
-                } andSuperViewController:self Title:@"未连接到指定的'Qinianerwky'的WIFI，无法使用直连模式"];
+                } andSuperViewController:self Title:[NSString stringWithFormat:@"未连接到指定的'%@'的WIFI，无法使用直连模式" , kWIFIName]];
             }
             
             

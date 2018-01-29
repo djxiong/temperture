@@ -105,12 +105,10 @@
 - (void)setServiceModel:(ServicesModel *)serviceModel {
     _serviceModel = serviceModel;
     
-    _serviceModel.devSn = [NSString toHex:[_serviceModel.devSn integerValue]];
-    
-    if (_serviceModel.devSn.length != 4) {
-        _serviceModel.devSn = [NSString stringWithFormat:@"0%@" , _serviceModel.devSn];
-    }
-    
+//    _serviceModel.devSn = [NSString toHex:[_serviceModel.devSn integerValue]];
+//    if (_serviceModel.devSn.length != 4) {
+//        _serviceModel.devSn = [NSString stringWithFormat:@"0%@" , _serviceModel.devSn];
+//    }
     
 }
 
