@@ -14,7 +14,6 @@
 
 @property (nonatomic , strong) UIWebView *webView;
 @property (nonatomic , strong) UIActivityIndicatorView *searchView;
-@property (nonatomic , strong) JSContext *context;
 
 @property (nonatomic , assign) BOOL whetherNetWork;
 @property (nonatomic , assign) BOOL delegateService;
@@ -31,12 +30,26 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMachineDeviceAtcion:) name:kServiceOrder object:nil];
     
     [self setData];
-    [self webView];
+    [self webViewLoadRequest];
     [self searchView];
     
     [kStanderDefault setObject:@"YES" forKey:@"Login"];
     
-    [self passValueWithBlock];
+    
+}
+
+- (void)webViewLoadRequest {
+    [kNetWork requestPOSTUrlString:kAllTypeServiceURL parameters:nil isSuccess:^(NSDictionary * _Nullable responseObject) {
+        self.whetherNetWork = YES;
+        if(self.serviceModel.indexUrl) {
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.serviceModel.indexUrl]]];
+        } else {
+            [self loadLocalWEB];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        self.whetherNetWork = NO;
+        [self loadLocalWEB];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -97,18 +110,6 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         _webView.delegate = self;
         
-        [kNetWork requestPOSTUrlString:kAllTypeServiceURL parameters:nil isSuccess:^(NSDictionary * _Nullable responseObject) {
-            self.whetherNetWork = YES;
-            if(self.serviceModel.indexUrl) {
-                [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.serviceModel.indexUrl]]];
-            } else {
-                [self loadLocalWEB];
-            }
-        } failure:^(NSError * _Nonnull error) {
-            self.whetherNetWork = NO;
-            [self loadLocalWEB];
-        }];
-        
     }
     return _webView;
 }
@@ -118,7 +119,7 @@
     NSString *htmlString = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [[NSURL alloc] initWithString:htmlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [_webView loadRequest:request];
+    [self.webView loadRequest:request];
 }
 
 - (UIActivityIndicatorView *)searchView {
@@ -133,11 +134,32 @@
 
 #pragma mark - WebView 代理
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    _context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     
+    [self pageLoadiOS];
+    
+    return YES;
+}
+
+#pragma mark - webView 加载完成--弹窗
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    [self backIOS];
+    
+    [self orderWebToIOS];
+    
+    [self pageLoadiOS];
+    
+    [self showRemind];
+}
+
+#pragma mark - js交互接口
+
+#pragma mark - H5的加载工作
+- (void)pageLoadiOS {
+    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     __block typeof(self)bself = self;
-    
-    _context[@"PageLoadIOS"] = ^{
+    __block typeof(context)bcontext = context;
+    context[@"PageLoadIOS"] = ^{
         
         if (bself.searchView) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -165,7 +187,7 @@
         if (KALIHost) {
             [userData setObject:[NSString stringWithFormat:@"http://%@:8080/" , KALIHost] forKey:@"ServieceIP"];
         }
-
+        
         if (![bself.serviceModel.brand isKindOfClass:[NSNull class]]) {
             [userData setObject:[NSString stringWithFormat:@"%@%@" , bself.serviceModel.brand , bself.serviceModel.typeName] forKey:@"BrandName"];
         }
@@ -175,18 +197,15 @@
         
         
         NSString *orderStr = [NSString stringWithFormat:@"GetUserData(%@)" , jsonStr];
-        [bself.context evaluateScript:orderStr];
+        [bcontext evaluateScript:orderStr];
     };
-    
-    return YES;
 }
 
-#pragma mark - webView 加载完成--弹窗
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-
-    //    __block typeof(self)bself = self;
-    __block typeof (self)bself = self;
-    _context[@"ShowRemind"] = ^() {
+#pragma mark - H5弹窗
+- (void)showRemind {
+    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    __block typeof(self)bself = self;
+    context[@"ShowRemind"] = ^() {
         NSArray *parames = [JSContext currentArguments];
         NSString *arrarString = [[NSString alloc]init];
         for (id obj in parames) {
@@ -201,24 +220,10 @@
         
     };
 }
-
-#pragma mark - 发送给TCP
-- (void)passValueWithBlock {
+#pragma mark - H5发送给TCP
+- (void)orderWebToIOS {
     
     JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    __block typeof(self)bself = self;
-    context[@"BackIOS"] = ^() {
-        
-        NSArray *ary = [JSContext currentArguments];
-        
-        if (ary.count != 0) {
-            self.delegateService = YES;
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [bself.navigationController popViewControllerAnimated:YES];
-        });
-    };
-    
     context[@"OrderWebToIOS"] = ^() {
         NSArray *parames = [JSContext currentArguments];
         NSString *arrarString = [[NSString alloc]init];
@@ -226,23 +231,22 @@
         for (id obj in parames) {
             arrarString = [arrarString stringByAppendingFormat:@"%@" , obj];
         }
-        
-        
+    
         NSArray *array = [arrarString componentsSeparatedByString:@","];
         
         NSMutableString *sumStr = [NSMutableString string];
         
         for (NSString *sub in array) {
             
-           NSString *subtwo = [NSString toHex:sub.integerValue];
-
+            NSString *subtwo = [NSString toHex:sub.integerValue];
+            
             if (subtwo.length == 1) {
                 [sumStr appendFormat:@"0%@", subtwo];
             } else {
                 [sumStr appendFormat:@"%@", subtwo];
             }
         }
-       
+        
         NSLog(@"发送给TCP的命令%@ , %@" , sumStr , parames);
         
         if (!self.whetherNetWork) {
@@ -256,9 +260,28 @@
         [kSocketTCP sendDataToHost:sumStr andType:kZhiLing];
     };
 }
+#pragma mark - 返回原生界面
+- (void)backIOS {
+    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    __block typeof(self)bself = self;
+    context[@"BackIOS"] = ^() {
+        
+        NSArray *ary = [JSContext currentArguments];
+        
+        if (ary.count != 0) {
+            self.delegateService = YES;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [bself.navigationController popViewControllerAnimated:YES];
+        });
+    };
+}
 
 #pragma mark - 发送给H5
 - (void)getMachineDeviceAtcion:(NSNotification *)post {
+    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    __block typeof(self)bself = self;
+    
     NSMutableString *sumStr = nil;
     sumStr = [NSMutableString stringWithString:post.userInfo[@"Message"]];
     
@@ -271,11 +294,11 @@
     
     NSLog(@"发送给H5的命令%@" , callJSstring);
     
-    if (_context == nil || callJSstring == nil) {
+    if (context == nil || callJSstring == nil) {
         return ;
     }
     
-    [_context evaluateScript:callJSstring];
+    [context evaluateScript:callJSstring];
     sumStr = nil;
 }
 
