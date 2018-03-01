@@ -9,6 +9,9 @@
 #import "SetServicesViewController.h"
 #import "MineSerivesViewController.h"
 #import "SearchServicesViewController.h"
+
+#define kWIFIName self.serviceModel.remark
+
 @interface SetServicesViewController ()
 
 @property (nonatomic , copy) NSString *wifiName;
@@ -108,6 +111,11 @@
     if (_serviceModel.devSn.length != 4) {
         _serviceModel.devSn = [NSString stringWithFormat:@"0%@" , _serviceModel.devSn];
     }
+    
+    if (!_serviceModel.remark) {
+        _serviceModel.remark = @"指定WIFI";
+    }
+    
 }
 
 @end

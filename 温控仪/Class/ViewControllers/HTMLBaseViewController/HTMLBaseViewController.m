@@ -30,9 +30,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMachineDeviceAtcion:) name:kServiceOrder object:nil];
     
     [self setData];
-    [self webViewLoadRequest];
-    [self searchView];
-    
+    [self webView];
+//    [self searchView];
     [kStanderDefault setObject:@"YES" forKey:@"Login"];
     
     
@@ -110,6 +109,7 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         _webView.delegate = self;
         
+        [self webViewLoadRequest];
     }
     return _webView;
 }
@@ -135,19 +135,19 @@
 #pragma mark - WebView 代理
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
-    [self pageLoadiOS];
+//    [self pageLoadiOS];
     
     return YES;
 }
 
-#pragma mark - webView 加载完成--弹窗
+#pragma mark - webView 加载完成
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    [self pageLoadiOS];
     
     [self backIOS];
     
     [self orderWebToIOS];
-    
-    [self pageLoadiOS];
     
     [self showRemind];
 }
@@ -216,7 +216,10 @@
         if ([arrarString isEqualToString:@"[]"]) {
             return ;
         }
-        [UIAlertController creatCancleAndRightAlertControllerWithHandle:nil andSuperViewController:bself Title:arrarString];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIAlertController creatCancleAndRightAlertControllerWithHandle:nil andSuperViewController:bself Title:arrarString];
+        });
         
     };
 }

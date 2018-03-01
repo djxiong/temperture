@@ -132,7 +132,7 @@
     } else if (tag == kUDPForthTag) {
         [self sendMessage:@"AT+TCPPTB=6001\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPFifthTag];
     } else if (tag == kUDPFifthTag) {
-        [self sendMessage:@"AT+TCPADDB=119.29.133.237\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSixthTag];
+        [self sendMessage:[NSString stringWithFormat:@"AT+TCPADDB=%@\r\n" , KALIHost] toHost:KQILIANHost toPort:kPort48899 tag:kUDPSixthTag];
     } else if (tag == kUDPSixthTag) {
 //        [self sendMessage:@"AT+WSCAN\r\n" toHost:KQILIANHost toPort:kPort48899 tag:kUDPSeventhTag];
         [self refreshAtcion];

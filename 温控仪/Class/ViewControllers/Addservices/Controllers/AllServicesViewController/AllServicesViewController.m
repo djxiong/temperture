@@ -122,6 +122,9 @@
     
     ServicesModel *model = [[ServicesModel alloc]init];
     model = self.modelArray[indexPath.row];
+    if (!model.remark) {
+        model.remark = @"指定WIFI";
+    }
     if ([self.navigationItem.title isEqualToString:@"添加设备"]) {
         
         [UIAlertController creatSheetControllerWithFirstHandle:^{
@@ -147,11 +150,11 @@
             vc.isVideoZoom = YES;
             [self.navigationController pushViewController:vc animated:YES];
         } andSecondTitle:@"绑定设备" andThirtHandle:^{
-            if (![[kNetWork getWifiName] isEqualToString:kWIFIName]) {
+            if (![[kNetWork getWifiName] isEqualToString:model.remark]) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     [kNetWork pushToWIFISetVC];
                     return ;
-                } andSuperViewController:self Title:[NSString stringWithFormat:@"未连接到指定的'%@'的WIFI，无法使用直连模式" , kWIFIName]];
+                } andSuperViewController:self Title:[NSString stringWithFormat:@"未连接到指定的'%@'的WIFI，无法使用直连模式" , model.remark]];
             }
             
             

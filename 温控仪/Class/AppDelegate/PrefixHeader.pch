@@ -55,7 +55,10 @@
 #define kQILIAN_TCP_Port 8899
 #define KQILIANHost @"192.168.1.110"
 
-#define kWIFIName @"QLZWKY"
+//#define kWIFIName @"QLZWKY"
+
+//#define kWIFIName self.serviceModel.remark?self.serviceModel.remark:model.remark;
+
 
 //网络单利
 #define kNetWork [CZNetworkManager shareCZNetworkManager]

@@ -22,6 +22,7 @@
 @property (nonatomic , copy) NSString *imageUrl;
 @property (nonatomic , copy) NSString *devSn;
 @property (nonatomic , assign) NSInteger slType;
+@property (nonatomic,copy) NSString *remark;
 
 @property (nonatomic , assign) NSInteger userDeviceID;
 @property (nonatomic , assign) NSInteger slTypeInt;

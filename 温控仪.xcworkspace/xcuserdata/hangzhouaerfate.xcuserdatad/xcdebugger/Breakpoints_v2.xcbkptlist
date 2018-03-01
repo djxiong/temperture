@@ -51,13 +51,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/LoginViewController/registerViewController/View/PZXVerificationCodeTextField/PZXVerificationCodeView.m"
+            timestampString = "539849718.5108041"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-textField:shouldChangeCharactersInRange:replacementString:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/MineSerivesViewController/MineSerivesViewController.m"
-            timestampString = "538914897.466612"
+            timestampString = "541590533.452345"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
-            landmarkName = "-whetherDelegateService:"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
+            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,45 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
-            timestampString = "538647476.085479"
+            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/SetServicesViewController/SetServicesViewController.m"
+            timestampString = "541592436.186009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-bindServiceRequest"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
-            timestampString = "538647476.086225"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-bindServiceRequest"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/Addservices/Controllers/BindServiceVC/BindServiceVC.m"
-            timestampString = "538647476.0871021"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-bindServiceRequest"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "-setServiceModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
