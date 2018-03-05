@@ -145,7 +145,7 @@
             
             
             if (![self.serviceModel.devSn isKindOfClass:[NSNull class]] && self.serviceModel.devSn != nil && self.serviceModel.devSn != NULL &&[str hasPrefix:self.serviceModel.devSn]) {
-                str = [str substringFromIndex:12];
+//                str = [str substringFromIndex:12];
                 //                    str = [str substringToIndex:str.length - 2];
             }
             
@@ -227,9 +227,9 @@
         
     } else if ([type isEqualToString:kZhiLing]) {
         
-        if (!self.whetherConnected) {
-            string = [NSString stringWithFormat:@"%@%@" , self.serviceModel.devSn , string];
-        }
+//        if (!self.whetherConnected) {
+//            string = [NSString stringWithFormat:@"%@%@" , self.serviceModel.devSn , string];
+//        }
         
         NSInteger length = string.length;
         NSString *zhiLingLong = string;

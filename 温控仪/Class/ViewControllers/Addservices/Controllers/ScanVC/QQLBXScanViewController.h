@@ -10,11 +10,14 @@
 #import "LBXScanViewController.h"
 #import "LBXScanPermissions.h"
 
+
+typedef void(^ReturnScanResult)(NSString *result);
+
 #pragma mark -模仿qq界面
 //继承LBXScanViewController,在界面上绘制想要的按钮，提示语等
 @interface QQLBXScanViewController : LBXScanViewController
 
-
+@property (nonatomic,copy) NSString *fromWhere;
 
 /**
  @brief  扫码区域上方提示文字
@@ -32,4 +35,7 @@
 //闪光灯
 @property (nonatomic, strong) UIButton *btnFlash;
 @property (nonatomic , strong) ServicesModel *serviceModel;
+
+@property (nonatomic,copy) ReturnScanResult returnBlock;
+
 @end

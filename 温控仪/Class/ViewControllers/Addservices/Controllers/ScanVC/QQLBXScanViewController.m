@@ -219,17 +219,16 @@
 
 - (void)showNextVCWithScanResult:(LBXScanResult*)strResult
 {
-    BindServiceVC *bindSreviceVC = [BindServiceVC new];
-    self.serviceModel.devSn = strResult.strScanned;
-    bindSreviceVC.serviceModel = self.serviceModel;
-    bindSreviceVC.navigationItem.title = @"添加设备";
-    [self.navigationController pushViewController:bindSreviceVC animated:YES];
     
-//    SetServicesViewController *setSerVC = [[SetServicesViewController alloc]init];
-//    self.serviceModel.devSn = strResult.strScanned;
-//    setSerVC.serviceModel = self.serviceModel;
-//    setSerVC.navigationItem.title = @"添加设备";
-//    [self.navigationController pushViewController:setSerVC animated:YES];
+    if ([self.fromWhere isEqualToString:@"html"]) {
+        self.returnBlock(strResult.strScanned);
+    } else {
+        BindServiceVC *bindSreviceVC = [BindServiceVC new];
+        self.serviceModel.devSn = strResult.strScanned;
+        bindSreviceVC.serviceModel = self.serviceModel;
+        bindSreviceVC.navigationItem.title = @"添加设备";
+        [self.navigationController pushViewController:bindSreviceVC animated:YES];
+    }
     
 }
 

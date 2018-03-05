@@ -8,6 +8,10 @@
 
 #import "HTMLBaseViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+
+#import "QQLBXScanViewController.h"
+#import "Global.h"
+#import "StyleDIY.h"
 @interface HTMLBaseViewController ()<UIWebViewDelegate>
 
 @property (nonatomic , strong) NSMutableDictionary *dic;
@@ -149,6 +153,8 @@
     
     [self orderWebToIOS];
     
+    [self scan];
+    
     [self showRemind];
 }
 
@@ -201,6 +207,42 @@
     };
 }
 
+#pragma mark - 扫描二维码
+- (void)scan {
+    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    
+    __block typeof(self)bself = self;
+    __block typeof(context)__context = context;
+    context[@"ScanQrcode"] = ^() {
+        QQLBXScanViewController *vc = [QQLBXScanViewController new];
+        vc.libraryType = [Global sharedManager].libraryType;
+        vc.scanCodeType = [Global sharedManager].scanCodeType;
+        vc.style = [StyleDIY qqStyle];
+        vc.isVideoZoom = YES;
+        vc.fromWhere = @"html";
+        __block typeof(vc)bvc = vc;
+        vc.returnBlock = ^(NSString *result) {
+            NSLog(@"%@" , result);
+            
+            NSString *callJSstring = nil;
+            callJSstring = [NSString stringWithFormat:@"GetScanQrcodeData('%@')" , result];
+            
+            NSLog(@"扫描结果发送给H5--%@" , callJSstring);
+            
+            if (__context == nil || callJSstring == nil) {
+                return ;
+            }
+            
+            [__context evaluateScript:callJSstring];
+            
+            [bvc.navigationController popViewControllerAnimated:YES];
+        };
+        [bself.navigationController pushViewController:vc animated:YES];
+        
+    };
+    
+}
+
 #pragma mark - H5弹窗
 - (void)showRemind {
     JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
@@ -241,12 +283,12 @@
         
         for (NSString *sub in array) {
             
-            NSString *subtwo = [NSString toHex:sub.integerValue];
+//            NSString *subtwo = [NSString toHex:sub.integerValue];
             
-            if (subtwo.length == 1) {
-                [sumStr appendFormat:@"0%@", subtwo];
+            if (sub.length == 1) {
+                [sumStr appendFormat:@"0%@", sub];
             } else {
-                [sumStr appendFormat:@"%@", subtwo];
+                [sumStr appendFormat:@"%@", sub];
             }
         }
         
