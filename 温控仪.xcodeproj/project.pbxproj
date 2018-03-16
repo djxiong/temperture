@@ -425,6 +425,8 @@
 		ED8E3C961EC15F640040FD3B /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		ED8E3C971EC15F640040FD3B /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		ED8E3C9D1EC162F20040FD3B /* Wind.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Wind.plist; sourceTree = "<group>"; };
+		ED9DA641204E7AE500ACC8B7 /* 温控仪.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "温控仪.entitlements"; sourceTree = "<group>"; };
+		ED9DA642204E7B8C00ACC8B7 /* GeTui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeTui.h; sourceTree = "<group>"; };
 		EDA767621FFC8F5600BA2C75 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		EDA767631FFC8F5600BA2C75 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		EDA767641FFC8F5600BA2C75 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
@@ -904,6 +906,7 @@
 		ED29B1F81EC05264007E5454 /* 温控仪 */ = {
 			isa = PBXGroup;
 			children = (
+				ED9DA641204E7AE500ACC8B7 /* 温控仪.entitlements */,
 				ED29B22D1EC05423007E5454 /* Class */,
 				ED29B1F91EC05264007E5454 /* Supporting Files */,
 			);
@@ -1307,6 +1310,7 @@
 				ED1230D81FB1A03300BB0663 /* CZPlistTools.h */,
 				ED1230D91FB1A03300BB0663 /* CZPlistTools.m */,
 				ED2B15B31FC6AA3700247CE3 /* Header.h */,
+				ED9DA642204E7B8C00ACC8B7 /* GeTui.h */,
 			);
 			path = NetWorkManager;
 			sourceTree = "<group>";
@@ -1571,6 +1575,14 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = WA9VRUVC47;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					ED29B20E1EC05265007E5454 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -1960,6 +1972,7 @@
 			baseConfigurationReference = 71473BA6F0B15487B83E533A /* Pods-温控仪.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "温控仪/温控仪.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -1980,6 +1993,7 @@
 			baseConfigurationReference = E05F0AF728501C089A388FE4 /* Pods-温控仪.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "温控仪/温控仪.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";

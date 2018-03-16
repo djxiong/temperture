@@ -127,47 +127,67 @@
     }
     if ([self.navigationItem.title isEqualToString:@"添加设备"]) {
         
-        [UIAlertController creatSheetControllerWithFirstHandle:^{
-            
-            SetServicesViewController *setserVC = [[SetServicesViewController alloc]init];
-            setserVC.serviceModel = model;
-            setserVC.navigationItem.title = @"添加设备";
-            [self.navigationController pushViewController:setserVC animated:YES];
-        } andFirstTitle:@"设备配网" andSecondHandle:^{
-            
-            NSString *phone = [kStanderDefault objectForKey:@"phone"];
-            if ([phone isEqualToString:@"admin"] || [phone isEqualToString:@"user"]) {
-                [UIAlertController creatRightAlertControllerWithHandle:^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                } andSuperViewController:self Title:@"当前为公共账号，无法添加设备"];
-            }
-            
-            QQLBXScanViewController *vc = [QQLBXScanViewController new];
-            vc.libraryType = [Global sharedManager].libraryType;
-            vc.scanCodeType = [Global sharedManager].scanCodeType;
-            vc.style = [StyleDIY qqStyle];
-            vc.serviceModel = model;
-            vc.isVideoZoom = YES;
-            [self.navigationController pushViewController:vc animated:YES];
-        } andSecondTitle:@"绑定设备" andThirtHandle:^{
-            if (![[kNetWork getWifiName] isEqualToString:model.remark]) {
-                [UIAlertController creatRightAlertControllerWithHandle:^{
-                    [kNetWork pushToWIFISetVC];
-                    return ;
-                } andSuperViewController:self Title:[NSString stringWithFormat:@"未连接到指定的'%@'的WIFI，无法使用直连模式" , model.remark]];
-            }
-            
-            
-            HTMLBaseViewController *htmlVC = [[HTMLBaseViewController alloc]init];
-            htmlVC.connectState = CONNECTED_ZHILIAN;
-            htmlVC.serviceModel = model;
-            htmlVC.delegate = self;
-            kSocketTCP.serviceModel = model;
-            [kSocketTCP socketConnectHostWith:KQILIANHost port:kQILIAN_TCP_Port];
-            kSocketTCP.whetherConnected = YES;
-            
-            [self.navigationController pushViewController:htmlVC animated:YES];
-        } andThirtTitle:@"直连模式" andForthHandle:nil andForthTitle:nil andSuperViewController:self];
+        if ([model.typeNumber isEqualToString:@"7931A"]) {
+            [UIAlertController creatSheetControllerWithFirstHandle:^{
+                NSString *phone = [kStanderDefault objectForKey:@"phone"];
+                if ([phone isEqualToString:@"admin"] || [phone isEqualToString:@"user"]) {
+                    [UIAlertController creatRightAlertControllerWithHandle:^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    } andSuperViewController:self Title:@"当前为公共账号，无法添加设备"];
+                }
+                
+                QQLBXScanViewController *vc = [QQLBXScanViewController new];
+                vc.libraryType = [Global sharedManager].libraryType;
+                vc.scanCodeType = [Global sharedManager].scanCodeType;
+                vc.style = [StyleDIY qqStyle];
+                vc.serviceModel = model;
+                vc.isVideoZoom = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            } andFirstTitle:@"绑定设备" andSecondHandle:nil andSecondTitle:nil andThirtHandle:nil andThirtTitle:nil andForthHandle:nil andForthTitle:nil andSuperViewController:self];
+        } else {
+            [UIAlertController creatSheetControllerWithFirstHandle:^{
+                
+                SetServicesViewController *setserVC = [[SetServicesViewController alloc]init];
+                setserVC.serviceModel = model;
+                setserVC.navigationItem.title = @"添加设备";
+                [self.navigationController pushViewController:setserVC animated:YES];
+            } andFirstTitle:@"设备配网" andSecondHandle:^{
+                
+                NSString *phone = [kStanderDefault objectForKey:@"phone"];
+                if ([phone isEqualToString:@"admin"] || [phone isEqualToString:@"user"]) {
+                    [UIAlertController creatRightAlertControllerWithHandle:^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    } andSuperViewController:self Title:@"当前为公共账号，无法添加设备"];
+                }
+                
+                QQLBXScanViewController *vc = [QQLBXScanViewController new];
+                vc.libraryType = [Global sharedManager].libraryType;
+                vc.scanCodeType = [Global sharedManager].scanCodeType;
+                vc.style = [StyleDIY qqStyle];
+                vc.serviceModel = model;
+                vc.isVideoZoom = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            } andSecondTitle:@"绑定设备" andThirtHandle:^{
+                if (![[kNetWork getWifiName] isEqualToString:model.remark]) {
+                    [UIAlertController creatRightAlertControllerWithHandle:^{
+                        [kNetWork pushToWIFISetVC];
+                        return ;
+                    } andSuperViewController:self Title:[NSString stringWithFormat:@"未连接到指定的'%@'的WIFI，无法使用直连模式" , model.remark]];
+                }
+                
+                
+                HTMLBaseViewController *htmlVC = [[HTMLBaseViewController alloc]init];
+                htmlVC.connectState = CONNECTED_ZHILIAN;
+                htmlVC.serviceModel = model;
+                htmlVC.delegate = self;
+                kSocketTCP.serviceModel = model;
+                [kSocketTCP socketConnectHostWith:KQILIANHost port:kQILIAN_TCP_Port];
+                kSocketTCP.whetherConnected = YES;
+                
+                [self.navigationController pushViewController:htmlVC animated:YES];
+            } andThirtTitle:@"直连模式" andForthHandle:nil andForthTitle:nil andSuperViewController:self];
+        }
+        
         
     } else {
         ChanPinShuoMingViewController *chanPinShuoMingVC = [[ChanPinShuoMingViewController alloc]init];

@@ -19,22 +19,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/UserInfoVC/MineViewController/Controllers/UserMessageViewController/Controllers/NiChengViewController/NiChengViewController.m"
-            timestampString = "534221885.101884"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-sureBtnAtcion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "&#x6e29;&#x63a7;&#x4eea;/Class/ViewControllers/LoginViewController/registerViewController/View/PZXVerificationCodeTextField/PZXVerificationCodeView.m"
             timestampString = "539849718.5108041"
             startingColumnNumber = "9223372036854775807"

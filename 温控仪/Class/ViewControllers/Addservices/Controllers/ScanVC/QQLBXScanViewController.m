@@ -224,6 +224,15 @@
         self.returnBlock(strResult.strScanned);
     } else {
         BindServiceVC *bindSreviceVC = [BindServiceVC new];
+        
+        NSString *result = strResult.strScanned;
+        if (result.length != 4) {
+            [UIAlertController creatRightAlertControllerWithHandle:^{
+                [self.navigationController popViewControllerAnimated:YES];
+                return ;
+            } andSuperViewController:self Title:@"目标设备错误，请重新选择。"];
+        }
+        
         self.serviceModel.devSn = strResult.strScanned;
         bindSreviceVC.serviceModel = self.serviceModel;
         bindSreviceVC.navigationItem.title = @"添加设备";

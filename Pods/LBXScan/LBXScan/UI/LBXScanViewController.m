@@ -30,7 +30,7 @@
 
     switch (_libraryType) {
         case SLT_Native:
-            self.title = @"native";
+            self.title = @"添加设备";
             break;
         case SLT_ZXing:
             self.title = @"ZXing";

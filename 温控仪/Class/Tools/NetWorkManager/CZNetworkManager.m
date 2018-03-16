@@ -250,7 +250,7 @@ static CZNetworkManager *helper = nil;
         }
         
         NSInteger index = [self.arrImage indexOfObject:imageStr];
-        NSLog(@"%@ , %ld" , imageStr , index);
+        NSLog(@"%@ , %ld" , imageStr , (long)index);
         [wearthDic setObject:@(index) forKey:@"weather_icon"];
         [wearthDic setObject:cityname forKey:@"cityName"];
         

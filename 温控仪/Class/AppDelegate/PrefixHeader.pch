@@ -49,7 +49,7 @@
 //192.168.1.104  本地ip
 //119.29.133.237    外网ip
 #define kALIPort 7001
-#define KALIHost @"192.168.1.104"
+#define KALIHost @"119.29.133.237"
 
 #define kQILIAN_UDP_Port 49000
 #define kQILIAN_TCP_Port 8899
@@ -172,6 +172,7 @@
 #import "Header.h"
 #import "YYModel.h"
 #import "GCDAsyncUdpSocket.h"
+#import "GeTui.h"
 
 
 //#import "UIView+Btn.h"
@@ -187,12 +188,6 @@
 #define kUMAppKey @"56e40fc3e0f55ad89b000921"
 
 //#define kDeviceSn [kStanderDefault objectForKey:@"deviceSn"]
-
-
-// 个推开发者网站中申请App时，注册的AppId、AppKey、AppSecret
-#define kGtAppId @"TWxme3OkYjA89rlIuBgyE2"
-#define kGtAppKey @"tzVHOHA6N36htmftfUwq3A"
-#define kGtAppSecret @"JAVioqKoyp96woS4wXSDC6"
 
 /**
  *  干衣机协议宏定义

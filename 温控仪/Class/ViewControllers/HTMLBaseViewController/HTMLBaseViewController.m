@@ -17,7 +17,7 @@
 @property (nonatomic , strong) NSMutableDictionary *dic;
 
 @property (nonatomic , strong) UIWebView *webView;
-@property (nonatomic , strong) UIActivityIndicatorView *searchView;
+//@property (nonatomic , strong) UIActivityIndicatorView *searchView;
 
 @property (nonatomic , assign) BOOL whetherNetWork;
 @property (nonatomic , assign) BOOL delegateService;
@@ -69,7 +69,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
     if ([_delegate respondsToSelector:@selector(sendServiceModelToParentVC:)] && _delegate) {
         [_delegate sendServiceModelToParentVC:self.serviceModel];
     }
@@ -108,8 +108,8 @@
     if (!_webView) {
         _webView = [[UIWebView alloc]initWithFrame:kScreenFrame];
         [self.view addSubview:_webView];
-        _webView.scrollView.scrollEnabled = NO;
-        _webView.backgroundColor = [UIColor clearColor];
+//        _webView.scrollView.scrollEnabled = NO;
+        _webView.backgroundColor = [UIColor whiteColor];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         _webView.delegate = self;
         
@@ -126,20 +126,20 @@
     [self.webView loadRequest:request];
 }
 
-- (UIActivityIndicatorView *)searchView {
-    if (!_searchView) {
-        _searchView = [[UIActivityIndicatorView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-        [self.view addSubview:_searchView];
-        _searchView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-        [_searchView startAnimating];
-    }
-    return _searchView;
-}
+//- (UIActivityIndicatorView *)searchView {
+//    if (!_searchView) {
+//        _searchView = [[UIActivityIndicatorView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+//        [self.view addSubview:_searchView];
+//        _searchView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+//        [_searchView startAnimating];
+//    }
+//    return _searchView;
+//}
 
 #pragma mark - WebView 代理
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
-//    [self pageLoadiOS];
+    [self pageLoadiOS];
     
     return YES;
 }
@@ -167,12 +167,6 @@
     __block typeof(context)bcontext = context;
     context[@"PageLoadIOS"] = ^{
         
-        if (bself.searchView) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                bself.searchView.hidden = YES;
-            });
-        }
-        
         NSMutableDictionary *userData = [NSMutableDictionary
                                          dictionary];
         if ([kStanderDefault objectForKey:@"phone"]) {
@@ -183,6 +177,9 @@
         }
         if (bself.serviceModel.devSn) {
             [userData setObject:bself.serviceModel.devSn forKey:@"devSn"];
+        }
+        if (bself.serviceModel.devTypeSn) {
+            [userData setObject:bself.serviceModel.devTypeSn forKey:@"devTypeSn"];
         }
         if (bself.serviceModel.devTypeNumber) {
             [userData setObject:bself.serviceModel.devTypeNumber forKey:@"devTypeNumber"];
@@ -224,18 +221,25 @@
         vc.returnBlock = ^(NSString *result) {
             NSLog(@"%@" , result);
             
-            NSString *callJSstring = nil;
-            callJSstring = [NSString stringWithFormat:@"GetScanQrcodeData('%@')" , result];
-            
-            NSLog(@"扫描结果发送给H5--%@" , callJSstring);
-            
-            if (__context == nil || callJSstring == nil) {
-                return ;
+            if (result.length != 8) {
+                [UIAlertController creatRightAlertControllerWithHandle:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return ;
+                } andSuperViewController:bvc Title:@"目标设备错误，请重新选择。"];
+            } else {
+                NSString *callJSstring = nil;
+                callJSstring = [NSString stringWithFormat:@"GetScanQrcodeData('%@')" , result];
+                
+                NSLog(@"扫描结果发送给H5--%@" , callJSstring);
+                
+                if (__context == nil || callJSstring == nil) {
+                    return ;
+                }
+                
+                [__context evaluateScript:callJSstring];
+                
+                [bvc.navigationController popViewControllerAnimated:YES];
             }
-            
-            [__context evaluateScript:callJSstring];
-            
-            [bvc.navigationController popViewControllerAnimated:YES];
         };
         [bself.navigationController pushViewController:vc animated:YES];
         

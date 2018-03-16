@@ -7,4 +7,6 @@ pod 'MJRefresh'
 pod 'YYModel'
 pod 'LBXScan/LBXNative','~> 2.2'
 pod 'LBXScan/UI','~> 2.2'
+pod 'GTSDK'
+
 end

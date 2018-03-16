@@ -46,6 +46,10 @@
 	<string>我们需要获取到您的位置，来为您提供您所在地区的天气信息。还请您允许。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>YES</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -67,7 +67,7 @@
     
     [self setUI];
 
-    [self setData];
+    
     
     [[CCLocationManager shareLocation] getNowCityNameAndProvienceName:self];
     
@@ -95,6 +95,8 @@
     if (self.userHexSn && self.serviceModel) {
         [kSocketTCP sendDataToHost:nil andType:kQuite];
     }
+    
+    [self setData];
 }
 
 - (void)setNotifai {
@@ -102,7 +104,7 @@
 }
 #pragma mark - 绑定成功刷新数据
 - (void)bindService {
-    [self setData];
+//    [self setData];
 }
 
 - (void)setData {
@@ -280,7 +282,7 @@
 
 - (void)whetherDelegateService:(BOOL)delateService {
     if (delateService) {
-        [self setData];
+//        [self setData];
     }
 }
 

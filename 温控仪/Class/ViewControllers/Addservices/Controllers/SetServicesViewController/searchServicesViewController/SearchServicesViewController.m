@@ -249,7 +249,7 @@
 
 
 - (void)calculateData:(NSString *)str {
-    NSString *length = [NSString stringWithFormat:@"%.4lx" , (str.length - 6) / 2];
+    NSString *length = [NSString stringWithFormat:@"%.4x" , (str.length - 6) / 2];
     NSString *headStr = [NSString stringWithFormat:@"ff%@81" , length];
     str = [str substringWithRange:NSMakeRange(headStr.length, str.length - headStr.length)];
     

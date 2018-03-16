@@ -405,7 +405,7 @@ static NSString *celled = @"celled";
             [firstSectionArray addObject:self.userModel.email];
         }
         [secondSectionArray addObject:@""];
-        [secondSectionArray addObject:[NSString stringWithFormat:@"%ld" , self.userModel.sn]];
+        [secondSectionArray addObject:[NSString stringWithFormat:@"%ld" , (long)self.userModel.sn]];
         
         [_infoArray addObject:firstSectionArray];
         [_infoArray addObject:secondSectionArray];

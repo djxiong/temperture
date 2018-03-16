@@ -15,6 +15,8 @@
 @property (nonatomic , copy) NSString *typeName;
 @property (nonatomic , copy) NSString *typeNumber;
 @property (nonatomic , copy) NSString *devTypeNumber;
+@property (nonatomic,copy) NSString *devTypeSn;
+
 
 @property (nonatomic , copy) NSString *protocol;
 @property (nonatomic , copy) NSString *bindUrl;

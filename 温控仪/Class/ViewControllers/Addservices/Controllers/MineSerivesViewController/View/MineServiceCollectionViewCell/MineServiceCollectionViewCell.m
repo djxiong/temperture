@@ -31,9 +31,10 @@
         if (self.serviceModel.definedName) {
             self.typeName.text = self.serviceModel.definedName;
         } else {
-            self.typeName.text = [NSString stringWithFormat:@"%@%@" , self.serviceModel.brand , self.serviceModel.typeName];
             
-            if ([self.serviceModel.brand isKindOfClass:[NSNull class]]) {
+            if (self.serviceModel.brand) {
+                self.typeName.text = [NSString stringWithFormat:@"%@%@" , self.serviceModel.brand , self.serviceModel.typeName];
+            } else {
                 self.typeName.text = [NSString stringWithFormat:@"%@" , self.serviceModel.typeName];
             }
             
