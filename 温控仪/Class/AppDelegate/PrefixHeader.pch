@@ -33,8 +33,6 @@
 
 #define BackGroupHeight kScreenH / 2.964444
 
-#define kVersion @"1.0.0"
-
 #define iOS10 ([[UIDevice currentDevice].systemVersion doubleValue] >= 10.0)
 
 // 是否是 iPhone X
@@ -361,7 +359,7 @@
  */
 #define kAllTypeServiceURL [NSString stringWithFormat:@"http://%@:8080/smarthome/deviceType/queryTypeList", KALIHost]
 
-#define kServiceDescriptionURL(typeSn , devTypeSn) [NSString stringWithFormat:@"http://112.124.48.212/webpage/%@/%@/introduction/index.html" , typeSn , devTypeSn]
+#define kServiceDescriptionURL(typeSn , devTypeNumber) [NSString stringWithFormat:@"http://112.124.48.212/webpage/%@/%@/introduction/index.html" , typeSn , devTypeNumber]
 
 
 

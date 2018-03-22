@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.8</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.1</string>
+	<string>1.0.8</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -38,14 +38,32 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>是否允许此App访问媒体库?</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>是否允许此App访问蓝牙?</string>
 	<key>NSCameraUsageDescription</key>
-	<string>YES</string>
+	<string>是否允许此APP使用您的相机?</string>
+	<key>NSContactsUsageDescription</key>
+	<string>是否允许此App读取通讯录信息？</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>我们需要获取到您的位置，来为您提供您所在地区的天气信息。还请您允许。</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>我们需要通过您的地理位置信息获取您周边的相关数据</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>我们需要获取到您的位置，来为您提供您所在地区的天气信息。还请您允许。</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>是否允许此App使用你的麦克风？</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>YES</string>
+	<string>是否允许此App访问相册</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>是否允许此App访问提醒事项？</string>
+	<key>NSSiriUsageDescription</key>
+	<string>是否允许此App使用Siri？</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>是否允许此App使用语音识别？</string>
+	<key>Privacy - Calendars Usage Description </key>
+	<string>是否允许此App使用日历？</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

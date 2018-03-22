@@ -129,4 +129,18 @@
  */
 + (NSData *)hexStringToData:(NSString *)hexString;
 
+/**
+ 判断当前设备是否是iPad
+
+ @return BOOL
+ */
++ (BOOL)getIsIpad;
+
+/**
+ 获取当前app的版本号
+
+ @return 版本号
+ */
++ (NSString *)getVersion;
+
 @end

@@ -17,8 +17,8 @@
     [super setIndexpath:indexpath];
     
     if (self.indexpath.row == 0) {
-        self.imageViw.image = [UIImage imageNamed:@"icon_online_help"];
-        self.lable.text = @"在线帮助";
+        self.imageViw.image = [UIImage imageNamed:@"icon_product_explain"];
+        self.lable.text = @"产品说明";
         self.fenGeView.hidden = NO;
     } else if (self.indexpath.row == 1) {
         self.imageViw.image = [UIImage imageNamed:@"icon_feedback"];

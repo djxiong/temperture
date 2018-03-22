@@ -428,5 +428,36 @@
     return string;
 }
 
++ (BOOL)getIsIpad
+{
+    NSString *deviceType = [UIDevice currentDevice].model;
+    
+    if([deviceType isEqualToString:@"iPhone"]) {
+        //iPhone
+        return NO;
+    }
+    else if([deviceType isEqualToString:@"iPod touch"]) {
+        //iPod Touch
+        return NO;
+    }
+    else if([deviceType isEqualToString:@"iPad"]) {
+        //iPad
+        return YES;
+    }
+    return NO;
+}
+
++ (NSString *)getVersion {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    // app名称
+    //    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    // app版本
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    // app build版本
+    //    NSString *app_build = [infoDictionary objectForKey:@"CFBundleVersion"];
+    
+    return app_Version;
+}
 
 @end

@@ -192,7 +192,7 @@
     } else {
         ChanPinShuoMingViewController *chanPinShuoMingVC = [[ChanPinShuoMingViewController alloc]init];
         chanPinShuoMingVC.typeSn = self.typeSn;
-        
+        chanPinShuoMingVC.serviceModel = model;
         [self.navigationController pushViewController:chanPinShuoMingVC animated:YES];
     }
     

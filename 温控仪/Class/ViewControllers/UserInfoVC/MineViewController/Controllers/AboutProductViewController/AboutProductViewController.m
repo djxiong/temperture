@@ -10,6 +10,7 @@
 #import "MineYouHuiQuanViewController.h"
 #import "UserFeedBackViewController.h"
 #import "GengXinRiZhiViewController.h"
+#import "AllTypeServiceViewController.h"
 #import "AboutProductCell.h"
 
 @interface AboutProductViewController ()<UITableViewDataSource , UITableViewDelegate>
@@ -75,9 +76,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        MineYouHuiQuanViewController *youHuiQuanVC = [[MineYouHuiQuanViewController alloc]init];
-        youHuiQuanVC.navigationItem.title = @"在线帮助";
-        [self.navigationController pushViewController:youHuiQuanVC animated:YES];
+//        MineYouHuiQuanViewController *youHuiQuanVC = [[MineYouHuiQuanViewController alloc]init];
+//        youHuiQuanVC.navigationItem.title = @"在线帮助";
+//        [self.navigationController pushViewController:youHuiQuanVC animated:YES];
+        
+        AllTypeServiceViewController *allServicesVC = [[AllTypeServiceViewController alloc]init];
+        allServicesVC.navigationItem.title = @"所有设备";
+        [self.navigationController pushViewController:allServicesVC animated:YES];
     } else if (indexPath.row == 1) {
         UserFeedBackViewController *userVC = [[UserFeedBackViewController alloc]init];
         

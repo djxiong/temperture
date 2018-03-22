@@ -54,7 +54,8 @@ NSString static * const cellid = @"cellid";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     TableViewHeaderView *headerView = [[TableViewHeaderView alloc]init];
     headerView.frame = CGRectMake(0, 0, kScreenW, kScreenH / 5);
-    headerView.version = kVersion;
+    
+    headerView.version = [NSString getVersion];
     
     return headerView;
 }

@@ -42,6 +42,11 @@
 }
 
 - (void)webViewLoadRequest {
+    if (self.connectState == CONNECTED_ZHILIAN) {
+        [self loadLocalWEB];
+        return ;
+    }
+    
     [kNetWork requestPOSTUrlString:kAllTypeServiceURL parameters:nil isSuccess:^(NSDictionary * _Nullable responseObject) {
         self.whetherNetWork = YES;
         if(self.serviceModel.indexUrl) {
@@ -51,8 +56,11 @@
         }
     } failure:^(NSError * _Nonnull error) {
         self.whetherNetWork = NO;
-        [self loadLocalWEB];
+        [UIAlertController creatRightAlertControllerWithHandle:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        } andSuperViewController:self Title:@"当前无网络或网络信号差，请返回重试"];
     }];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

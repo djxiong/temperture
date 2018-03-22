@@ -55,11 +55,20 @@
     }
     
     UIButton *enterBtn = [UIButton initWithTitle:@"" andColor:[UIColor clearColor] andSuperView:self.scrollerView];
-    [enterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(kScreenW / 2.9, kScreenW / 9.375));
-        make.centerX.mas_equalTo(kScreenW * 2);
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-kScreenW / 7);
-    }];
+    
+    if ([NSString getIsIpad]) {
+        [enterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(kScreenW / 2.9, kScreenW / 9.375));
+            make.centerX.mas_equalTo(kScreenW * 2);
+            make.bottom.mas_equalTo(self.view.mas_bottom).offset(-5);
+        }];
+    } else {
+        [enterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(kScreenW / 2.9, kScreenW / 9.375));
+            make.centerX.mas_equalTo(kScreenW * 2);
+            make.bottom.mas_equalTo(self.view.mas_bottom).offset(-kScreenW / 7);
+        }];
+    }
     
     [enterBtn addTarget:self action:@selector(enterButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
