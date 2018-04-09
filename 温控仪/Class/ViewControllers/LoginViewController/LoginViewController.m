@@ -113,8 +113,8 @@
     NSString *accText = [self.acctextFiled.text lowercaseString];
     NSString *pwdText = [self.pwdTectFiled.text lowercaseString];
     
-    [kStanderDefault setObject:accText forKey:@"password"];
-    [kStanderDefault setObject:pwdText forKey:@"phone"];
+    [kStanderDefault setObject:accText forKey:@"phone"];
+    [kStanderDefault setObject:pwdText forKey:@"password"];
     
     if (([pwdText isEqualToString:@"admin"] || [pwdText isEqualToString:@"user"]) && [accText isEqualToString:pwdText]) {
 //        NSDictionary *dic =  [kPlistTools readDataFromFile:UserData];

@@ -101,9 +101,17 @@
                             
                             [kStanderDefault setObject:user[@"sn"] forKey:@"userSn"];
                             [kStanderDefault setObject:user[@"id"] forKey:@"userId"];
-                            [kWindowRoot presentViewController:[[TabBarViewController alloc]init] animated:YES completion:^{
-                                [self.navigationController popToRootViewControllerAnimated:YES];
-                            }];
+                            
+                            
+                            if ([[kPlistTools getPresentedViewController] isKindOfClass:[TabBarViewController class]]) {
+                                [UIAlertController creatRightAlertControllerWithHandle:^{
+                                    [self.navigationController popToRootViewControllerAnimated:YES];
+                                } andSuperViewController:self Title:@"密码修改成功"];
+                            } else {
+                                [kWindowRoot presentViewController:[[TabBarViewController alloc]init] animated:YES completion:^{
+                                    [self.navigationController popToRootViewControllerAnimated:YES];
+                                }];
+                            }
                         }
                     } failure:^(NSError * _Nonnull error) {
                         [kNetWork noNetWork];

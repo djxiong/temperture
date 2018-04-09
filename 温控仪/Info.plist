@@ -12,12 +12,17 @@
 	<string>com.haiChang.temperatureControl</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>zh_CN</string>
+		<string>en</string>
+	</array>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.8</string>
+	<string>1.1.2</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -30,7 +35,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.8</string>
+	<string>1.1.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -43,7 +48,7 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>是否允许此App访问蓝牙?</string>
 	<key>NSCameraUsageDescription</key>
-	<string>是否允许此APP使用您的相机?</string>
+	<string>是否允许此APP使用您的相机，用来添加设备?</string>
 	<key>NSContactsUsageDescription</key>
 	<string>是否允许此App读取通讯录信息？</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

@@ -8,8 +8,8 @@
 
 #import "UserInfoCommonCell.h"
 #import "BDImagePicker.h"
-
-@interface UserInfoCommonCell ()
+#import "HelpFunction.h"
+@interface UserInfoCommonCell ()<HelpFunctionDelegate>
 
 
 @end
@@ -109,18 +109,24 @@
             }
             
             NSDictionary *parems = @{@"userSn" : @(self.userModel.sn) , @"files" : data};
-            [kNetWork requestPOSTUrlString:kShangChuanTouXiang parameters:parems isSuccess:^(NSDictionary * _Nullable responseObject) {
-                if (self.headPortraitImageView.image) {
-                    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"headImage" object:self userInfo:[NSDictionary dictionaryWithObject:self.headPortraitImageView.image forKey:@"headImage"]]];
-                }
-                
-            } failure:^(NSError * _Nonnull error) {
-                [kNetWork noNetWork];
-            }];
+            
+            [HelpFunction requestDataWithUrlString:kShangChuanTouXiang andParames:parems andImage:self.headPortraitImageView.image andDelegate:self];
         }
     }];
 }
 
+- (void)requestData:(HelpFunction *)request didSuccess:(NSDictionary *)dddd {
+    NSLog(@"%@" , dddd);
+    
+    if (self.headPortraitImageView.image) {
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"headImage" object:self userInfo:[NSDictionary dictionaryWithObject:self.headPortraitImageView.image forKey:@"headImage"]]];
+    }
+    
+}
+
+- (void)requestData:(HelpFunction *)request didFailLoadData:(NSError *)error {
+    NSLog(@"%@" , error);
+}
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

@@ -15,7 +15,7 @@
 @property (nonatomic , strong) NSIndexPath *selectedIndexPath;
 @end
 
-#define STOREAPPID @"1113948983"
+#define STOREAPPID @"1318573449"
 NSString static * const cellid = @"cellid";
 
 @implementation AboutOusTableViewController

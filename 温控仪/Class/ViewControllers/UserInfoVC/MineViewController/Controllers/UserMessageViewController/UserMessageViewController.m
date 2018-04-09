@@ -63,7 +63,8 @@ static NSString *celled = @"celled";
             NSDictionary *dd = aray[0];
             
             self.diZhiModel = [[DiZhiModel alloc]init];
-            [self.diZhiModel setValuesForKeysWithDictionary:dd];
+            
+            [self.diZhiModel yy_modelSetWithDictionary:dd];
             
             for (NSString *key in dd) {
                 if ([key isEqualToString:@"id"]) {

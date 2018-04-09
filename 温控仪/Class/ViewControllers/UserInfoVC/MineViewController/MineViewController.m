@@ -71,8 +71,14 @@
 }
 
 - (void)setData {
-    NSDictionary *userData = [kPlistTools readDataFromFile:UserData];
-    [self setUserData:userData];
+    
+    NSDictionary *userParames = @{@"userSn" : [kStanderDefault objectForKey:@"userSn"]};
+    [kNetWork requestPOSTUrlString:kGetUserDataURL parameters:userParames isSuccess:^(NSDictionary * _Nullable responseObject) {
+        [self setUserData:responseObject];
+    } failure:^(NSError * _Nonnull error) {
+        NSDictionary *userData = [kPlistTools readDataFromFile:UserData];
+        [self setUserData:userData];
+    }];
     
     NSDictionary *parames = @{@"page" : @(1) , @"rows" : @10};
     

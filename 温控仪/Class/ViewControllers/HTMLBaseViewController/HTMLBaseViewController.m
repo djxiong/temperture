@@ -337,7 +337,7 @@
 #pragma mark - 发送给H5
 - (void)getMachineDeviceAtcion:(NSNotification *)post {
     JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    __block typeof(self)bself = self;
+//    __block typeof(self)bself = self;
     
     NSMutableString *sumStr = nil;
     sumStr = [NSMutableString stringWithString:post.userInfo[@"Message"]];
@@ -345,7 +345,7 @@
     for (NSInteger i = sumStr.length - 2; i > 0; i = i - 2) {
         [sumStr insertString:@"," atIndex:i];
     }
-    
+//    sumStr = [@"55,00,00,00,01,aa,84,06,2f,00,01,01,00,01,b9,16" mutableCopy];
     NSString *callJSstring = nil;
     callJSstring = [NSString stringWithFormat:@"ReceiveOrder('%@')" , sumStr];
     
@@ -355,7 +355,7 @@
         return ;
     }
     
-    [context evaluateScript:callJSstring];
+    [self.webView stringByEvaluatingJavaScriptFromString:callJSstring];
     sumStr = nil;
 }
 

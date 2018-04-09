@@ -110,6 +110,8 @@
 		ED2EDDFD201ECE55006DC29E /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = ED2EDDEF201ECE55006DC29E /* index.html */; };
 		ED2EDE01201ECEF4006DC29E /* jquery-3.1.1.min.js in Resources */ = {isa = PBXBuildFile; fileRef = ED2EDDFF201ECEF4006DC29E /* jquery-3.1.1.min.js */; };
 		ED2EDE02201ECEF4006DC29E /* reset.css in Resources */ = {isa = PBXBuildFile; fileRef = ED2EDE00201ECEF4006DC29E /* reset.css */; };
+		ED5972A52069E93F005AFF62 /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED5972A42069E93E005AFF62 /* Address.plist */; };
+		ED5972A82069FBD2005AFF62 /* HelpFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5972A62069FBD1005AFF62 /* HelpFunction.m */; };
 		ED6BFF8F1ED28ED800420596 /* TextFiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF8E1ED28ED800420596 /* TextFiledView.m */; };
 		ED6BFF921ED29A3700420596 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF911ED29A3700420596 /* BaseViewController.m */; };
 		ED6BFF951ED2CCCB00420596 /* CustomStyleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6BFF941ED2CCCB00420596 /* CustomStyleBtn.m */; };
@@ -369,6 +371,9 @@
 		ED2EDDEF201ECE55006DC29E /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		ED2EDDFF201ECEF4006DC29E /* jquery-3.1.1.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-3.1.1.min.js"; path = "温控仪/Class/Sources/wenkongyi/jquery-3.1.1.min.js"; sourceTree = SOURCE_ROOT; };
 		ED2EDE00201ECEF4006DC29E /* reset.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = reset.css; path = "温控仪/Class/Sources/wenkongyi/reset.css"; sourceTree = SOURCE_ROOT; };
+		ED5972A42069E93E005AFF62 /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
+		ED5972A62069FBD1005AFF62 /* HelpFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpFunction.m; sourceTree = "<group>"; };
+		ED5972A72069FBD1005AFF62 /* HelpFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFunction.h; sourceTree = "<group>"; };
 		ED5C9FDE1F9894DD0057C208 /* CZNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CZNetworkManager.h; sourceTree = "<group>"; };
 		ED5C9FDF1F9894DD0057C208 /* CZNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CZNetworkManager.m; sourceTree = "<group>"; };
 		ED6BFF8D1ED28ED800420596 /* TextFiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFiledView.h; sourceTree = "<group>"; };
@@ -657,28 +662,12 @@
 		ED00197B1F4D645E009BD921 /* MineMessageViewController */ = {
 			isa = PBXGroup;
 			children = (
-				ED00197C1F4D645E009BD921 /* MineMessageViewController */,
 				ED00197E1F4D645E009BD921 /* SumMessageViewController.h */,
 				ED00197F1F4D645E009BD921 /* SumMessageViewController.m */,
 				ED0019801F4D645E009BD921 /* SystemMessageVC */,
 				ED00198E1F4D645E009BD921 /* View */,
 			);
 			path = MineMessageViewController;
-			sourceTree = "<group>";
-		};
-		ED00197C1F4D645E009BD921 /* MineMessageViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ED00197D1F4D645E009BD921 /* MessageTableViewCell */,
-			);
-			path = MineMessageViewController;
-			sourceTree = "<group>";
-		};
-		ED00197D1F4D645E009BD921 /* MessageTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MessageTableViewCell;
 			sourceTree = "<group>";
 		};
 		ED0019801F4D645E009BD921 /* SystemMessageVC */ = {
@@ -786,18 +775,10 @@
 		ED0019A01F4D645E009BD921 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				ED0019A11F4D645E009BD921 /* EmailViewController */,
 				ED0019A21F4D645E009BD921 /* LocationPickerVC */,
 				ED0019A81F4D645E009BD921 /* NiChengViewController */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		ED0019A11F4D645E009BD921 /* EmailViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = EmailViewController;
 			sourceTree = "<group>";
 		};
 		ED0019A21F4D645E009BD921 /* LocationPickerVC */ = {
@@ -916,6 +897,7 @@
 		ED29B1F91EC05264007E5454 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED5972A42069E93E005AFF62 /* Address.plist */,
 				ED2B15C61FC7FC5E00247CE3 /* BigTypesServicesData */,
 				ED2B15C91FC7FC5F00247CE3 /* LittleTypesServicesData */,
 				ED2B15C81FC7FC5F00247CE3 /* MineServicesData */,
@@ -1170,6 +1152,8 @@
 				ED29B40A1EC0638F007E5454 /* NSObject+GetDeviceModel.m */,
 				ED29B40B1EC0638F007E5454 /* NSString+Extension.h */,
 				ED29B40C1EC0638F007E5454 /* NSString+Extension.m */,
+				ED5972A72069FBD1005AFF62 /* HelpFunction.h */,
+				ED5972A62069FBD1005AFF62 /* HelpFunction.m */,
 				ED29B40D1EC0638F007E5454 /* Singleton.h */,
 				ED29B40E1EC0638F007E5454 /* Singleton.m */,
 				ED29B40F1EC0638F007E5454 /* UIAlertController+Custom.h */,
@@ -1603,9 +1587,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
-				Base,
-				"zh-Hans",
 			);
 			mainGroup = ED29B1ED1EC05264007E5454;
 			productRefGroup = ED29B1F71EC05264007E5454 /* Products */;
@@ -1645,6 +1626,7 @@
 				ED2B15CC1FC7FC5F00247CE3 /* MineServicesData in Resources */,
 				ED29B2061EC05264007E5454 /* Assets.xcassets in Resources */,
 				ED2EDDF8201ECE55006DC29E /* guanbtn.png in Resources */,
+				ED5972A52069E93F005AFF62 /* Address.plist in Resources */,
 				ED2EDDF2201ECE55006DC29E /* backbtn.png in Resources */,
 				ED00F14320046EC200453966 /* Launch Screen.storyboard in Resources */,
 			);
@@ -1767,6 +1749,7 @@
 				ED29B38B1EC05423007E5454 /* AuthcodeView.m in Sources */,
 				ED29B4361EC0638F007E5454 /* UITextField+Custom.m in Sources */,
 				ED7479241F4BEB9E005A9708 /* FirstUserAlertView.m in Sources */,
+				ED5972A82069FBD2005AFF62 /* HelpFunction.m in Sources */,
 				ED29B4371EC0638F007E5454 /* UIView+Extension.m in Sources */,
 				ED00195D1F4D2095009BD921 /* CircleView.m in Sources */,
 				ED29B4281EC0638F007E5454 /* CustomPickerView.m in Sources */,

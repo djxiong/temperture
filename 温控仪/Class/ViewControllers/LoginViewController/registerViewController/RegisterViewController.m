@@ -121,7 +121,7 @@
         make.top.mas_equalTo(verCodeTextFiledView.mas_bottom).offset(kScreenH / 6.65);
     }];
     
-    UILabel *changLable = [UILabel creatLableWithTitle:@"点击'立即注册'，即表示你同意遵守欧众" andSuperView:self.view andFont:k12 andTextAligment:NSTextAlignmentCenter];
+    UILabel *changLable = [UILabel creatLableWithTitle:@"点击'立即注册'，即表示你同意遵守启联者" andSuperView:self.view andFont:k12 andTextAligment:NSTextAlignmentCenter];
     changLable.textColor = kWhiteColor;
     changLable.layer.borderWidth = 0;
     [changLable mas_makeConstraints:^(MASConstraintMaker *make) {

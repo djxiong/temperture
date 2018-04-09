@@ -362,6 +362,8 @@
 #define kServiceDescriptionURL(typeSn , devTypeNumber) [NSString stringWithFormat:@"http://112.124.48.212/webpage/%@/%@/introduction/index.html" , typeSn , devTypeNumber]
 
 
+//获取用户信息
+#define kGetUserDataURL [NSString stringWithFormat:@"http://%@:8080/smarthome/user/queryUserInfo", KALIHost]
 
 
 #endif

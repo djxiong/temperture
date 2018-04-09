@@ -13,6 +13,8 @@
 #import "CCLocationManager.h"
 #import "FirstUserAlertView.h"
 #import "AllTypeServiceViewController.h"
+#import "XMGRefreshFooter.h"
+#import "XMGRefreshHeader.h"
 
 @interface MineSerivesViewController ()<UICollectionViewDataSource , UICollectionViewDelegate , UICollectionViewDelegateFlowLayout , CCLocationManagerZHCDelegate , UIGestureRecognizerDelegate , SendServiceModelToParentVCDelegate>
 @property (nonatomic , strong) UICollectionView *collectionView;
@@ -67,7 +69,7 @@
     
     [self setUI];
 
-    
+    [self setRefresh];
     
     [[CCLocationManager shareLocation] getNowCityNameAndProvienceName:self];
     
@@ -96,15 +98,22 @@
         [kSocketTCP sendDataToHost:nil andType:kQuite];
     }
     
-    [self setData];
 }
 
 - (void)setNotifai {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(bindService) name:BindService object:nil];
 }
+
+- (void)setRefresh{
+    
+    self.collectionView.mj_header = [XMGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(setData)];
+    [self.collectionView.mj_header beginRefreshing];
+}
+
+
 #pragma mark - 绑定成功刷新数据
 - (void)bindService {
-//    [self setData];
+    [self setData];
 }
 
 - (void)setData {
@@ -140,6 +149,7 @@
             self.markView.hidden = NO;
             [_haveArray removeAllObjects];
             [self.collectionView reloadData];
+            [self.collectionView.mj_header endRefreshing];
             return ;
         }
         NSMutableArray *dataArray = dic[@"data"];
@@ -165,6 +175,7 @@
         }
         
         [self.collectionView reloadData];
+        [self.collectionView.mj_header endRefreshing];
     }
 }
 
@@ -282,7 +293,7 @@
 
 - (void)whetherDelegateService:(BOOL)delateService {
     if (delateService) {
-//        [self setData];
+        [self setData];
     }
 }
 

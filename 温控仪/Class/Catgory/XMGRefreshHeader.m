@@ -27,8 +27,8 @@
     [self setTitle:@"赶紧下拉吧" forState:MJRefreshStateIdle];
     [self setTitle:@"赶紧松开吧" forState:MJRefreshStatePulling];
     [self setTitle:@"正在加载数据..." forState:MJRefreshStateRefreshing];
-    //    self.lastUpdatedTimeLabel.hidden = YES;
-    //    self.stateLabel.hidden = YES;
+//        self.lastUpdatedTimeLabel.hidden = YES;
+//        self.stateLabel.hidden = YES;
     
 }
 

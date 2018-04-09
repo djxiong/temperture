@@ -43,6 +43,7 @@ typedef void(^failure)(NSError * _Nonnull error);
 
 - (void)requestGETUrlString:(NSString *_Nullable)urlString parameters:(NSDictionary *_Nullable)parameters isSuccess:(success _Nullable )isSuccess failure:(failure _Nullable)failure;
 - (void)requestPOSTUrlString:(NSString *_Nullable)urlString parameters:(NSDictionary *_Nullable)parameters isSuccess:(success _Nullable )isSuccess failure:(failure _Nullable)failure;
+- (void)requestImageUrlString:(NSString *_Nullable)urlString parameters:(NSDictionary *_Nullable)parameters imageData:(NSData *_Nullable)data isSuccess:(success _Nullable )isSuccess failure:(failure _Nullable)failure;
 - (void)requestWetherParameters:(NSString *_Nullable)cityname isSuccess:(success _Nullable )isSuccess failure:(failure _Nullable)failure;
 
 
