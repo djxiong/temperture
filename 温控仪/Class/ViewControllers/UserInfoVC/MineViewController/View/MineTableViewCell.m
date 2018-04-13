@@ -130,27 +130,27 @@
     if (_indexpath.section == 0) {
         if (_indexpath.row == 0) {
             self.imageViw.image = [UIImage imageNamed:@"icon_own"];
-            self.lable.text = @"用户信息";
+            self.lable.text = NSLocalizedString(@"User Info", nil);
             maskPath = [UIBezierPath bezierPathWithRoundedRect:_view.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
         } else {
             self.imageViw.image = [UIImage imageNamed:@"icon_message"];
-            self.lable.text = @"消息通知";
+            self.lable.text = NSLocalizedString(@"Message Notification", nil);
             maskPath = [UIBezierPath bezierPathWithRoundedRect:_view.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
         }
     } else if (_indexpath.section == 1) {
         if (_indexpath.row == 0) {
             self.imageViw.image = [UIImage imageNamed:@"icon_about_product"];
-            self.lable.text = @"关于产品";
+            self.lable.text = NSLocalizedString(@"About Products", nil);
             maskPath = [UIBezierPath bezierPathWithRoundedRect:_view.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
         } else {
             self.imageViw.image = [UIImage imageNamed:@"icon_personal_center"];
-            self.lable.text = @"关于我们";
+            self.lable.text = NSLocalizedString(@"About Us", nil);
             maskPath = [UIBezierPath bezierPathWithRoundedRect:_view.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
         }
     } else {
         self.imageViw.image = [UIImage imageNamed:@"icon_clear"];
-        self.clearLabel.text = [NSString stringWithFormat:@"当前缓存 : %@" , [self getBufferSize]];
-        self.lable.text = @"清除缓存";
+        self.clearLabel.text = [NSString stringWithFormat:@"%@ : %@" , NSLocalizedString(@"Current Cache", nil) , [self getBufferSize]];
+        self.lable.text = NSLocalizedString(@"Clear Cache", nil);
         maskPath = [UIBezierPath bezierPathWithRoundedRect:_view.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight |UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
     }
     

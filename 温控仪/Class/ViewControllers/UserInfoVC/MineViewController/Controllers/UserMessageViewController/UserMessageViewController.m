@@ -20,13 +20,18 @@
 #import "GeRenModel.h"
 
 #import "CustomPickerView.h"
+#import "NSBundle+Language.h"
 
 #import <AVFoundation/AVFoundation.h>
 @interface UserMessageViewController ()<UITableViewDataSource , UITableViewDelegate , SendDiZhiDataToProvienceVCDelegate , SendNickOrEmailToPreviousVCDelegate, CustomPickerViewDelegate>
 
 @property (strong, nonatomic)  CustomPickerView *myDatePicker;
 @property (nonatomic , strong) CustomPickerView *sexPicker;
+@property (nonatomic , strong) CustomPickerView *languagesPicker;
 @property (nonatomic , strong) NSArray *sexArray;
+@property (nonatomic,strong) NSMutableDictionary *languagesDic;
+@property (nonatomic,strong) NSArray *languageAry;
+
 @property (nonatomic , strong) GeRenModel *geRenModel;
 @property (nonatomic , strong) DiZhiModel *diZhiModel;
 @property (nonatomic , strong) NSIndexPath *selectedIndexPath;
@@ -136,7 +141,7 @@ static NSString *celled = @"celled";
         if (indexPath.section == 0 && indexPath.row == 0) {
             cell.headPortraitImageView.image = array[0];
             cell.currentVC = self;
-        } else if (indexPath.section == 1 && indexPath.row == 1) {
+        } else if (indexPath.section == 1 && indexPath.row == 2) {
             cell.idLabel.text = array[indexPath.row];
         } else {
             cell.rightLabel.text = array[indexPath.row];
@@ -173,7 +178,7 @@ static NSString *celled = @"celled";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) return 6;
-    else if (section == 1) return 2;
+    else if (section == 1) return 3;
     else return 1;
 }
 
@@ -204,9 +209,9 @@ static NSString *celled = @"celled";
 
         NiChengViewController *nickNameVC = [[NiChengViewController alloc]init];
         if (indexPath.row == 5) {
-            nickNameVC.navigationItem.title = @"邮箱";
+            nickNameVC.navigationItem.title = NSLocalizedString(@"Email", nil);
         } else if (indexPath.row == 1) {
-            nickNameVC.navigationItem.title = @"昵称";
+            nickNameVC.navigationItem.title = NSLocalizedString(@"NickName", nil);
         }
         nickNameVC.delegate = self;
         nickNameVC.userModel = self.userModel;
@@ -214,11 +219,11 @@ static NSString *celled = @"celled";
     } else if (indexPath.section == 0 && (indexPath.row == 2 || indexPath.row == 3)) {
         
         if (indexPath.row == 2) {
-            self.sexPicker = [[CustomPickerView alloc]initWithPickerViewType:2 andBackColor:kMainColor];
+            self.sexPicker = [[CustomPickerView alloc]initWithPickerViewType:UIPickerViewTypeOfSex andBackColor:kMainColor];
             [self.view addSubview:self.sexPicker];
             self.sexPicker.delegate = self;
         } else if (indexPath.row == 3) {
-            self.myDatePicker = [[CustomPickerView alloc]initWithPickerViewType:3 andBackColor:kMainColor];
+            self.myDatePicker = [[CustomPickerView alloc]initWithPickerViewType:UIPickerViewTypeOfBirthday andBackColor:kMainColor];
             [self.view addSubview:self.myDatePicker];
             self.myDatePicker.delegate = self;
         }
@@ -229,16 +234,24 @@ static NSString *celled = @"celled";
         diZhiVC.userModel = self.userModel;
         diZhiVC.diZhiModel = self.diZhiModel;
         diZhiVC.delegate = self;
-        diZhiVC.navigationItem.title = @"我的地址";
+        diZhiVC.navigationItem.title = NSLocalizedString(@"My Address", nil);
         [self.navigationController pushViewController:diZhiVC animated:YES];
     } else if (indexPath.section == 1 && indexPath.row == 0) {
         if (indexPath.row == 0) {
             
             ForgetPwdViewController *forgetPwdVC = [[ForgetPwdViewController alloc]init];
-            forgetPwdVC.navigationItem.title = @"重置密码";
+            forgetPwdVC.navigationItem.title = NSLocalizedString(@"Change Password", nil);
             forgetPwdVC.phoneNumber = [kStanderDefault objectForKey:@"phone"];
             [self.navigationController pushViewController:forgetPwdVC animated:YES];
         }
+    } else if (indexPath.section == 1 && indexPath.row == 1) {
+        
+        if (indexPath.row == 1) {
+            self.languagesPicker = [[CustomPickerView alloc]initWithPickerViewType:UIPickerViewTypeOfLanguages data:self.languagesDic andBackColor:kMainColor];
+            [self.view addSubview:self.languagesPicker];
+            self.languagesPicker.delegate = self;
+        }
+        
     } else if (indexPath.section == 2) {
         
         if ([kApplicate.window.rootViewController isKindOfClass:[TabBarViewController class]]) {
@@ -281,6 +294,32 @@ static NSString *celled = @"celled";
         }];
         
     }
+    
+    if (self.languagesPicker) {
+        UserInfoCommonCell *cell = [self tableViewindexPathForRow:1 inSection:1];
+        NSInteger index = [picker selectedRowInComponent:0];
+        NSString *language = self.languageAry[index];
+        cell.rightLabel.text = language;
+        if ([language isEqualToString:@"中文"]) {
+            language = @"zh-Hans";
+        } else if ([language isEqualToString:@"英文"]) {
+            language = @"en";
+        }
+        
+        [self changeLanguageTo:language];
+    }
+}
+
+
+- (void)changeLanguageTo:(NSString *)language {
+    // 设置语言
+    [NSBundle setLanguage:language];
+    
+    // 然后将设置好的语言存储好，下次进来直接加载
+    [[NSUserDefaults standardUserDefaults] setObject:language forKey:@"myLanguage"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    kWindowRoot = [[TabBarViewController alloc]init];
 }
 
 - (UserInfoCommonCell *)tableViewindexPathForRow:(NSInteger)row inSection:(NSInteger)section {
@@ -324,7 +363,7 @@ static NSString *celled = @"celled";
     NSString *navTitle = nickOrEmailArr[1];
     
     NSIndexPath *indexPath = nil;
-    if ([navTitle isEqualToString:@"昵称"]) {
+    if ([navTitle isEqualToString:NSLocalizedString(@"NickName", nil)]) {
         indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
         self.userModel.nickname = info;
         
@@ -363,6 +402,20 @@ static NSString *celled = @"celled";
     return _sexArray;
 }
 
+- (NSMutableDictionary *)languagesDic {
+    if (!_languagesDic) {
+        _languagesDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.languageAry, @0 , nil];
+    }
+    return _languagesDic;
+}
+
+- (NSArray *)languageAry {
+    if (!_languageAry) {
+        _languageAry = [NSArray arrayWithObjects:@"中文", @"英文" ,  nil];
+    }
+    return _languageAry;
+}
+
 - (NSMutableArray *)infoArray {
     if (!_infoArray) {
         _infoArray = [NSMutableArray array];
@@ -376,19 +429,19 @@ static NSString *celled = @"celled";
         }
         
         if (self.userModel.nickname == nil || [self.userModel.nickname isKindOfClass:[NSNull class]]) {
-            [firstSectionArray addObject:@"昵称"];
+            [firstSectionArray addObject:NSLocalizedString(@"NickName", nil)];
         } else {
             [firstSectionArray addObject:self.userModel.nickname];
         }
         
         if (self.userModel.sex == 1){
-            [firstSectionArray addObject:@"男"];
+            [firstSectionArray addObject:NSLocalizedString(@"Male", nil)];
         } else {
-            [firstSectionArray addObject:@"女"];
+            [firstSectionArray addObject:NSLocalizedString(@"Female", nil)];
         }
         
         if ([self.userModel.birthdate isKindOfClass:[NSNull class]] || self.userModel.birthdate == nil) {
-            [firstSectionArray addObject:@"请选择生日"];
+            [firstSectionArray addObject:NSLocalizedString(@"Please select birthday", nil)];
         } else {
             [firstSectionArray addObject:self.userModel.birthdate];
         }
@@ -396,16 +449,17 @@ static NSString *celled = @"celled";
         if (self.geRenModel.address != nil) {
             [firstSectionArray addObject:[NSString stringWithFormat:@"%@" , self.geRenModel.address]];
         } else {
-            [firstSectionArray addObject:@"请输入地址"];
+            [firstSectionArray addObject:NSLocalizedString(@"Please enter the address", nil)];
         }
         
         
         if ([self.userModel.email isKindOfClass:[NSNull class]] || self.userModel.email == nil) {
-            [firstSectionArray addObject:@"请输入邮箱"];
+            [firstSectionArray addObject:NSLocalizedString(@"Please input your email", nil)];
         } else {
             [firstSectionArray addObject:self.userModel.email];
         }
         [secondSectionArray addObject:@""];
+        [secondSectionArray addObject:[NSString getCurrentLanguage]];
         [secondSectionArray addObject:[NSString stringWithFormat:@"%ld" , (long)self.userModel.sn]];
         
         [_infoArray addObject:firstSectionArray];

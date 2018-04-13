@@ -139,7 +139,7 @@
 }
 
 - (void)setNav {
-    self.navigationItem.title = @"个人中心";
+    self.navigationItem.title = NSLocalizedString(@"Personal Certer", nil);
 }
 
 #pragma mark - 设置UI界面
@@ -192,7 +192,7 @@
 
     userVC.userModel = self.userModel;
     userVC.headImage = self.headImageView.image;
-    userVC.navigationItem.title = @"用户信息";
+    userVC.navigationItem.title = NSLocalizedString(@"User Info", nil);
     [self.navigationController pushViewController:userVC animated:YES];
 //    self.tabBarController.tabBar.hidden = YES;
 }
@@ -241,7 +241,8 @@
         
         SumMessageViewController *sumMessageVC = [[SumMessageViewController alloc]init];
         sumMessageVC.systemMessageIsShowPrompt = self.systemMessageIsShowPrompt;
-        sumMessageVC.navigationItem.title = @"消息中心";
+        sumMessageVC.navigationItem.title = NSLocalizedString(@"Message Notification", nil);
+        sumMessageVC.userModel = self.userModel;
         [self.navigationController pushViewController:sumMessageVC animated:YES];
         
         self.systemMessageIsShowPrompt = @"NO";
@@ -252,11 +253,11 @@
         AboutProductViewController *aboutVC = [[AboutProductViewController alloc]init];
         aboutVC.model = [[UserModel alloc]init];
         aboutVC.model = self.userModel;
-        aboutVC.navigationItem.title = @"关于产品";
+        aboutVC.navigationItem.title = NSLocalizedString(@"About Products", nil);
         [self.navigationController pushViewController:aboutVC animated:YES];
     } else if (indexPath.row == 1 && indexPath.section == 1) {
         AboutOusTableViewController *aboutOusVC = [[AboutOusTableViewController alloc]init];
-        aboutOusVC.navigationItem.title = @"关于我们";
+        aboutOusVC.navigationItem.title = NSLocalizedString(@"About Us", nil);
         [self.navigationController pushViewController:aboutOusVC animated:YES];
     } else  {
 //        self.tabBarController.tabBar.hidden = NO;
@@ -264,12 +265,12 @@
         
         [UIAlertController creatCancleAndRightAlertControllerWithHandle:^{
             [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-                cell.clearLabel.text = [NSString stringWithFormat:@"当前缓存 : %@" , [cell getBufferSize]];
+                cell.clearLabel.text = [NSString stringWithFormat:@"%@ : %@" , NSLocalizedString(@"Current Cache", nil) ,  [cell getBufferSize]];
             }];
             
             [self cleanCacheAndCookie];
             
-        } andSuperViewController:self Title:@"清除缓存"];
+        } andSuperViewController:self Title:NSLocalizedString(@"Clear Cache", nil)];
         
         
         

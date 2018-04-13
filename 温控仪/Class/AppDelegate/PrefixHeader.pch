@@ -290,16 +290,30 @@
 #define kXiaoXiJieKou [NSString stringWithFormat:@"http://%@:8080/smarthome/app/queryMessage", KALIHost]
 
 /**
- *  查询消息接口
+ *  查询系统消息接口
  *
  */
 #define kSystemMessageJieKou [NSString stringWithFormat:@"http://%@:8080/smarthome/app/queryPublicMessage", KALIHost]
+
+/**
+ *  查询我的消息接口
+ *
+ */
+#define kMyMessageJieKou [NSString stringWithFormat:@"http://%@:8080/smarthome/app/queryPrivateMessage", KALIHost]
 
 /**
  *  查询消息接口
  *
  */
 #define kUserReadSystemMessageCount [NSString stringWithFormat:@"http://%@:8080/smarthome/app/increasePMReadCount", KALIHost]
+
+/**
+ *  查询消息接口
+ *
+ */
+#define kUserWhtherReadMessageURL [NSString stringWithFormat:@"http://%@:8080/smarthome/app/modifyIfRead", KALIHost]
+
+
 /**
  *  用户反馈借口
  *

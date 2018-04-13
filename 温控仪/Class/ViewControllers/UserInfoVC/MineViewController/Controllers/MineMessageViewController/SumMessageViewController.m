@@ -18,6 +18,10 @@
 
 @implementation SumMessageViewController
 
+- (void)setUserModel:(UserModel *)userModel {
+    _userModel = userModel;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -82,11 +86,11 @@
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:index,nil] withRowAnimation:UITableViewRowAnimationNone];
     
     SystemMessageViewController *systemVC = [[SystemMessageViewController alloc]init];
-    
+    systemVC.userModel = self.userModel;
     if (indexPath.row == 1) {
-        systemVC.navigationItem.title = @"我的消息";
+        systemVC.navigationItem.title = NSLocalizedString(@"My Information", nil);
     } else if (indexPath.row == 0) {
-        systemVC.navigationItem.title = @"系统消息";
+        systemVC.navigationItem.title = NSLocalizedString(@"System Information", nil);
     }
     [self.navigationController pushViewController:systemVC animated:YES];
 }

@@ -24,7 +24,7 @@
 #pragma mark - 设置UI
 - (void)setUI{
     
-    UIView *pwdFiledView = [UIView creatViewWithFiledCoradiusOfPlaceholder:@"请输入密码" andSuperView:self.view];
+    UIView *pwdFiledView = [UIView creatViewWithFiledCoradiusOfPlaceholder:NSLocalizedString(@"Please enter your password", nil) andSuperView:self.view];
     [pwdFiledView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kScreenW - kScreenW / 15.625, kScreenW / 8.3));
         make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -32,7 +32,7 @@
     }];
     self.pwdTectFiled = pwdFiledView.subviews[0];
     
-    UIView *againPwdFiledView = [UIView creatViewWithFiledCoradiusOfPlaceholder:@"请重新输入密码" andSuperView:self.view];
+    UIView *againPwdFiledView = [UIView creatViewWithFiledCoradiusOfPlaceholder:NSLocalizedString(@"Please re-enter your password", nil) andSuperView:self.view];
     [againPwdFiledView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kScreenW - kScreenW / 15.625, kScreenW / 8.3));
         make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -45,7 +45,7 @@
     self.pwdTectFiled.keyboardType = UIKeyboardTypeDefault;
     self.againPwdTectFiled.keyboardType = UIKeyboardTypeDefault;
     
-    UIButton *submitBtn = [UIButton initWithTitle:@"提交" andColor:[UIColor redColor] andSuperView:self.view];
+    UIButton *submitBtn = [UIButton initWithTitle:NSLocalizedString(@"Submit", nil) andColor:[UIColor redColor] andSuperView:self.view];
     [submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kScreenW / 2.8, kScreenW / 9.4));
         make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -66,14 +66,14 @@
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     self.pwdTectFiled.text = nil;
                     self.againPwdTectFiled.text = nil;
-                } andSuperViewController:self Title:@"您两次输入的密码不同，请再次输入"];
+                } andSuperViewController:self Title:NSLocalizedString(@"PwdTwiceDifferentRe-enter", nil)];
             }
         }
     } else {
 
         [UIAlertController creatRightAlertControllerWithHandle:^{
             textField.text = nil;
-        } andSuperViewController:self Title:@"您两次输入的密码不同，请再次输入"];
+        } andSuperViewController:self Title:NSLocalizedString(@"PwdTwiceDifferentRe-enter", nil)];
     }
 }
 
@@ -106,7 +106,7 @@
                             if ([[kPlistTools getPresentedViewController] isKindOfClass:[TabBarViewController class]]) {
                                 [UIAlertController creatRightAlertControllerWithHandle:^{
                                     [self.navigationController popToRootViewControllerAnimated:YES];
-                                } andSuperViewController:self Title:@"密码修改成功"];
+                                } andSuperViewController:self Title:NSLocalizedString(@"Password reset complete", nil)];
                             } else {
                                 [kWindowRoot presentViewController:[[TabBarViewController alloc]init] animated:YES completion:^{
                                     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -118,10 +118,10 @@
                     }];
                     
                 } else if (state == 1) {
-                    [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"密码输入为空"];
+                    [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"PwdEnterError", nil)];
                 } else {
                     
-                    [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"系统异常，请重试"];
+                    [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"SystemErrorRestall", nil)];
                 }
             } failure:^(NSError * _Nonnull error) {
                 [kNetWork noNetWork];
@@ -129,11 +129,11 @@
             
         } else {
            
-            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"您两次输入的密码不相同，请重新输入"];
+            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"PwdTwiceDifferentRe-enter", nil)];
         }
     } else {
         
-        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"密码长度必须大于6位并小于16位"];
+        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"PwdFormat", nil)];
     }
 }
 

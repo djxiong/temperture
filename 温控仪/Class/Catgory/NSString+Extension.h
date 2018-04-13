@@ -143,4 +143,9 @@
  */
 + (NSString *)getVersion;
 
+/**
+ 获取当前系统语言
+ */
++ (NSString *)getCurrentLanguage;
+
 @end

@@ -42,12 +42,12 @@
             [UIAlertController creatRightAlertControllerWithHandle:^{
                 [kNetWork pushToWIFISetVC];
                 return ;
-            } andSuperViewController:self Title:@"请链接设备指定WIFI，否则设备无法绑定!"];
+            } andSuperViewController:self Title:NSLocalizedString(@"Please specify the WIFI link device, otherwise the device can not be bound", nil)];
         }
     } else {
         [UIAlertController creatRightAlertControllerWithHandle:^{
             [kNetWork pushToWIFISetVC];
-        } andSuperViewController:kWindowRoot Title:@"您当前没有连接WIFI，设备无法添加"];
+        } andSuperViewController:kWindowRoot Title:NSLocalizedString(@"You are not currently connected to WIFI, the device cannot be added", nil)];
     }
 }
 
@@ -66,7 +66,7 @@
         make.top.mas_equalTo(self.view.mas_top).offset(kScreenH / 11 + kHeight);
     }];
 
-    UILabel *firstLable = [UILabel creatLableWithTitle:[NSString stringWithFormat:@"请把手机当前WIFI连接到'%@'的WIFI" , kWIFIName] andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
+    UILabel *firstLable = [UILabel creatLableWithTitle:[NSString stringWithFormat:@"%@'%@'WIFI" , NSLocalizedString(@"Please connect the current WIFI of the mobile phone to", nil) , kWIFIName] andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
     firstLable.textColor = [UIColor whiteColor];
     firstLable.layer.borderWidth = 0;
     [firstLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -76,7 +76,7 @@
     }];
     
     
-    UIButton *neaxtBtn = [UIButton creatBtnWithTitle:@"下一步" andBorderColor:kMainColor WithTarget:self andDoneAtcion:@selector(neaxtBtnAction) andSuperView:self.view];
+    UIButton *neaxtBtn = [UIButton creatBtnWithTitle:NSLocalizedString(@"Next", nil) andBorderColor:kMainColor WithTarget:self andDoneAtcion:@selector(neaxtBtnAction) andSuperView:self.view];
     neaxtBtn.layer.cornerRadius = kScreenW / 18;
     neaxtBtn.backgroundColor = kCOLOR(239, 250, 253);
     [neaxtBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -94,12 +94,12 @@
         [UIAlertController creatRightAlertControllerWithHandle:^{
             [kNetWork pushToWIFISetVC];
             return ;
-        } andSuperViewController:self Title:@"未连接到指定WIFI，无法进行配网设置"];
+        } andSuperViewController:self Title:NSLocalizedString(@"Not connected to the specified WIFI, unable to configure the distribution network", nil)];
     }
     
     SearchServicesViewController *searVC = [[SearchServicesViewController alloc]init];
     searVC.serviceModel = self.serviceModel;
-    searVC.navigationItem.title = @"设备配网";
+    searVC.navigationItem.title = NSLocalizedString(@"Equipment Distribution Network", nil);
     [self.navigationController pushViewController:searVC animated:YES];
     
 }
@@ -113,7 +113,7 @@
     }
     
     if (!_serviceModel.remark) {
-        _serviceModel.remark = @"指定WIFI";
+        _serviceModel.remark = NSLocalizedString(@"Specified WIFI", nil);
     }
     
 }

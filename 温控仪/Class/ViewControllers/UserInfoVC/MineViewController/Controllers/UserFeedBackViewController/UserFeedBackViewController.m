@@ -101,7 +101,7 @@
     _textView.editable = YES;
     _textView.backgroundColor = [UIColor clearColor];
     _textView.placeholderColor = RGBCOLOR(0x89, 0x89, 0x89);
-    _textView.placeholder = @"写下你遇到的问题，或告诉我们你的宝贵意见~";
+    _textView.placeholder = NSLocalizedString(@"FeedBack Placehold", nil);
     _textView.layer.borderWidth = 0;
     
     _wordCountLabel = [UILabel creatLableWithTitle:@"0/300" andSuperView:_aView andFont:k14 andTextAligment:NSTextAlignmentRight];
@@ -125,7 +125,7 @@
     
     
     
-    UILabel * labelText = [UILabel creatLableWithTitle:@"问题截图(选填)" andSuperView:_secondBackView andFont:k14 andTextAligment:NSTextAlignmentLeft];
+    UILabel * labelText = [UILabel creatLableWithTitle:NSLocalizedString(@"Question Screenshot", nil) andSuperView:_secondBackView andFont:k14 andTextAligment:NSTextAlignmentLeft];
     
     [labelText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kScreenW - kScreenW * 4 / 25, kScreenW / 10.7));
@@ -163,7 +163,7 @@
     [_photoBtn setImage:[UIImage imageNamed:@"2.4意见反馈_03(1)"] forState:UIControlStateNormal];
     [_photoBtn addTarget:self action:@selector(picureUpload:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *submitBtn = [UIButton creatBtnWithTitle:@"提交" withLabelFont:k15 withLabelTextColor:[UIColor whiteColor] andSuperView:self.view andBackGroundColor:kCOLOR(28, 164, 252) andHighlightedBackGroundColor:kKongJingHuangSe andwhtherNeendCornerRadius:@"YES" WithTarget:self andDoneAtcion:@selector(sendFeedBack)];
+    UIButton *submitBtn = [UIButton creatBtnWithTitle:NSLocalizedString(@"Submit", nil) withLabelFont:k15 withLabelTextColor:[UIColor whiteColor] andSuperView:self.view andBackGroundColor:kCOLOR(28, 164, 252) andHighlightedBackGroundColor:kKongJingHuangSe andwhtherNeendCornerRadius:@"YES" WithTarget:self andDoneAtcion:@selector(sendFeedBack)];
     [submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kScreenW / 2.8, kScreenW / 10));
         make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -184,7 +184,7 @@
         [self presentViewController:picker animated:YES completion:nil];
     } else {
         
-        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"最多只能上传三张图片"];
+        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"MineVC_OnlyUploadThreeImages", nil)];
         
     }
     
@@ -220,7 +220,7 @@
 - (void)sendFeedBack{
     if (self.textView.text.length == 0) {
         
-        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"你输入的信息为空，请重新输入"];
+        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"MineVC_InfoEmptyRe-enter", nil)];
     }
     else{
 
@@ -255,7 +255,7 @@
             if ([dic[@"success"] integerValue] == 1) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     [self.navigationController popViewControllerAnimated:YES];
-                } andSuperViewController:self Title:@"亲，您的建议我们已经收到，会尽快处理"];
+                } andSuperViewController:self Title:NSLocalizedString(@"MineVC_FeedBackReceived", nil)];
                    
                 
             }

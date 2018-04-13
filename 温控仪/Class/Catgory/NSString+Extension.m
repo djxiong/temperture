@@ -460,4 +460,19 @@
     return app_Version;
 }
 
++ (NSString *)getCurrentLanguage
+{
+//    NSArray *languages = [NSLocale preferredLanguages];
+//    NSString *currentLanguage = [languages objectAtIndex:0];
+    
+    NSString * currentLanguage = [[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"];
+    if ([currentLanguage containsString:@"zh-"]) {
+        currentLanguage = @"中文";
+    } else if ([currentLanguage containsString:@"en"]) {
+        currentLanguage = @"English";
+    }
+    NSLog( @"%@" , currentLanguage);
+    return currentLanguage;
+}
+
 @end

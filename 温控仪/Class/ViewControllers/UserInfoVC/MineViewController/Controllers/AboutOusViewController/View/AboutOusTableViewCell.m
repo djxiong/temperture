@@ -23,13 +23,13 @@
     [super setIndexpath:indexpath];
         
     if (self.indexpath.row == 0) {
-        self.lable.text = @"去评价";
+        self.lable.text = NSLocalizedString(@"Go To Evaluate", nil);
         self.imageViw.image = [UIImage imageNamed:@"icon_evaluation"];
         self.fenGeView.hidden = NO;
 //        [self setTopCorner];
         self.backImage.image = [UIImage imageNamed:@"topleftandright"];
     } else {
-        self.lable.text = @"联系我们";
+        self.lable.text = NSLocalizedString(@"Contact Us", nil);
         self.imageViw.image = [UIImage imageNamed:@"icon_phone"];
 //        [self setBottomCorner];
         self.backImage.image = [UIImage imageNamed:@"bottomleftandright"];

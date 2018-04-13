@@ -50,7 +50,7 @@
         } else if ([responseObject[@"state"] integerValue] == 2 ) {
             [UIAlertController creatRightAlertControllerWithHandle:^{
                 [self returnMinSerVC];
-            } andSuperViewController:self Title:@"此设备已绑定"];
+            } andSuperViewController:self Title:NSLocalizedString(@"This device is already bound", nil)];
             
         } else if ([responseObject[@"state"] integerValue] == 1){
             [self addServiceFail];
@@ -68,10 +68,10 @@
         self.alertVC = [UIAlertController creatRightAlertControllerWithHandle:^{
            
             FailContextViewController *failVC = [[FailContextViewController alloc]init];
-            failVC.navigationItem.title = @"失败";
+            failVC.navigationItem.title = NSLocalizedString(@"Failure", nil);
             failVC.serviceModel = self.serviceModel;
             [self.navigationController pushViewController:failVC animated:YES];
-        } andSuperViewController:[kPlistTools getPresentedViewController] Title:@"此设备绑定失败"];
+        } andSuperViewController:[kPlistTools getPresentedViewController] Title:NSLocalizedString(@"This device failed to bind", nil)];
         
     }
     
@@ -85,7 +85,7 @@
     
     [UIAlertController creatRightAlertControllerWithHandle:^{
         [self returnMinSerVC];
-    } andSuperViewController:self Title:@"设备绑定成功"];
+    } andSuperViewController:self Title:NSLocalizedString(@"Device binding successful", nil)];
     
 }
 

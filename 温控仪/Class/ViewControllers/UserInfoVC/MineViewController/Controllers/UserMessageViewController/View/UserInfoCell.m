@@ -119,7 +119,7 @@
     self.loginOutLabel = loginOutLabel;
     loginOutLabel.layer.borderWidth = 0;
     
-    UITextField *contentFiled = [UITextField creatTextfiledWithPlaceHolder:@"请输入您的信息" andSuperView:_view];
+    UITextField *contentFiled = [UITextField creatTextfiledWithPlaceHolder:NSLocalizedString(@"Enter blank Please enter your information", nil) andSuperView:_view];
     [contentFiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(_view.width * 3 / 4, _view.height));
         make.centerY.mas_equalTo(_view.mas_centerY);
@@ -130,7 +130,7 @@
     contentFiled.delegate = self;
     contentFiled.textColor = [UIColor colorWithHexString:@"858585"];
     
-    UIButton *chanceBtn = [UIButton creatBtnWithTitle:@"请选择" withLabelFont:k14 withLabelTextColor:[UIColor lightGrayColor] andSuperView:_view andBackGroundColor:[UIColor clearColor] andHighlightedBackGroundColor:[UIColor clearColor] andwhtherNeendCornerRadius:NO WithTarget:self andDoneAtcion:@selector(chanceAddressAtcion)];
+    UIButton *chanceBtn = [UIButton creatBtnWithTitle:NSLocalizedString(@"Please choose", nil) withLabelFont:k14 withLabelTextColor:[UIColor lightGrayColor] andSuperView:_view andBackGroundColor:[UIColor clearColor] andHighlightedBackGroundColor:[UIColor clearColor] andwhtherNeendCornerRadius:NO WithTarget:self andDoneAtcion:@selector(chanceAddressAtcion)];
     [chanceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(_view.width / 5, _view.height));
         make.centerY.mas_equalTo(_view.mas_centerY);
@@ -140,7 +140,7 @@
     chanceBtn.hidden = YES;
     
     
-    UITextField *detailFiled = [UITextField creatTextfiledWithPlaceHolder:@"请输入详细的地址信息" andSuperView:_view];
+    UITextField *detailFiled = [UITextField creatTextfiledWithPlaceHolder:NSLocalizedString(@"Please enter detailed address information", nil) andSuperView:_view];
     [detailFiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(_view.width - kScreenW * 2 / 29, kScreenH / 14.46));
         make.top.mas_equalTo(_view.mas_top);

@@ -10,4 +10,5 @@
 @class SystemMessageModel;
 @interface SystemMessageAndMineMessageTableViewCell : UITableViewCell
 @property (nonatomic , strong) SystemMessageModel *systemMessageModel;
+@property (nonatomic,strong) UIView *promptView;
 @end

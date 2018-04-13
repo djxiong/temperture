@@ -71,7 +71,7 @@
             NSDictionary *dic = [kPlistTools readDataFromFile:LittleTypesServicesData];
             [self setDataWith:dic];
         } else {
-            [SVProgressHUD showErrorWithStatus:@"当前网络不可用，\n请检查您的网络设置"];
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"nonetwork", nil)];
         }
     }];
 }
@@ -123,9 +123,9 @@
     ServicesModel *model = [[ServicesModel alloc]init];
     model = self.modelArray[indexPath.row];
     if (!model.remark) {
-        model.remark = @"指定WIFI";
+        model.remark = NSLocalizedString(@"Specified WIFI", nil);
     }
-    if ([self.navigationItem.title isEqualToString:@"添加设备"]) {
+    if ([self.navigationItem.title isEqualToString:NSLocalizedString(@"addDevice", nil)]) {
         
         if ([model.typeNumber isEqualToString:@"7931A"]) {
             [UIAlertController creatSheetControllerWithFirstHandle:^{
@@ -133,7 +133,7 @@
                 if ([phone isEqualToString:@"admin"] || [phone isEqualToString:@"user"]) {
                     [UIAlertController creatRightAlertControllerWithHandle:^{
                         [self.navigationController popViewControllerAnimated:YES];
-                    } andSuperViewController:self Title:@"当前为公共账号，无法添加设备"];
+                    } andSuperViewController:self Title:NSLocalizedString(@"CannotAddDevice", nil)];
                 }
                 
                 QQLBXScanViewController *vc = [QQLBXScanViewController new];
@@ -143,21 +143,21 @@
                 vc.serviceModel = model;
                 vc.isVideoZoom = YES;
                 [self.navigationController pushViewController:vc animated:YES];
-            } andFirstTitle:@"绑定设备" andSecondHandle:nil andSecondTitle:nil andThirtHandle:nil andThirtTitle:nil andForthHandle:nil andForthTitle:nil andSuperViewController:self];
+            } andFirstTitle:NSLocalizedString(@"Binding device", nil) andSecondHandle:nil andSecondTitle:nil andThirtHandle:nil andThirtTitle:nil andForthHandle:nil andForthTitle:nil andSuperViewController:self];
         } else {
             [UIAlertController creatSheetControllerWithFirstHandle:^{
                 
                 SetServicesViewController *setserVC = [[SetServicesViewController alloc]init];
                 setserVC.serviceModel = model;
-                setserVC.navigationItem.title = @"添加设备";
+                setserVC.navigationItem.title = NSLocalizedString(@"addDevice", nil);
                 [self.navigationController pushViewController:setserVC animated:YES];
-            } andFirstTitle:@"设备配网" andSecondHandle:^{
+            } andFirstTitle:NSLocalizedString(@"Equipment Distribution Network", nil) andSecondHandle:^{
                 
                 NSString *phone = [kStanderDefault objectForKey:@"phone"];
                 if ([phone isEqualToString:@"admin"] || [phone isEqualToString:@"user"]) {
                     [UIAlertController creatRightAlertControllerWithHandle:^{
                         [self.navigationController popViewControllerAnimated:YES];
-                    } andSuperViewController:self Title:@"当前为公共账号，无法添加设备"];
+                    } andSuperViewController:self Title:NSLocalizedString(@"CannotAddDevice", nil)];
                 }
                 
                 QQLBXScanViewController *vc = [QQLBXScanViewController new];
@@ -167,12 +167,12 @@
                 vc.serviceModel = model;
                 vc.isVideoZoom = YES;
                 [self.navigationController pushViewController:vc animated:YES];
-            } andSecondTitle:@"绑定设备" andThirtHandle:^{
+            } andSecondTitle:NSLocalizedString(@"Binding device", nil) andThirtHandle:^{
                 if (![[kNetWork getWifiName] isEqualToString:model.remark]) {
                     [UIAlertController creatRightAlertControllerWithHandle:^{
                         [kNetWork pushToWIFISetVC];
                         return ;
-                    } andSuperViewController:self Title:[NSString stringWithFormat:@"未连接到指定的'%@'的WIFI，无法使用直连模式" , model.remark]];
+                    } andSuperViewController:self Title:[NSString stringWithFormat:@"%@'%@'%@" , NSLocalizedString(@"Not connected to the specified", nil) , model.remark , NSLocalizedString(@"WIFI cannot use direct connection mode", nil)]];
                 }
                 
                 
@@ -185,7 +185,7 @@
                 kSocketTCP.whetherConnected = YES;
                 
                 [self.navigationController pushViewController:htmlVC animated:YES];
-            } andThirtTitle:@"直连模式" andForthHandle:nil andForthTitle:nil andSuperViewController:self];
+            } andThirtTitle:NSLocalizedString(@"Direct connection mode", nil) andForthHandle:nil andForthTitle:nil andSuperViewController:self];
         }
         
         

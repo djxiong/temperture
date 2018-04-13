@@ -12,6 +12,7 @@
 #import "XMGNavigationController.h"
 #import "LaunchScreenViewController.h"
 #import "HTMLBaseViewController.h"
+#import "NSBundle+Language.h"
 
 #define STOREAPPID @"1113948983"
 @interface AppDelegate ()<GCDAsyncSocketDelegate>
@@ -24,6 +25,11 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"] && ![[[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"] isEqualToString:@""]) {
+        [NSBundle setLanguage:[[NSUserDefaults standardUserDefaults] objectForKey:@"myLanguage"]];
+    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [[UIViewController alloc]init];

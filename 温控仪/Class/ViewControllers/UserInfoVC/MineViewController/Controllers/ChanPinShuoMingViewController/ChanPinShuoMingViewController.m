@@ -34,7 +34,7 @@
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setImage:[UIImage imageNamed:@"navigationButtonReturn"] forState:UIControlStateNormal];
-    [backButton setTitle:@"返回" forState:UIControlStateNormal];
+    [backButton setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
     [backButton setTitleColor:kMainColor forState:UIControlStateNormal];
     backButton.titleLabel.font = [UIFont systemFontOfSize:k15];
     [backButton sizeToFit];

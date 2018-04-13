@@ -289,7 +289,7 @@
                 [self.navigationController popToViewController:vc animated:YES];
             }
         }
-    } andSuperViewController:self Title:@"配网成功"];
+    } andSuperViewController:self Title:NSLocalizedString(@"Successful distribution", nil)];
     [self.sendUdpSocket close];
 }
 
@@ -310,7 +310,7 @@
     self.tableView = tableView;
     
     
-    UIButton *refreshBtn = [UIButton creatBtnWithTitle:@"刷新WIFI列表" withLabelFont:k15 withLabelTextColor:[UIColor whiteColor] andSuperView:self.view andBackGroundColor:kMainColor andHighlightedBackGroundColor:[UIColor colorWithRed:250/255.0 green:201/255.0 blue:77/255.0 alpha:1.0] andwhtherNeendCornerRadius:NO WithTarget:self andDoneAtcion:@selector(refreshAtcion)];
+    UIButton *refreshBtn = [UIButton creatBtnWithTitle:NSLocalizedString(@"Refresh WIFI list", nil) withLabelFont:k15 withLabelTextColor:[UIColor whiteColor] andSuperView:self.view andBackGroundColor:kMainColor andHighlightedBackGroundColor:[UIColor colorWithRed:250/255.0 green:201/255.0 blue:77/255.0 alpha:1.0] andwhtherNeendCornerRadius:NO WithTarget:self andDoneAtcion:@selector(refreshAtcion)];
     [refreshBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kStandardW, kScreenW / 10));
         make.centerX.mas_equalTo(tableView.mas_centerX);
@@ -319,7 +319,7 @@
     }];
     self.refreshBtn = refreshBtn;
     
-    UILabel *searchLable = [UILabel creatLableWithTitle:@"正在搜索附近WIFI信息..." andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
+    UILabel *searchLable = [UILabel creatLableWithTitle:NSLocalizedString(@"Searching for nearby WIFI information...", nil) andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
     searchLable.layer.borderWidth = 0;
     searchLable.textColor = kWhiteColor;
     [searchLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -329,7 +329,7 @@
     }];
     
     
-    UILabel *registerLable = [UILabel creatLableWithTitle:@"正在连接设备..." andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
+    UILabel *registerLable = [UILabel creatLableWithTitle:NSLocalizedString(@"Connecting device...", nil) andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
     registerLable.layer.borderWidth = 0;
     registerLable.textColor = kWhiteColor;
     [registerLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -338,7 +338,7 @@
     }];
     
     
-    UILabel *addLable = [UILabel creatLableWithTitle:@"将设备添加到云端..." andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
+    UILabel *addLable = [UILabel creatLableWithTitle:NSLocalizedString(@"Add devices to the cloud...", nil) andSuperView:self.view andFont:k15 andTextAligment:NSTextAlignmentCenter];
     addLable.layer.borderWidth = 0;
     addLable.textColor = kWhiteColor;
     [addLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -382,7 +382,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString *name = cell.textLabel.text;
     self.wifiNameStr = name;
-    [UIAlertController creatAlertControllerWithFirstTextfiledPlaceholder:nil andFirstTextfiledText:name andFirstAtcion:nil andWhetherEdite:NO WithSecondTextfiledPlaceholder:@"请输入WIFI密码" andSecondTextfiledText:nil andSecondAtcion:@selector(secondTextFieldsValueDidChange:) andAlertTitle:@"输入WiFi信息" andAlertMessage:@"输入 wifi 信息后，点击'好的',把当前WIFI信息发送给设备。" andTextfiledAtcionTarget:self andSureHandle:^{
+    [UIAlertController creatAlertControllerWithFirstTextfiledPlaceholder:nil andFirstTextfiledText:name andFirstAtcion:nil andWhetherEdite:NO WithSecondTextfiledPlaceholder:NSLocalizedString(@"Please enter WIFI password", nil) andSecondTextfiledText:nil andSecondAtcion:@selector(secondTextFieldsValueDidChange:) andAlertTitle:NSLocalizedString(@"Enter WiFi information", nil) andAlertMessage:NSLocalizedString(@"After entering the wifi information, click 'OK' to send the current WIFI information to the device.", nil) andTextfiledAtcionTarget:self andSureHandle:^{
         [self openUDPServer];
         NSData *data = [NSString hexStringToData:self.message];
         [self.sendUdpSocket sendData:data toHost:KQILIANHost port:kPort49000 withTimeout:-1 tag:0];

@@ -14,6 +14,7 @@
 @property (nonatomic , strong) UILabel *timeLabel;
 @property (nonatomic , strong) UILabel *readCountLabel;
 @property (nonatomic , strong) UILabel *subtitleLabel;
+
 @end
 
 @implementation SystemMessageAndMineMessageTableViewCell
@@ -30,6 +31,19 @@
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH / 8)];
     [self.contentView addSubview:view];
     view.backgroundColor = [UIColor whiteColor];
+    
+    UIView *promptView = [[UIView alloc]init];
+    [view addSubview:promptView];
+    [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(view.mas_right).offset(-5);
+        make.top.mas_equalTo(view.mas_top).offset(5);
+        make.size.mas_equalTo(CGSizeMake(8, 8));
+    }];
+    promptView.backgroundColor = [UIColor redColor];
+    promptView.layer.cornerRadius = 4;
+    promptView.hidden = YES;
+    self.promptView = promptView;
+    
     UILabel *titleLable = [UILabel creatLableWithTitle:@"" andSuperView:view andFont:k15 andTextAligment:NSTextAlignmentLeft];
     [titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kScreenW - kScreenW / 10, view.height / 4));
@@ -53,6 +67,7 @@
         make.centerY.mas_equalTo(timeLable.mas_centerY);
     }];
     self.readCountLabel = readCountLable;
+    readCountLable.textColor = kWhiteColor;
     
     UILabel *subtitleLable = [UILabel creatLableWithTitle:@"" andSuperView:view andFont:k15 andTextAligment:NSTextAlignmentLeft];
     [subtitleLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -62,16 +77,15 @@
     }];
     self.subtitleLabel = subtitleLable;
     
-    [UIView creatBottomFenGeView:view andBackGroundColor:[UIColor lightGrayColor] isOrNotAllLenth:@"YES"];
+//    [UIView creatBottomFenGeView:view andBackGroundColor:[UIColor lightGrayColor] isOrNotAllLenth:@"YES"];
     
     titleLable.layer.borderWidth = 0;
     timeLable.layer.borderWidth = 0;
     subtitleLable.layer.borderWidth = 0;
     readCountLable.layer.borderWidth = 0;
     
-    timeLable.textColor = [UIColor blackColor];
     timeLable.textColor = kCOLOR(176, 176, 176);
-    readCountLable.textColor = kCOLOR(176, 176, 176);
+//    readCountLable.textColor = kCOLOR(176, 176, 176);
     subtitleLable.textColor = kCOLOR(114, 114, 114);
 }
 
@@ -83,6 +97,12 @@
         self.timeLabel.text = _systemMessageModel.addTime;
         self.subtitleLabel.text = _systemMessageModel.content;
         self.readCountLabel.text = [NSString stringWithFormat:@"阅读量:%ld" , (long)_systemMessageModel.readCount];
+        
+        if (_systemMessageModel.ifRead) {
+            self.promptView.hidden = YES;
+        } else {
+            self.promptView.hidden = NO;
+        }
     }
     
 }

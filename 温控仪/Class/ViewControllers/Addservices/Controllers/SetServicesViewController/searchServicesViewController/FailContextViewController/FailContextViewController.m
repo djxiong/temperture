@@ -31,7 +31,7 @@
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setImage:[UIImage imageNamed:@"navigationButtonReturn"] forState:UIControlStateNormal];
-    [backButton setTitle:@"返回主界面" forState:UIControlStateNormal];
+    [backButton setTitle:NSLocalizedString(@"Back to Home page", nil) forState:UIControlStateNormal];
     [backButton setTitleColor:kMainColor forState:UIControlStateNormal];
     backButton.titleLabel.font = [UIFont systemFontOfSize:k15];
     [backButton sizeToFit];
@@ -64,7 +64,7 @@
     [self.view addSubview:view];
     view.backgroundColor = [UIColor redColor];
     
-    UILabel *lable1 = [UILabel creatLableWithTitle:@"绑定失败!" andSuperView:view andFont:k17 andTextAligment:NSTextAlignmentLeft];
+    UILabel *lable1 = [UILabel creatLableWithTitle:NSLocalizedString(@"Binding failed!", nil) andSuperView:view andFont:k17 andTextAligment:NSTextAlignmentLeft];
     lable1.layer.borderWidth = 0;
     [lable1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kScreenW / 8.3);
@@ -92,7 +92,7 @@
     }];
     [UIImageView setImageViewColor:jingGaoIamgeView andColor:[UIColor whiteColor]];
     
-    UILabel *jingGaoLable = [UILabel creatLableWithTitle:@"警告" andSuperView:view andFont:k14 andTextAligment:NSTextAlignmentCenter];
+    UILabel *jingGaoLable = [UILabel creatLableWithTitle:NSLocalizedString(@"Caveat", nil) andSuperView:view andFont:k14 andTextAligment:NSTextAlignmentCenter];
     jingGaoLable.layer.borderWidth = 0;
     [jingGaoLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(jingGaoIamgeView.mas_centerX);
@@ -101,7 +101,7 @@
     }];
     jingGaoLable.textColor = [UIColor whiteColor];
     
-    UILabel *tiShiLable = [UILabel creatLableWithTitle:@"请按以下步骤排查可能的问题并重试" andSuperView:view andFont:k15 andTextAligment:NSTextAlignmentLeft];
+    UILabel *tiShiLable = [UILabel creatLableWithTitle:NSLocalizedString(@"Follow these steps to troubleshoot possible problems and try again", nil) andSuperView:view andFont:k15 andTextAligment:NSTextAlignmentLeft];
     tiShiLable.layer.borderWidth = 0;
     [tiShiLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(view.mas_centerX);
@@ -109,7 +109,7 @@
         make.top.mas_equalTo(view.mas_bottom).offset(kScreenW / 11.4);
     }];
     
-    UILabel *firstLable = [UILabel creatLableWithTitle:@"1.请确保您的设备已按照开始时的提示，设置到配网状态;" andSuperView:view andFont:k13 andTextAligment:NSTextAlignmentLeft];
+    UILabel *firstLable = [UILabel creatLableWithTitle:NSLocalizedString(@"AddFailureSerVC_First", nil) andSuperView:view andFont:k13 andTextAligment:NSTextAlignmentLeft];
     firstLable.numberOfLines = 0;
     firstLable.layer.borderWidth = 0;
     [firstLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -119,7 +119,7 @@
     }];
     
     
-    UILabel *secondLable = [UILabel creatLableWithTitle:@"2.确保之前输入的WIFI账号密码无误;" andSuperView:view andFont:k13 andTextAligment:NSTextAlignmentLeft];
+    UILabel *secondLable = [UILabel creatLableWithTitle:NSLocalizedString(@"AddFailureSerVC_Second", nil) andSuperView:view andFont:k13 andTextAligment:NSTextAlignmentLeft];
     secondLable.layer.borderWidth = 0;
     [secondLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(view.mas_centerX);
@@ -127,7 +127,7 @@
         make.top.mas_equalTo(firstLable.mas_bottom);
     }];
     
-    UILabel *thirtLable = [UILabel creatLableWithTitle:@"3.确保设备与家庭路由器的距离不要太远;" andSuperView:view andFont:k13 andTextAligment:NSTextAlignmentLeft];
+    UILabel *thirtLable = [UILabel creatLableWithTitle:NSLocalizedString(@"AddFailureSerVC_Thirt", nil) andSuperView:view andFont:k13 andTextAligment:NSTextAlignmentLeft];
     thirtLable.layer.borderWidth = 0;
     [thirtLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(view.mas_centerX);
@@ -135,7 +135,7 @@
         make.top.mas_equalTo(secondLable.mas_bottom);
     }];
     
-    UILabel *forthLable = [UILabel creatLableWithTitle:@"4.您的路由器是否设置到了5GHz，可以进入路由器设置管理检查，确保是2.4GHz;" andSuperView:view andFont:k13 andTextAligment:NSTextAlignmentLeft];
+    UILabel *forthLable = [UILabel creatLableWithTitle:NSLocalizedString(@"AddFailureSerVC_Forth", nil) andSuperView:view andFont:k13 andTextAligment:NSTextAlignmentLeft];
     forthLable.numberOfLines = 0;
     forthLable.layer.borderWidth = 0;
     [forthLable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -151,7 +151,7 @@
     forthLable.textColor = kWhiteColor;
     
     
-    UIButton *againBtn = [UIButton creatBtnWithTitle:@"重试" andBorderColor:kMainColor WithTarget:self andDoneAtcion:@selector(againBtnAction) andSuperView:self.view];
+    UIButton *againBtn = [UIButton creatBtnWithTitle:NSLocalizedString(@"AddFailureSerVC_Again", nil) andBorderColor:kMainColor WithTarget:self andDoneAtcion:@selector(againBtnAction) andSuperView:self.view];
     
     [againBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(view.mas_centerX);
@@ -161,7 +161,7 @@
     againBtn.layer.cornerRadius = kScreenW / 18.75;
     againBtn.backgroundColor = kCOLOR(239, 250, 253);
     
-    UIButton *fanKuiBtn = [UIButton creatBtnWithTitle:@"在线反馈" andBorderColor:kMainColor WithTarget:self andDoneAtcion:@selector(fanKuiBtnAction) andSuperView:self.view];
+    UIButton *fanKuiBtn = [UIButton creatBtnWithTitle:NSLocalizedString(@"AddFailureSerVC_OnlineFeedback", nil) andBorderColor:kMainColor WithTarget:self andDoneAtcion:@selector(fanKuiBtnAction) andSuperView:self.view];
     [fanKuiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(view.mas_centerX);
         make.size.mas_equalTo(CGSizeMake(kScreenW - kScreenW * 2 / 8.3, kScreenW / 9.375));
@@ -176,7 +176,7 @@
 - (void)againBtnAction {
     
     AllTypeServiceViewController *allTypeVC = [[AllTypeServiceViewController alloc]init];
-    allTypeVC.navigationItem.title = @"添加设备";
+    allTypeVC.navigationItem.title = NSLocalizedString(@"addDevice", nil);
     [self.navigationController pushViewController:allTypeVC animated:YES];
     
 }
@@ -185,7 +185,7 @@
 - (void)fanKuiBtnAction {
     
     UserFeedBackViewController *fanKuiVC = [[UserFeedBackViewController alloc]init];
-    fanKuiVC.navigationItem.title = @"在线反馈";
+    fanKuiVC.navigationItem.title = NSLocalizedString(@"AddFailureSerVC_OnlineFeedback", nil);
     [self.navigationController pushViewController:fanKuiVC animated:YES];
     
 }

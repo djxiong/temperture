@@ -17,4 +17,5 @@
 @property (nonatomic , copy) NSString *content;
 @property (nonatomic , assign) NSInteger readCount;
 @property (nonatomic , copy) NSString *idd;
+@property (nonatomic,assign) BOOL ifRead;
 @end

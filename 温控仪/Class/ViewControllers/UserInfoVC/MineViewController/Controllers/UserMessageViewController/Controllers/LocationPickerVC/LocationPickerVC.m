@@ -38,7 +38,7 @@ static NSString *celled = @"celled";
     [self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(filedResiginResponde)]];
     self.tableView.scrollEnabled = NO;
 
-    UIButton *sureBtn = [UIButton initWithTitle:@"保存" andColor:kMainColor andSuperView:self.view];
+    UIButton *sureBtn = [UIButton initWithTitle:NSLocalizedString(@"Save", nil) andColor:kMainColor andSuperView:self.view];
     [sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.top.mas_equalTo(self.view.mas_top).offset(kScreenH / 2.22);
@@ -128,7 +128,7 @@ static NSString *celled = @"celled";
         }
         
         if (cell.contentFiled.text.length <= 0) {
-            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"信息未填写完全"];
+            [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"UserMessageVC_InfoNotFilledCompletely", nil)];
             return ;
         }
     }
@@ -137,7 +137,7 @@ static NSString *celled = @"celled";
     addrDetail = cell.detailFiled.text;
 
     if (cell.detailFiled.text.length <= 0) {
-        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"信息未填写完全"];
+        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"UserMessageVC_InfoNotFilledCompletely", nil)];
         return ;
     }
     

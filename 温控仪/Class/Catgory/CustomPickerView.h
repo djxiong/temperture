@@ -13,6 +13,7 @@ typedef NS_OPTIONS(NSUInteger, UIPickerViewType) {
     UIPickerViewTypeOfSex,
     UIPickerViewTypeOfBirthday,
     UIPickerViewTypeOfAddress,
+    UIPickerViewTypeOfLanguages,
     UIPickerViewTypeOfCustom
 };
 @protocol CustomPickerViewDelegate <NSObject>

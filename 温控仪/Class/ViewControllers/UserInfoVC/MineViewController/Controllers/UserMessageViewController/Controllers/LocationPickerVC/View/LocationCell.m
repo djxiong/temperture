@@ -53,19 +53,19 @@
     if (indexPath.section == 0 && indexPath.row == 0) {
 
         self.backImage.image = [UIImage imageNamed:@"topleftandright"];
-        self.lable.text = @"收货人";
+        self.lable.text = NSLocalizedString(@"UserMessageVC_ConsigneeName", nil);
         self.contentFiled.keyboardType = UIKeyboardTypeDefault;
         if (self.dizhiModel != nil) {
             self.contentFiled.text = self.dizhiModel.receiverName;
         }
         
     } else if (indexPath.section == 0 && indexPath.row == 1) {
-        self.lable.text = @"联系电话";
+        self.lable.text = NSLocalizedString(@"UserMessageVC_CellPhoneNumber", nil);
         if (self.dizhiModel != nil) {
             self.contentFiled.text = self.dizhiModel.receiverPhone;
         }
     } else if (indexPath.section == 0 && indexPath.row == 2) {
-        self.lable.text = @"所在地区";
+        self.lable.text = NSLocalizedString(@"Region", nil);
         self.chanceBtn.hidden = NO;
         self.jianTouImage.hidden = NO;
         [self.contentFiled removeFromSuperview];
@@ -91,7 +91,7 @@
 
         self.backImage.image = [UIImage imageNamed:@"bottomleftandright"];
         self.fenGeView.hidden = YES;
-        self.lable.text = @"邮政编码";
+        self.lable.text = NSLocalizedString(@"UserMessageVC_EnterZipCode", nil);
         if (self.dizhiModel != nil) {
             self.contentFiled.text = [NSString stringWithFormat:@"%@" , self.dizhiModel.postcode];
         }
@@ -117,20 +117,22 @@
         if (textField.text.length != 11 && textField.text.length != 0) {
             [UIAlertController creatRightAlertControllerWithHandle:^{
                 textField.text = nil;
-            } andSuperViewController:self.currentVC Title:@"手机号码格式不正确"];
+            } andSuperViewController:self.currentVC Title:NSLocalizedString(@"PhoneFormattedError", nil)];
         }
     } else if (self.indexPath.section == 0 && self.indexPath.row == 3) {
         if (textField.text.length != 6 && textField.text.length != 0) {
             [UIAlertController creatRightAlertControllerWithHandle:^{
                 textField.text = nil;
-            } andSuperViewController:self.currentVC Title:@"邮编格式不正确"];
+            } andSuperViewController:self.currentVC Title:NSLocalizedString(@"Incorrect zip code format", nil)];
         }
+    
+        
         
     }
 }
 
 - (void)chanceAddressAtcion {
-   CustomPickerView *addressPicker = [[CustomPickerView alloc]initWithPickerViewType:4 andBackColor:kMainColor];
+   CustomPickerView *addressPicker = [[CustomPickerView alloc]initWithPickerViewType:UIPickerViewTypeOfAddress andBackColor:kMainColor];
     [self.currentVC.view addSubview:addressPicker];
     addressPicker.delegate = self;
     

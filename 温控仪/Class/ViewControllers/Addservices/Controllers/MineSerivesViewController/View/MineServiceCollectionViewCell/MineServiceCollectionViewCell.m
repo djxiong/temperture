@@ -42,10 +42,10 @@
         self.numberLabel.text = [NSString stringWithFormat:@"No.%ld" ,((long)self.indexPath.row + 1)];
         
         if (self.serviceModel.ifConn == 1) {
-            self.onlieLabel.text = @"在线";
+            self.onlieLabel.text = NSLocalizedString(@"onLine", nil);
             self.onlieLabel.textColor = [UIColor colorWithRed: 28/255.0  green: 164/255.0  blue: 252/255.0  alpha: 1.0];
         } else {
-            self.onlieLabel.text = @"离线";
+            self.onlieLabel.text = NSLocalizedString(@"offLine", nil);
             self.onlieLabel.textColor = [UIColor colorWithHexString:@"767676"];
         }
         

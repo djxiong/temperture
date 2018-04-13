@@ -18,15 +18,15 @@
     
     if (self.indexpath.row == 0) {
         self.imageViw.image = [UIImage imageNamed:@"icon_product_explain"];
-        self.lable.text = @"产品说明";
+        self.lable.text = NSLocalizedString(@"Product Manual", nil);
         self.fenGeView.hidden = NO;
     } else if (self.indexpath.row == 1) {
         self.imageViw.image = [UIImage imageNamed:@"icon_feedback"];
-        self.lable.text = @"建议反馈";
+        self.lable.text = NSLocalizedString(@"FeedBack", nil);
         self.fenGeView.hidden = NO;
     } else {
         self.imageViw.image = [UIImage imageNamed:@"icon_log"];
-        self.lable.text = @"更新日志";
+        self.lable.text = NSLocalizedString(@"Update Log", nil);
 //        [self setBottomCorner];
         self.backImage.image = [UIImage imageNamed:@"bottomleftandright"];
     }

@@ -134,7 +134,7 @@
                 NSDictionary *dic = [kPlistTools readDataFromFile:MineServicesData];
                 [self setDataWith:dic];
             } else {
-                [SVProgressHUD showErrorWithStatus:@"当前网络不可用，\n请检查您的网络设置"];
+                [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"nonetwork", nil)];
             }
         }];
     }
@@ -180,7 +180,7 @@
 }
 
 - (void)setNav {
-    self.navigationItem.title = @"启联者";
+    self.navigationItem.title = NSLocalizedString(@"Company_name", nil);
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(addSerViceAtcion) image:@"addService_high" highImage:nil];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(backAtcion) image:nil highImage:nil];
     self.navigationController.interactivePopGestureRecognizer
@@ -222,7 +222,7 @@
     self.markView = markView;
     
     
-    UILabel *lable = [UILabel creatLableWithTitle:@"暂未添加任何设备" andSuperView:markView andFont:k17 andTextAligment:NSTextAlignmentCenter];
+    UILabel *lable = [UILabel creatLableWithTitle:NSLocalizedString(@"noDevice", nil) andSuperView:markView andFont:k17 andTextAligment:NSTextAlignmentCenter];
     [lable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kScreenW / 2, kScreenW / 10));
         make.centerY.mas_equalTo(self.view.mas_centerY);
@@ -231,7 +231,7 @@
     lable.textColor = [UIColor colorWithHexString:@"b4b4b4"];
     lable.layer.borderWidth = 0;
     
-    UIButton *button = [UIButton initWithTitle:@"添加设备" andColor:kFenGeXianYanSe andSuperView:markView];
+    UIButton *button = [UIButton initWithTitle:NSLocalizedString(@"addDevice", nil) andColor:kFenGeXianYanSe andSuperView:markView];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(kScreenW / 2.6, kScreenW / 11));
         make.top.mas_equalTo(lable.mas_bottom).offset(kScreenH / 4);
@@ -301,7 +301,7 @@
 - (void)addSerViceAtcion{
 
     AllTypeServiceViewController *allTypeVC = [[AllTypeServiceViewController alloc]init];
-    allTypeVC.navigationItem.title = @"添加设备";
+    allTypeVC.navigationItem.title = NSLocalizedString(@"addDevice", nil);
     [self.navigationController pushViewController:allTypeVC animated:YES];
     
 }

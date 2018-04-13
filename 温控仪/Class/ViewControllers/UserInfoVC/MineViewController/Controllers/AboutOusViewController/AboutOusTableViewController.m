@@ -96,7 +96,7 @@ NSString static * const cellid = @"cellid";
         [[UIApplication sharedApplication] openURL:url];
     } else if (indexPath.row == 1) {
         ConnectWeViewController *connectOurVC = [[ConnectWeViewController alloc]init];
-        connectOurVC.navigationItem.title = @"联系我们";
+        connectOurVC.navigationItem.title = NSLocalizedString(@"Contact Us", nil);
         [self.navigationController pushViewController:connectOurVC animated:YES];
     }
 }

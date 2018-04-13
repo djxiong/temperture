@@ -58,7 +58,7 @@
         self.whetherNetWork = NO;
         [UIAlertController creatRightAlertControllerWithHandle:^{
             [self.navigationController popViewControllerAnimated:YES];
-        } andSuperViewController:self Title:@"当前无网络或网络信号差，请返回重试"];
+        } andSuperViewController:self Title:NSLocalizedString(@"There is no network or network signal currently, please return to retry", nil)];
     }];
 
 }
@@ -233,7 +233,7 @@
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     [self.navigationController popViewControllerAnimated:YES];
                     return ;
-                } andSuperViewController:bvc Title:@"目标设备错误，请重新选择。"];
+                } andSuperViewController:bvc Title:NSLocalizedString(@"The target device is wrong. Please select again.", nil)];
             } else {
                 NSString *callJSstring = nil;
                 callJSstring = [NSString stringWithFormat:@"GetScanQrcodeData('%@')" , result];
@@ -310,7 +310,7 @@
             if (self.connectState != CONNECTED_ZHILIAN) {
                 [UIAlertController creatRightAlertControllerWithHandle:^{
                     [kNetWork pushToWIFISetVC];
-                } andSuperViewController:self Title:@"当前连接的WIFI无网络或手机无网络，请切换到可用的网络。"];
+                } andSuperViewController:self Title:NSLocalizedString(@"Currently connected WIFI has no network or mobile phone has no network, please switch to available network.", nil)];
             }
         }
         

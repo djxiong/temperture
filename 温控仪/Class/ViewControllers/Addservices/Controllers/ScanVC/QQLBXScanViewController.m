@@ -44,7 +44,7 @@
     [self drawTitle];
     [self.view bringSubviewToFront:_topTitle];
     
-    self.navigationController.navigationItem.title = @"二维码扫描";
+    self.navigationController.navigationItem.title = NSLocalizedString(@"QR code scanning", nil);
     
 }
 
@@ -67,7 +67,7 @@
         
         _topTitle.textAlignment = NSTextAlignmentCenter;
         _topTitle.numberOfLines = 0;
-        _topTitle.text = @"将取景框对准二维码即可自动扫描";
+        _topTitle.text = NSLocalizedString(@"Align the frame to the QR code to automatically scan", nil);
         _topTitle.textColor = [UIColor whiteColor];
         [self.view addSubview:_topTitle];
     }    
@@ -168,7 +168,7 @@
 
 - (void)showError:(NSString*)str
 {
-    [LBXAlertAction showAlertWithTitle:@"提示" msg:str buttonsStatement:@[@"知道了"] chooseBlock:nil];
+    [LBXAlertAction showAlertWithTitle:NSLocalizedString(@"Prompt", nil) msg:str buttonsStatement:@[@"知道了"] chooseBlock:nil];
 }
 
 - (void)scanResultWithArray:(NSArray<LBXScanResult*>*)array
@@ -211,7 +211,7 @@
     }
     
     __weak __typeof(self) weakSelf = self;
-    [LBXAlertAction showAlertWithTitle:@"扫码内容" msg:strResult buttonsStatement:@[@"知道了"] chooseBlock:^(NSInteger buttonIdx) {
+    [LBXAlertAction showAlertWithTitle:NSLocalizedString(@"Scan code content", nil) msg:strResult buttonsStatement:@[@"知道了"] chooseBlock:^(NSInteger buttonIdx) {
         
         [weakSelf reStartDevice];
     }];
@@ -230,12 +230,12 @@
             [UIAlertController creatRightAlertControllerWithHandle:^{
                 [self.navigationController popViewControllerAnimated:YES];
                 return ;
-            } andSuperViewController:self Title:@"目标设备错误，请重新选择。"];
+            } andSuperViewController:self Title:NSLocalizedString(@"Target device is wrong, please select again", nil)];
         }
         
         self.serviceModel.devSn = strResult.strScanned;
         bindSreviceVC.serviceModel = self.serviceModel;
-        bindSreviceVC.navigationItem.title = @"添加设备";
+        bindSreviceVC.navigationItem.title = NSLocalizedString(@"addDevice", nil);
         [self.navigationController pushViewController:bindSreviceVC animated:YES];
     }
     

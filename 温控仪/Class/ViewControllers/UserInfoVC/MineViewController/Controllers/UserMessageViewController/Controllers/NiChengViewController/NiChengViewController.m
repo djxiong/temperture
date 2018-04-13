@@ -32,7 +32,7 @@
     view.layer.masksToBounds = YES;
     
     
-    self.textFiled = [UITextField creatTextfiledWithPlaceHolder:@"请修改您的信息" andSuperView:view];
+    self.textFiled = [UITextField creatTextfiledWithPlaceHolder:NSLocalizedString(@"Please modify your information", nil) andSuperView:view];
     self.textFiled.keyboardType = UIKeyboardTypeDefault;
     self.textFiled.delegate = self;
     [self.textFiled mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -42,7 +42,7 @@
     }];
 
     
-    UIButton *sureBtn = [UIButton initWithTitle:@"完成" andColor:kMainColor andSuperView:self.view];
+    UIButton *sureBtn = [UIButton initWithTitle:NSLocalizedString(@"Sure", nil) andColor:kMainColor andSuperView:self.view];
     [sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(view.mas_centerX);
         make.size.mas_equalTo(CGSizeMake( kScreenW / 2.68, kScreenW / 9.375));
@@ -50,13 +50,13 @@
     }];
     [sureBtn addTarget:self action:@selector(sureBtnAtcion:) forControlEvents:UIControlEventTouchUpInside];
     
-    if ([self.navigationItem.title isEqualToString:@"昵称"]) {
-        if (![_userModel.nickname isKindOfClass:[NSNull class]] && ![_userModel.nickname isEqualToString:@"昵称"]) {
+    if ([self.navigationItem.title isEqualToString:NSLocalizedString(@"NickName", nil)]) {
+        if (![_userModel.nickname isKindOfClass:[NSNull class]] && ![_userModel.nickname isEqualToString:NSLocalizedString(@"NickName", nil)]) {
             self.textFiled.text = _userModel.nickname;
             [self.textFiled becomeFirstResponder];
         }
     } else {
-        if (![_userModel.email isKindOfClass:[NSNull class]] && ![_userModel.email isEqualToString:@"请输入邮箱"]) {
+        if (![_userModel.email isKindOfClass:[NSNull class]] && ![_userModel.email isEqualToString:NSLocalizedString(@"Please input your email", nil)]) {
             self.textFiled.text = _userModel.email;
             [self.textFiled becomeFirstResponder];;
         }
@@ -68,7 +68,7 @@
 - (void)sureBtnAtcion:(UIButton *)btn {
     
     if (self.textFiled.text.length == 0) {
-        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:@"输入为空"];
+        [UIAlertController creatRightAlertControllerWithHandle:nil andSuperViewController:self Title:NSLocalizedString(@"Input is empty", nil)];
     } else {
         if (_delegate && [_delegate respondsToSelector:@selector(sendNickOrEmailToPreviousVC:)]) {
             [_delegate sendNickOrEmailToPreviousVC:@[self.textFiled.text , self.navigationItem.title]];
@@ -76,7 +76,7 @@
         
         
         NSDictionary *parames = nil;
-        if ([self.navigationItem.title isEqualToString:@"昵称"]) {
+        if ([self.navigationItem.title isEqualToString:NSLocalizedString(@"NickName", nil)]) {
             parames = @{@"user.sn" : @(self.userModel.sn) , @"user.nickname" : self.textFiled.text};
         } else {
             parames = @{@"user.sn" : @(self.userModel.sn) , @"user.email" : self.textFiled.text};

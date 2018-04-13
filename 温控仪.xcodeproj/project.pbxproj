@@ -43,8 +43,11 @@
 		ED0019DA1F4D645E009BD921 /* HeadPortraitView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019B91F4D645E009BD921 /* HeadPortraitView.m */; };
 		ED0019DB1F4D645E009BD921 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019BB1F4D645E009BD921 /* MineTableViewCell.m */; };
 		ED0019DC1F4D645E009BD921 /* OvalCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0019BD1F4D645E009BD921 /* OvalCircleView.m */; };
-		ED00F14320046EC200453966 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED00F14220046EC200453966 /* Launch Screen.storyboard */; };
 		ED1230DA1FB1A03300BB0663 /* CZPlistTools.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1230D91FB1A03300BB0663 /* CZPlistTools.m */; };
+		ED18C310207B1EA100465183 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED18C30E207B1EA100465183 /* LaunchScreen.storyboard */; };
+		ED18C315207B1F0C00465183 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED18C317207B1F0C00465183 /* Localizable.strings */; };
+		ED18C320207B4EF500465183 /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = ED18C31F207B4EF400465183 /* NSBundle+Language.m */; };
+		ED18C328207C9E1900465183 /* MineMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ED18C327207C9E1900465183 /* MineMessageVC.m */; };
 		ED29096C1FB1618600F40236 /* BindServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29096B1FB1618600F40236 /* BindServiceVC.m */; };
 		ED29B1FB1EC05264007E5454 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED29B1FA1EC05264007E5454 /* main.m */; };
 		ED29B2061EC05264007E5454 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED29B2051EC05264007E5454 /* Assets.xcassets */; };
@@ -251,9 +254,16 @@
 		ED0019BB1F4D645E009BD921 /* MineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
 		ED0019BC1F4D645E009BD921 /* OvalCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OvalCircleView.h; sourceTree = "<group>"; };
 		ED0019BD1F4D645E009BD921 /* OvalCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OvalCircleView.m; sourceTree = "<group>"; };
-		ED00F14220046EC200453966 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		ED1230D81FB1A03300BB0663 /* CZPlistTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CZPlistTools.h; sourceTree = "<group>"; };
 		ED1230D91FB1A03300BB0663 /* CZPlistTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CZPlistTools.m; sourceTree = "<group>"; };
+		ED18C316207B1F0C00465183 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		ED18C318207B1F0F00465183 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ED18C319207B21F700465183 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = ../en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ED18C31A207B21F700465183 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "../zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		ED18C31E207B4EF400465183 /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
+		ED18C31F207B4EF400465183 /* NSBundle+Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
+		ED18C326207C9E1900465183 /* MineMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineMessageVC.h; sourceTree = "<group>"; };
+		ED18C327207C9E1900465183 /* MineMessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineMessageVC.m; sourceTree = "<group>"; };
 		ED29096A1FB1618600F40236 /* BindServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindServiceVC.h; sourceTree = "<group>"; };
 		ED29096B1FB1618600F40236 /* BindServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindServiceVC.m; sourceTree = "<group>"; };
 		ED29B1F61EC05264007E5454 /* 温控仪.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "温控仪.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -619,7 +629,6 @@
 			isa = PBXGroup;
 			children = (
 				ED00196E1F4D645E009BD921 /* GengXinRiZhiViewController */,
-				ED0019711F4D645E009BD921 /* JianChaGengXinViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -631,13 +640,6 @@
 				ED0019701F4D645E009BD921 /* GengXinRiZhiViewController.m */,
 			);
 			path = GengXinRiZhiViewController;
-			sourceTree = "<group>";
-		};
-		ED0019711F4D645E009BD921 /* JianChaGengXinViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = JianChaGengXinViewController;
 			sourceTree = "<group>";
 		};
 		ED0019721F4D645E009BD921 /* View */ = {
@@ -652,9 +654,9 @@
 		ED0019781F4D645E009BD921 /* ConnectWeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EDDBDB3B1FAAB86300145525 /* ChanPinShuoMingViewController */,
 				ED0019791F4D645E009BD921 /* ConnectWeViewController.h */,
 				ED00197A1F4D645E009BD921 /* ConnectWeViewController.m */,
+				EDDBDB3B1FAAB86300145525 /* ChanPinShuoMingViewController */,
 			);
 			path = ConnectWeViewController;
 			sourceTree = "<group>";
@@ -676,6 +678,7 @@
 				ED0019811F4D645E009BD921 /* Mode */,
 				ED0019841F4D645E009BD921 /* SystemMessageViewController.h */,
 				ED0019851F4D645E009BD921 /* SystemMessageViewController.m */,
+				ED18C325207C9E0300465183 /* VC */,
 				ED0019861F4D645E009BD921 /* View */,
 			);
 			path = SystemMessageVC;
@@ -699,16 +702,8 @@
 				ED00198A1F4D645E009BD921 /* SystemMessageNoMore.m */,
 				ED00198B1F4D645E009BD921 /* SystemMessageWebViewController.h */,
 				ED00198C1F4D645E009BD921 /* SystemMessageWebViewController.m */,
-				ED00198D1F4D645E009BD921 /* 联侠 2017-08-17 15-33-46 */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		ED00198D1F4D645E009BD921 /* 联侠 2017-08-17 15-33-46 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "联侠 2017-08-17 15-33-46";
 			sourceTree = "<group>";
 		};
 		ED00198E1F4D645E009BD921 /* View */ = {
@@ -734,10 +729,10 @@
 		ED0019961F4D645E009BD921 /* UserFeedBackViewController */ = {
 			isa = PBXGroup;
 			children = (
-				ED0019971F4D645E009BD921 /* PhotoCollectionViewCell */,
-				ED00199A1F4D645E009BD921 /* PlaceholderTextView */,
 				ED00199D1F4D645E009BD921 /* UserFeedBackViewController.h */,
 				ED00199E1F4D645E009BD921 /* UserFeedBackViewController.m */,
+				ED0019971F4D645E009BD921 /* PhotoCollectionViewCell */,
+				ED00199A1F4D645E009BD921 /* PlaceholderTextView */,
 			);
 			path = UserFeedBackViewController;
 			sourceTree = "<group>";
@@ -853,6 +848,15 @@
 			path = wenkongyi;
 			sourceTree = "<group>";
 		};
+		ED18C325207C9E0300465183 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				ED18C326207C9E1900465183 /* MineMessageVC.h */,
+				ED18C327207C9E1900465183 /* MineMessageVC.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 		ED2909691FB1615000F40236 /* BindServiceVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -889,6 +893,7 @@
 			children = (
 				ED9DA641204E7AE500ACC8B7 /* 温控仪.entitlements */,
 				ED29B22D1EC05423007E5454 /* Class */,
+				ED31F8AE207B1CB4006A0479 /* Base.lproj */,
 				ED29B1F91EC05264007E5454 /* Supporting Files */,
 			);
 			path = "温控仪";
@@ -906,7 +911,7 @@
 				ED29B2051EC05264007E5454 /* Assets.xcassets */,
 				ED29B20A1EC05264007E5454 /* Info.plist */,
 				ED29B1FA1EC05264007E5454 /* main.m */,
-				ED00F14220046EC200453966 /* Launch Screen.storyboard */,
+				ED18C317207B1F0C00465183 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1182,6 +1187,8 @@
 				ED29B4261EC0638F007E5454 /* XMGRefreshHeader.m */,
 				ED6BFF931ED2CCCB00420596 /* CustomStyleBtn.h */,
 				ED6BFF941ED2CCCB00420596 /* CustomStyleBtn.m */,
+				ED18C31E207B4EF400465183 /* NSBundle+Language.h */,
+				ED18C31F207B4EF400465183 /* NSBundle+Language.m */,
 			);
 			path = Catgory;
 			sourceTree = "<group>";
@@ -1276,6 +1283,14 @@
 				EDC3992D201F265C0047210B /* receiveorder.js */,
 			);
 			path = public;
+			sourceTree = "<group>";
+		};
+		ED31F8AE207B1CB4006A0479 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				ED18C30E207B1EA100465183 /* LaunchScreen.storyboard */,
+			);
+			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 		ED5C9FDC1F9894DD0057C208 /* Tools */ = {
@@ -1587,6 +1602,8 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				Base,
+				en,
 			);
 			mainGroup = ED29B1ED1EC05264007E5454;
 			productRefGroup = ED29B1F71EC05264007E5454 /* Products */;
@@ -1614,6 +1631,8 @@
 				ED2EDDF3201ECE55006DC29E /* bg.png in Resources */,
 				ED2EDDFD201ECE55006DC29E /* index.html in Resources */,
 				ED8E3C9E1EC162F20040FD3B /* Wind.plist in Resources */,
+				ED18C310207B1EA100465183 /* LaunchScreen.storyboard in Resources */,
+				ED18C315207B1F0C00465183 /* Localizable.strings in Resources */,
 				ED2B15CA1FC7FC5F00247CE3 /* BigTypesServicesData in Resources */,
 				EDC3992A201F20B70047210B /* build.js in Resources */,
 				ED2EDDF5201ECE55006DC29E /* fengjiguan.png in Resources */,
@@ -1628,7 +1647,6 @@
 				ED2EDDF8201ECE55006DC29E /* guanbtn.png in Resources */,
 				ED5972A52069E93F005AFF62 /* Address.plist in Resources */,
 				ED2EDDF2201ECE55006DC29E /* backbtn.png in Resources */,
-				ED00F14320046EC200453966 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1726,6 +1744,7 @@
 				ED7913F61ED579DB001DE08C /* ESP_NetUtil.m in Sources */,
 				ED0019DB1F4D645E009BD921 /* MineTableViewCell.m in Sources */,
 				ED0019CA1F4D645E009BD921 /* SystemMessageNoMore.m in Sources */,
+				ED18C328207C9E1900465183 /* MineMessageVC.m in Sources */,
 				ED0019C21F4D645E009BD921 /* GengXinRiZhiViewController.m in Sources */,
 				ED29B3811EC05423007E5454 /* RegisterViewController.m in Sources */,
 				ED00195C1F4D2095009BD921 /* SearchServicesViewController.m in Sources */,
@@ -1775,6 +1794,7 @@
 				ED0019C81F4D645E009BD921 /* SystemMessageViewController.m in Sources */,
 				ED6BFF8F1ED28ED800420596 /* TextFiledView.m in Sources */,
 				ED29B34A1EC05423007E5454 /* CLLocation+YCLocation.m in Sources */,
+				ED18C320207B4EF500465183 /* NSBundle+Language.m in Sources */,
 				ED29B3311EC05423007E5454 /* AppDelegate.m in Sources */,
 				ED74791B1F4BE8E8005A9708 /* ServicesModel.m in Sources */,
 				ED29B3821EC05423007E5454 /* AlertMessageView.m in Sources */,
@@ -1857,11 +1877,33 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		ED18C30E207B1EA100465183 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED18C319207B21F700465183 /* en */,
+				ED18C31A207B21F700465183 /* zh-Hans */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		ED18C317207B1F0C00465183 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED18C316207B1F0C00465183 /* zh-Hans */,
+				ED18C318207B1F0F00465183 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		ED29B2211EC05265007E5454 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1899,7 +1941,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "56c4bb4b-2ff1-4a2b-b7b4-263564caab39";
@@ -1911,6 +1953,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1942,7 +1985,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "56c4bb4b-2ff1-4a2b-b7b4-263564caab39";
 				SDKROOT = iphoneos;

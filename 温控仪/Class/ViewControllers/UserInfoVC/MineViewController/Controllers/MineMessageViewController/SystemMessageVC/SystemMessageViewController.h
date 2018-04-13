@@ -11,5 +11,5 @@
 @interface SystemMessageViewController : UIViewController
 
 @property (nonatomic , assign) BOOL presentVC;
-
+@property (nonatomic,strong) UserModel *userModel;
 @end

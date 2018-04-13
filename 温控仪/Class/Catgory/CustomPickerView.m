@@ -137,7 +137,7 @@
     self.pickerBgView.backgroundColor = [UIColor whiteColor];
     [self.markView addSubview:self.pickerBgView];
     
-    if (_type == 3) {
+    if (_type == UIPickerViewTypeOfTime) {
         UIDatePicker *myPicker = [[UIDatePicker alloc] init];
         myPicker.locale = [[NSLocale alloc]initWithLocaleIdentifier:@"zh_ch"];
         // 设置时区，中国在东八区
@@ -225,23 +225,23 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     
-    if (_type == 1) return 2;
-    else if (_type == 2) return 1;
-    else if (_type == 5) return self.dataDic.count;
+    if (_type == UIPickerViewTypeOfTime) return 2;
+    else if (_type == UIPickerViewTypeOfSex || _type == UIPickerViewTypeOfLanguages) return 1;
+    else if (_type == UIPickerViewTypeOfCustom) return self.dataDic.count;
     else return 3;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     
-    if (_type == 1) {
+    if (_type == UIPickerViewTypeOfTime) {
         if (component == 0) {
             return self.hourArray.count;
         } else {
             return self.minuteArray.count;
         }
-    } else if (_type == 2) {
+    } else if (_type == UIPickerViewTypeOfSex) {
         return self.sexArray.count;
-    } else if (_type == 5) {
+    } else if (_type == UIPickerViewTypeOfCustom || _type == UIPickerViewTypeOfLanguages) {
         
         NSArray *dataArray = self.dataDic[@(component)];
         return dataArray.count;
@@ -258,15 +258,15 @@
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    if (_type == 1) {
+    if (_type == UIPickerViewTypeOfTime) {
         if (component == 0) {
             return [self.hourArray objectAtIndex:row];
         } else {
             return [self.minuteArray objectAtIndex:row];
         }
-    } else if (_type == 2) {
+    } else if (_type == UIPickerViewTypeOfSex) {
         return [self.sexArray objectAtIndex:row];
-    } else if (_type == 5) {
+    } else if (_type == UIPickerViewTypeOfCustom || _type == UIPickerViewTypeOfLanguages) {
         
         NSArray *dataArray = self.dataDic[@(component)];
         return [dataArray objectAtIndex:row];

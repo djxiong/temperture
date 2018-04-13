@@ -1,0 +1,249 @@
+/* 
+  Localizable.strings
+  温控仪
+
+  Created by 杭州阿尔法特 on 2018/4/9.
+  Copyright © 2018年 张海昌. All rights reserved.
+*/
+"Company_name" = "QiLianZhe";
+
+"nonetwork" = "The current network is not available \n Please check your network settings";
+
+"noDevice" = "No device has been added yet";
+;
+"addDevice" = "Add Device";
+
+"onLine" = "onLine";
+
+"offLine" = "offLine";
+
+"Specified WIFI" = "Specified WIFI";
+
+"CannotAddDevice" = "Cannot add device because it is currently a public account";
+
+"Not connected to the specified" = "Not connected to the specified";
+"WIFI cannot use direct connection mode" = "WIFI cannot use direct connection mode";
+
+"QR code scanning" = "QR code scanning";
+
+"Align the frame to the QR code to automatically scan" = "Align the frame to the QR code to automatically scan";
+
+"Scan code content" = "Scan code content";
+
+"Target device is wrong, please select again" = "Target device is wrong, please select again";
+
+"This device is already bound" = "This device is already bound";
+
+"Please specify the WIFI link device, otherwise the device can not be bound" = "Please specify the WIFI link device, otherwise the device can not be bound!";
+
+"You are not currently connected to WIFI, the device cannot be added" = "You are not currently connected to WIFI, the device cannot be added";
+
+"Please connect the current WIFI of the mobile phone to" = "Please connect the current WIFI of the mobile phone to";
+
+"Not connected to the specified WIFI, unable to configure the distribution network" = "Not connected to the specified WIFI, unable to configure the distribution network";
+
+"Successful distribution" = "Successful distribution";
+
+"Refresh WIFI list" = "Refresh WIFI list";
+
+"Searching for nearby WIFI information..." = "Searching for nearby WIFI information...";
+
+"Connecting device..." = "Connecting device...";
+
+"Add devices to the cloud..." = "Add devices to the cloud...";
+
+"Please enter WIFI password" = "Please enter WIFI password";
+
+"Enter WiFi information" = "Enter WiFi information";
+
+"After entering the wifi information, click 'OK' to send the current WIFI information to the device." = "After entering the wifi information, click 'OK' to send the current WIFI information to the device.";
+
+"Back to Home page" = "Back to Home page";
+
+"Binding failed!" = "Binding failed!";
+
+"Caveat" = "Caveat";
+
+"Follow these steps to troubleshoot possible problems and try again" = "Follow these steps to troubleshoot possible problems and try again";
+
+"Failure" = "Failure";
+
+"This device failed to bind" = "This device failed to bind";
+
+"Device binding successful" = "Device binding successful";
+
+
+"AddFailureSerVC_First" = "1. Make sure that your device is set to the distribution network at the prompts at the beginning;";
+"AddFailureSerVC_Second" = "2. Make sure the password entered before entering the WIFI account is correct;";
+"AddFailureSerVC_Thirt" = "3. Make sure that the distance between the device and the home router is not too far;";
+"AddFailureSerVC_Forth" = "4. Is your router set to 5GHz, you can enter the router to set the management check to ensure that it is 2.4GHz;";
+"AddFailureSerVC_Again" = "Retry";
+
+"There is no network or network signal currently, please return to retry" = "There is no network or network signal currently, please return to retry";
+
+"The target device is wrong. Please select again." = "The target device is wrong. Please select again.";
+
+"Currently connected WIFI has no network or mobile phone has no network, please switch to available network." = "Currently connected WIFI has no network or mobile phone has no network, please switch to available network.";
+
+"AddSerVC_AllService" = "All equipment";
+
+"MineVC_OnlyUploadThreeImages" = "You can only upload up to three images";
+
+"MineVC_InfoEmptyRe-enter" = "The information you entered is empty. Please re-enter it";
+
+"MineVC_FeedBackReceived" = "Pro, your suggestion we have received, will be dealt with as soon as possible";
+
+"Device List" = "Device List";
+"Personal certer" = "Personal certer";
+"User Info" = "User Info";
+"Message Notification" = "Message Notification";
+"About Products" = "About Products";
+"About Us" = "About Us";
+"Clear Cache" = "Clear Cache";
+"Current Cache" = "Current Cache";
+"Avatar" = "Avatar";
+"Gender" = "Gender";
+"Birthday" = "Birthday";
+"My Address" = "My Address";
+"My Email Box" = "My Email Box";
+"Change Password" = "Change Password";
+"Setting Language" = "Setting Language";
+"My ID" = "My ID";
+"Sign Out" = "Sign Out";
+
+"Male" = "Male";
+"Female" = "Female";
+
+"Please select birthday" = "Please select birthday";
+"Please enter the address" = "Please enter the address";
+"Please input your email" = "Please input your email";
+
+"Save" = "Save";
+
+"Please enter detailed address information" = "Please enter detailed address information";
+
+"Currently no network, please login public account Admin" = "Currently no network, please login public account Admin";
+
+"Please re-enter your password" = "Please re-enter your password";
+
+"Password reset complete" = "Password reset complete";
+
+"And" = "And";
+
+"ResetVC_ResetPwd" = "Reset Password";
+"Username" = "Username";
+"RegistVC_Register" = "Reset";
+"Please enter your account" = "Please enter your account";
+
+"Incorrect zip code format" = "Incorrect zip code format";
+
+"Please modify your information" = "Please modify your information";
+
+"Input is empty" = "Input is empty";
+
+"Enter blank Please enter your information" = "Enter blank Please enter your information";
+
+"Please choose" = "Please choose";
+
+"Region" = "Region";
+
+"Email" = "Email";
+"UserMessageVC_EnterInforModify" = "Please enter the information you want to modify";
+"UserMessageVC_EnterMailboxWrongRe-enter" = "The format of the mailbox you entered is wrong. Please re-enter it";
+"UserMessageVC_AddressModification" = "Address modification";
+"UserMessageVC_EnterDetailAddressInfor" = "Please enter the detailed address information";
+"UserMessageVC_ProvienceOrCity" = "Province / city:";
+"UserMessageVC_CityOrDistrict" = "City / District:";
+"UserMessageVC_County" = "County:";
+"UserMessageVC_ZipCode" = "Zip code:";
+"UserMessageVC_EnterZipCode" = "Please enter the zip code";
+"UserMessageVC_ConsigneeName" = "Consignee name";
+"UserMessageVC_EnterConsigneeName" = "Fill in the recipient's name";
+"UserMessageVC_CellPhoneNumber" = "Cellphone number";
+"UserMessageVC_EnterCellPhoneNumber" = "Fill in the phone number";
+"UserMessageVC_InfoNotFilledCompletely" = "The information is not filled in completely";
+"UserMessageVC_ZipCodeFormate" = "The zip code must be 6 digits, please re-enter";
+"UserMessageVC_PhoneFormate" = "The phone number is incorrect. Please re-enter it";
+
+"System Information" = "System Information";
+"My Information" = "My Information";
+"No Information" = "No Information";
+
+"Product Manual" = "Product Manual";
+"FeedBack" = "FeedBack";
+"Update Log" = "Update Log";
+
+"FeedBack Placehold" = "Write down your problems or tell us your opinion";
+"Question Screenshot" = "Question Screenshot";
+"Submit" = "Submit";
+
+"Go To Evaluate" = "Go To Evaluate";
+"Contact Us" = "Contact Us";
+
+"Taking Pictures" = "Taking Pictures";
+"Select From Album" = "Select From Album";
+
+"Equipment Distribution Network" = "Equipment Distribution Network";
+"Binding device" = "Binding device";
+"Direct connection mode" = "Direct connection mode";
+
+"Please enter your account" = "Please enter your account";
+"Please enter your password" = "Please enter your password";
+
+"Log in" = "Log in";
+"Sign up now" = "Sign up now";
+"Forget password" = "Forget password?";
+
+"Please enter your mobile number" = "Please enter your mobile number";
+"Please enter verification code" = "Please enter verification code";
+
+"Click 'Register Now' to indicate that you agree to abide by the cronator" = "Click 'Register Now' to indicate that you agree to abide by the cronator";
+"Agreement" = "Agreement";
+"Privacy Policy" = "Privacy Policy";
+
+
+"AccExiteSoLogin" = "This account already exists, please login directly";
+
+"AccEmpty" = "Account entry is empty";
+"PwdEmpty" = "The password is empty";
+"AccountFormatInputError" = "Account format input error";
+"UserNoRegistered" = "The user is not registered";
+"EnterdErrorSoReenter" = "You have entered something wrong. Please re-enter it";
+"AccOrPwdEmpty" = "Account or password is empty";
+"PwdError" = "Wrong password";
+"EnterPhone" = "Please enter your phone number";
+"EnterVertionCode" = "Please enter verification code";
+"Next" = "The next step";
+"PhoneFormattedError" = "The phone number is not formatted correctly";
+"PhoneNumberEmpty" = "The phone number is empty";
+"VerificationCodeEmpty" = "The verification code is empty";
+"InputValueEmpty" = "The input value is empty";
+"EnterSMSVerificationCode" = "Please enter the SMS verification code";
+"SendSMSCode" = "Send messages";
+"Back" = "Return";
+"YourPhoneNumberErrorSoRe-Enter" = "Your number is incorrect. Please re-enter it";
+"YourVerificationCodeErrorSoRe-Enter" = "The code you entered is incorrect. Please re-enter it";
+"ThisAccNoExist" = "This account does not exist";
+"InputValueError" = "Input value exception";
+"AfterSecondsRe-Send" = "later the re-send";
+
+"RegisterMobilePhoneNumber" = "Your registered mobile phone number is:";
+"SetYourPwd" = "Please set your password.";
+
+"Submit" = "Submit";
+"Prompt" = "Prompt";
+"Sure" = "Sure";
+
+"PwdTwiceDifferentRe-enter" = "The password you entered twice is different. Please enter it again";
+
+"Right" = "Right";
+"PwdFormat" = "The password length must be greater than 6 bits and less than 16 bits";
+"PwdEnterError" = "Password input is empty";
+"SystemErrorRestall" = "System is abnormal, please try again";
+"Congratulations" = "Congratulations, the operation is successful.";
+"AtOnceLogin" = "Login now";
+"Resend" = "Resend";
+"VerificationCodeSendTo" = "The verification code is sent to";
+"SMSMessageSendTo" = "SMS sent to";
+"PhoneNumberRegister" = "The phone number you registered is";
+"AgainRepeatPwd" = "Please enter your password repeatedly";

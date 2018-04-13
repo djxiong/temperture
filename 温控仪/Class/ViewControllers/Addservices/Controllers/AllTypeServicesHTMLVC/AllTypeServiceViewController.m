@@ -74,7 +74,7 @@
             NSDictionary *dic = [kPlistTools readDataFromFile:BigTypesServicesData];
             [self setDataWith:dic];
         } else {
-            [SVProgressHUD showErrorWithStatus:@"当前网络不可用，\n请检查您的网络设置"];
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"nonetwork", nil)];
         }
     }];
 }

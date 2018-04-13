@@ -10,14 +10,12 @@
 
 @implementation SystemMessageModel
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    if ([key isEqualToString:@"id"]) {
-        _idd = value;
-    }
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"idd" : @"id"};
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"_title---%@ \n, _url---%@ , content--%@, readCount--%ld" , _title , _url , _content , (long)_readCount];
+- (NSString *)description
+{
+   return [self yy_modelDescription];
 }
-
 @end

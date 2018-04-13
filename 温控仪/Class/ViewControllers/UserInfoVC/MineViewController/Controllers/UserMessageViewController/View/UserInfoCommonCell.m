@@ -40,37 +40,39 @@
             }];
             self.rightLabel.hidden = YES;
             self.headPortraitImageView.hidden = NO;
-            self.lable.text = @"头像";
+            self.lable.text = NSLocalizedString(@"Avatar", nil);
             
         } else if (self.indexPath.row == 1) {
-            self.lable.text = @"昵称";
+            self.lable.text = NSLocalizedString(@"NickName", nil);
  
         } else if (self.indexPath.row == 2){
-            self.lable.text = @"性别";
+            self.lable.text = NSLocalizedString(@"Gender", nil);
 
         } else if (self.indexPath.row == 3) {
-            self.lable.text = @"生日";
+            self.lable.text = NSLocalizedString(@"Birthday", nil);
 
 
         } else if (self.indexPath.row == 4) {
-            self.lable.text = @"我的地址";
+            self.lable.text = NSLocalizedString(@"My Address", nil);
             
         
         } else if (self.indexPath.row == 5) {
             self.fenGeView.hidden = YES;
             self.backImage.image = [UIImage imageNamed:@"bottomleftandright"];
-            self.lable.text = @"我的邮箱";
+            self.lable.text = NSLocalizedString(@"My Email Box", nil);
             
         }
     }
     else if (self.indexPath.section == 1) {
         if (self.indexPath.row == 0) {
             self.backImage.image = [UIImage imageNamed:@"topleftandright"];
-            self.lable.text = @"修改密码";
-        }
-        else if (self.indexPath.row == 1) {
+            self.lable.text = NSLocalizedString(@"Change Password", nil);
+        } else if (self.indexPath.row == 1) {
+            self.backImage.image = [UIImage imageNamed:@"topleftandright"];
+            self.lable.text = NSLocalizedString(@"Setting Language", nil);
+        } else {
             self.backImage.image = [UIImage imageNamed:@"bottomleftandright"];
-            self.lable.text = @"我的ID";
+            self.lable.text = NSLocalizedString(@"My ID", nil);
             self.fenGeView.hidden = YES;
             self.jianTouImage.hidden = YES;
             self.idLabel.hidden = NO;
@@ -85,7 +87,7 @@
             self.jianTouImage.hidden = YES;
             self.rightLabel.hidden = YES;
             self.loginOutLabel.hidden = NO;
-            self.loginOutLabel.text = @"退出登录";
+            self.loginOutLabel.text = NSLocalizedString(@"Sign Out", nil);
             self.loginOutLabel.textColor = [UIColor redColor];
             
         }

@@ -13,6 +13,7 @@
 #import "XMGRefreshFooter.h"
 #import "XMGRefreshHeader.h"
 #import "SystemMessageNoMore.h"
+#import "MineMessageVC.h"
 
 @interface SystemMessageViewController ()<UITableViewDataSource , UITableViewDelegate>{
     NSUInteger pages;
@@ -23,6 +24,9 @@
 @end
 
 @implementation SystemMessageViewController
+- (void)setUserModel:(UserModel *)userModel {
+    _userModel = userModel;
+}
 
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
@@ -46,7 +50,7 @@
 #pragma mark - 设置UI
 - (void)setUI{
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - kHeight) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - kHeight) style:UITableViewStyleGrouped];
     [self.view addSubview:self.tableView];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"f2f4fb"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -64,12 +68,12 @@
 
 - (void)setNav{
     self.navigationController.navigationBar.hidden = false;
-    self.navigationItem.title = @"系统消息";
+    self.navigationItem.title = NSLocalizedString(@"System Information", nil);
     self.navigationItem.leftBarButtonItem = nil;
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setImage:[UIImage imageNamed:@"navigationButtonReturn"] forState:UIControlStateNormal];
-    [backButton setTitle:@"返回" forState:UIControlStateNormal];
+    [backButton setTitle:NSLocalizedString(@"back", nil) forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor colorWithHexString:@"00a2ff"] forState:UIControlStateNormal];
     backButton.titleLabel.font = [UIFont systemFontOfSize:k15];
     [backButton sizeToFit];
@@ -97,69 +101,68 @@
 
 - (void)loadNewTopics {
     pages = 1;
- 
-    //调用读取数据的方法
-    NSDictionary *parames = @{@"page" : @(pages) , @"rows" : @10};
-    
-    [self loadData:parames];
-    
-    
-}
-
-- (void)loadData:(NSDictionary *)parames {
-    if ([self.navigationItem.title isEqualToString:@"系统消息"]) {
-        
-        [kNetWork requestPOSTUrlString:kSystemMessageJieKou parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
-            
-            if ([responseObject[@"total"] isKindOfClass:[NSNull class]]) {
-                [self noHaveMessage];
-                return ;
-            }
-            
-            NSInteger total = [responseObject[@"total"] integerValue];
-            if (total > 0) {
-                
-                NSArray *data = responseObject[@"rows"];
-                
-                if (data.count > 0) {
-                    
-                    if (pages == 1) [self.dataArray removeAllObjects];
-                    [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        SystemMessageModel *model = [[SystemMessageModel alloc]init];
-                        [model setValuesForKeysWithDictionary:obj];
-                        NSLog(@"%@" , model);
-                        [self.dataArray addObject:model];
-                    }];
-                    
-                    SystemMessageModel *model = [[SystemMessageModel alloc]init];
-                    model = [self.dataArray firstObject];
-                    [kStanderDefault setValue:model.addTime forKey:@"SystemMessageTime"];
-                    
-                    [self.tableView reloadData];
-                    [self.tableView.mj_header endRefreshing];
-                    [self.tableView.mj_footer endRefreshing];
-                } else {
-                    [self noHaveMessage];
-                }
-            } else if (total == 0) {
-                [self noHaveMessage];
-            }
-            
-        } failure:^(NSError * _Nonnull error) {
-            [self noHaveMessage];
-        }];
-        
-    } else {
-        [self noHaveMessage];
-    }
+    [self requestDataWith:pages];
 }
 
 - (void)loadMoreTopics {
-    
     pages++;
-    NSDictionary *parames = @{@"page" : @(pages) , @"rows" : @10};
+    [self requestDataWith:pages];
+}
+
+- (void)requestDataWith:(NSInteger)page {
+    NSDictionary *parames = nil;
+    NSString *url = nil;
+    if ([self.navigationItem.title isEqualToString:NSLocalizedString(@"System Information", nil)]) {
+        parames = @{@"page" : @(pages) , @"rows" : @10};
+        url = kSystemMessageJieKou;
+    } else {
+        parames = @{@"page" : @(pages) , @"rows" : @10 , @"userSn":@(self.userModel.sn)};
+        url = kMyMessageJieKou;
+    }
+    [self loadData:parames withUrl:url];
+}
+
+- (void)loadData:(NSDictionary *)parames withUrl:(NSString *)url{
     
-    [self loadData:parames];
+    
+    [kNetWork requestPOSTUrlString:url parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+        
+        if ([responseObject[@"total"] isKindOfClass:[NSNull class]]) {
+            [self noHaveMessage];
+            return ;
+        }
+        
+        NSInteger total = [responseObject[@"total"] integerValue];
+        if (total > 0) {
+            
+            NSArray *data = responseObject[@"rows"];
+            
+            if (data.count > 0) {
+                
+                if (pages == 1) [self.dataArray removeAllObjects];
+                [data enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    SystemMessageModel *model = [[SystemMessageModel alloc]init];
+                    [model yy_modelSetWithDictionary:obj];
+                    [self.dataArray addObject:model];
+                }];
+                
+                SystemMessageModel *model = [[SystemMessageModel alloc]init];
+                model = [self.dataArray firstObject];
+                [kStanderDefault setValue:model.addTime forKey:@"SystemMessageTime"];
+                
+                [self.tableView reloadData];
+                [self.tableView.mj_header endRefreshing];
+                [self.tableView.mj_footer endRefreshing];
+            } else {
+                [self noHaveMessage];
+            }
+        } else if (total == 0) {
+            [self noHaveMessage];
+        }
+        
+    } failure:^(NSError * _Nonnull error) {
+        [self noHaveMessage];
+    }];
 }
 
 - (void)noHaveMessage {
@@ -173,11 +176,9 @@
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.5 animations:^{
-//            self.noMoreView.alpha = 0;
+            self.noMoreView.alpha = 0;
         }];
     });
-    
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -189,13 +190,22 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc]init];
+    static NSString * identy = @"headFoot";
+    UIView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identy];
+    if (!view) {
+        view = [[UIView alloc]init];
+    }
     view.backgroundColor = kCOLOR(244, 244, 244);
     return view;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return kScreenH / 8;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -206,8 +216,6 @@
     if (!cell) {
         cell = [[SystemMessageAndMineMessageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:celled];
     }
-    
-    
     SystemMessageModel *model = [[SystemMessageModel alloc]init];
     model = self.dataArray[indexPath.section];
     cell.systemMessageModel = model;
@@ -221,11 +229,29 @@
     
     NSLog(@"%@" , @(model.idd.integerValue));
     
-    SystemMessageWebViewController *systemWebVC = [[SystemMessageWebViewController alloc]init];
-    systemWebVC.model = model;
-    
-    systemWebVC.navigationItem.title = self.navigationItem.title;
-    [self.navigationController pushViewController:systemWebVC animated:YES];
+    if ([self.navigationItem.title isEqualToString:NSLocalizedString(@"System Information", nil)]) {
+        SystemMessageWebViewController *systemWebVC = [[SystemMessageWebViewController alloc]init];
+        systemWebVC.model = model;
+        
+        systemWebVC.navigationItem.title = self.navigationItem.title;
+        [self.navigationController pushViewController:systemWebVC animated:YES];
+    } else {
+        MineMessageVC *mineMessageVC = [[MineMessageVC alloc]init];
+        mineMessageVC.model = model;
+        mineMessageVC.navigationItem.title = self.navigationItem.title;
+        [self.navigationController pushViewController:mineMessageVC animated:YES];
+        
+        SystemMessageAndMineMessageTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        NSDictionary *parames = @{@"id":model.idd};
+        [kNetWork requestPOSTUrlString:kUserWhtherReadMessageURL parameters:parames isSuccess:^(NSDictionary * _Nullable responseObject) {
+            cell.promptView.hidden = YES;
+//            [self.tableView reloadData];
+        } failure:^(NSError * _Nonnull error) {
+            [kNetWork noNetWork];
+        }];
+        
+    }
     
 }
 

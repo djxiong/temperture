@@ -1,0 +1,253 @@
+/*
+ Localizable.strings
+ 温控仪
+ 
+ Created by 杭州阿尔法特 on 2018/4/9.
+ Copyright © 2018年 张海昌. All rights reserved.
+ */
+"Company_name" = "启联者";
+
+"nonetwork" = "当前网络不可用，\n请检查您的网络设置";
+
+"noDevice" = "暂未添加任何设备";
+
+"addDevice" = "添加设备";
+
+"onLine" = "在线";
+
+"offLine" = "离线";
+
+"Specified WIFI" = "指定WIFI";
+
+"CannotAddDevice" = "当前为公共账号，无法添加设备";
+
+"Equipment Distribution Network" = "设备配网";
+"Binding device" = "绑定设备";
+"Direct connection mode" = "直连模式";
+"Not connected to the specified" = "未连接到指定的";
+"WIFI cannot use direct connection mode" = "的WIFI，无法使用直连模式";
+
+"QR code scanning" = "二维码扫描";
+
+"Align the frame to the QR code to automatically scan" = "将取景框对准二维码即可自动扫描";
+
+"Scan code content" = "扫码内容";
+
+"Target device is wrong, please select again" = "目标设备错误，请重新选择";
+
+"This device is already bound" = "此设备已绑定";
+
+"Failure" = "失败";
+
+"This device failed to bind" = "此设备绑定失败";
+
+"Device binding successful" = "设备绑定成功";
+
+"Please specify the WIFI link device, otherwise the device can not be bound" = "请链接设备指定WIFI，否则设备无法绑定!";
+
+"You are not currently connected to WIFI, the device cannot be added" = "您当前没有连接WIFI，设备无法添加";
+
+"Please connect the current WIFI of the mobile phone to" = "请把手机当前WIFI连接到";
+
+"Not connected to the specified WIFI, unable to configure the distribution network" = "未连接到指定WIFI，无法进行配网设置";
+
+"Successful distribution" = "配网成功";
+
+"Refresh WIFI list" = "刷新WIFI列表";
+
+"Searching for nearby WIFI information..." = "正在搜索附近WIFI信息...";
+
+"Connecting device..." = "正在连接设备...";
+
+"Add devices to the cloud..." = "将设备添加到云端...";
+
+"Please enter WIFI password" = "请输入WIFI密码";
+
+"Enter WiFi information" = "输入WiFi信息";
+
+"After entering the wifi information, click 'OK' to send the current WIFI information to the device." = "输入 wifi 信息后，点击'好的',把当前WIFI信息发送给设备。";
+
+"Back to Home page" = "返回主界面";
+
+"Binding failed!" = "绑定失败!";
+
+"Caveat" = "警告";
+
+"Follow these steps to troubleshoot possible problems and try again" = "请按以下步骤排查可能的问题并重试";
+
+"AddFailureSerVC_First" = "1.请确保您的设备已按照开始时的提示，设置到配网状态;";
+"AddFailureSerVC_Second" = "2.确保之前输入的WIFI账号密码无误;";
+"AddFailureSerVC_Thirt" = "3.确保设备与家庭路由器的距离不要太远;";
+"AddFailureSerVC_Forth" = "4.您的路由器是否设置到了5GHz，可以进入路由器设置管理检查，确保是2.4GHz;";
+"AddFailureSerVC_Again" = "重试";
+"AddFailureSerVC_OnlineFeedback" = "在线反馈";
+
+"There is no network or network signal currently, please return to retry" = "当前无网络或网络信号差，请返回重试";
+
+"The target device is wrong. Please select again." = "目标设备错误，请重新选择。";
+
+"Currently connected WIFI has no network or mobile phone has no network, please switch to available network." = "当前连接的WIFI无网络或手机无网络，请切换到可用的网络。";
+
+"AddSerVC_AllService" = "所有设备";
+
+"Device List" = "设备列表";
+"Personal Certer" = "个人中心";
+
+"Please enter your account" = "请输入您的账号";
+
+"User Info" = "用户信息";
+"Message Notification" = "消息通知";
+"About Products" = "关于产品";
+"About Us" = "关于我们";
+"Clear Cache" = "清除缓存";
+"Current Cache" = "当前缓存";
+
+"Enter blank Please enter your information" = "请输入您的信息";
+
+"Avatar" = "头像";
+"NickName" = "昵称";
+"Gender" = "性别";
+"Birthday" = "生日";
+
+"Save" = "保存";
+
+"Please choose" = "请选择";
+"Please select birthday" = "请选择生日";
+"Please enter the address" = "请输入地址";
+"Please input your email" = "请输入邮箱";
+"Please enter detailed address information" = "请输入详细的地址信息";
+
+"Male" = "男";
+"Female" = "女";
+
+"My Address" = "我的地址";
+"My Email Box" = "我的邮箱";
+
+"Change Password" = "修改密码";
+"Setting Language" = "设置语言";
+
+"My ID" = "我的ID";
+
+"Username" = "用户名";
+
+"Sign Out" = "退出登录";
+
+"Email" = "邮箱";
+"UserMessageVC_EnterInforModify" = "请输入您要修改的信息";
+"UserMessageVC_EnterMailboxWrongRe-enter" = "你输入的邮箱格式错误,请重新输入";
+"UserMessageVC_AddressModification" = "地址修改";
+"UserMessageVC_EnterDetailAddressInfor" = "请输入详细地址信息";
+"UserMessageVC_ProvienceOrCity" = "省/市:";
+"UserMessageVC_CityOrDistrict" = "市/区:";
+"UserMessageVC_County" = "县:";
+"UserMessageVC_ZipCode" = "邮政编码:";
+"UserMessageVC_EnterZipCode" = "请输入邮编";
+"UserMessageVC_ConsigneeName" = "收货人姓名";
+"UserMessageVC_EnterConsigneeName" = "填写收件人姓名";
+"UserMessageVC_CellPhoneNumber" = "手机号码";
+"UserMessageVC_EnterCellPhoneNumber" = "填写手机号码";
+"UserMessageVC_InfoNotFilledCompletely" = "信息未填写完全";
+"UserMessageVC_ZipCodeFormate" = "邮编须为6位，请重新输入";
+"UserMessageVC_PhoneFormate" = "手机号码不正确，请重新输入";
+
+"Region" = "所在地区";
+
+"System Information" = "系统消息";
+"My Information" = "我的消息";
+"No Information" = "暂无消息";
+
+"Product Manual" = "产品说明";
+"FeedBack" = "建议反馈";
+"Update Log" = "更新日志";
+
+"FeedBack Placehold" = "写下你遇到的问题，或告诉我们你的意见";
+"Question Screenshot" = "问题截图";
+"MineVC_OnlyUploadThreeImages" = "最多只能上传三张图片";
+"MineVC_InfoEmptyRe-enter" = "你输入的信息为空，请重新输入";
+"MineVC_FeedBackReceived" = "亲，您的建议我们已经收到，会尽快处理";
+"Submit" = "提交";
+
+"Go To Evaluate" = "去评价";
+"Contact Us" = "联系我们";
+
+"Taking Pictures" = "拍照";
+"Select From Album" = "从相册选择";
+
+"Please enter your account" = "请输入你的账户";
+"Please enter your password" = "请输入密码";
+
+"Please re-enter your password" = "请重新输入密码";
+
+"Log in" = "登录";
+"Sign up now" = "立即注册";
+"Forget password" = "忘记密码?";
+"RegistVC_Register" = "注册";
+
+"ResetVC_ResetPwd" = "重置密码";
+
+"Please enter your mobile number" = "请输入您的手机号";
+"Please enter verification code" = "请输入验证码";
+
+"Click 'Register Now' to indicate that you agree to abide by the cronator" = "点击'立即注册'，表示你同意遵守启联者";
+"And" = "和";
+
+"Agreement" = "协议内容";
+"Privacy Policy" = "隐私政策";
+
+"AccExiteSoLogin" = "此账户已存在，请直接登录";
+
+"Input is empty" = "输入为空";
+
+"Currently no network, please login public account Admin" = "当前无网络，请登录公共账号admin";
+
+"AccEmpty" = "账号输入为空";
+"PwdEmpty" = "密码为空";
+"AccountFormatInputError" = "账号格式输入错误";
+"UserNoRegistered" = "用户未注册";
+"EnterdErrorSoReenter" = "您输入的有误，请重新输入";
+"AccOrPwdEmpty" = "账号或密码为空";
+"PwdError" = "密码错误";
+"EnterPhone" = "请输入您的手机号码";
+"EnterVertionCode" = "请输入验证码";
+"Next" = "下一步";
+"PhoneNumberEmpty" = "手机号码为空";
+"PhoneFormattedError" = "手机号码格式不正确";
+"InputValueEmpty" = "输入值为空";
+"VerificationCodeEmpty" = "验证码为空";
+"EnterSMSVerificationCode" = "请输入短信验证码";
+"SendSMSCode" = "发送短信";
+"Back" = "返回";
+"YourPhoneNumberErrorSoRe-Enter" = "你的号码输入有误，请重新输入";
+"YourVerificationCodeErrorSoRe-Enter" = "您输入的验证码错误，请重新输入";
+"ThisAccNoExist" = "此账户不存在";
+"InputValueError" = "输入值异常";
+"AfterSecondsRe-Send" = "后重新发送";
+"Incorrect zip code format" = "邮编格式不正确";
+
+"RegisterMobilePhoneNumber" = "您注册的手机号码为:";
+"SetYourPwd" = "请设置您的密码。";
+
+"Submit" = "提交";
+"Prompt" = "提示";
+"Sure" = "确定";
+
+"Password reset complete" = "密码修改成功";
+
+"PwdTwiceDifferentRe-enter" = "您两次输入的密码不同，请再次输入";
+
+"Please modify your information" = "请修改您的信息";
+
+"Right" = "好的";
+"PwdFormat" = "密码长度必须大于6位并小于16位";
+"PwdEnterError" = "密码输入为空";
+"SystemErrorRestall" = "系统异常，请重试";
+"Congratulations" = "恭喜您，操作成功。";
+"AtOnceLogin" = "马上登陆";
+"Resend" = "重新发送";
+"VerificationCodeSendTo" = "验证码发送至";
+"SMSMessageSendTo" = "短信发送至";
+"PhoneNumberRegister" = "您注册的手机号码为";
+"AgainRepeatPwd" = "请重复输入密码";
+
+
+

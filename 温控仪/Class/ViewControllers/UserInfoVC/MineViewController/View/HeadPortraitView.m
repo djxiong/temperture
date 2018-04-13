@@ -108,7 +108,7 @@
         } else if (![_userModel.nickname isKindOfClass:[NSNull class]]) {
             _nameLable.text = _userModel.nickname;
         } else {
-            _nameLable.text = @"用户名";
+            _nameLable.text = NSLocalizedString(@"Username", nil);
         }
     }
 }

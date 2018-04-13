@@ -81,18 +81,18 @@
 //        [self.navigationController pushViewController:youHuiQuanVC animated:YES];
         
         AllTypeServiceViewController *allServicesVC = [[AllTypeServiceViewController alloc]init];
-        allServicesVC.navigationItem.title = @"所有设备";
+        allServicesVC.navigationItem.title = NSLocalizedString(@"AddSerVC_AllService", nil);
         [self.navigationController pushViewController:allServicesVC animated:YES];
     } else if (indexPath.row == 1) {
         UserFeedBackViewController *userVC = [[UserFeedBackViewController alloc]init];
         
         userVC.model = self.model;
-        userVC.navigationItem.title = @"建议反馈";
+        userVC.navigationItem.title = NSLocalizedString(@"FeedBack", nil);
         [self.navigationController pushViewController:userVC animated:YES];
 
     } else if (indexPath.row == 2) {
         GengXinRiZhiViewController *gengXinVC = [[GengXinRiZhiViewController alloc]init];
-        gengXinVC.navigationItem.title = @"更新日志";
+        gengXinVC.navigationItem.title = NSLocalizedString(@"Update Log", nil);
         [self.navigationController pushViewController:gengXinVC animated:YES];
     }
 }

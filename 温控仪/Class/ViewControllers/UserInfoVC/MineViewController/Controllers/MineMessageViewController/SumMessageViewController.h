@@ -11,4 +11,5 @@
 @interface SumMessageViewController : UIViewController
 //@property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , copy) NSString *systemMessageIsShowPrompt;
+@property (nonatomic,strong) UserModel *userModel;
 @end

@@ -17,7 +17,7 @@
         self.backgroundColor =  [[UIColor blackColor] colorWithAlphaComponent:0.5];
         self.layer.cornerRadius = 5;
         
-        UILabel *label = [UILabel creatLableWithTitle:@"暂无消息" andSuperView:self andFont:k14 andTextAligment:NSTextAlignmentCenter];
+        UILabel *label = [UILabel creatLableWithTitle:NSLocalizedString(@"No Information", nil) andSuperView:self andFont:k14 andTextAligment:NSTextAlignmentCenter];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(kScreenW / 2, 44));
             make.centerX.mas_equalTo(self.mas_centerX);
