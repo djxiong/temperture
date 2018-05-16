@@ -2002,7 +2002,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				GCC_PREFIX_HEADER = "/Users/hangzhouaerfate/Desktop/温控仪/温控仪/Class/AppDelegate/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/zhanghaichang/Desktop/wenKongYi/temperture/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2023,7 +2023,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				GCC_PREFIX_HEADER = "/Users/hangzhouaerfate/Desktop/温控仪/温控仪/Class/AppDelegate/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/zhanghaichang/Desktop/wenKongYi/temperture/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

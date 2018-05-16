@@ -226,7 +226,7 @@
         BindServiceVC *bindSreviceVC = [BindServiceVC new];
         
         NSString *result = strResult.strScanned;
-        if (result.length != 4) {
+        if ([self.serviceModel.devTypeNumber isEqualToString:@"7931A"] && result.length != 4) {
             [UIAlertController creatRightAlertControllerWithHandle:^{
                 [self.navigationController popViewControllerAnimated:YES];
                 return ;
