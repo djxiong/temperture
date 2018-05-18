@@ -1572,8 +1572,8 @@
 				TargetAttributes = {
 					ED29B1F51EC05264007E5454 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = WA9VRUVC47;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = XQ83HJ8VR7;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2000,8 +2000,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "温控仪/温控仪.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = XQ83HJ8VR7;
 				GCC_PREFIX_HEADER = "/Users/zhanghaichang/Desktop/wenKongYi/temperture/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -2009,8 +2009,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiChang.temperatureControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "93618795-b2ff-43e0-86ee-1bc11ba0421b";
+				PROVISIONING_PROFILE_SPECIFIER = "WenKongYi Development profile";
 			};
 			name = Debug;
 		};
@@ -2021,8 +2021,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "温控仪/温控仪.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = XQ83HJ8VR7;
 				GCC_PREFIX_HEADER = "/Users/zhanghaichang/Desktop/wenKongYi/temperture/温控仪/Class/AppDelegate/PrefixHeader.pch";
 				INFOPLIST_FILE = "温控仪/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -2030,8 +2030,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiChang.temperatureControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "93618795-b2ff-43e0-86ee-1bc11ba0421b";
+				PROVISIONING_PROFILE_SPECIFIER = "WenKongYi Development profile";
 			};
 			name = Release;
 		};

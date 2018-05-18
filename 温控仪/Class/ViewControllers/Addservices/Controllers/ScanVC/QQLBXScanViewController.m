@@ -226,11 +226,15 @@
         BindServiceVC *bindSreviceVC = [BindServiceVC new];
         
         NSString *result = strResult.strScanned;
-        if ([self.serviceModel.devTypeNumber isEqualToString:@"7931A"] && result.length != 4) {
-            [UIAlertController creatRightAlertControllerWithHandle:^{
-                [self.navigationController popViewControllerAnimated:YES];
-                return ;
-            } andSuperViewController:self Title:NSLocalizedString(@"Target device is wrong, please select again", nil)];
+
+        if ([self.serviceModel.typeNumber isEqualToString:@"7931A"]) {
+            if (result.length != 4) {
+                [UIAlertController creatRightAlertControllerWithHandle:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return ;
+                } andSuperViewController:self Title:NSLocalizedString(@"Target device is wrong, please select again", nil)];
+            }
+
         }
         
         self.serviceModel.devSn = strResult.strScanned;
