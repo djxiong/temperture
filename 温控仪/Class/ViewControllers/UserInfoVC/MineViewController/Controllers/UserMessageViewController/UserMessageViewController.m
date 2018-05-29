@@ -459,7 +459,14 @@ static NSString *celled = @"celled";
             [firstSectionArray addObject:self.userModel.email];
         }
         [secondSectionArray addObject:@""];
-        [secondSectionArray addObject:[NSString getCurrentLanguage]];
+        
+        if ([NSString getCurrentLanguage]) {
+            [secondSectionArray addObject:[NSString getCurrentLanguage]];
+        } else {
+            [secondSectionArray addObject:@"中文"];
+        }
+        
+        
         [secondSectionArray addObject:[NSString stringWithFormat:@"%ld" , (long)self.userModel.sn]];
         
         [_infoArray addObject:firstSectionArray];
